@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriberModel", "SubscriberModel\SubscriberModel.csproj", "{9D42BE88-84B2-4E06-B9E1-7A4FC61B37E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OntologyEditor", "SubscriberModel\OntologyEditor.csproj", "{9D42BE88-84B2-4E06-B9E1-7A4FC61B37E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBox", "CBox\CBox.csproj", "{C5CC0C4F-4929-465B-9410-4BA6BE35896B}"
 EndProject
