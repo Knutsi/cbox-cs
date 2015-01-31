@@ -9,7 +9,7 @@ namespace CBoxTest
         [TestMethod]
         public void TestMethod1()
         {
-                
+            
         }
     }
 }
