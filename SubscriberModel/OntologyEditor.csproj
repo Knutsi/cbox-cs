@@ -7,8 +7,8 @@
     <ProjectGuid>{9D42BE88-84B2-4E06-B9E1-7A4FC61B37E2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SubscriberModel</RootNamespace>
-    <AssemblyName>SubscriberModel</AssemblyName>
+    <RootNamespace>OntologyEditor</RootNamespace>
+    <AssemblyName>OntologyEditor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -48,6 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -60,25 +61,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditDiagnosis.cs">
+    <Compile Include="forms\ClientPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditDiagnosis.Designer.cs">
+    <Compile Include="forms\ClientPreview.Designer.cs">
+      <DependentUpon>ClientPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\EditDiagnosis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\EditDiagnosis.Designer.cs">
       <DependentUpon>EditDiagnosis.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="forms\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EditDiagnosis.resx">
+    <Compile Include="forms\TestsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\TestsWindow.Designer.cs">
+      <DependentUpon>TestsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecentMenuEntry.cs" />
+    <Compile Include="RecentMenuEntryCollection.cs" />
+    <EmbeddedResource Include="forms\ClientPreview.resx">
+      <DependentUpon>ClientPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\EditDiagnosis.resx">
       <DependentUpon>EditDiagnosis.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="forms\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,7 +106,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="forms\TestsWindow.resx">
+      <DependentUpon>TestsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

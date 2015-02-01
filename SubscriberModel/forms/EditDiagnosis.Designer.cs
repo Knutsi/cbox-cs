@@ -1,4 +1,4 @@
-﻿namespace SubscriberModel
+﻿namespace OntologyEditor
 {
     partial class EditDiagnosis
     {

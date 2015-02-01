@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace SubscriberModel
+namespace OntologyEditor
 {
     public partial class EditDiagnosis : Form
     {
