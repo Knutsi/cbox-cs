@@ -16,10 +16,9 @@ namespace OntologyEditor
         const string TITLE_SUFFIX = "CBox Editor v0.1dev (DO NOT DEMO - knutsindre@gmail.com)";
 
         TestsWindow TestsWindowInstance;
+        FormsEditor FormsEditorInstance;
 
         private bool _PreloadState = true;
-        private bool IsNewOntology = true;
-
 
         public MainWindow()
         {
@@ -152,8 +151,37 @@ namespace OntologyEditor
             preview.Show();
         }
 
+        /// <summary>
+        /// Creats a new forms editor:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void formsMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.FormsEditorInstance == null)
+            {
+                this.FormsEditorInstance = new FormsEditor();
+                this.FormsEditorInstance.MdiParent = this;
+                this.FormsEditorInstance.Show();
+                this.FormsEditorInstance.FormClosed += FormsEditorInstance_FormClosed;
+            }
+            else
+                this.FormsEditorInstance.Activate();
+        }
 
+        void FormsEditorInstance_FormClosed(object sender, FormClosedEventArgs e) { this.FormsEditorInstance = null; }
 
+        /// <summary>
+        /// Inserts the standard classes into the ontolgy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void insStdClassesMenuItem_Click(object sender, EventArgs e)
+        {
+            var check = MessageBox.Show("Are you sure you want to reistall all default classes?", "Add default classes", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if(check == System.Windows.Forms.DialogResult.OK)
+                Program.OntologyInstance.AddDefaultClasses();
+        }
   
 
     }

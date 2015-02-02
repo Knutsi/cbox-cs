@@ -12,9 +12,11 @@ namespace cbox.model
         public List<string> keys = new List<string>();
         public string name;
         public List<string> target_classes = new List<string>();
+
         public double risk;
         public double pain;
         public double cost;
+
         public double time_occupied;
         public double time_parallel;
     }

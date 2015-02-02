@@ -73,11 +73,29 @@
     <Compile Include="forms\EditDiagnosis.Designer.cs">
       <DependentUpon>EditDiagnosis.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\FormsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormsEditor.Designer.cs">
+      <DependentUpon>FormsEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\TestEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\TestEditor.Designer.cs">
+      <DependentUpon>TestEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\TextInputPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\TextInputPrompt.Designer.cs">
+      <DependentUpon>TextInputPrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,8 +113,17 @@
     <EmbeddedResource Include="forms\EditDiagnosis.resx">
       <DependentUpon>EditDiagnosis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormsEditor.resx">
+      <DependentUpon>FormsEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\TestEditor.resx">
+      <DependentUpon>TestEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\TextInputPrompt.resx">
+      <DependentUpon>TextInputPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -147,6 +174,9 @@
       <Project>{c5cc0c4f-4929-465b-9410-4ba6be35896b}</Project>
       <Name>CBox</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vanity\016-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -47,6 +47,7 @@
     <Compile Include="model\Form.cs" />
     <Compile Include="model\Headline.cs" />
     <Compile Include="model\Ontology.cs" />
+    <Compile Include="model\ProblemClass.cs" />
     <Compile Include="model\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

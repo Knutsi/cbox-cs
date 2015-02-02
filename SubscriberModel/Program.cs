@@ -79,6 +79,9 @@ namespace OntologyEditor
             Program.OntologyInstance = new cbox.model.Ontology();
             Program.IsNewOntology = true;
 
+            // install default classes:
+            Program.OntologyInstance.AddDefaultClasses();
+
             Program.OnOpen(true);
         }
 

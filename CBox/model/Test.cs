@@ -15,6 +15,7 @@ namespace cbox.model
         public string Unit { get; set; }
         public string Datatype { get; set; }
         public string Parent { get; set; }
+        public string GeneratorName { get; set; }
         public string GeneratorData { get; set; }
     }
 }

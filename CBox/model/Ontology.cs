@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.ComponentModel;
 
 using System.Xml.Serialization;
 
@@ -15,14 +16,18 @@ namespace cbox.model
     public class Ontology
     {
         //public List<Test> Tests = new List<Test>();
-        public List<Action> Actions = new List<Action>();
-        public List<Test> Tests { get; set; }
+        public BindingList<Action> Actions = new BindingList<Action>();
+        public BindingList<Test> Tests { get; set; }
+        public BindingList<Form> Forms { get; set; }
+        public BindingList<ProblemClass> Classes { get; set; }
 
         public event OntolgyChangedHandler OnChange;
 
         public Ontology()
         {
-            Tests = new List<Test>();
+            Tests = new BindingList<Test>();
+            Forms = new BindingList<Form>();
+            Classes = new BindingList<ProblemClass>();
         }
 
 
@@ -96,6 +101,69 @@ namespace cbox.model
             
             if(triggerEvent)
                 OnChange(this);
+        }
+
+
+        /// <summary>
+        /// Adds a form to the system.
+        /// </summary>
+        /// <param name="form"></param>
+        public void AddForm(cbox.model.Form form) 
+        {
+            this.Forms.Add(form);
+            form.Ident = NextFormIdent;
+        }
+
+        public void RemoveForm(cbox.model.Form form)
+        {
+            this.Forms.Remove(form);
+        }
+
+        private int NextFormIdent
+        {
+            get
+            {
+                var highest = 1;
+                foreach(cbox.model.Form entry in this.Forms)
+                    if(entry.Ident > highest)
+                        highest = entry.Ident;
+
+                return highest++;
+            }
+        }
+
+        /// <summary>
+        /// Adds a problem class.
+        /// </summary>
+        /// <param name="ident"></param>
+        /// <param name="title"></param>
+        public void AddClass(string ident, string title)
+        {
+            if (ClassByIdent(ident) != null)
+                return;
+
+            var cls = new ProblemClass(ident, title);
+            Classes.Add(cls);
+        }
+
+        public ProblemClass ClassByIdent(string ident) {
+            foreach (var cls in Classes)
+                if (cls.Ident == ident)
+                    return cls;
+
+            return null;
+        }
+
+        public void AddDefaultClasses()
+        {
+            AddClass("temporal", "Temporal");
+            AddClass("spatial", "Spatial");
+            AddClass("swabbable", "Swabbable");
+            AddClass("palpable", "Palpable");
+            AddClass("emesis", "Emesis");
+            AddClass("faecal", "Faecal");
+            AddClass("feeling", "Feeling");
+            AddClass("general", "General");
         }
     }
 }
