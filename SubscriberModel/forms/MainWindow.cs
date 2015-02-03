@@ -17,12 +17,14 @@ namespace OntologyEditor
 
         TestsWindow TestsWindowInstance;
         FormsEditor FormsEditorInstance;
+        ActionEditor ActionEditorInstance;
 
         private bool _PreloadState = true;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.IsMdiContainer = Program.UseMDI;
 
             Program.OnOpen += Program_OnOpen;
             Program.OnSave += Program_OnSave;
@@ -131,7 +133,8 @@ namespace OntologyEditor
             {
                 TestsWindowInstance = new TestsWindow();
                 TestsWindowInstance.FormClosed += TestsWindowInstance_FormClosed;
-                TestsWindowInstance.MdiParent = this;
+                if (Program.UseMDI)
+                    TestsWindowInstance.MdiParent = this;
                 TestsWindowInstance.Show();
             }
             else
@@ -147,7 +150,8 @@ namespace OntologyEditor
         private void clientPreviewMenuItem_Click(object sender, EventArgs e)
         {
             var preview = new ClientPreview();
-            preview.MdiParent = this;
+            if(Program.UseMDI)
+                preview.MdiParent = this;
             preview.Show();
         }
 
@@ -161,9 +165,21 @@ namespace OntologyEditor
             if (this.FormsEditorInstance == null)
             {
                 this.FormsEditorInstance = new FormsEditor();
-                this.FormsEditorInstance.MdiParent = this;
+                if(Program.UseMDI)
+                    this.FormsEditorInstance.MdiParent = this;
                 this.FormsEditorInstance.Show();
                 this.FormsEditorInstance.FormClosed += FormsEditorInstance_FormClosed;
+
+                /*var page = new TabPage("Forms editor");
+                tabControl.Controls.Add(page);
+
+                FormsEditorInstance.TopLevel = false;
+                FormsEditorInstance.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                FormsEditorInstance.Visible = true;
+                FormsEditorInstance.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+                FormsEditorInstance.Dock = DockStyle.Fill;
+                page.Controls.Add(this.FormsEditorInstance);*/
+
             }
             else
                 this.FormsEditorInstance.Activate();
@@ -181,6 +197,32 @@ namespace OntologyEditor
             var check = MessageBox.Show("Are you sure you want to reistall all default classes?", "Add default classes", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if(check == System.Windows.Forms.DialogResult.OK)
                 Program.OntologyInstance.AddDefaultClasses();
+        }
+
+
+        /// <summary>
+        /// Opens the action editor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void actionEditorMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ActionEditorInstance == null)
+            {
+                ActionEditorInstance = new ActionEditor();
+                if (Program.UseMDI)
+                    ActionEditorInstance.MdiParent = this;
+                ActionEditorInstance.Show();
+                ActionEditorInstance.FormClosed += ActionEditorInstance_FormClosed;
+            }
+            else
+                ActionEditorInstance.Activate();
+            
+        }
+
+        void ActionEditorInstance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ActionEditorInstance = null;
         }
   
 

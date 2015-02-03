@@ -10,11 +10,11 @@ namespace cbox.model
     public class Headline
     {
         public string Title { get; set; }
-        public BindingList<string> ActionIdents { get; set; }
+        public BindingList<int> ActionIdents { get; set; }
 
         public Headline()
         {
-            ActionIdents = new BindingList<string>();
+            ActionIdents = new BindingList<int>();
             Title = "New headline";
         }
     }

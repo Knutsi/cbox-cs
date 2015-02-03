@@ -40,8 +40,6 @@
             this.removeActionButton = new System.Windows.Forms.Button();
             this.addActionButton = new System.Windows.Forms.Button();
             this.actionsList = new System.Windows.Forms.ListBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.colorInput = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.headlinesList = new System.Windows.Forms.ListBox();
@@ -64,7 +62,7 @@
             this.removeFormButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(874, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(952, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -90,6 +88,9 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.colorInput);
@@ -99,7 +100,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(264, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(599, 506);
+            this.panel1.Size = new System.Drawing.Size(677, 546);
             this.panel1.TabIndex = 11;
             // 
             // groupBox2
@@ -113,11 +114,9 @@
             this.groupBox2.Controls.Add(this.removeActionButton);
             this.groupBox2.Controls.Add(this.addActionButton);
             this.groupBox2.Controls.Add(this.actionsList);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Location = new System.Drawing.Point(275, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(309, 493);
+            this.groupBox2.Size = new System.Drawing.Size(387, 533);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Actions in selected headline";
@@ -126,7 +125,7 @@
             // 
             this.headlineTitleInput.Location = new System.Drawing.Point(56, 25);
             this.headlineTitleInput.Name = "headlineTitleInput";
-            this.headlineTitleInput.Size = new System.Drawing.Size(180, 20);
+            this.headlineTitleInput.Size = new System.Drawing.Size(247, 20);
             this.headlineTitleInput.TabIndex = 15;
             // 
             // label3
@@ -140,15 +139,18 @@
             // 
             // actionSelect
             // 
+            this.actionSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.actionSelect.FormattingEnabled = true;
-            this.actionSelect.Location = new System.Drawing.Point(7, 466);
+            this.actionSelect.Location = new System.Drawing.Point(7, 506);
             this.actionSelect.Name = "actionSelect";
-            this.actionSelect.Size = new System.Drawing.Size(154, 21);
+            this.actionSelect.Size = new System.Drawing.Size(232, 21);
             this.actionSelect.TabIndex = 5;
             // 
             // removeActionButton
             // 
-            this.removeActionButton.Location = new System.Drawing.Point(247, 464);
+            this.removeActionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeActionButton.Location = new System.Drawing.Point(325, 504);
             this.removeActionButton.Name = "removeActionButton";
             this.removeActionButton.Size = new System.Drawing.Size(60, 23);
             this.removeActionButton.TabIndex = 4;
@@ -157,7 +159,8 @@
             // 
             // addActionButton
             // 
-            this.addActionButton.Location = new System.Drawing.Point(167, 464);
+            this.addActionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addActionButton.Location = new System.Drawing.Point(245, 504);
             this.addActionButton.Name = "addActionButton";
             this.addActionButton.Size = new System.Drawing.Size(74, 23);
             this.addActionButton.TabIndex = 3;
@@ -170,28 +173,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.actionsList.FormattingEnabled = true;
-            this.actionsList.Location = new System.Drawing.Point(6, 62);
+            this.actionsList.Location = new System.Drawing.Point(7, 57);
             this.actionsList.Name = "actionsList";
-            this.actionsList.Size = new System.Drawing.Size(297, 394);
+            this.actionsList.Size = new System.Drawing.Size(375, 433);
             this.actionsList.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(56, 411);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(60, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Remove";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(6, 411);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(44, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Add";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // colorInput
             // 
@@ -202,29 +187,27 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.headlinesList);
             this.groupBox1.Controls.Add(this.removeHeadlineButton);
             this.groupBox1.Controls.Add(this.addHeadlineButton);
             this.groupBox1.Location = new System.Drawing.Point(6, 64);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 436);
+            this.groupBox1.Size = new System.Drawing.Size(259, 476);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Headlines";
             // 
             // headlinesList
             // 
-            this.headlinesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.headlinesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.headlinesList.DisplayMember = "Title";
             this.headlinesList.FormattingEnabled = true;
             this.headlinesList.Location = new System.Drawing.Point(6, 23);
             this.headlinesList.Name = "headlinesList";
-            this.headlinesList.Size = new System.Drawing.Size(247, 381);
+            this.headlinesList.Size = new System.Drawing.Size(247, 420);
             this.headlinesList.Sorted = true;
             this.headlinesList.TabIndex = 2;
             this.headlinesList.ValueMember = "Title";
@@ -232,7 +215,8 @@
             // 
             // removeHeadlineButton
             // 
-            this.removeHeadlineButton.Location = new System.Drawing.Point(95, 407);
+            this.removeHeadlineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.removeHeadlineButton.Location = new System.Drawing.Point(95, 447);
             this.removeHeadlineButton.Name = "removeHeadlineButton";
             this.removeHeadlineButton.Size = new System.Drawing.Size(60, 23);
             this.removeHeadlineButton.TabIndex = 1;
@@ -242,7 +226,8 @@
             // 
             // addHeadlineButton
             // 
-            this.addHeadlineButton.Location = new System.Drawing.Point(5, 407);
+            this.addHeadlineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addHeadlineButton.Location = new System.Drawing.Point(5, 447);
             this.addHeadlineButton.Name = "addHeadlineButton";
             this.addHeadlineButton.Size = new System.Drawing.Size(84, 23);
             this.addHeadlineButton.TabIndex = 0;
@@ -277,11 +262,13 @@
             // 
             // formsList
             // 
+            this.formsList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.formsList.DisplayMember = "Title";
             this.formsList.FormattingEnabled = true;
             this.formsList.Location = new System.Drawing.Point(0, 23);
             this.formsList.Name = "formsList";
-            this.formsList.Size = new System.Drawing.Size(258, 511);
+            this.formsList.Size = new System.Drawing.Size(258, 550);
             this.formsList.TabIndex = 12;
             this.formsList.ValueMember = "Title";
             this.formsList.SelectedValueChanged += new System.EventHandler(this.formsList_SelectedValueChanged);
@@ -290,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 538);
+            this.ClientSize = new System.Drawing.Size(952, 578);
             this.Controls.Add(this.formsList);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -319,8 +306,6 @@
         private System.Windows.Forms.Button removeActionButton;
         private System.Windows.Forms.Button addActionButton;
         private System.Windows.Forms.ListBox actionsList;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox colorInput;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox headlinesList;

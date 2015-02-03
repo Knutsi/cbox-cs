@@ -30,6 +30,7 @@ namespace OntologyEditor
             this.testsBindingSource = new BindingSource();
             this.testsBindingSource.DataSource = Program.OntologyInstance.Tests;
             this.testsDataGrid.DataSource = testsBindingSource;
+
         }
 
 
@@ -79,7 +80,8 @@ namespace OntologyEditor
             var test = (cbox.model.Test)testsDataGrid.SelectedRows[0].DataBoundItem;
 
             var editor = new TestEditor(test);
-            editor.MdiParent = Program.MainWindowInstance;
+            if(Program.UseMDI)
+                editor.MdiParent = Program.MainWindowInstance;
             editor.Show();
         }
 

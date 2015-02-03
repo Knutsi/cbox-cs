@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\ActionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ActionEditor.Designer.cs">
+      <DependentUpon>ActionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\ClientPreview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </Compile>
     <Compile Include="RecentMenuEntry.cs" />
     <Compile Include="RecentMenuEntryCollection.cs" />
+    <EmbeddedResource Include="forms\ActionEditor.resx">
+      <DependentUpon>ActionEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\ClientPreview.resx">
       <DependentUpon>ClientPreview.cs</DependentUpon>
     </EmbeddedResource>

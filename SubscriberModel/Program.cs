@@ -23,6 +23,9 @@ namespace OntologyEditor
         public static Ontology OntologyInstance { get; set; }
         public static string OntologyFilePath { get; set; }
         public static bool IsNewOntology = false;
+
+
+        public static bool UseMDI { get { return true; } }
        
 
         public static RecentMenuEntryCollection Recents;

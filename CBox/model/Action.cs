@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace cbox.model
 {
     public class Action
     {
-        public string ident;
-        public List<string> keys = new List<string>();
-        public string name;
-        public List<string> target_classes = new List<string>();
+        public int Ident;
+        public BindingList<string> Yield = new BindingList<string>();
+        public string Title { get; set; }
+        public BindingList<string> TargetClasses = new BindingList<string>();
 
-        public double risk;
-        public double pain;
-        public double cost;
+        public double Risk { get; set; }
+        public double Pain { get; set; }
+        public double Cost { get; set; }
 
-        public double time_occupied;
-        public double time_parallel;
+        public double TimeUsedOccupied { get; set; }
+        public double TimeUsedProcess { get; set; }
+
+
     }
 }

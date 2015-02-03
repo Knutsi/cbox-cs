@@ -218,6 +218,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 625);
             this.Controls.Add(this.groupBox1);
+            this.DoubleBuffered = true;
             this.Name = "TestEditor";
             this.Text = "TestEditor";
             this.groupBox1.ResumeLayout(false);

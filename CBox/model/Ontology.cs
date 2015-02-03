@@ -16,7 +16,8 @@ namespace cbox.model
     public class Ontology
     {
         //public List<Test> Tests = new List<Test>();
-        public BindingList<Action> Actions = new BindingList<Action>();
+
+        public BindingList<Action> Actions { get; set; }
         public BindingList<Test> Tests { get; set; }
         public BindingList<Form> Forms { get; set; }
         public BindingList<ProblemClass> Classes { get; set; }
@@ -28,6 +29,7 @@ namespace cbox.model
             Tests = new BindingList<Test>();
             Forms = new BindingList<Form>();
             Classes = new BindingList<ProblemClass>();
+            Actions = new BindingList<Action>();
         }
 
 
@@ -64,6 +66,29 @@ namespace cbox.model
             fs.Close();
         }
 
+        /// <summary>
+        /// Returns a list og all headlines in all forms.  The list consists of
+        /// a tuble with the form and the headline as item 1 and 2.
+        /// </summary>
+        [XmlIgnore]
+        public List<Tuple<Form, Headline>> AllHeadlines
+        {
+            get
+            {
+                var collection = new List<Tuple<Form, Headline>>();
+
+                foreach (Form form in this.Forms)
+                {
+                    foreach (Headline headline in form.Headlines)
+                    {
+                        var tuple = new Tuple<Form, Headline>(form, headline);
+                        collection.Add(tuple);
+                    }
+                }
+
+                return collection;
+            }
+        }
 
         /// <summary>
         /// Adds a test to the list, and fires the change event unless specifically asked not to.
@@ -112,12 +137,24 @@ namespace cbox.model
         {
             this.Forms.Add(form);
             form.Ident = NextFormIdent;
+            OnChange(this);
         }
 
         public void RemoveForm(cbox.model.Form form)
         {
             this.Forms.Remove(form);
+            OnChange(this);
         }
+
+        public Headline GetHeadlineByformIdent(int ident)
+        {
+            foreach (var form_headline in AllHeadlines)
+                if (form_headline.Item2.ActionIdents.Contains(ident))
+                    return form_headline.Item2;
+
+            return null;
+        }
+
 
         private int NextFormIdent
         {
@@ -128,7 +165,20 @@ namespace cbox.model
                     if(entry.Ident > highest)
                         highest = entry.Ident;
 
-                return highest++;
+                return highest + 1;
+            }
+        }
+
+
+
+        private int NextActionIdent { 
+            get {
+                var highest = 1;
+                foreach (cbox.model.Action action in this.Actions)
+                    if (action.Ident > highest)
+                        highest = action.Ident;
+
+                return highest + 1;
             }
         }
 
@@ -144,6 +194,7 @@ namespace cbox.model
 
             var cls = new ProblemClass(ident, title);
             Classes.Add(cls);
+            OnChange(this);
         }
 
         public ProblemClass ClassByIdent(string ident) {
@@ -165,5 +216,50 @@ namespace cbox.model
             AddClass("feeling", "Feeling");
             AddClass("general", "General");
         }
+
+        /// <summary>
+        /// Adds an action with the given title, and all other fields blank.
+        /// </summary>
+        /// <param name="title"></param>
+        public void AddAction(string title)
+        {
+            var action = new Action()
+            {
+                Title = title,
+                Ident = this.NextActionIdent
+            };
+
+            AddAction(action);
+            Console.WriteLine("Adding action :" + title);
+            
+        }
+
+        public void AddAction(Action action)
+        {
+            this.Actions.Add(action);
+            //OnChange(this);
+        }
+
+        public void RemoveAction(Action action)
+        {
+            if(this.Actions.Contains(action))
+            {
+                this.Actions.Remove(action);
+                //OnChange(this);
+            }
+        }
+
+        public void AssignActionToHeadline(Action action, Headline headline)
+        {
+            // remove previous entry - if any:
+            var previous_headline = GetHeadlineByformIdent(action.Ident);
+            if (previous_headline != null)
+                previous_headline.ActionIdents.Remove(action.Ident);
+
+            // add action to headline:
+            headline.ActionIdents.Add(action.Ident);
+        }
+
+       
     }
 }

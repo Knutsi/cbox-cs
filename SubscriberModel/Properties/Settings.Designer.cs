@@ -34,5 +34,17 @@ namespace OntologyEditor.Properties {
                 this["Recents"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseMDI {
+            get {
+                return ((bool)(this["UseMDI"]));
+            }
+            set {
+                this["UseMDI"] = value;
+            }
+        }
     }
 }

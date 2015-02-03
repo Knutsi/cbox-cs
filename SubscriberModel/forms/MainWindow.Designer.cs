@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +39,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insStdClassesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editorsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.formsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testEditorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +50,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.clientPreviewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insStdClassesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,11 +58,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
-            this.editorsMenu,
-            this.toolsToolStripMenuItem});
+            this.toolsToolStripMenuItem,
+            this.editorsMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(992, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1020, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,6 +146,21 @@
             this.editMenu.Size = new System.Drawing.Size(39, 20);
             this.editMenu.Text = "Edit";
             // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.insStdClassesMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // insStdClassesMenuItem
+            // 
+            this.insStdClassesMenuItem.Name = "insStdClassesMenuItem";
+            this.insStdClassesMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.insStdClassesMenuItem.Text = "Insert standard classes";
+            this.insStdClassesMenuItem.Click += new System.EventHandler(this.insStdClassesMenuItem_Click);
+            // 
             // editorsMenu
             // 
             this.editorsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -186,6 +200,7 @@
             this.actionEditorMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.actionEditorMenuItem.Size = new System.Drawing.Size(222, 22);
             this.actionEditorMenuItem.Text = "&Actions";
+            this.actionEditorMenuItem.Click += new System.EventHandler(this.actionEditorMenuItem_Click);
             // 
             // diagnosisEditorMenuItem
             // 
@@ -219,36 +234,21 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 725);
+            this.statusStrip.Location = new System.Drawing.Point(0, 652);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(992, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1020, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.insStdClassesMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // insStdClassesMenuItem
-            // 
-            this.insStdClassesMenuItem.Name = "insStdClassesMenuItem";
-            this.insStdClassesMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.insStdClassesMenuItem.Text = "Insert standard classes";
-            this.insStdClassesMenuItem.Click += new System.EventHandler(this.insStdClassesMenuItem_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(992, 747);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(1020, 674);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
-            this.IsMdiContainer = true;
+            this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "CBox Ontology Editor v0.1";
