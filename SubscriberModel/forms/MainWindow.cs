@@ -24,7 +24,7 @@ namespace OntologyEditor
         public MainWindow()
         {
             InitializeComponent();
-            this.IsMdiContainer = Program.UseMDI;
+            //this.IsMdiContainer = Program.UseMDI;
 
             Program.OnOpen += Program_OnOpen;
             Program.OnSave += Program_OnSave;
@@ -82,6 +82,12 @@ namespace OntologyEditor
             Program.OpenOntology(url);
         }
 
+        private void openMostRecentMenuItem_Click(object sender, EventArgs e)
+        {
+            var url = Program.Recents[0].FilePath;
+            Program.OpenOntology(url);
+        }
+
         public bool PreloadState { 
             
             get 
@@ -98,18 +104,25 @@ namespace OntologyEditor
                     // disable menues not needed:
                     editorsMenu.Enabled = false;
                     editMenu.Enabled = false;
+                    toolsMenu.Enabled = false;
 
                     saveMenuItem.Enabled = false;
                     makeCopyMenuItem.Enabled = false;
+
+                    exportClientPackageMenuItem.Enabled = false;
+                    exportClientPackagAgainToolStripMenuItem.Enabled = false;
                 }
                 else
                 {
                     // disable menues not needed:
                     editorsMenu.Enabled = true;
                     editMenu.Enabled = true;
+                    toolsMenu.Enabled = true;
 
                     saveMenuItem.Enabled = true;
                     makeCopyMenuItem.Enabled = true;
+
+                    exportClientPackageMenuItem.Enabled = true;
                 }
             } 
         }
@@ -224,6 +237,32 @@ namespace OntologyEditor
         {
             ActionEditorInstance = null;
         }
+
+        private void exportClientPackageMenuItem_Click(object sender, EventArgs e)
+        {
+            var export_dialog = new DataExportView(
+                Program.OntologyInstance.ExportClientPackage(),
+                "Client package");
+
+            export_dialog.Show();
+        }
+
+        private void serverMenuIItem_Click(object sender, EventArgs e)
+        {
+            var server_config = new ServerConfig();
+            if(Program.UseMDI)
+                server_config.MdiParent = this;
+
+            server_config.Show();
+        }
+
+        private void OpenURLFromMenuItemText(object sender, EventArgs e)
+        {
+            Console.WriteLine("Opening: " + ((ToolStripMenuItem)sender).Text);
+            Program.OpenInternalURL(((ToolStripMenuItem)sender).Text);
+        }
+
+ 
   
 
     }

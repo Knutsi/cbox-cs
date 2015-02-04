@@ -88,6 +88,7 @@ namespace OntologyEditor
 
                 headlineTitleInput.DataBindings.Add("Text", SelectedHeadline, "Title");
                 actionsList.DataSource = SelectedHeadline.ActionIdents;
+                actionsList.DisplayMember = "Title";
             }
 
         }

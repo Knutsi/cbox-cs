@@ -33,13 +33,20 @@
             this.newMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openRecentMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.openMostRecentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.makeCopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportClientPackageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportClientPackagAgainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.serverMenuIItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insStdClassesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editorsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.formsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +57,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.clientPreviewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.clipackURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.indexURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomCaseURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +69,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
-            this.toolsToolStripMenuItem,
+            this.toolsMenu,
             this.editorsMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -72,9 +83,13 @@
             this.newMenuItem,
             this.openMenuItem,
             this.openRecentMenu,
+            this.openMostRecentMenuItem,
             this.toolStripSeparator1,
             this.saveMenuItem,
             this.makeCopyMenuItem,
+            this.toolStripSeparator4,
+            this.exportClientPackageMenuItem,
+            this.exportClientPackagAgainToolStripMenuItem,
             this.toolStripSeparator2,
             this.quitMenuItem});
             this.fileMenu.Name = "fileMenu";
@@ -85,7 +100,7 @@
             // 
             this.newMenuItem.Name = "newMenuItem";
             this.newMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.newMenuItem.Size = new System.Drawing.Size(244, 22);
             this.newMenuItem.Text = "&New ontology";
             this.newMenuItem.Click += new System.EventHandler(this.newMenuItem_Click);
             // 
@@ -93,27 +108,36 @@
             // 
             this.openMenuItem.Name = "openMenuItem";
             this.openMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(244, 22);
             this.openMenuItem.Text = "&Open";
             this.openMenuItem.Click += new System.EventHandler(this.openMenuItem_Click);
             // 
             // openRecentMenu
             // 
             this.openRecentMenu.Name = "openRecentMenu";
-            this.openRecentMenu.Size = new System.Drawing.Size(198, 22);
+            this.openRecentMenu.Size = new System.Drawing.Size(244, 22);
             this.openRecentMenu.Text = "Open recent";
+            // 
+            // openMostRecentMenuItem
+            // 
+            this.openMostRecentMenuItem.Name = "openMostRecentMenuItem";
+            this.openMostRecentMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
+            this.openMostRecentMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.openMostRecentMenuItem.Text = "Open most recent";
+            this.openMostRecentMenuItem.Click += new System.EventHandler(this.openMostRecentMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(241, 6);
             // 
             // saveMenuItem
             // 
             this.saveMenuItem.Name = "saveMenuItem";
             this.saveMenuItem.ShortcutKeyDisplayString = "Ctrl+S";
             this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(244, 22);
             this.saveMenuItem.Text = "&Save";
             this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
@@ -123,20 +147,38 @@
             this.makeCopyMenuItem.ShortcutKeyDisplayString = "Ctrl-Shift-S";
             this.makeCopyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.makeCopyMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.makeCopyMenuItem.Size = new System.Drawing.Size(244, 22);
             this.makeCopyMenuItem.Text = "Make copy";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(241, 6);
+            // 
+            // exportClientPackageMenuItem
+            // 
+            this.exportClientPackageMenuItem.Name = "exportClientPackageMenuItem";
+            this.exportClientPackageMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.exportClientPackageMenuItem.Text = "Export clipack";
+            this.exportClientPackageMenuItem.Click += new System.EventHandler(this.exportClientPackageMenuItem_Click);
+            // 
+            // exportClientPackagAgainToolStripMenuItem
+            // 
+            this.exportClientPackagAgainToolStripMenuItem.Name = "exportClientPackagAgainToolStripMenuItem";
+            this.exportClientPackagAgainToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.exportClientPackagAgainToolStripMenuItem.Text = "Export clipack again";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(241, 6);
             // 
             // quitMenuItem
             // 
             this.quitMenuItem.Name = "quitMenuItem";
             this.quitMenuItem.ShortcutKeyDisplayString = "Ctrl+Q";
             this.quitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.quitMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.quitMenuItem.Size = new System.Drawing.Size(244, 22);
             this.quitMenuItem.Text = "&Quit";
             this.quitMenuItem.Click += new System.EventHandler(this.quitMenuItem_Click);
             // 
@@ -146,20 +188,46 @@
             this.editMenu.Size = new System.Drawing.Size(39, 20);
             this.editMenu.Text = "Edit";
             // 
-            // toolsToolStripMenuItem
+            // toolsMenu
             // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serverMenuIItem,
+            this.toolStripSeparator5,
+            this.indexURLMenuItem,
+            this.clipackURLMenuItem,
+            this.randomCaseURLMenuItem,
+            this.toolStripSeparator6,
+            this.advancedToolStripMenuItem});
+            this.toolsMenu.Name = "toolsMenu";
+            this.toolsMenu.Size = new System.Drawing.Size(47, 20);
+            this.toolsMenu.Text = "Tools";
+            // 
+            // serverMenuIItem
+            // 
+            this.serverMenuIItem.Name = "serverMenuIItem";
+            this.serverMenuIItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.serverMenuIItem.Size = new System.Drawing.Size(184, 22);
+            this.serverMenuIItem.Text = "Internal server";
+            this.serverMenuIItem.Click += new System.EventHandler(this.serverMenuIItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(181, 6);
+            // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.insStdClassesMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.advancedToolStripMenuItem.Text = "Quick fixes";
             // 
             // insStdClassesMenuItem
             // 
             this.insStdClassesMenuItem.Name = "insStdClassesMenuItem";
             this.insStdClassesMenuItem.Size = new System.Drawing.Size(191, 22);
             this.insStdClassesMenuItem.Text = "Insert standard classes";
-            this.insStdClassesMenuItem.Click += new System.EventHandler(this.insStdClassesMenuItem_Click);
             // 
             // editorsMenu
             // 
@@ -240,6 +308,35 @@
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
+            // clipackURLMenuItem
+            // 
+            this.clipackURLMenuItem.Name = "clipackURLMenuItem";
+            this.clipackURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.clipackURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.clipackURLMenuItem.Text = "/asset/dynamic/clipack";
+            this.clipackURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
+            // 
+            // indexURLMenuItem
+            // 
+            this.indexURLMenuItem.Name = "indexURLMenuItem";
+            this.indexURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.indexURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.indexURLMenuItem.Text = "/index.html";
+            this.indexURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
+            // 
+            // randomCaseURLMenuItem
+            // 
+            this.randomCaseURLMenuItem.Name = "randomCaseURLMenuItem";
+            this.randomCaseURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.randomCaseURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.randomCaseURLMenuItem.Text = "/asset/dynamic/random_case";
+            this.randomCaseURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(247, 6);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +346,7 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "CBox Ontology Editor v0.1";
@@ -282,7 +380,18 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem clientPreviewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formsMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsMenu;
+        private System.Windows.Forms.ToolStripMenuItem exportClientPackageMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem exportClientPackagAgainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serverMenuIItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insStdClassesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openMostRecentMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clipackURLMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem indexURLMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem randomCaseURLMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }

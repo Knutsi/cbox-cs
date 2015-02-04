@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.ComponentModel;
 
+using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 
 namespace cbox.model
@@ -13,13 +15,20 @@ namespace cbox.model
     public delegate void OntolgyChangedHandler(object sender);
 
     [Serializable]
+    [DataContract]
     public class Ontology
     {
-        //public List<Test> Tests = new List<Test>();
 
+        [DataMember]
         public BindingList<Action> Actions { get; set; }
+
+        [DataMember]
         public BindingList<Test> Tests { get; set; }
+
+        [DataMember]
         public BindingList<Form> Forms { get; set; }
+
+        [DataMember]
         public BindingList<ProblemClass> Classes { get; set; }
 
         public event OntolgyChangedHandler OnChange;
@@ -65,6 +74,27 @@ namespace cbox.model
             writer.Close();
             fs.Close();
         }
+
+        /// <summary>
+        /// Serializes a client package to JSON.
+        /// </summary>
+        /// <returns></returns>
+        public string ExportClientPackage()
+        {
+            using(var mstream = new MemoryStream())
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(
+                    typeof(Ontology)
+                    );
+
+                ser.WriteObject(mstream, this);
+
+                StreamReader reader = new StreamReader(mstream);
+                mstream.Position = 0;
+                return reader.ReadToEnd();
+            }
+    }
+           
 
         /// <summary>
         /// Returns a list og all headlines in all forms.  The list consists of
@@ -194,7 +224,7 @@ namespace cbox.model
 
             var cls = new ProblemClass(ident, title);
             Classes.Add(cls);
-            OnChange(this);
+            //OnChange(this);
         }
 
         public ProblemClass ClassByIdent(string ident) {

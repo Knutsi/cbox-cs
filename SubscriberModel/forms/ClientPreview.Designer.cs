@@ -60,7 +60,7 @@
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(872, 546);
             this.webBrowser.TabIndex = 1;
-            this.webBrowser.Url = new System.Uri("https://html5test.com/", System.UriKind.Absolute);
+            this.webBrowser.Url = new System.Uri("http://localhost:8008/index.html", System.UriKind.Absolute);
             // 
             // ClientPreview
             // 
