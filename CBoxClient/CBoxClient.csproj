@@ -18,12 +18,27 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.css" />
-    <Content Include="index.html" />
+    <Content Include="lib\view\app.css" />
+    <Content Include="lib\view\client_debug.html" />
+    <Content Include="lib\view\play.html" />
+    <Content Include="lib\view\play_js.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="lib\controller\PlayPageController.ts" />
+    <TypeScriptCompile Include="lib\Logger.ts" />
+    <TypeScriptCompile Include="lib\model\ActionRequest.ts" />
+    <TypeScriptCompile Include="lib\model\Case.ts" />
+    <TypeScriptCompile Include="lib\view\client_debug.ts" />
+    <TypeScriptCompile Include="lib\view\play.ts" />
+    <TypeScriptCompile Include="lib\cboxlib.ts" />
+    <TypeScriptCompile Include="lib\controller\GameClient.ts" />
+    <TypeScriptCompile Include="lib\model\Action.ts" />
+    <TypeScriptCompile Include="lib\model\ActionQueue.ts" />
+    <TypeScriptCompile Include="lib\model\ClientPackage.ts" />
+    <TypeScriptCompile Include="lib\Event.ts" />
+    <TypeScriptCompile Include="lib\model\Form.ts" />
+    <TypeScriptCompile Include="lib\model\Headline.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
@@ -33,6 +48,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
@@ -68,4 +84,7 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>tsc --target es5 --sourcemap --out "$(ProjectDir)lib\cboxlib.js" "$(ProjectDir)\lib\cboxlib.ts"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -1,0 +1,36 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+div[data-cbox-role="case-view"] {
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 66.666%;
+    background-color: #505050;
+
+    overflow: auto;
+}
+
+div[data-cbox-role="plan"] {
+    position:fixed;
+    top: 0;
+    right: 0;
+    bottom: 50%;
+    width: 33.333%;
+    background-color: #808080;
+
+    overflow: auto;
+}
+
+div[data-cbox-role="picker"] {
+    position:fixed;
+    bottom: 0;
+    right: 0;
+    top: 50%;
+    width: 33.333%;
+    background-color: #303030;
+
+    overflow: auto;
+}
