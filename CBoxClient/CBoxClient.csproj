@@ -25,10 +25,18 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="lib\controller\ActionPickerController.ts" />
+    <TypeScriptCompile Include="lib\controller\ActionQueueController.ts" />
+    <TypeScriptCompile Include="lib\controller\BaseController.ts" />
+    <TypeScriptCompile Include="lib\controller\CaseViewController.ts" />
+    <TypeScriptCompile Include="lib\controller\DnTController.ts" />
+    <TypeScriptCompile Include="lib\controller\FollowupController.ts" />
     <TypeScriptCompile Include="lib\controller\PlayPageController.ts" />
     <TypeScriptCompile Include="lib\Logger.ts" />
     <TypeScriptCompile Include="lib\model\ActionRequest.ts" />
     <TypeScriptCompile Include="lib\model\Case.ts" />
+    <TypeScriptCompile Include="lib\model\DiagnoseAndTreatment.ts" />
+    <TypeScriptCompile Include="lib\model\FollowupAnswers.ts" />
     <TypeScriptCompile Include="lib\view\client_debug.ts" />
     <TypeScriptCompile Include="lib\view\play.ts" />
     <TypeScriptCompile Include="lib\cboxlib.ts" />

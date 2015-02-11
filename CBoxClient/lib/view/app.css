@@ -13,7 +13,7 @@ div[data-cbox-role="case-view"] {
     overflow: auto;
 }
 
-div[data-cbox-role="plan"] {
+div[data-cbox-role="action-queue"] {
     position:fixed;
     top: 0;
     right: 0;
@@ -24,7 +24,7 @@ div[data-cbox-role="plan"] {
     overflow: auto;
 }
 
-div[data-cbox-role="picker"] {
+div[data-cbox-role="action-picker"] {
     position:fixed;
     bottom: 0;
     right: 0;
