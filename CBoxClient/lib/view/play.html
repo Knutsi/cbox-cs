@@ -9,10 +9,48 @@
     <script src="play_js.js"></script>
 </head>
 <body>
-    <div data-cbox-role="case-view"></div>
-    <div data-cbox-role="action-queue"></div>
-    <div data-cbox-role="action-picker"></div>
-    <div data-cbox-role="dnt-view"></div>
-    <div data-cbox-role="followup-view"></div>
+    <!-- CASE VIEW-->
+    <div data-cbox-role="case-view">
+        <div data-cbox-role="case-view-dnt" class="clickable">Diagnose &amp; treat</div>
+    </div>
+
+    <!-- DnT PICKER -->
+    <div data-cbox-role="dnt-view">
+        <div class="padding_5px">
+            <h1>Doctor, what is wrong?</h1>
+            <div data-cbox-role="dnt-view-dx">
+                D<sub>x</sub>
+            </div>
+            <div data-cbox-role="dnt-view-tx">
+                T<sub>x</sub>
+            </div>
+            <div data-cbox-role="dnt-view-send" class="clickable">Send</div>
+        </div>
+    </div>
+
+    <!-- ACTION QUEUE -->
+    <div data-cbox-role="action-queue">
+        <div class="padding_5px">
+            <div data-cbox-role="action-queue-message">Drag to reorder, or <br />out of list to delete</div>
+            <h1>Plan</h1>
+            <div data-cbox-role="action-queue-content"></div>
+            <div data-cbox-role="action-queue-execute" class="clickable">Perform</div>
+        </div>
+    </div>
+
+    <!--  ACTION PICKER -->
+    <div data-cbox-role="action-picker" class="clickable">
+        <div class="padding_5px">
+            <h1>Actions</h1>
+            <button data-cbox-role="action-picker-back">Back</button>
+            <input data-cbox-role="action-picker-search" type="text" placeholder="Search" />
+            <!-- Home -->
+            <div data-cbox-role="action-picker-content">
+
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>

@@ -37,6 +37,8 @@
     <TypeScriptCompile Include="lib\model\Case.ts" />
     <TypeScriptCompile Include="lib\model\DiagnoseAndTreatment.ts" />
     <TypeScriptCompile Include="lib\model\FollowupAnswers.ts" />
+    <TypeScriptCompile Include="lib\model\Problem.ts" />
+    <TypeScriptCompile Include="lib\Tools.ts" />
     <TypeScriptCompile Include="lib\view\client_debug.ts" />
     <TypeScriptCompile Include="lib\view\play.ts" />
     <TypeScriptCompile Include="lib\cboxlib.ts" />

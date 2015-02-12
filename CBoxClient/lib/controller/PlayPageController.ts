@@ -10,6 +10,7 @@
 
         // model
         game_client: GameClient;
+        action_queue: ActionQueue;
 
         // sub views:
         action_picker_ctrl: ActionPickerController;
@@ -22,6 +23,7 @@
         constructor() {
             // setup the client, then the controllers so that the subcontrollers and use this and them:
             this.game_client = new GameClient("/asset/dynamic/");
+            this.action_queue = new ActionQueue();
 
             this.setupControllers();
 
@@ -42,8 +44,8 @@
         in the play.html page, while the code is loaded from external JS.  The model
         in this MCV setup is the GameClient and it's many classes. */
         setupControllers() {
-            this.action_picker_ctrl = new ActionPickerController(this);
-            this.action_queue_ctrl = new ActionQueueContoller(this);
+            this.action_picker_ctrl = new ActionPickerController(this, this.action_queue);
+            this.action_queue_ctrl = new ActionQueueContoller(this, this.action_queue);
             this.case_view_ctrl = new CaseViewController(this);
             this.dnt_view_ctrl = new DnTController(this);
             this.followup_ctrl = new FollowupController(this);

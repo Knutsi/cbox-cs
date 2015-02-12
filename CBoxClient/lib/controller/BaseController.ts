@@ -10,7 +10,7 @@
             this.page_controller = page_controller;
         }
 
-        element(role:string):HTMLElement {
+        roleplayer(role:string):HTMLElement {
             return <HTMLElement>document.querySelector("[data-cbox-role=" + role + "]");
         }
     }

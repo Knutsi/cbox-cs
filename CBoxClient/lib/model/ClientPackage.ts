@@ -9,17 +9,26 @@ module cbox {
     **/
     export class ClientPackage {
 
-        Actions: Action[] = []
-        Forms: Form[] = [];
+        actions: Action[] = []
+        forms: Form[] = [];
 
         static fromObject(obj:{}): ClientPackage {
             var cp = new ClientPackage();
 
-
+            cp.forms = obj['Forms'].map((form) => { return Form.fromObject(form) })
+            cp.actions = obj['Actions'].map((action) => { return Action.fromObject(action) })
 
             return cp;
         }
 
+
+        actionByIdent(ident: number) {
+            for (var i = 0; i < this.actions.length; i++) 
+                if (this.actions[i].ident == ident)
+                    return this.actions[i]
+
+            return null;
+        }
     }
 
 }

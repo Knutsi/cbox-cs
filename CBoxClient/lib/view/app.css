@@ -1,36 +1,125 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
+    color: white;
 }
+
+h1 {
+    line-height: 1.0;
+    padding: 0;
+    margin: 0 0 0.2em 0;
+    color: whitesmoke;
+
+}
+
+.padding_5px { padding: 5px;}
+.clickable { cursor: pointer; -webkit-user-select: none; }
+.hover_highlight:hover { background-color: #697465}
 
 div[data-cbox-role="case-view"] {
     position:fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: 66.666%;
+    width: 50%;
     background-color: #505050;
 
     overflow: auto;
 }
 
+div[data-cbox-role="case-view-dnt"] {
+    position: absolute;
+    bottom: 5px;
+    right:5px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(121, 156, 178);
+}
+
+
 div[data-cbox-role="action-queue"] {
     position:fixed;
     top: 0;
-    right: 0;
-    bottom: 50%;
-    width: 33.333%;
+    right: 25%;
+    bottom: 0;
+    width: 25%;
     background-color: #808080;
 
     overflow: auto;
 }
 
+div[data-cbox-role="action-queue-message"] {
+    position:absolute;
+    bottom: 5px;
+    left: 5px;
+    color:darkgray;
+    font-size:smaller;
+    font-style: italic;
+}
+
+div[data-cbox-role="action-queue-execute"] {
+    position: absolute;
+    bottom: 5px;
+    right:5px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(133, 178, 121);
+}
+
+
 div[data-cbox-role="action-picker"] {
     position:fixed;
     bottom: 0;
     right: 0;
-    top: 50%;
-    width: 33.333%;
+    top: 0;
+    width: 25%;
     background-color: #303030;
+    color: rgb(203, 142, 142);
 
     overflow: auto;
+}
+
+input[data-cbox-role="action-picker-search"] {
+    font-size: large;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid gray;
+    color: white;
+
+}
+
+div[data-cbox-role="dnt-view"] {
+    position:absolute;
+    width: 50%;
+    height: 100%;
+    right:0;
+    top: 0;
+
+    background-color: rgb(20, 47, 73);
+    z-index: 100;
+}
+
+div[data-cbox-role="dnt-view-dx"] {
+    position:absolute;
+    width: 50%;
+    height: 100%;
+    left:0;
+    top: 3em;
+
+    z-index: 100;
+}
+
+div[data-cbox-role="dnt-view-tx"] {
+    position:absolute;
+    width: 50%;
+    height: 100%;
+    right:0;
+    top: 3em;
+
+    z-index: 100;
+}
+
+div[data-cbox-role="dnt-view-send"] {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(14, 94, 97);
 }
