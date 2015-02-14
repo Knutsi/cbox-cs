@@ -13,6 +13,11 @@
 /// <reference path="model/Headline.ts" />
 /// <reference path="model/Problem.ts" />
 /// <reference path="model/Case.ts" />
+/// <reference path="model/TestResult.ts" />
+
+
+/// <reference path="model/coms/StartGameResponse.ts" />
+/// <reference path="model/coms/ServerRequest.ts" />
 
 /// <reference path="controller/PlayPageController.ts" />
 /// <reference path="controller/BaseController.ts" />

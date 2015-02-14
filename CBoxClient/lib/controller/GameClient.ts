@@ -51,7 +51,10 @@ module cbox.client {
         public service_url: string; // root of the URLs to communicate w/server
         private state_: GameClientState = GameClientState.UNINITIALIZED;    // what the game is doing now
         public client_package: ClientPackage;   // assets neede to play
-        //public case_: Case;
+
+        public current_session_id: string = "session-1234";
+        public current_game_id: string;
+        public current_case: Case;
 
         // events:
         public onStateChange: Event<GameStateChangeEvent> = new Event<GameStateChangeEvent>();
@@ -141,10 +144,25 @@ module cbox.client {
             if (this.state == GameClientState.DONE)
                 this.state = GameClientState.READY;
 
-            // TODO - start case loading, then put game in to TAKING_ACTIONS when case recieved:
+            // tell server we are starting the game:
+            var req = this.makeInterfaceRequest();
+            var data = ServerRequest.make(this, "new_game", null);
+           
 
-            this.state = GameClientState.TAKING_ACTIONS;
-            this.onGameStart.fire(new Event<EmptyEvent>());
+            req.onreadystatechange = () => {
+                if (req.readyState == 4 && req.status == 200) {
+
+                    // parse server response:
+                    var response = new StartGameResponse(req.responseText);
+                    this.current_game_id = response.game_id;
+                    this.current_case = response.case_;
+ 
+                    this.state = GameClientState.TAKING_ACTIONS;
+                    this.onGameStart.fire(new Event<EmptyEvent>());
+                }
+            }
+
+            req.send(data);
         }
 
 
@@ -186,13 +204,24 @@ module cbox.client {
         }
 
 
-   
-        makeServiceRequest():XMLHttpRequest {
+
+        makeInterfaceRequest(): XMLHttpRequest {
+            var if_url = this.service_url + "interface";
+
             var req = new XMLHttpRequest();
-            req.open("POST", this.service_url, true);
+            req.open("POST", if_url, true);
             return req;
         }
 
+        makeServerRequestData(command: string):FormData {
+            var data = new FormData();
+
+            data.append("action", "new_game");
+            data.append("game_id", this.current_game_id);
+            data.append("session_id", this.current_session_id);  
+
+            return data;
+        }
 
         /* Utility function that throws an error if the current state is not in the list
         given.  It is used to stop game if the state machine is out of normal sequence */

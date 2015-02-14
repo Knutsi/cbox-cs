@@ -4,15 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http;
+
+using OntologyEditor;
 
 using System.IO;
 
-namespace OntologyEditor
+namespace cbox.server
 {
     public class TestServer
     {
+        GameManager GameManager = new GameManager();
+
         const string URL_CLIPACK = "/asset/dynamic/clipack";
-        const string URL_RANDOM_CASE = "/asset/dynamic/random_case";
+        const string URL_SERVICE = "/asset/dynamic/interface";
 
         private Dictionary<string, string> MIMETYPES = new Dictionary<string, string>()
         {
@@ -32,41 +37,68 @@ namespace OntologyEditor
             Listener.Prefixes.Add("http://+:8008/");
         }
 
-        public async void Start()
+
+        public void Start()
         {
-            //var response = "Hello internal server world!";
-
-            Listener.Start();
-
-            while(Listener.IsListening)
+            Task tast = Task.Factory.StartNew(() =>
             {
-                Task<HttpListenerContext> getCtx = Listener.GetContextAsync();
-                var ctx = await getCtx;
-                Console.Out.WriteLine(ctx.Request.RawUrl);
-                HandleRequest(ctx.Request, ctx.Response);
+                Listener.Start();
 
-                ctx.Response.Close();
-            }
+                while (Listener.IsListening)
+                {
+                    var ctx = Listener.GetContext();
+                    Console.Out.WriteLine(ctx.Request.RawUrl);
+                    HandleRequest(ctx.Request, ctx.Response);
+
+                    ctx.Response.Close();
+                }
+            });
         }
 
         public void HandleRequest(HttpListenerRequest request, HttpListenerResponse response)
         {
+            string body = new StreamReader(request.InputStream).ReadToEnd();
+            ClientRequest client_request = ClientRequest.fromString(body);
+
+            if (body != string.Empty)
+                Console.WriteLine(body);
+            
+
             switch (request.RawUrl)
             {
                 case URL_CLIPACK:
                     response.ContentType = MIMETYPES[".json"];
                     SendString(Program.OntologyInstance.ExportClientPackage(), response);
                     break;
-                    
-                case URL_RANDOM_CASE:
+
+                case URL_SERVICE:
                     response.ContentType = MIMETYPES[".json"];
-                    SendString("Random case?", response);
+                    var result = GameManager.HandleRequest(client_request);
+                    SendString(result, response);
+                    //SendString(GetDummyCase(request), response);
                     break;
 
                 default:
                     ServerFromRoot(request.RawUrl, response);
                     break;
             } 
+        }
+
+        private string GetDummyCase(HttpListenerRequest request)
+        {
+            var test_case = new cbox.model.Case();
+
+            Console.Out.WriteLine("Got: " + request.QueryString);
+
+            var crp = new cbox.model.TestResult() { Key = "vblood.crp", Value = "183" };
+            var sr = new cbox.model.TestResult() { Key = "vblood.sr", Value = "5" };
+            var age = new cbox.model.TestResult() { Key = "history.age", Value = "33" };
+            var name = new cbox.model.TestResult() { Key = "history.name", Value = "33" };
+            var gender = new cbox.model.TestResult() { Key = "history.gender", Value = "F" };
+
+            test_case["_root"].add(new cbox.model.TestResult[]{crp, sr, age, name, gender});
+
+            return ("{ \"GameID\": \"demo-1234\", \"Case\" : " + test_case.toJSON() + "}");
         }
 
         private void ServerFromRoot(string rawUrl, HttpListenerResponse response)

@@ -35,9 +35,12 @@
     <TypeScriptCompile Include="lib\Logger.ts" />
     <TypeScriptCompile Include="lib\model\ActionRequest.ts" />
     <TypeScriptCompile Include="lib\model\Case.ts" />
+    <TypeScriptCompile Include="lib\model\coms\ServerRequest.ts" />
+    <TypeScriptCompile Include="lib\model\coms\StartGameResponse.ts" />
     <TypeScriptCompile Include="lib\model\DiagnoseAndTreatment.ts" />
     <TypeScriptCompile Include="lib\model\FollowupAnswers.ts" />
     <TypeScriptCompile Include="lib\model\Problem.ts" />
+    <TypeScriptCompile Include="lib\model\TestResult.ts" />
     <TypeScriptCompile Include="lib\Tools.ts" />
     <TypeScriptCompile Include="lib\view\client_debug.ts" />
     <TypeScriptCompile Include="lib\view\play.ts" />

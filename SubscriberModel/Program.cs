@@ -8,6 +8,8 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Diagnostics;
 
+using cbox.server;
+
 using cbox.model;
 
 namespace OntologyEditor

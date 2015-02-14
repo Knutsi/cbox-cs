@@ -46,6 +46,10 @@
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.serverMenuIItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.indexURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clipackURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomCaseURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insStdClassesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editorsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,10 +61,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.clientPreviewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.clipackURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indexURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.randomCaseURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -206,14 +206,43 @@
             // 
             this.serverMenuIItem.Name = "serverMenuIItem";
             this.serverMenuIItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.serverMenuIItem.Size = new System.Drawing.Size(184, 22);
+            this.serverMenuIItem.Size = new System.Drawing.Size(250, 22);
             this.serverMenuIItem.Text = "Internal server";
             this.serverMenuIItem.Click += new System.EventHandler(this.serverMenuIItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(247, 6);
+            // 
+            // indexURLMenuItem
+            // 
+            this.indexURLMenuItem.Name = "indexURLMenuItem";
+            this.indexURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.indexURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.indexURLMenuItem.Text = "/lib/view/play.html";
+            this.indexURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
+            // 
+            // clipackURLMenuItem
+            // 
+            this.clipackURLMenuItem.Name = "clipackURLMenuItem";
+            this.clipackURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.clipackURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.clipackURLMenuItem.Text = "/asset/dynamic/clipack";
+            this.clipackURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
+            // 
+            // randomCaseURLMenuItem
+            // 
+            this.randomCaseURLMenuItem.Name = "randomCaseURLMenuItem";
+            this.randomCaseURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.randomCaseURLMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.randomCaseURLMenuItem.Text = "/asset/dynamic/interface";
+            this.randomCaseURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(247, 6);
             // 
             // advancedToolStripMenuItem
             // 
@@ -307,35 +336,6 @@
             this.statusStrip.Size = new System.Drawing.Size(1020, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
-            // 
-            // clipackURLMenuItem
-            // 
-            this.clipackURLMenuItem.Name = "clipackURLMenuItem";
-            this.clipackURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.clipackURLMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.clipackURLMenuItem.Text = "/asset/dynamic/clipack";
-            this.clipackURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
-            // 
-            // indexURLMenuItem
-            // 
-            this.indexURLMenuItem.Name = "indexURLMenuItem";
-            this.indexURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.indexURLMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.indexURLMenuItem.Text = "/index.html";
-            this.indexURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
-            // 
-            // randomCaseURLMenuItem
-            // 
-            this.randomCaseURLMenuItem.Name = "randomCaseURLMenuItem";
-            this.randomCaseURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.randomCaseURLMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.randomCaseURLMenuItem.Text = "/asset/dynamic/random_case";
-            this.randomCaseURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(247, 6);
             // 
             // MainWindow
             // 
