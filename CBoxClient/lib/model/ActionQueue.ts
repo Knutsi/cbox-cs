@@ -55,5 +55,11 @@
             this.items = [];
             this.onChange.fire(new EmptyEvent());
         }
+
+        toObject() {
+            return {
+                Entries: this.items.map((i) => { return i.toObject() } )
+            }
+        }
     }
 }

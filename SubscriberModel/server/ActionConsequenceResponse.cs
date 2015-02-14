@@ -19,5 +19,16 @@ namespace cbox.server
 
         [DataMember]
         public Case Case = new Case();
+
+        [DataMember]
+        public Scorecard Scorecard = new Scorecard();
+
+        [DataMember]
+        public bool FirstAction { get; set; }
+
+        public ActionConsequenceResponse()
+        {
+            FirstAction = false;
+        }
     }
 }

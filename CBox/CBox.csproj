@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Action.cs" />
+    <Compile Include="model\ActionQueue.cs" />
+    <Compile Include="model\ActionQueueEntry.cs" />
     <Compile Include="model\Case.cs" />
     <Compile Include="model\CBoxSystem.cs" />
     <Compile Include="model\Diagnosis.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="model\Ontology.cs" />
     <Compile Include="model\Problem.cs" />
     <Compile Include="model\ProblemClass.cs" />
+    <Compile Include="model\Scorecard.cs" />
     <Compile Include="model\Test.cs" />
     <Compile Include="model\TestResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

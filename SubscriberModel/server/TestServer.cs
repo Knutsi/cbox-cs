@@ -84,22 +84,7 @@ namespace cbox.server
             } 
         }
 
-        private string GetDummyCase(HttpListenerRequest request)
-        {
-            var test_case = new cbox.model.Case();
-
-            Console.Out.WriteLine("Got: " + request.QueryString);
-
-            var crp = new cbox.model.TestResult() { Key = "vblood.crp", Value = "183" };
-            var sr = new cbox.model.TestResult() { Key = "vblood.sr", Value = "5" };
-            var age = new cbox.model.TestResult() { Key = "history.age", Value = "33" };
-            var name = new cbox.model.TestResult() { Key = "history.name", Value = "33" };
-            var gender = new cbox.model.TestResult() { Key = "history.gender", Value = "F" };
-
-            test_case["_root"].add(new cbox.model.TestResult[]{crp, sr, age, name, gender});
-
-            return ("{ \"GameID\": \"demo-1234\", \"Case\" : " + test_case.toJSON() + "}");
-        }
+        
 
         private void ServerFromRoot(string rawUrl, HttpListenerResponse response)
         {

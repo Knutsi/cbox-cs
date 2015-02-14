@@ -12,7 +12,8 @@
 
             // wire events:
             var game_client = this.page_controller.game_client;
-            game_client.onGameStart.addHandler(() => { this.updateCase() } );
+            game_client.onGameStart.addHandler(() => { this.updateCase() });
+            game_client.onActionConsequenceRecieved.addHandler(() => { this.updateCase() });
 
             log.msg("CaseViewController initialized")
         }

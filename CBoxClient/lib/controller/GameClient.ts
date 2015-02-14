@@ -145,7 +145,7 @@ module cbox.client {
                 this.state = GameClientState.READY;
 
             // tell server we are starting the game:
-            var req = this.makeInterfaceRequest();
+            var req = this.makeInterfaceHTTPRequest();
             var data = ServerRequest.make(this, "new_game", null);
            
 
@@ -169,13 +169,31 @@ module cbox.client {
         /* (S4) Called whenever the user has built the action queue. Will move state back and forth
         between awaiting action consequence, and taking actions  */
         commitActions(queue: ActionQueue) {
+
             this.exceptIfNotInState([GameClientState.TAKING_ACTIONS]);
+
+            var req = this.makeInterfaceHTTPRequest();
+            var queue_json = JSON.stringify(queue.toObject());
+
+            var data = ServerRequest.make(this, "commit_actions", queue_json);
+            req.onreadystatechange = () => {
+                if (req.readyState == 4 && req.status == 200) {
+
+                    // parse the server response:
+                    var response = new StartGameResponse(req.responseText);
+                    this.current_case = response.case_;
+
+                    this.state = GameClientState.TAKING_ACTIONS;
+                    this.onActionConsequenceRecieved.fire(new Event<EmptyEvent>());
+                }
+            }
+
+            req.send(data);
 
             this.state = GameClientState.AWAIT_ACTION_CONSEQUENCE;
             this.onActionsRequested.fire(new Event<EmptyEvent>());
 
-            this.state = GameClientState.TAKING_ACTIONS;
-            this.onActionConsequenceRecieved.fire(new Event<EmptyEvent>());
+ 
             
         }
 
@@ -205,7 +223,7 @@ module cbox.client {
 
 
 
-        makeInterfaceRequest(): XMLHttpRequest {
+        makeInterfaceHTTPRequest(): XMLHttpRequest {
             var if_url = this.service_url + "interface";
 
             var req = new XMLHttpRequest();

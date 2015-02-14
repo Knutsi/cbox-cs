@@ -27,5 +27,24 @@ namespace cbox.model
                 add(r);
         }
 
+        public TestResult resultWithKey(string key)
+        {
+            foreach (var result in this.TestResults)
+                if (result.Key == key)
+                    return result;
+            
+            return null;
+        }
+
+        /// <summary>
+        /// Gets test result by ident.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public TestResult this[string key]
+        {
+            get { return resultWithKey(key); }
+        }
+
     }
 }
