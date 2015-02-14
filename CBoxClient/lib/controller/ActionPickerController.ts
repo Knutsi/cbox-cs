@@ -102,6 +102,7 @@
                 var a = <HTMLDivElement>cbox.cin("div", this.content_div, form.title);
                 a.onclick = () => { this.loadForm(form) }
                 a.classList.add("clickable");
+                a.classList.add("action_picker_headline_l1");
                 
             })
 
@@ -129,6 +130,7 @@
             this.current_form.headlines.forEach((headline) => {
                 var clipack = this.page_controller.game_client.client_package;
                 var h2 = cbox.cin("div", this.content_div, headline.title);
+                h2.classList.add("action_picker_headline_l2");
                 
                 // make actions under this line:
                 headline.action_idents.forEach((ident, i) => {

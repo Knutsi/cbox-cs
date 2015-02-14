@@ -8,8 +8,8 @@ h1 {
     padding: 0;
     margin: 0 0 0.2em 0;
     color: whitesmoke;
-
 }
+
 
 .padding_5px { padding: 5px;}
 .clickable { cursor: pointer; -webkit-user-select: none; }
@@ -47,11 +47,6 @@ div[data-cbox-role="action-queue"] {
     overflow: auto;
 }
 
-/*div[data-cbox-role="action-queue"]:hover {
-    width:33%;
-    right: 17%;
-    z-index:100;
-}*/
 
 div[data-cbox-role="action-queue-message"] {
     position:absolute;
@@ -97,7 +92,22 @@ input[data-cbox-role="action-picker-search"] {
     border: 0;
     border-bottom: 2px solid gray;
     color: white;
+}
 
+.action_picker_headline_l1 {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-top: 3px;
+}
+
+.action_picker_headline_l2 {
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(245, 225, 225);
+    border-bottom: 2px dotted;
+    margin-bottom: 2px;
+    margin-top: 3px;
 }
 
 div[data-cbox-role="dnt-view"] {
