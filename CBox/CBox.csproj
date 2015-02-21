@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="generation\Component.cs" />
+    <Compile Include="generation\Connection.cs" />
+    <Compile Include="generation\Model.cs" />
+    <Compile Include="generation\Node.cs" />
+    <Compile Include="generation\OutputSocket.cs" />
+    <Compile Include="IdentProvider.cs" />
     <Compile Include="model\Action.cs" />
     <Compile Include="model\ActionQueue.cs" />
     <Compile Include="model\ActionQueueEntry.cs" />
@@ -57,9 +63,7 @@
     <Compile Include="model\TestResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="generation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

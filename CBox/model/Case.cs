@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 namespace cbox.model
 {
     /// <summary>
-    /// The Case class represents a medical case.  Answeres to tests are bundled inside 
+    /// The Case class represents a medical case.  Answers to tests are bundled inside 
     /// problems.  Problems have specific classes. 
     /// 
     /// Cases can be filtered to provide a reduced version that contains only anwsers 
@@ -62,8 +62,10 @@ namespace cbox.model
         /// Dx, Tx and followup is included if the proper flags are set when calling the function.
         /// </summary>
         /// <returns></returns>
-        public Case makeSubset(TestList tests, Ontology ontology, bool dx=false, bool tx=false, bool followup=false)
+        public Case makeSubset(ActionQueue tests, Ontology ontology, bool dx=false, bool tx=false, bool followup=false)
         {
+            /* FIXME! The client should look up tests in ontology! */
+
             var subcase = new Case();
 
             foreach (ActionRequest action in tests.Entries)

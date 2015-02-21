@@ -100,7 +100,7 @@ namespace cbox.server
             game.ActionsTaken.ImportAllFrom(client_actions);
 
             // get an updated case to send the user:
-            response.Case = game.Case.makeSubset(game.ActionsTaken, null);
+            //response.Case = game.Case.makeSubset(game.ActionsTaken, null);
 
             // update scorecard:
             response.Scorecard = game.Scorecard;
