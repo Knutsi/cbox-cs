@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Xml.Serialization;
+
 namespace cbox.generation
 {
     public class OutputSocket
@@ -11,6 +13,8 @@ namespace cbox.generation
         //public int Ident;
         public int? TargetNodeIdent;
 
+        [XmlIgnore]
+        public Node ParentNode;
 
         public void Connect(Node node)
         {
@@ -33,10 +37,20 @@ namespace cbox.generation
 
         }
        
-
         public bool DoesTarget(Node node)
         {
             return node.Ident == TargetNodeIdent;
+        }
+
+        public Node TargetNode 
+        {
+            get
+            {
+                if (!IsConnected)
+                    return null;
+
+                return ParentNode.ParentComponent.NodeByIdent(TargetNodeIdent.Value);
+            }
         }
     }
 }

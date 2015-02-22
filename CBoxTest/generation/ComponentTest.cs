@@ -12,6 +12,12 @@ namespace CBoxTest
     public class ComponentTest
     {
         [TestMethod]
+        public void NodeManipulation()
+        {
+            NodeManipulation(null);
+        }
+
+
         public void NodeManipulation(Component comp = null)
         {
             if(comp == null)
@@ -41,10 +47,19 @@ namespace CBoxTest
             Assert.AreEqual(3, comp.Nodes.Count);
             Assert.AreEqual(1, comp.Connections.Count);
             
-            // assert that A is connected to B:
+            // assert that A is connected to B, in two ways:
             Assert.AreEqual(
                 comp.NodesByTitle("B").First(),
                 comp.Connections.First().ToNode);
+
+            Assert.AreEqual(
+                comp.NodesByTitle("A").First().FirstOutputSocket.TargetNode,
+                comp.NodesByTitle("B").First());
+
+            // assert internal reference correct:
+            Assert.AreEqual(
+                comp.Nodes.First().ParentComponent,
+                comp);
         }
 
 
@@ -53,12 +68,14 @@ namespace CBoxTest
         {
             var model = new Model(false);
             var comp = MakeConnectionSetup1();
-            model.Components.Add(MakeConnectionSetup1();
-            model.RootComponent = comp;
+            comp.IsRoot = true;
+            model.Components.Add(MakeConnectionSetup1());
 
 
             // write a component to drive:
             var tfile_path = Path.GetTempFileName();
+            Console.WriteLine("Tempfile: " + tfile_path);
+
             var xml = model.ToXML();
             File.WriteAllText(tfile_path, xml);
 
@@ -66,8 +83,15 @@ namespace CBoxTest
             var load_xml = File.ReadAllText(tfile_path);
             var postsave_model = Model.FromXML(load_xml);
 
+            // check that the internal references are intact:
+            Assert.AreEqual(postsave_model, postsave_model.RootComponent.ParentModel);
+            Assert.AreEqual(
+                postsave_model.RootComponent.Nodes.First().ParentComponent,
+                postsave_model.RootComponent,
+                "Parent component of nodes is not correct");
+
+            // perform manipulations:
             NodeManipulation(postsave_model.RootComponent);
-            Console.WriteLine("Tempfile: " + tfile_path);
         }
 
 
@@ -82,16 +106,9 @@ namespace CBoxTest
             var D = new Node("D", true);
             var E = new Node("E", true);
 
-            B.OutputSockets.Add(new OutputSocket());
+            B.AddSocket(new OutputSocket());
 
             comp.Add(A,B,C,D,E);
-
-            // connect A to B, B to C and D, and C and D to E:
-            /*comp.Connect(A.FirstOutputSocket, B);
-            comp.Connect(B.FirstOutputSocket, C);
-            comp.Connect(B.OutputSockets[1], D);
-            comp.Connect(C.FirstOutputSocket, E);
-            comp.Connect(D.FirstOutputSocket, E);*/
 
             A.FirstOutputSocket.Connect(B);
             B.FirstOutputSocket.Connect(C);

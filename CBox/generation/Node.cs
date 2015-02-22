@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Xml.Serialization;
+
 namespace cbox.generation
 {
     public class Node
@@ -25,6 +27,9 @@ namespace cbox.generation
 
         public List<OutputSocket> OutputSockets = new List<OutputSocket>();
 
+        [XmlIgnore]
+        public Component ParentComponent = null;
+
         public Node()
         {
             Title = "Untitled";
@@ -35,10 +40,32 @@ namespace cbox.generation
             Title = title;
 
             if(create_default)
-                this.OutputSockets.Add(new OutputSocket());
+                this.AddSocket(new OutputSocket());
         }
 
         public OutputSocket FirstOutputSocket { get { return this.OutputSockets.First();  } }
 
+        public void AddSocket(OutputSocket socket) 
+        {
+            this.OutputSockets.Add(socket);
+            socket.ParentNode = this;
+        }
+
+        public void RemoveSocket(OutputSocket socket)
+        {
+            this.OutputSockets.Remove(socket);
+            socket.ParentNode = null;
+        }
+
+
+        /// <summary>
+        /// Updates all sockets to have this as their parent node.  This is
+        /// called after derserializartion, as this reference cannot be serialized.
+        /// </summary>
+        internal void UpdateInternalReferences()
+        {
+            foreach (var socket in OutputSockets)
+                socket.ParentNode = this;
+        }
     }
 }

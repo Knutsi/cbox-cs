@@ -14,20 +14,54 @@ namespace cbox.generation
         public int Ident { get; set; }
 
         public List<Component> Components { get; set; }
-        public Component RootComponent { get; set; }
 
-        public Model(bool generate_default = false)
+
+        public Model() : this(false)
+        {
+            
+        }
+
+        public Model(bool generate_default)
         {
             Components = new List<Component>();
 
             if(generate_default)
             {
-                var comp = new Component();
+                var comp = new Component() { IsRoot = true };
                 Components.Add(comp);
-                RootComponent = comp;
                     
             }
         }
+
+
+        /// <summary>
+        /// The root component is the component that gets executed first when the model is 
+        /// run.
+        /// </summary>
+        [XmlIgnore]
+        public Component RootComponent { 
+            get
+            {
+                return (from comp in this.Components
+                        where comp.IsRoot == true
+                        select comp).First();
+            }
+        }
+
+
+        public void AddComponent(Component comp)
+        {
+            this.Components.Add(comp);
+            comp.ParentModel = this;
+        }
+
+
+        public void RemoveComponent(Component comp)
+        {
+            this.Components.Remove(comp);
+            comp.ParentModel = null;
+        }
+
 
         public string ToXML()
         {
@@ -61,8 +95,23 @@ namespace cbox.generation
             using (var reader = new StringReader(xml))
             {
                 var serializer = new XmlSerializer(typeof(Model));
-                return (Model)serializer.Deserialize(reader);
+                var model = (Model)serializer.Deserialize(reader);
+
+                // we now need to update references to the model in the components and nodes:
+                model.UpdateInternalReferences();
+
+                return model;
             }
+        }
+
+        private void UpdateInternalReferences()
+        {
+            foreach (var comp in this.Components)
+            {
+                comp.ParentModel = this;
+                comp.UpdateInternalReferences();
+            }
+                
         }
     }
 }

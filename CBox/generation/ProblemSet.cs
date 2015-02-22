@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cbox.generation
 {
-    public class ProblemDefinition
+    public class ProblemSet
     {
         public int Ident;
         public string Title;

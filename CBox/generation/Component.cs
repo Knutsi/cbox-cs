@@ -18,6 +18,9 @@ namespace cbox.generation
 
         private List<BuildPath> _BuildPaths = null;
 
+        [XmlIgnore]
+        private Model _ParentModel = null;
+
         /// <summary>
         /// Adds a node to the model.
         /// </summary>
@@ -26,8 +29,8 @@ namespace cbox.generation
         {
             node.Ident = this.NextIdent;
             this.Nodes.Add(node);
+            node.ParentComponent = this;
         }
-
 
         public void Add(params Node[] nodes)
         {
@@ -42,6 +45,7 @@ namespace cbox.generation
         public void Remove(Node node)
         {
             this.Nodes.Remove(node);
+            node.ParentComponent = null;
 
             // disconnect all output sockets leading to the removed ones:
             foreach (var socket in AllOutputSockets)
@@ -105,7 +109,7 @@ namespace cbox.generation
         /// </summary>
         /// <param name="ident"></param>
         /// <returns></returns>
-        private Node NodeByIdent(int ident)
+        public Node NodeByIdent(int ident)
         {
             foreach (var node in Nodes)
                 if (node.Ident == ident)
@@ -131,42 +135,6 @@ namespace cbox.generation
             return list;
         }
 
-        public string ToXML()
-        {
-            // prepare to serialize:
-            var serializer = new XmlSerializer(this.GetType());
-
-            /* Create a StreamWriter to write with. First create a FileStream
-            object, and create the StreamWriter specifying an Encoding to use. */
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using(TextWriter writer = new StreamWriter(ms, new UTF8Encoding()))
-                {
-                    // Serialize using the XmlTextWriter.
-                    serializer.Serialize(writer, this);
-
-                    ms.Position = 0;
-                    StreamReader reader = new StreamReader(ms);
-                    return reader.ReadToEnd();
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Loads the model from XML.
-        /// </summary>
-        /// <param name="xml"></param>
-        /// <returns></returns>
-        public static Component FromXML(string xml)
-        {
-            using (var reader = new StringReader(xml))
-            {
-                var serializer = new XmlSerializer(typeof(Component));
-                return (Component)serializer.Deserialize(reader);
-            }
-        }
-
 
         /// <summary>
         /// Generates a list of build paths.
@@ -186,6 +154,31 @@ namespace cbox.generation
             } 
         }
 
+
+        public Model ParentModel
+        {
+            get { return _ParentModel; }
+
+            set
+            {
+                _ParentModel = value;
+
+                //
+            }
+        }
+
+        /// <summary>
+        /// Updates all nodes to refer tot his collection as their parent.  Used after 
+        /// deserialization to reestablish this unserialized property.
+        /// </summary>
+        internal void UpdateInternalReferences()
+        {
+            foreach (var node in Nodes)
+            {
+                node.ParentComponent = this;
+                node.UpdateInternalReferences();
+            }
+        }
 
     }
 }
