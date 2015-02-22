@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="generation\BuildPath.cs" />
     <Compile Include="generation\Component.cs" />
     <Compile Include="generation\Connection.cs" />
     <Compile Include="generation\Model.cs" />
     <Compile Include="generation\Node.cs" />
     <Compile Include="generation\OutputSocket.cs" />
+    <Compile Include="generation\ProblemDefinition.cs" />
+    <Compile Include="generation\TestReferenceRange.cs" />
     <Compile Include="IdentProvider.cs" />
     <Compile Include="model\Action.cs" />
     <Compile Include="model\ActionQueue.cs" />

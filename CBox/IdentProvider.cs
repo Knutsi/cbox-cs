@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cbox
 {
-    abstract class IdentProvider
+    abstract public class IdentProvider
     {
         public int _NextIdent { get; set; }
 
