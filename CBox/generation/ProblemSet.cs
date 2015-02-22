@@ -10,5 +10,8 @@ namespace cbox.generation
     {
         public int Ident;
         public string Title;
+        public Node StartNode;
+
+        public List<Node> BoundNodes = new List<Node>();
     }
 }

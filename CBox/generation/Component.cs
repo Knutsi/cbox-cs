@@ -15,27 +15,47 @@ namespace cbox.generation
         public bool IsRoot = false;
 
         public List<Node> Nodes = new List<Node>();
+        
+        public Node StartNode;
+        public Node EndNode;
 
         private List<BuildPath> _BuildPaths = null;
 
         [XmlIgnore]
         private Model _ParentModel = null;
 
+        [XmlIgnore]
+        public List<ProblemSet> ProblemSets = new List<ProblemSet>();
+
+        [XmlIgnore]
+        public IssueReport Issues = null;
+
+        public Model ParentModel
+        {
+            get { return _ParentModel; }
+            set {_ParentModel = value; }
+        }
+
         /// <summary>
         /// Adds a node to the model.
         /// </summary>
         /// <param name="node"></param>
-        public void Add(Node node)
+        public void Add(Node node, bool invalidate=true)
         {
             node.Ident = this.NextIdent;
             this.Nodes.Add(node);
             node.ParentComponent = this;
+
+            if(invalidate)
+                Invalidate();
         }
 
         public void Add(params Node[] nodes)
         {
             foreach (var node in nodes)
-                Add(node);
+                Add(node, false);
+
+            Invalidate();
         }
 
         /// <summary>
@@ -51,6 +71,13 @@ namespace cbox.generation
             foreach (var socket in AllOutputSockets)
                 if (socket.DoesTarget(node))
                     socket.Disconnect();
+
+            Invalidate();
+        }
+
+        private void AddProblemSet(ProblemSet problem_set)
+        {
+            this.ProblemSets.Add(problem_set);
         }
 
         /// <summary>
@@ -118,7 +145,6 @@ namespace cbox.generation
             return null;
         }
 
-
         /// <summary>
         /// Gives nodes with a matching title.
         /// </summary>
@@ -134,6 +160,101 @@ namespace cbox.generation
 
             return list;
         }
+
+        /// <summary>
+        /// Returns the problem set node is bound to, or null if not bound.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public ProblemSet ProblemSetByNode(Node node)
+        {
+            foreach (var problem_set in ProblemSets)
+                if (problem_set.BoundNodes.Contains(node))
+                    return problem_set;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Causes problem sets to be regenerated.
+        /// </summary>
+        public void Invalidate() 
+        {
+            this.Issues = new IssueReport();
+
+            UpdateProblems();
+        }
+
+        /// <summary>
+        /// Looks for nodes which starts problems, and generates a list of all nodes in that problem.
+        /// It traces all connections that follow after a problem-starting node, and checks if the paths
+        /// all accumulate in the same problem-ending node. 
+        /// </summary>
+        private void UpdateProblems()
+        {
+            // clear old:
+            this.ProblemSets.Clear();
+
+            // get nodes that start problems:
+            var problem_starters = from node in Nodes
+                                   where node.StartsProblem == true
+                                   select node;
+
+            // trace each of these nodes:
+            foreach (var start_node in problem_starters)
+            {
+                ProblemAcumulatorCollection collected = new ProblemAcumulatorCollection(start_node);
+                _traceProblemPath(collected, new List<Node>(), start_node);
+
+                if (collected.IsValid)
+                    this.AddProblemSet(collected.ResultSet);
+                else
+                    this.Issues.AddRange(collected.Issues);
+            }
+        }
+
+
+        private void _traceProblemPath(ProblemAcumulatorCollection collected, List<Node> history, Node node)
+        {
+            if (!node.StartsProblem && !node.EndsProblem)
+                collected.Nodes[node.Ident] = node;
+
+            // are we going in circles?
+            if (history.Contains(node))
+            {
+                collected.IsCircular = true;
+                return;
+            }
+
+            if(node.EndsProblem)
+            {
+                // if it ends problems, but is not the ender, we regiser it as the ender and
+                // update the total number of enders found (shoukd only be one!):
+                if (node != collected.Ender)
+                {
+                    collected.EnderCount += 1;
+                    collected.Ender = node;
+                }
+            } 
+            else
+            {
+                // if it does not end problems, we trace it's connections:
+                foreach (var socket in node.OutputSockets)
+                {
+                    if(socket.IsConnected) 
+                    {
+                        // notify if we have found the end node
+                        if (socket.TargetNode == this.EndNode)
+                            collected.EndNodeFound = true;
+
+                        history.Add(node);
+                        _traceProblemPath(collected, history, socket.TargetNode);
+                    }
+                }
+            }   
+        }
+        
+        
 
 
         /// <summary>
@@ -154,19 +275,6 @@ namespace cbox.generation
             } 
         }
 
-
-        public Model ParentModel
-        {
-            get { return _ParentModel; }
-
-            set
-            {
-                _ParentModel = value;
-
-                //
-            }
-        }
-
         /// <summary>
         /// Updates all nodes to refer tot his collection as their parent.  Used after 
         /// deserialization to reestablish this unserialized property.
@@ -178,6 +286,8 @@ namespace cbox.generation
                 node.ParentComponent = this;
                 node.UpdateInternalReferences();
             }
+
+            Invalidate();
         }
 
     }

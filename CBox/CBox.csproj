@@ -44,10 +44,14 @@
     <Compile Include="generation\BuildPath.cs" />
     <Compile Include="generation\Component.cs" />
     <Compile Include="generation\Connection.cs" />
+    <Compile Include="generation\IssueReport.cs" />
+    <Compile Include="generation\IssueReportEntry.cs" />
     <Compile Include="generation\Model.cs" />
     <Compile Include="generation\Node.cs" />
     <Compile Include="generation\OutputSocket.cs" />
+    <Compile Include="generation\ProblemAcumulatorCollection.cs" />
     <Compile Include="generation\ProblemSet.cs" />
+    <Compile Include="generation\ProblemSetNotValidException.cs" />
     <Compile Include="generation\TestReferenceRange.cs" />
     <Compile Include="IdentProvider.cs" />
     <Compile Include="model\Action.cs" />

@@ -100,18 +100,32 @@ namespace cbox.generation
                 // we now need to update references to the model in the components and nodes:
                 model.UpdateInternalReferences();
 
+                // invalidate to rebuild problem sets etc.:
+                model.Invalidate();
+
                 return model;
             }
         }
 
+        /// <summary>
+        /// Ensures all components have this model set as their parent.
+        /// </summary>
         private void UpdateInternalReferences()
         {
             foreach (var comp in this.Components)
             {
                 comp.ParentModel = this;
                 comp.UpdateInternalReferences();
-            }
-                
+            }  
+        }
+
+        /// <summary>
+        /// Causes invalidation of all components.
+        /// </summary>
+        public void Invalidate()
+        {
+            foreach (var comp in Components)
+                comp.Invalidate();
         }
     }
 }

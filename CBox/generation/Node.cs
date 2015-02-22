@@ -16,8 +16,7 @@ namespace cbox.generation
         public int PosX;
         public int PosY;
 
-        public int? BoundProblemIdent = null;
-        public int? StartsProblemIdent = null;
+        public bool StartsProblem = false;
         public bool EndsProblem = false;
 
         public List<string> ProvidesTags = new List<string>();
@@ -43,6 +42,14 @@ namespace cbox.generation
                 this.AddSocket(new OutputSocket());
         }
 
+        public ProblemSet BoundProblem
+        {
+            get
+            {
+                return this.ParentComponent.ProblemSetByNode(this);
+            }
+        }
+
         public OutputSocket FirstOutputSocket { get { return this.OutputSockets.First();  } }
 
         public void AddSocket(OutputSocket socket) 
@@ -66,6 +73,10 @@ namespace cbox.generation
         {
             foreach (var socket in OutputSockets)
                 socket.ParentNode = this;
+        }
+
+        public override string ToString() {
+            return String.Format("Node: \"{0}\":{1}", this.Title, this.Ident);
         }
     }
 }
