@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace cbox.generation.nodetype
 {
-    public class BaseType : INodeTypeHandler
+    public class BaseType : INodeType
     {
         public const string TYPE_IDENT = "BASE_HANDLER";
 
         // internal fields:
         private Node _Node = null;
-        private BaseHandlerData _Data = new BaseHandlerData();
+        private BaseTypeData _Data = new BaseTypeData();
 
         // fullfilling the interface:
         public bool StartsProblem { get; set; }
@@ -51,7 +51,7 @@ namespace cbox.generation.nodetype
         {
             if (Node.Data != null)
             {
-                _Data = BaseHandlerData.FromXML(Node.Data);
+                _Data = BaseTypeData.FromXML(Node.Data);
             }
         }
 

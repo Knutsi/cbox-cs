@@ -8,7 +8,7 @@ namespace cbox.generation.nodetype
 {
     public static class TypeHandlerLibrary
     {
-        public static INodeTypeHandler GetHandler(Node node) 
+        public static INodeType GetHandler(Node node) 
         {
             var type = node.Type;
 

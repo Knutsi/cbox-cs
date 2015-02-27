@@ -49,7 +49,7 @@
     <Compile Include="generation\Model.cs" />
     <Compile Include="generation\Node.cs" />
     <Compile Include="generation\nodetype\BaseHandlerData.cs" />
-    <Compile Include="generation\nodetype\INodeTypeHandler.cs" />
+    <Compile Include="generation\nodetype\INodeType.cs" />
     <Compile Include="generation\nodetype\BaseType.cs" />
     <Compile Include="generation\OutputSocket.cs" />
     <Compile Include="generation\ProblemAcumulatorCollection.cs" />

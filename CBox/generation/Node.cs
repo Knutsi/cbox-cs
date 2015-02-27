@@ -25,7 +25,7 @@ namespace cbox.generation
  
 
         [XmlIgnore]
-        public INodeTypeHandler Handler { get; set; }
+        public INodeType Handler { get; set; }
 
         [XmlIgnore]
         public bool StartsProblem { get { return this.Handler.StartsProblem; } }

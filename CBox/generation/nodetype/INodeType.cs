@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cbox.generation.nodetype
 {
-    public interface INodeTypeHandler
+    public interface INodeType
     {
         Node Node { get; set; }    // cant define static interaces...
 
