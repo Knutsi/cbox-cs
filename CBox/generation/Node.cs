@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using System.Xml.Serialization;
 
+using cbox.generation.typehandlers;
+
 namespace cbox.generation
 {
     public class Node
@@ -27,7 +29,10 @@ namespace cbox.generation
         public List<OutputSocket> OutputSockets = new List<OutputSocket>();
 
         [XmlIgnore]
-        public Component ParentComponent = null;
+        public BaseHandler Handler { get; set; }
+
+        [XmlIgnore]
+        public NodeCollection ParentComponent = null;
 
         public Node()
         {

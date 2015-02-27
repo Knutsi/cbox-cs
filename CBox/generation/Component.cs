@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 
 namespace cbox.generation
 {
-    public class Component : IdentProvider
+    public class NodeCollection : IdentProvider
     {
         public bool IsRoot = false;
 

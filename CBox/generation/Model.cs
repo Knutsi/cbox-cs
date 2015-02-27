@@ -13,7 +13,7 @@ namespace cbox.generation
     {
         public int Ident { get; set; }
 
-        public List<Component> Components { get; set; }
+        public List<NodeCollection> Components { get; set; }
 
 
         public Model() : this(false)
@@ -23,11 +23,11 @@ namespace cbox.generation
 
         public Model(bool generate_default)
         {
-            Components = new List<Component>();
+            Components = new List<NodeCollection>();
 
             if(generate_default)
             {
-                var comp = new Component() { IsRoot = true };
+                var comp = new NodeCollection() { IsRoot = true };
                 Components.Add(comp);
                     
             }
@@ -39,7 +39,7 @@ namespace cbox.generation
         /// run.
         /// </summary>
         [XmlIgnore]
-        public Component RootComponent { 
+        public NodeCollection RootComponent { 
             get
             {
                 return (from comp in this.Components
@@ -49,14 +49,14 @@ namespace cbox.generation
         }
 
 
-        public void AddComponent(Component comp)
+        public void AddComponent(NodeCollection comp)
         {
             this.Components.Add(comp);
             comp.ParentModel = this;
         }
 
 
-        public void RemoveComponent(Component comp)
+        public void RemoveComponent(NodeCollection comp)
         {
             this.Components.Remove(comp);
             comp.ParentModel = null;
