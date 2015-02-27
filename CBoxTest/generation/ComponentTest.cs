@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using cbox.generation;
+using cbox.generation.nodetype;
 
 namespace CBoxTest
 {
@@ -23,8 +24,10 @@ namespace CBoxTest
             var model = new Model(false);
             var comp = MakeConnectionSetup1();
             comp.IsRoot = true;
-            model.Components.Add(MakeConnectionSetup1());
+            model.Components.Add(comp);
 
+            // alter E to be EndProblem node:
+            comp.NodesByTitle("E").First().ChangeType(ProblemEnd.TYPE_IDENT);
 
             // write a component to drive:
             var tfile_path = Path.GetTempFileName();
@@ -44,6 +47,13 @@ namespace CBoxTest
                 postsave_model.RootComponent,
                 "Parent component of nodes is not correct");
 
+
+            // check that "E" still is the correct type and that it's handler has been loaded:
+            var E = postsave_model.RootComponent.NodesByTitle("E").First();
+            Assert.AreEqual(E.Type, ProblemEnd.TYPE_IDENT);
+            Assert.AreEqual(E.Handler.GetType(), typeof(ProblemEnd));
+            Assert.IsTrue(E.EndsProblem);
+
             // perform manipulations:
             NodeManipulation(postsave_model.RootComponent);
         }
@@ -54,61 +64,75 @@ namespace CBoxTest
             var model = MakeConnectionSetup2();
             var comp = model.RootComponent;
 
+            var A = comp.NodesByTitle("A").First();
+            var B = comp.NodesByTitle("B").First();
+            var C = comp.NodesByTitle("C").First();
+            var D = comp.NodesByTitle("D").First();
+            var E = comp.NodesByTitle("E").First();
+            var F = comp.NodesByTitle("F").First();
+            var G = comp.NodesByTitle("G").First();
+            var H = comp.NodesByTitle("H").First();
+            var I = comp.NodesByTitle("I").First();
+
             Assert.AreEqual(0, comp.ProblemSets.Count);
 
-            // make C into a problem, check if D is boud and F is not:
-            comp.NodesByTitle("C").First().StartsProblem = true;
-            comp.NodesByTitle("E").First().EndsProblem = true;
+            // turn C into a problem, check if D is boud and F is not:
+            C.ChangeType(ProblemStart.TYPE_IDENT);
+            C.AddSocket(new OutputSocket());
+            C.FirstOutputSocket.Connect(D);
+
+            E.ChangeType(ProblemEnd.TYPE_IDENT);
+            E.AddSocket(new OutputSocket());
+            E.FirstOutputSocket.Connect(F);
             comp.Invalidate();
 
             Assert.AreEqual(1, comp.ProblemSets.Count);
-            Assert.IsNotNull(comp.NodesByTitle("D").First().BoundProblem);
-            Assert.IsNull(comp.NodesByTitle("F").First().BoundProblem);
+            Assert.IsNotNull(D.BoundProblem);
+            Assert.IsNull(F.BoundProblem);
 
             // make B into a problem, and I to and ender, check that G and H is bound:
-            comp.NodesByTitle("B").First().StartsProblem = true;
-            comp.NodesByTitle("I").First().EndsProblem = true;
+            B.ChangeType(ProblemStart.TYPE_IDENT);
+            B.AddSocket(new OutputSocket());
+            B.AddSocket(new OutputSocket());
+            B.FirstOutputSocket.Connect(G);
+            B.OutputSockets[1].Connect(H);
+
+            I.ChangeType(ProblemEnd.TYPE_IDENT);
+            I.AddSocket(new OutputSocket());
+            I.FirstOutputSocket.Connect(F);
             comp.Invalidate();
 
             Assert.AreEqual(0, comp.Issues.Count);
 
             Assert.AreEqual(2, comp.ProblemSets.Count);
-            Assert.AreEqual(
-                comp.NodesByTitle("B").First(),
-                comp.NodesByTitle("G").First().BoundProblem.StartNode);
+            Assert.AreEqual(B, G.BoundProblem.StartNode);
 
-            Assert.AreEqual(
-                comp.NodesByTitle("B").First(),
-                comp.NodesByTitle("H").First().BoundProblem.StartNode);
+            Assert.AreEqual(B, H.BoundProblem.StartNode);
 
             // double check that D is still bound to problem started by C:
-            Assert.AreEqual(
-                comp.NodesByTitle("C").First(),
-                comp.NodesByTitle("D").First().BoundProblem.StartNode);
+            Assert.AreEqual(C, D.BoundProblem.StartNode);
 
             // make a circular connection and assert for error:
-            var B = comp.NodesByTitle("B").First();
-            comp.NodesByTitle("G").First().FirstOutputSocket.Connect(B);
+            G.FirstOutputSocket.Connect(B);
             comp.Invalidate();
 
             Assert.AreEqual(1, comp.Issues.Count);
             Assert.AreEqual(comp.Issues.First().IssueType, IssueType.PROBLEM_CIRCULAR);
 
             // fix broken connection, remove E as endring, and check issue:
-            var C = comp.NodesByTitle("C").First();
-            var E = comp.NodesByTitle("E").First();
-            var I = comp.NodesByTitle("I").First();
-            comp.NodesByTitle("G").First().FirstOutputSocket.Connect(I);
-            E.EndsProblem = false;
+            G.FirstOutputSocket.Connect(I);
+            E.ChangeType(BaseType.TYPE_IDENT);
+            E.AddSocket(new OutputSocket());
+            E.FirstOutputSocket.Connect(F);
+
             comp.Invalidate();
 
             Assert.AreEqual(1, comp.Issues.Count);
             Assert.AreEqual(comp.Issues.First().IssueType, IssueType.PROBLEM_NO_END);
             Assert.AreEqual(comp.Issues.First().ObjectIdent, C.Ident);
-
         }
 
-        public void NodeManipulation(Component comp = null)
+        public void NodeManipulation(NodeCollection comp = null)
         {
             if (comp == null)
                 comp = MakeConnectionSetup1();
@@ -152,16 +176,16 @@ namespace CBoxTest
                 comp);
         }
 
-        private Component MakeConnectionSetup1()
+        private NodeCollection MakeConnectionSetup1()
         {
-            var comp = new Component() { IsRoot = true };
+            var comp = new NodeCollection() { IsRoot = true };
 
             // create five nodes A to E: 
-            var A = new Node("A", true);
-            var B = new Node("B", true);
-            var C = new Node("C", true);
-            var D = new Node("D", true);
-            var E = new Node("E", true);
+            var A = new Node("A", BaseType.TYPE_IDENT, true);
+            var B = new Node("B", BaseType.TYPE_IDENT, true);
+            var C = new Node("C", BaseType.TYPE_IDENT, true);
+            var D = new Node("D", BaseType.TYPE_IDENT, true);
+            var E = new Node("E", BaseType.TYPE_IDENT, true);
 
             B.AddSocket(new OutputSocket());
 
@@ -184,16 +208,16 @@ namespace CBoxTest
             var model = new Model(true);
             var comp = model.RootComponent;
 
-            var A = new Node("A", true);
-            var B = new Node("B", true);
-            var C = new Node("C", true);
-            var D = new Node("D", true);
-            var E = new Node("E", true);
-            var F = new Node("F", true);
-            var G = new Node("G", true);
-            var H = new Node("H", true);
-            var I = new Node("I", true);
-            var J = new Node("J", true);
+            var A = new Node("A", BaseType.TYPE_IDENT, true);
+            var B = new Node("B", BaseType.TYPE_IDENT, true);
+            var C = new Node("C", BaseType.TYPE_IDENT, true);
+            var D = new Node("D", BaseType.TYPE_IDENT, true);
+            var E = new Node("E", BaseType.TYPE_IDENT, true);
+            var F = new Node("F", BaseType.TYPE_IDENT, true);
+            var G = new Node("G", BaseType.TYPE_IDENT, true);
+            var H = new Node("H", BaseType.TYPE_IDENT, true);
+            var I = new Node("I", BaseType.TYPE_IDENT, true);
+            var J = new Node("J", BaseType.TYPE_IDENT, true);
 
             comp.Add(A, B, C, D, E, F, G, H, I, J);
 

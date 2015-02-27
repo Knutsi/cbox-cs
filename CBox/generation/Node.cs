@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Xml.Serialization;
 
-using cbox.generation.typehandlers;
+using cbox.generation.nodetype;
 
 namespace cbox.generation
 {
@@ -18,30 +18,43 @@ namespace cbox.generation
         public int PosX;
         public int PosY;
 
-        public bool StartsProblem = false;
-        public bool EndsProblem = false;
-
         public List<string> ProvidesTags = new List<string>();
 
         public string Type { get; set; }
         public string Data { get; set; }
-
-        public List<OutputSocket> OutputSockets = new List<OutputSocket>();
+ 
 
         [XmlIgnore]
-        public BaseHandler Handler { get; set; }
+        public INodeTypeHandler Handler { get; set; }
+
+        [XmlIgnore]
+        public bool StartsProblem { get { return this.Handler.StartsProblem; } }
+
+        [XmlIgnore]
+        public bool EndsProblem { get { return this.Handler.EndsProblem; } }
+
+        [XmlIgnore]
+        public List<OutputSocket> OutputSockets { get { return this.Handler.OutputSockets; } }
+
+        [XmlIgnore]
+        public List<List<OutputSocket>> PossibleOutputCombos { get { return this.Handler.PossibleOutputCombos; } }
 
         [XmlIgnore]
         public NodeCollection ParentComponent = null;
 
+
         public Node()
         {
             Title = "Untitled";
+            Type = BaseType.TYPE_IDENT;
+            Handler = TypeHandlerLibrary.GetHandler(this);
         }
 
-        public Node(string title="Untitled", bool create_default=false)
+        public Node(string title="Untitled", string type=BaseType.TYPE_IDENT, bool create_default=false)
         {
             Title = title;
+            Type = type;
+            Handler = TypeHandlerLibrary.GetHandler(this);
 
             if(create_default)
                 this.AddSocket(new OutputSocket());
@@ -71,17 +84,32 @@ namespace cbox.generation
 
 
         /// <summary>
-        /// Updates all sockets to have this as their parent node.  This is
-        /// called after derserializartion, as this reference cannot be serialized.
+        /// Updates all sockets to have this as their parent node and restores handler.  
+        /// This is called after derserializartion, as these fields cannot be serialzied.
         /// </summary>
-        internal void UpdateInternalReferences()
+        internal void UpdateInternals()
         {
+            // set current handler:
+            Handler = TypeHandlerLibrary.GetHandler(this);
+
             foreach (var socket in OutputSockets)
                 socket.ParentNode = this;
         }
 
-        public override string ToString() {
-            return String.Format("Node: \"{0}\":{1}", this.Title, this.Ident);
+       
+
+        public void ChangeType(string new_type)
+        {
+            Type = new_type;
+            Data = null;
+
+            UpdateInternals();
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Node: \"{0}\":{1}({2})", this.Title, this.Ident, this.Type);
         }
     }
+
 }

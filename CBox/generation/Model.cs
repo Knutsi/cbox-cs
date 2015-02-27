@@ -65,6 +65,11 @@ namespace cbox.generation
 
         public string ToXML()
         {
+            // save all handlers:
+            foreach (var col in Components)
+                foreach (var node in col.Nodes)
+                    node.Handler.SaveData();
+
             // prepare to serialize:
             var serializer = new XmlSerializer(this.GetType());
 

@@ -284,7 +284,7 @@ namespace cbox.generation
             foreach (var node in Nodes)
             {
                 node.ParentComponent = this;
-                node.UpdateInternalReferences();
+                node.UpdateInternals();
             }
 
             Invalidate();

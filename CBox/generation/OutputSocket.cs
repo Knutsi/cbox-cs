@@ -42,6 +42,7 @@ namespace cbox.generation
             return node.Ident == TargetNodeIdent;
         }
 
+        [XmlIgnore]
         public Node TargetNode 
         {
             get
