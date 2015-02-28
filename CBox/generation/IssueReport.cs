@@ -8,6 +8,8 @@ namespace cbox.generation
 {
     public class IssueReport : List<IssueReportEntry>
     {
+        public bool HasUnconnectedNodes = false;
+        public bool NodeMissingOutputSocket = false;
         public bool IsCyclic = false;
         public bool MissingStartNode = true;
         public bool MissingEndNode = true;

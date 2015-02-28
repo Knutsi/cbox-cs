@@ -9,7 +9,13 @@ namespace cbox.generation
     public enum IssueType
     {
         PROBLEM_CIRCULAR,
-        PROBLEM_NO_END
+        PROBLEM_NO_END,
+
+        NODE_MISSING_OUTPUT_SOCKET,
+        
+        SOCKET_DISCONNECTED,
+
+        CYCLIC_CONNECTION
     }
 
     public enum ObjectType {

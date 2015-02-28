@@ -195,14 +195,48 @@ namespace cbox.generation
         {
             this.Issues = new IssueReport();
 
-            UpdateExecutionOrder();
+            ValidateNodes();
             UpdateProblems();
+            UpdateExecutionOrder();
             UpdateBuildPaths();
         }
 
+        /// <summary>
+        /// Evaluates the integrity of the nods.  All sockets must be connected. No nodes except
+        /// end node can be have no output sockets.
+        /// </summary>
+        private void ValidateNodes()
+        {
+            // are all nodes connected?
+            foreach (var socket in this.AllOutputSockets)
+                if (socket.TargetNode == null)
+                {
+                    this.Issues.HasUnconnectedNodes = true;
+                    this.Issues.Add(new IssueReportEntry()
+                    {
+                        IssueType = IssueType.SOCKET_DISCONNECTED,
+                        ObjectIdent = socket.ParentNode.Ident
+                    });
+                }
+                
+            
+            // all nodes have output sockets?
+            foreach (var node in this.Nodes)
+                if (node.OutputSockets.Count <= 0)
+                {
+                    this.Issues.NodeMissingOutputSocket = true;
+                    this.Issues.Add(new IssueReportEntry()
+                    {
+                        IssueType = IssueType.NODE_MISSING_OUTPUT_SOCKET,
+                        ObjectIdent = node.Ident
+                    });
+                }            
+        }
+
+
         private void UpdateBuildPaths()
         {
-            throw new NotImplementedException();
+            
         }
 
         /***
@@ -268,8 +302,11 @@ namespace cbox.generation
                 }
             }
 
-            if (edges.Count > 0)
+            if (edges.Count > 0) 
+            {
+                this.Issues.Add(new IssueReportEntry() { IssueType = IssueType.CYCLIC_CONNECTION });
                 this.Issues.IsCyclic = true;
+            }   
             else
                 this.ExecutionOrder = L;
         }
