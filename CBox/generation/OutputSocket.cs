@@ -8,10 +8,18 @@ using System.Xml.Serialization;
 
 namespace cbox.generation
 {
+    public enum OutputSocketType
+    {
+        GUARANTEED,
+        POSSIBLE
+    }
+
     public class OutputSocket
     {
-        //public int Ident;
         public int? TargetNodeIdent;
+        public string Label;
+        public OutputSocketType Type = OutputSocketType.GUARANTEED;
+
 
         [XmlIgnore]
         public Node ParentNode;
@@ -52,6 +60,11 @@ namespace cbox.generation
 
                 return ParentNode.ParentComponent.NodeByIdent(TargetNodeIdent.Value);
             }
+        }
+
+        public string ToString()
+        {
+            return String.Format("Socket '{0}' ({1}), target: {2}", this.Label, this.Type, this.TargetNode);
         }
     }
 }

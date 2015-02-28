@@ -21,8 +21,10 @@ namespace cbox.generation
         public List<string> ProvidesTags = new List<string>();
 
         public string Type { get; set; }
-        public string Data { get; set; }
- 
+        public string XmlData { get; set; }
+
+        [XmlIgnore]
+        public object HandlerData { get { return Handler.HandlerData; } }
 
         [XmlIgnore]
         public INodeType Handler { get; set; }
@@ -101,7 +103,7 @@ namespace cbox.generation
         public void ChangeType(string new_type)
         {
             Type = new_type;
-            Data = null;
+            XmlData = null;
 
             UpdateInternals();
         }

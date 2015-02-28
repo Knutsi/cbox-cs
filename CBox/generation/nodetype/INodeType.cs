@@ -13,8 +13,10 @@ namespace cbox.generation.nodetype
         List<OutputSocket> OutputSockets { get; }
         List<List<OutputSocket>> PossibleOutputCombos { get; }
 
-        bool StartsProblem { get; set; }
-        bool EndsProblem { get; set; }
+        object HandlerData { get; }
+
+        bool StartsProblem { get;  }
+        bool EndsProblem { get; }
 
         void SaveData();
         void LoadData();

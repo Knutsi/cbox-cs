@@ -12,14 +12,14 @@ namespace cbox.generation.nodetype
 
         // internal fields:
         private Node _Node = null;
-        private BaseTypeData _Data = new BaseTypeData();
+        public virtual BaseTypeData Data { get; set; }
 
         // fullfilling the interface:
         public bool StartsProblem { get; set; }
         public bool EndsProblem { get; set; }
 
-        public List<OutputSocket> OutputSockets { get { return _Data.OutputSockets;  } }
-        public List<List<OutputSocket>> PossibleOutputCombos
+        public virtual List<OutputSocket> OutputSockets { get { return Data.OutputSockets;  } }
+        public virtual List<List<OutputSocket>> PossibleOutputCombos
         {
             get
             {
@@ -31,10 +31,18 @@ namespace cbox.generation.nodetype
 
         public BaseType()
         {
+            Data = new BaseTypeData();
             StartsProblem = false;
             EndsProblem = false;
         }
 
+        public virtual object HandlerData
+        {
+            get
+            {
+                return this.Data;
+            }
+        }
        
         public Node Node
         {
@@ -49,16 +57,16 @@ namespace cbox.generation.nodetype
 
         public void LoadData()
         {
-            if (Node.Data != null)
+            if (Node.XmlData != null)
             {
-                _Data = BaseTypeData.FromXML(Node.Data);
+                Data = BaseTypeData.FromXML(Node.XmlData);
             }
         }
 
 
         public void SaveData()
         {
-            Node.Data = this._Data.ToXML();
+            Node.XmlData = this.Data.ToXML();
         }
 
     }

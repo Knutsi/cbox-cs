@@ -17,8 +17,8 @@ namespace cbox.generation.nodetype
                 case BaseType.TYPE_IDENT:
                     return new BaseType() { Node = node };
 
-                case NOff.TYPE_IDENT:
-                    return new NOff() { Node = node };
+                case Branch.TYPE_IDENT:
+                    return new Branch() { Node = node };
 
                 case SetValue.TYPE_IDENT:
                     return new SetValue() { Node = node };
