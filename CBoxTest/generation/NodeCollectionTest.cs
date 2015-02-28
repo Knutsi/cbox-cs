@@ -10,7 +10,7 @@ using cbox.generation.nodetype;
 namespace CBoxTest
 {
     [TestClass]
-    public class ComponentTest
+    public class NodeCollectionTest
     {
         [TestMethod]
         public void NodeManipulationTest()
@@ -132,6 +132,61 @@ namespace CBoxTest
             Assert.AreEqual(comp.Issues.First().ObjectIdent, C.Ident);
         }
 
+        [TestMethod]
+        public void ExecutionOrderTest()
+        {
+            var comp = MakeConnectionSetup2().RootComponent;
+
+            comp.Invalidate();
+            var order = comp.ExecutionOrder;
+
+            var A = comp.NodesByTitle("A").First();
+            var B = comp.NodesByTitle("B").First();
+            var C = comp.NodesByTitle("C").First();
+            var D = comp.NodesByTitle("D").First();
+            var E = comp.NodesByTitle("E").First();
+            var F = comp.NodesByTitle("F").First();
+            var I = comp.NodesByTitle("I").First();
+            var G = comp.NodesByTitle("G").First();
+            var H = comp.NodesByTitle("H").First();
+
+            // A has to be first node, F last:
+            Assert.IsTrue(order.IndexOf(A) == 0);
+            Assert.IsTrue(order.IndexOf(F) == order.Count - 1);
+
+            // both G and H has to come before B:
+            Assert.IsTrue(order.IndexOf(G) > order.IndexOf(B));
+            Assert.IsTrue(order.IndexOf(H) > order.IndexOf(B));
+
+            // E has to be before D, and C before D:
+            Assert.IsTrue(order.IndexOf(E) > order.IndexOf(D));
+            Assert.IsTrue(order.IndexOf(D) > order.IndexOf(C));
+        }
+
+        [TestMethod]
+        public void CyclicPathTest()
+        {
+            var comp = MakeConnectionSetup2().RootComponent;
+            var B = comp.NodesByTitle("B").First();
+            var I = comp.NodesByTitle("I").First();
+
+            // should be fine initially:
+            comp.Invalidate();
+            Assert.IsFalse(comp.Issues.IsCyclic);
+
+            // make path cyclical:
+            I.FirstOutputSocket.Connect(B);
+            comp.Invalidate();
+            Assert.IsTrue(comp.Issues.IsCyclic);
+        }
+
+        [TestMethod]
+        public void BuildPathTest()
+        {
+            
+        }
+
+
         public void NodeManipulation(NodeCollection comp = null)
         {
             if (comp == null)
@@ -189,7 +244,7 @@ namespace CBoxTest
 
             B.AddSocket(new OutputSocket());
 
-            comp.Add(A,B,C,D,E);
+            comp.Add(false, A,B,C,D,E);
 
             comp.StartNode = A;
             comp.EndNode = E;
@@ -219,7 +274,7 @@ namespace CBoxTest
             var I = new Node("I", BaseType.TYPE_IDENT, true);
             var J = new Node("J", BaseType.TYPE_IDENT, true);
 
-            comp.Add(A, B, C, D, E, F, G, H, I, J);
+            comp.Add(false, A, B, C, D, E, F, G, H, I, J);
 
             // add branching sockets:
             A.AddSocket(new OutputSocket());    // index 1 
@@ -250,11 +305,8 @@ namespace CBoxTest
             comp.StartNode = A;
             comp.EndNode = F;
 
-
-
             return model;
         }
-
 
     }
 }

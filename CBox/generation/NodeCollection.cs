@@ -19,7 +19,17 @@ namespace cbox.generation
         public Node StartNode;
         public Node EndNode;
 
-        private List<BuildPath> _BuildPaths = null;
+        /// <summary>
+        /// The sequence the nodes are executed in.
+        /// </summary>
+        [XmlIgnore]
+        public List<Node> ExecutionOrder;
+
+        /// <summary>
+        /// Collection of all possible builds from this collection.
+        /// </summary>
+        [XmlIgnore]
+        private List<BuildPath> BuildPaths = null;
 
         [XmlIgnore]
         private Model _ParentModel = null;
@@ -50,12 +60,13 @@ namespace cbox.generation
                 Invalidate();
         }
 
-        public void Add(params Node[] nodes)
+        public void Add(bool invalidate, params Node[] nodes)
         {
             foreach (var node in nodes)
                 Add(node, false);
 
-            Invalidate();
+            if(invalidate)
+                Invalidate();
         }
 
         /// <summary>
@@ -102,12 +113,12 @@ namespace cbox.generation
         /// </summary>
         /// <returns></returns>
         [XmlIgnore] 
-        public List<Connection> Connections
+        public ConnectionCollection Connections
         {
 
             get
             {
-                var connections = new List<Connection>();
+                var connections = new ConnectionCollection();
 
                 foreach (var node in Nodes)
                 {
@@ -176,14 +187,93 @@ namespace cbox.generation
         }
 
         /// <summary>
-        /// Causes problem sets to be regenerated.
+        /// Causes problem sets to be regenerated, execution order to be recalculated and build paths to be 
+        /// collected.
         /// </summary>
         public void Invalidate() 
         {
             this.Issues = new IssueReport();
 
+            UpdateExecutionOrder();
             UpdateProblems();
+            //UpdateBuildPaths();
         }
+
+        private void UpdateBuildPaths()
+        {
+            throw new NotImplementedException();
+        }
+
+        /***
+        * Calculates the order in which the nodes are executed. We use a topographical sort.
+        * This will make a list which corresponds to all nodes being executed, and ensuring
+        * that nodes are executed in order of depenedency.  When the actual execution happens,
+        * many of the nodes will be skipped as M- as NO- branches execute.   Still, the order
+        * of dependency has not changed, and we are guaranteed to have at least one path through
+        * the model.
+        *
+        * Topsort algorithm taken from http://en.wikipedia.org/wiki/Topological_sorting
+        * The variable names below are aligned with the algorithm for the same of my sanity
+        * when debugging this thing.
+        *
+        *   L ← Empty list that will contain the sorted elements
+        *   S ← Set of all nodes with no incoming edges
+        *
+        *   while S is non-empty do
+        *      remove a node n from S
+        *      add n to tail of L
+        *      for each node m with an edge e from n to m do
+        *          remove edge e from the graph
+        *          if m has no other incoming edges then
+        *              insert m into S
+        *   if graph has edges then
+        *       return error (graph has at least one cycle)
+        *   else
+        *       return L (a topologically sorted order)
+        */
+        private void UpdateExecutionOrder()
+        {
+            this.ExecutionOrder = new List<Node>();
+
+            // check for important issues:
+            this.Issues.MissingStartNode = StartNode == null;
+            this.Issues.MissingEndNode = EndNode == null;
+
+            if (this.Issues.MissingStartNode || this.Issues.MissingEndNode)
+                return;
+
+            // do the topsort:
+            var S = new Stack<Node>();
+            S.Push(StartNode);
+
+            var edges = this.Connections;
+
+            var L = new List<Node>();
+
+            // implemented algorithm:
+            while (S.Count > 0)
+            {
+                var n = S.Pop();
+                L.Add(n);
+
+                foreach (var e in edges.From(n))
+                {
+                    var m = e.ToNode;
+                    edges.Remove(e);
+
+                    if (edges.To(m).Count <= 0)
+                        S.Push(m);
+
+                }
+            }
+
+            if (edges.Count > 0)
+                this.Issues.IsCyclic = true;
+            else
+                this.ExecutionOrder = L;
+        }
+
+        
 
         /// <summary>
         /// Looks for nodes which starts problems, and generates a list of all nodes in that problem.
@@ -255,25 +345,6 @@ namespace cbox.generation
         }
         
         
-
-
-        /// <summary>
-        /// Generates a list of build paths.
-        /// </summary>
-        private List<BuildPath> GenerateBuildPaths()
-        {
-            return null;
-        }
-
-        public List<BuildPath> BuildPaths { 
-            get { 
-                // use cached build path if possible:
-                if (_BuildPaths == null)
-                    _BuildPaths = GenerateBuildPaths();
-
-                return _BuildPaths;
-            } 
-        }
 
         /// <summary>
         /// Updates all nodes to refer tot his collection as their parent.  Used after 
