@@ -73,7 +73,7 @@ namespace cbox.generation
         /// removes a node and clears all inbout and output connections.
         /// </summary>
         /// <param name="node"></param>
-        public void Remove(Node node)
+        public void Remove(Node node, bool invalidate=true)
         {
             this.Nodes.Remove(node);
             node.ParentComponent = null;
@@ -83,7 +83,8 @@ namespace cbox.generation
                 if (socket.DoesTarget(node))
                     socket.Disconnect();
 
-            Invalidate();
+            if(invalidate)
+                Invalidate();
         }
 
         private void AddProblemSet(ProblemSet problem_set)
@@ -196,7 +197,7 @@ namespace cbox.generation
 
             UpdateExecutionOrder();
             UpdateProblems();
-            //UpdateBuildPaths();
+            UpdateBuildPaths();
         }
 
         private void UpdateBuildPaths()
