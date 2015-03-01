@@ -307,7 +307,6 @@ namespace CBoxTest
             Assert.AreEqual(3, found_c);
             Assert.AreEqual(2, found_e);
             Assert.AreEqual(5, found_f);
-            
         }
 
         public void NodeManipulation(NodeCollection comp = null)
