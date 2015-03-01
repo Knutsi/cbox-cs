@@ -45,6 +45,17 @@ namespace cbox.model
             get { return problemWithIdent(ident); }
         }
 
+        /// <summary>
+        /// The problem that unbound nodes adds their values to.
+        /// </summary>
+        public Problem RootProblem
+        {
+            get
+            {
+                return this[ROOT_PROBLEM_IDENT];
+            }
+        }
+
         public Problem problemWithIdent(string ident) {
             var found = (from Problem prob in this.Problems
                          where prob.Ident == ident
@@ -91,7 +102,7 @@ namespace cbox.model
                         subcase.Problems.Add(new_problem);
                     }
 
-                    subcase[problem.Ident].add(test_result);
+                    subcase[problem.Ident].Add(test_result);
                 } else {
                     /* if we get here, the case does not have an entry for this test result, so
                      * we will ask the ontology to generate one for us.  We can not add to problems
@@ -100,7 +111,7 @@ namespace cbox.model
 
                     // *FIXME* make this work!!
                     var tr = new TestResult() { Key = action.ActionIdent, Value = "ONTOLOGY QUERY NOT IMPLEMENTED" };
-                    subcase[ROOT_PROBLEM_IDENT].add(tr);
+                    subcase[ROOT_PROBLEM_IDENT].Add(tr);
                 }
             }
 

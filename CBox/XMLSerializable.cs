@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace cbox
 {
-    public class XMLSerializable<T>
+    public class XMLSerializable<T> where T : new()
     {
         public string ToXML()
         {
@@ -33,7 +33,7 @@ namespace cbox
                 }
             }
             else
-                return default(T);
+                return new T();
         }
     }
 }

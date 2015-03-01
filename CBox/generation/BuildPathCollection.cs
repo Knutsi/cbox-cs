@@ -14,7 +14,7 @@ namespace cbox.generation
         /// Adds a BuildPath and ensures the collection gets set as it's parent.
         /// </summary>
         /// <param name="path"></param>
-        public void Add(BuildPath path) 
+        public new void Add(BuildPath path) 
         {
             path.ParentPathCollection = this;
             ((List<BuildPath>)this).Add(path);

@@ -110,7 +110,7 @@ namespace cbox.generation
 
         }
 
-        public string ToString()
+        public new string ToString()
         {
             return Title;
         }

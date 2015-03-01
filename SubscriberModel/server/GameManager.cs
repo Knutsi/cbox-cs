@@ -52,7 +52,7 @@ namespace cbox.server
             var name = new cbox.model.TestResult() { Key = "history.name", Value = "Raquet Badminton" };
             var gender = new cbox.model.TestResult() { Key = "history.gender", Value = "F" };
 
-            test_case[Case.ROOT_PROBLEM_IDENT].add(new cbox.model.TestResult[] { crp, sr, age, name, gender });
+            test_case[Case.ROOT_PROBLEM_IDENT].Add(new cbox.model.TestResult[] { crp, sr, age, name, gender });
 
             return test_case;
         }

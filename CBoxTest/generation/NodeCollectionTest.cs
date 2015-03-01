@@ -86,8 +86,8 @@ namespace CBoxTest
             comp.Invalidate();
 
             Assert.AreEqual(1, comp.ProblemSets.Count);
-            Assert.IsNotNull(D.BoundProblem);
-            Assert.IsNull(F.BoundProblem);
+            Assert.IsNotNull(D.BoundProblemSet);
+            Assert.IsNull(F.BoundProblemSet);
 
             // make B into a problem, and I to and ender, check that G and H is bound:
             B.ChangeType(ProblemStart.TYPE_IDENT);
@@ -102,12 +102,12 @@ namespace CBoxTest
             comp.Invalidate();
 
             Assert.AreEqual(2, comp.ProblemSets.Count);
-            Assert.AreEqual(B, G.BoundProblem.StartNode);
+            Assert.AreEqual(B, G.BoundProblemSet.StartNode);
 
-            Assert.AreEqual(B, H.BoundProblem.StartNode);
+            Assert.AreEqual(B, H.BoundProblemSet.StartNode);
 
             // double check that D is still bound to problem started by C:
-            Assert.AreEqual(C, D.BoundProblem.StartNode);
+            Assert.AreEqual(C, D.BoundProblemSet.StartNode);
 
             // make a circular connection and assert for error:
             G.FirstOutputSocket.Connect(B);

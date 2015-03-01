@@ -62,7 +62,7 @@ namespace cbox.generation
             }
         }
 
-        public string ToString()
+        public new string ToString()
         {
             return String.Format("Socket '{0}' ({1}), target: {2}", this.Label, this.Type, this.TargetNode);
         }

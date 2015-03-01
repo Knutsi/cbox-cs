@@ -17,14 +17,25 @@ namespace cbox.model
             TestResults = new List<TestResult>();
         }
 
-        public void add(TestResult tr) {
+        public void Add(TestResult tr) {
             TestResults.Add(tr);
         }
 
-        public void add(TestResult[] results)
+        public void Add(string key, string value)
+        {
+            var result = new TestResult()
+            {
+                Key = key,
+                Value = value
+            };
+
+            Add(result);
+        }
+
+        public void Add(TestResult[] results)
         {
             foreach (TestResult r in results)
-                add(r);
+                Add(r);
         }
 
         public TestResult resultWithKey(string key)

@@ -60,7 +60,7 @@ namespace cbox.generation
                 this.AddSocket(new OutputSocket());
         }
 
-        public ProblemSet BoundProblem
+        public ProblemSet BoundProblemSet
         {
             get
             {
@@ -122,6 +122,25 @@ namespace cbox.generation
         {
             return String.Format("Node: \"{0}\":{1}({2})", this.Title, this.Ident, this.Type);
         }
+
+        /// <summary>
+        /// Evalutes the node.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void Eval(ExecutionContext ctx)
+        {
+            Handler.Eval(ctx);
+        }
+
+        /// <summary>
+        /// Asks handler to describe outputs possible from this node.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void Describe(ExecutionContext ctx)
+        {
+            Handler.Describe(ctx);
+        }
+
     }
 
 }

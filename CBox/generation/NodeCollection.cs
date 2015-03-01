@@ -412,5 +412,47 @@ namespace cbox.generation
             Invalidate();
         }
 
+        /// <summary>
+        /// Will build a case using he build path provided.  This is done by iterating through 
+        /// the execution order, and calling "Eval" on each of the nodes found that also exists
+        /// in the builkd path.
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public ExecutionContext Execute(BuildPath path, bool generate_values=true, bool generate_ranges=false)
+        {
+            // ensure we are ready to go:
+            Invalidate();
+            if (!Issues.Valid)
+                throw new ExecutingInvalidNodeCollectionException(Issues);
+
+            // create execution context:
+            var ctx = new ExecutionContext() { BuildPath = path };
+
+            // step through execution order, execute nodes in path provided:
+            foreach (var node in this.ExecutionOrder)
+            {
+                if(path.Nodes.Contains(node))
+                {
+                    // the node we are working on:
+                    ctx.CurrentNode = node;
+
+                    // specify current problem (might be the root one):
+                    if (node.BoundProblemSet != null)
+                        ctx.CurrentProblem = ctx.GetProblemBySet(node.BoundProblemSet);
+                    else
+                        ctx.CurrentProblem = ctx.Case.RootProblem;
+                        
+                    // run the evaluator:
+                    if (generate_values)
+                        node.Eval(ctx);
+                    if (generate_ranges)
+                        node.Describe(ctx);
+                }
+            }
+
+            return ctx;
+        }
     }
 }

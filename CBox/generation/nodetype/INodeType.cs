@@ -20,5 +20,8 @@ namespace cbox.generation.nodetype
 
         void SaveData();
         void LoadData();
+
+        void Eval(ExecutionContext ctx);
+        void Describe(ExecutionContext ctx);
     }
 }

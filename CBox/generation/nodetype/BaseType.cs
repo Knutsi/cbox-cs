@@ -72,5 +72,23 @@ namespace cbox.generation.nodetype
             Node.XmlData = this.Data.ToXML();
         }
 
+
+        /// <summary>
+        /// Base type does not add anything.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void Eval(ExecutionContext ctx)
+        {
+            
+        }
+
+        /// <summary>
+        /// Base type does not describe anything.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void Describe(ExecutionContext ctx)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
