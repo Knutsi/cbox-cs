@@ -13,5 +13,20 @@ namespace cbox.generation
         public bool IsCyclic = false;
         public bool MissingStartNode = true;
         public bool MissingEndNode = true;
+
+        /// <summary>
+        /// True is report contains no issues that makes it invalid.
+        /// </summary>
+        public bool Valid
+        {
+            get
+            {
+                return !IsCyclic
+                    && !MissingStartNode
+                    && !MissingEndNode
+                    && !HasUnconnectedNodes
+                    && !NodeMissingOutputSocket;
+            }
+        }
     }
 }

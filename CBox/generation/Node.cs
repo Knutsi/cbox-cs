@@ -47,15 +47,13 @@ namespace cbox.generation
 
         public Node()
         {
-            Title = "Untitled";
-            Type = BaseType.TYPE_IDENT;
-            Handler = TypeHandlerLibrary.GetHandler(this);
+
         }
 
         public Node(string title="Untitled", string type=BaseType.TYPE_IDENT, bool create_default=false)
         {
             Title = title;
-            Type = type;
+            ChangeType(type);
             Handler = TypeHandlerLibrary.GetHandler(this);
 
             if(create_default)
@@ -70,7 +68,15 @@ namespace cbox.generation
             }
         }
 
-        public OutputSocket FirstOutputSocket { get { return this.OutputSockets.First();  } }
+        public OutputSocket FirstOutputSocket { 
+            get 
+            {
+                if (this.OutputSockets.Count > 0)
+                    return this.OutputSockets.First();
+                else
+                    return null;
+            } 
+        }
 
         public void AddSocket(OutputSocket socket) 
         {
@@ -89,10 +95,10 @@ namespace cbox.generation
         /// Updates all sockets to have this as their parent node and restores handler.  
         /// This is called after derserializartion, as these fields cannot be serialzied.
         /// </summary>
-        internal void UpdateInternals()
+        public void UpdateInternals()
         {
-            // set current handler:
-            Handler = TypeHandlerLibrary.GetHandler(this);
+            if(Handler == null)
+                Handler = TypeHandlerLibrary.GetHandler(this);
 
             foreach (var socket in OutputSockets)
                 socket.ParentNode = this;
@@ -103,8 +109,12 @@ namespace cbox.generation
         public void ChangeType(string new_type)
         {
             Type = new_type;
+            
+            // type changes changes handler, and makes data incompatible.  We need to erase it:
             XmlData = null;
+            Handler = null;
 
+            // this will fix handler and it's data, and set sockets to correct home:
             UpdateInternals();
         }
 

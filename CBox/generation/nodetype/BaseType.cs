@@ -24,7 +24,10 @@ namespace cbox.generation.nodetype
             get
             {
                 var combos = new List<List<OutputSocket>>();
-                combos.Add(this.OutputSockets);
+                
+                if (this.OutputSockets.Count > 0) 
+                    combos.Add(this.OutputSockets);
+
                 return combos;
             }
         }

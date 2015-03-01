@@ -29,7 +29,7 @@ namespace cbox.generation
         /// Collection of all possible builds from this collection.
         /// </summary>
         [XmlIgnore]
-        private List<BuildPath> BuildPaths = null;
+        public BuildPathCollection BuildPaths = null;
 
         [XmlIgnore]
         private Model _ParentModel = null;
@@ -198,7 +198,9 @@ namespace cbox.generation
             ValidateNodes();
             UpdateProblems();
             UpdateExecutionOrder();
-            UpdateBuildPaths();
+
+            if(Issues.Valid)
+                UpdateBuildPaths();
         }
 
         /// <summary>
@@ -209,7 +211,7 @@ namespace cbox.generation
         {
             // are all nodes connected?
             foreach (var socket in this.AllOutputSockets)
-                if (socket.TargetNode == null)
+                if (socket.TargetNode == null && socket.ParentNode != EndNode)
                 {
                     this.Issues.HasUnconnectedNodes = true;
                     this.Issues.Add(new IssueReportEntry()
@@ -222,7 +224,8 @@ namespace cbox.generation
             
             // all nodes have output sockets?
             foreach (var node in this.Nodes)
-                if (node.OutputSockets.Count <= 0)
+
+                if (node.OutputSockets.Count <= 0 && node != EndNode)
                 {
                     this.Issues.NodeMissingOutputSocket = true;
                     this.Issues.Add(new IssueReportEntry()
@@ -233,10 +236,20 @@ namespace cbox.generation
                 }            
         }
 
-
+        /// <summary>
+        /// This method collections all build paths in the NodeCollection.
+        /// </summary>
         private void UpdateBuildPaths()
         {
-            
+            this.BuildPaths = new BuildPathCollection() { ParentNodeCollection = this };
+
+            var start_path = new BuildPath();
+            start_path.Untraced.Push(this.StartNode);
+
+            this.BuildPaths.Add(start_path);
+
+            start_path.Trace();
+
         }
 
         /***

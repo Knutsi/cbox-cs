@@ -75,16 +75,20 @@ namespace cbox.generation.nodetype
         }
 
         /// <summary>
-        /// NOff combos are the same as maybe, but only the subsets who's socket count is 
-        /// N + 1 (sockets  + guaranteed) are included:
+        /// NOff combos are the same as maybe, but the guaranteed socket is equal to the others.
+        /// We only want the subsets that include n number of items however.
         /// </summary>
         /// <returns></returns>
         private List<List<OutputSocket>> GetNOffCombos()
         {
-            var subsets = GetMaybeCombos();
-            return (from s in subsets
-                    where s.Count == (Data.N + 1)
-                    select s).ToList();
+            var all_subsets = from s in Tools.GetPowerSet(OutputSockets)
+                              select s.ToList();
+
+            var selected = from s in all_subsets
+                          where s.Count == Data.N
+                          select s;
+
+            return selected.ToList();
         }
 
 
@@ -130,6 +134,7 @@ namespace cbox.generation.nodetype
             set
             {
                 this._Node = value;
+                this.Data.ParentNode = Node;
                 LoadData();
             }
         }
@@ -137,8 +142,11 @@ namespace cbox.generation.nodetype
 
         public void LoadData()
         {
-            if(Node.XmlData != null && Node.XmlData != String.Empty)
+            if (Node.XmlData != null && Node.XmlData != String.Empty)
+            {
                 this.Data = BranchData.FromXML(Node.XmlData);
+                this.Data.ParentNode = Node;
+            }
         }
 
 

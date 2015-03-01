@@ -61,8 +61,7 @@ namespace CBoxTest
         [TestMethod]
         public void ProblemsTest()
         {
-            var model = MakeConnectionSetup2();
-            var comp = model.RootComponent;
+            var comp = MakeConnectionSetup2().RootComponent;
 
             var A = comp.NodesByTitle("A").First();
             var B = comp.NodesByTitle("B").First();
@@ -102,8 +101,6 @@ namespace CBoxTest
             I.FirstOutputSocket.Connect(F);
             comp.Invalidate();
 
-            Assert.AreEqual(0, comp.Issues.Count);
-
             Assert.AreEqual(2, comp.ProblemSets.Count);
             Assert.AreEqual(B, G.BoundProblem.StartNode);
 
@@ -116,8 +113,7 @@ namespace CBoxTest
             G.FirstOutputSocket.Connect(B);
             comp.Invalidate();
 
-            Assert.AreEqual(1, comp.Issues.Count);
-            Assert.AreEqual(comp.Issues.First().IssueType, IssueType.PROBLEM_CIRCULAR);
+            Assert.IsTrue(comp.Issues.IsCyclic);
 
             // fix broken connection, remove E as endring, and check issue:
             G.FirstOutputSocket.Connect(I);
@@ -180,12 +176,139 @@ namespace CBoxTest
             Assert.IsTrue(comp.Issues.IsCyclic);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
-        public void BuildPathTest()
+        public void BuildPathSimpleTest()
         {
-            
+            // start simple.  This collection has no branches, thus only on build path:
+            var comp = MakeConnectionSetup1();
+            comp.Invalidate();
+            Assert.AreEqual(1, comp.BuildPaths.Count);
+            Assert.AreEqual(
+                comp.Nodes.Count, 
+                comp.BuildPaths.First().Nodes.Count);
+
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void BuildPathSimpleBranchingTest()
+        {
+            // start simple.  This collection has no branches, thus only on build path:
+            var comp = MakeConnectionSetup1();
+            var B = comp.NodesByTitle("B").First();
+            var C = comp.NodesByTitle("C").First();
+            var D = comp.NodesByTitle("D").First();
+
+            // convert B to a "maybe" branch with C as guaranteed and D as possible.  
+            // We should now have two build paths:
+            B.ChangeType(Branch.TYPE_IDENT);
+            var data = (BranchData)B.HandlerData;
+            data.Mode = BranchMode.MAYBE;
+            data.GuaranteedSocket.Connect(C);
+            data.PossibleSockets.First().Socket.Connect(D);
+
+            comp.Invalidate();
+
+            // we should now have two build paths:
+            Assert.AreEqual(2, comp.BuildPaths.Count);
+
+            // C should be in both:
+            Assert.IsTrue(
+                comp.BuildPaths[0].Nodes.Contains(C)
+                && comp.BuildPaths[1].Nodes.Contains(C));
+
+            // D should only be in one:
+            var found = 0;
+            foreach (var path in comp.BuildPaths)
+                if (path.Nodes.Contains(D))
+                    found += 1;
+
+            Assert.AreEqual(1, found);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void BuildPathComplexBranchingTest()
+        {
+            /* This test will have nodes A to G.  A will branch to B,C,D and be a 
+             * '2off'.  B will branch to E and F as 'maybe'.  C will go to B,
+             * D will go to G which will go to F. */
+            
+            var comp = new Model(true).RootComponent;
+
+            var A = new Node("A", Branch.TYPE_IDENT);
+            var B = new Node("B", Branch.TYPE_IDENT);
+            var C = new Node("C", BaseType.TYPE_IDENT, true);
+            var D = new Node("D", BaseType.TYPE_IDENT, true);
+            var E = new Node("E", BaseType.TYPE_IDENT, true);
+            var F = new Node("F", BaseType.TYPE_IDENT, true);
+            var G = new Node("G", BaseType.TYPE_IDENT, true);
+
+            comp.Add(true, A, B, C, D, E, F, G);
+            comp.StartNode = A;
+            comp.EndNode = F;
+
+            // setup branch at A:
+            var a_data = (BranchData)A.HandlerData;
+            a_data.Mode = BranchMode.NOFF;
+            a_data.N = 2;
+            a_data.GuaranteedSocket.Label = "A-socket";
+            a_data.PossibleSockets.First().Socket.Label = "B-socket";
+            a_data.AddPossibleSocket(new BranchDataSocketEntry("C-socket"));
+
+            // setup branch at B:
+            var b_data = (BranchData)B.HandlerData;
+            b_data.Mode = BranchMode.MAYBE;
+
+            // connections:
+            a_data.GuaranteedSocket.Connect(B);
+            a_data.PossibleSockets[0].Socket.Connect(C);
+            a_data.PossibleSockets[1].Socket.Connect(D);
+
+            b_data.GuaranteedSocket.Connect(F);
+            b_data.PossibleSockets[0].Socket.Connect(E);
+
+            C.OutputSockets[0].Connect(F);
+            D.OutputSockets[0].Connect(G);
+            E.OutputSockets[0].Connect(F);
+            G.OutputSockets[0].Connect(F);
+
+            comp.Invalidate();
+            Assert.AreEqual(0, comp.Issues.Count);
+
+            // at this point, we have two branches. One yields three possible paths,
+            // the other in nested under one of these, and yields two.  
+            // that leaves us with 5 possible paths:
+            Assert.AreEqual(5, comp.BuildPaths.Count);
+
+            // only one of these paths include E, all include F and two include C:
+            var found_c = 0;
+            var found_e = 0;
+            var found_f = 0;
+
+            foreach (var path in comp.BuildPaths)
+            {
+                if (path.Nodes.Contains(C))
+                    found_c += 1;
+                if (path.Nodes.Contains(E))
+                    found_e += 1;
+                if (path.Nodes.Contains(F))
+                    found_f += 1;
+            }
+
+            Assert.AreEqual(3, found_c);
+            Assert.AreEqual(2, found_e);
+            Assert.AreEqual(5, found_f);
+            
+        }
 
         public void NodeManipulation(NodeCollection comp = null)
         {
@@ -276,6 +399,7 @@ namespace CBoxTest
 
             comp.Add(false, A, B, C, D, E, F, G, H, I, J);
 
+
             // add branching sockets:
             A.AddSocket(new OutputSocket());    // index 1 
             A.AddSocket(new OutputSocket());    // index 2
@@ -304,6 +428,9 @@ namespace CBoxTest
             // define start and stop:
             comp.StartNode = A;
             comp.EndNode = F;
+
+            // remove output socket form end node:
+            F.OutputSockets.RemoveAt(0);   
 
             return model;
         }

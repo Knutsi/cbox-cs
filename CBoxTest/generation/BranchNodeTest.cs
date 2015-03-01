@@ -45,6 +45,7 @@ namespace CBoxTest
 
             // add a new socket - shoud now be 3 in total:
             data.AddPossibleSocket(new BranchDataSocketEntry("C"));
+
             Assert.AreEqual(3, b_node.OutputSockets.Count);
 
             /* Sockets B and C should now be marked as "possible" */
@@ -70,6 +71,7 @@ namespace CBoxTest
             // add two new sockets:
             data.AddPossibleSocket(new BranchDataSocketEntry("C"));
             data.AddPossibleSocket(new BranchDataSocketEntry("D"));
+            b_node.UpdateInternals();
 
             /* Sockets B and C should now be marked as "possible" */
             Assert.AreEqual(OutputSocketType.GUARANTEED, b_node.OutputSockets[0].Type);
@@ -78,27 +80,30 @@ namespace CBoxTest
             Assert.AreEqual(OutputSocketType.POSSIBLE, b_node.OutputSockets[3].Type);
 
             // we have three outputs, and will first limit to n = 1:
-            // Valid subsets are: {B}, {C}, {D} + A in each:
+            // Valid subsets are: {A}, {B}, {C}, {D}:
             data.N = 1;
-            Assert.AreEqual(3, b_node.PossibleOutputCombos.Count);
+            Assert.AreEqual(4, b_node.PossibleOutputCombos.Count);
 
             // n = 2:
-            // Valid subsets: {B,C}, {B,D}, {C,D} + A in each
+            // Valid subsets: {A,B} {A,C} {A,D} {B,C}, {B,D}, {C,D}:
             data.N = 2;
-            Assert.AreEqual(3, b_node.PossibleOutputCombos.Count);
+            Assert.AreEqual(6, b_node.PossibleOutputCombos.Count);
+            foreach (var set in b_node.PossibleOutputCombos)
+                Assert.AreEqual(2, set.Count);
+
+            // n = 3:
+            // Valid subsets: {A,B,C}, {A,B,D}, {A,C,D}, {B,C,D}
+            data.N = 3;
+            Assert.AreEqual(4, b_node.PossibleOutputCombos.Count);
             foreach (var set in b_node.PossibleOutputCombos)
                 Assert.AreEqual(3, set.Count);
 
-            // n = 3:
-            // Valid subsets: {B,C,D} + A
-            data.N = 3;
+            // n = 4
+            // Valid subsets: {A.B,C,D} (same as 'all' mode):
+            data.N = 4;
             Assert.AreEqual(1, b_node.PossibleOutputCombos.Count);
             foreach (var set in b_node.PossibleOutputCombos)
                 Assert.AreEqual(4, set.Count);
-
-            // check invlid sets:
-            data.N = 4;
-            Assert.AreEqual(0, b_node.PossibleOutputCombos.Count);
         }
     }
 }
