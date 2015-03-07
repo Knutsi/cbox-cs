@@ -14,6 +14,12 @@ namespace cbox.model
 {
     public delegate void OntolgyChangedHandler(object sender);
 
+    /// <summary>
+    /// The Ontology holds the majority of the CBox system, except the models of pathologies.
+    /// It carries normal value descriptions and more.  
+    /// 
+    /// The onology is used to look up normal values when the pathology does no support them.
+    /// </summary>
     [Serializable]
     [DataContract]
     public class Ontology
@@ -29,9 +35,13 @@ namespace cbox.model
         public BindingList<Form> Forms { get; set; }
 
         [DataMember]
+        public BindingList<ChoiceList> ChoiceLists { get; set; }
+
+        [DataMember]
         public BindingList<ProblemClass> Classes { get; set; }
 
         public event OntolgyChangedHandler OnChange;
+
 
         public Ontology()
         {
@@ -39,6 +49,7 @@ namespace cbox.model
             Forms = new BindingList<Form>();
             Classes = new BindingList<ProblemClass>();
             Actions = new BindingList<Action>();
+            ChoiceLists = new BindingList<ChoiceList>();
         }
 
 
@@ -290,6 +301,30 @@ namespace cbox.model
             headline.ActionIdents.Add(action.Ident);
         }
 
+
+        public void AddChoiceList(ChoiceList list)
+        {
+            this.ChoiceLists.Add(list);
+        }
+
+        public void RemoveChoiceList(ChoiceList list)
+        {
+            this.ChoiceLists.Remove(list);
+        }
+
+        /// <summary>
+        /// Gets a ChoiceList by ident, or null if not found.
+        /// </summary>
+        /// <param name="ident"></param>
+        /// <returns></returns>
+        public ChoiceList GetChoiceListByIdent(string ident)
+        {
+            foreach (var list in this.ChoiceLists)
+                if (list.Ident == ident)
+                    return list;
+
+            return null;
+        }
        
     }
 }

@@ -62,6 +62,8 @@
     <Compile Include="generation\nodetype\SetValuesData.cs" />
     <Compile Include="generation\nodetype\SetValuesDataEntry.cs" />
     <Compile Include="generation\nodetype\ProblemStartData.cs" />
+    <Compile Include="generation\setter\ChoiceSetter.cs" />
+    <Compile Include="generation\setter\ChoiceSetterData.cs" />
     <Compile Include="generation\setter\IValueSetter.cs" />
     <Compile Include="generation\setter\RangeSetter.cs" />
     <Compile Include="generation\setter\RangeSetterData.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="generation\setter\StringSetter.cs" />
     <Compile Include="generation\setter\StringSetterData.cs" />
     <Compile Include="generation\setter\ThesaurusEntry.cs" />
+    <Compile Include="model\ChoiceList.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="XMLSerializable.cs" />
     <Compile Include="generation\OutputSocket.cs" />

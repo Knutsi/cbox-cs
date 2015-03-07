@@ -18,6 +18,7 @@ namespace cbox.generation
         public Case Case { get; set; }
         public Node CurrentNode { get; set; }
         public BuildPath BuildPath { get; set; }
+        public Ontology Ontology { get; set; }
 
         public Dictionary<Node, Problem> InstancedProblems = new Dictionary<Node, Problem>();
 
@@ -38,5 +39,7 @@ namespace cbox.generation
             Case.Problems.Add(prob);
             InstancedProblems.Add(node, prob);
         }
+
+
     }
 }
