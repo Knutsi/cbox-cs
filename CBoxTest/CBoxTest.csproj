@@ -54,6 +54,7 @@
     <Compile Include="generation\BranchNodeTest.cs" />
     <Compile Include="generation\SetValueTest.cs" />
     <Compile Include="generation\SetterTest.cs" />
+    <Compile Include="generation\ProblemStartTest.cs" />
     <Compile Include="model\OntologyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

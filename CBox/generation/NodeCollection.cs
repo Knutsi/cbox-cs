@@ -440,7 +440,7 @@ namespace cbox.generation
 
                     // specify current problem (might be the root one):
                     if (node.BoundProblemSet != null)
-                        ctx.CurrentProblem = ctx.GetProblemBySet(node.BoundProblemSet);
+                        ctx.CurrentProblem = ctx.GetProblemByNode(node.BoundProblemSet.StartNode);
                     else
                         ctx.CurrentProblem = ctx.Case.RootProblem;
                         

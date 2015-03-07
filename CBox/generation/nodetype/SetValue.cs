@@ -71,9 +71,25 @@ namespace cbox.generation.nodetype
             }
         }
 
-        public object HandlerData
+        public INodeTypeData HandlerData
         {
             get { return this.Data; }
+            set
+            {
+                this.Data = (SetValuesData)value;
+                SaveData();
+                this.Node.UpdateInternals();
+            }
+        }
+
+        public INodeTypeData DefaultData
+        {
+            get 
+            {
+                var data = new SetValuesData();
+                data.OutputSockets.Add(new OutputSocket() {  Label = "Default socket" });
+                return data;
+            }
         }
 
         public bool StartsProblem

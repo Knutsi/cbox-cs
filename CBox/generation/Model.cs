@@ -29,7 +29,7 @@ namespace cbox.generation
             {
                 var comp = new NodeCollection() { IsRoot = true };
                 Components.Add(comp);
-                    
+
             }
         }
 

@@ -39,14 +39,36 @@ namespace cbox.generation.nodetype
             EndsProblem = false;
         }
 
-        public virtual object HandlerData
+        public INodeTypeData HandlerData
         {
             get
             {
                 return this.Data;
             }
+
+            set
+            {
+                this.Data = (BaseTypeData)value;
+                SaveData();
+                this.Node.UpdateInternals();
+            }
         }
-       
+
+
+        /// <summary>
+        /// Default data for base type has a single output socket.
+        /// </summary>
+        public INodeTypeData DefaultData
+        {
+            get
+            {
+                var data = new BaseTypeData();
+                data.OutputSockets.Add(new OutputSocket());
+                return data;
+            }
+        }
+
+
         public Node Node
         {
             get { return _Node; }

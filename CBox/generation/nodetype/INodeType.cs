@@ -13,15 +13,16 @@ namespace cbox.generation.nodetype
         List<OutputSocket> OutputSockets { get; }
         List<List<OutputSocket>> PossibleOutputCombos { get; }
 
-        object HandlerData { get; }
+        INodeTypeData HandlerData { get; set; }  // current data of the node
+        INodeTypeData DefaultData { get; }  // data that gets set when initialized
 
         bool StartsProblem { get;  }
         bool EndsProblem { get; }
 
-        void SaveData();
-        void LoadData();
+        void SaveData();    // saves data to XML on node
+        void LoadData();    // loads data from node XML
 
-        void Eval(ExecutionContext ctx);
+        void Eval(ExecutionContext ctx);    
         void Describe(ExecutionContext ctx);
     }
 }

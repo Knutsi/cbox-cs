@@ -19,5 +19,15 @@ namespace cbox.generation
             path.ParentPathCollection = this;
             ((List<BuildPath>)this).Add(path);
         }
+
+        /// <summary>
+        /// Get the selection of build paths in the collection that fullfills the criteria 
+        /// provided.
+        /// </summary>
+        /// <returns></returns>
+        public BuildPathCollection Filter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -20,9 +20,9 @@ namespace CBoxTest
         {
             // three sequenctial nodes, the middle being a SetValue node adding a test value:
             var comp = new Model(true).RootComponent;
-            var A = new Node("A", BaseType.TYPE_IDENT, true);
+            var A = new Node("A", BaseType.TYPE_IDENT);
             var B = new Node("B", SetValue.TYPE_IDENT);
-            var C = new Node("C", BaseType.TYPE_IDENT, true);
+            var C = new Node("C", BaseType.TYPE_IDENT);
 
             comp.Add(true, A, B, C);
             comp.StartNode = A;
@@ -45,7 +45,7 @@ namespace CBoxTest
             
             var data = (SetValuesData)B.HandlerData;
             data.Entries.Add(setter_entry);
-            B.Handler.SaveData();
+            B.HandlerData = data;   // triggers nessesary updates and saves to model
             
             comp.Invalidate();
 

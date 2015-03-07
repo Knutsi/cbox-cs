@@ -46,6 +46,7 @@
     <Compile Include="generation\ConnectionCollection.cs" />
     <Compile Include="generation\exceptions\ExecutingInvalidNodeCollectionException.cs" />
     <Compile Include="generation\ExecutionContext.cs" />
+    <Compile Include="generation\IBuildPathCriteria.cs" />
     <Compile Include="generation\NodeCollection.cs" />
     <Compile Include="generation\Connection.cs" />
     <Compile Include="generation\IssueReport.cs" />
@@ -57,8 +58,10 @@
     <Compile Include="generation\nodetype\BranchDataSocketEntry.cs" />
     <Compile Include="generation\nodetype\INodeType.cs" />
     <Compile Include="generation\nodetype\BaseType.cs" />
+    <Compile Include="generation\nodetype\INodeTypeData.cs" />
     <Compile Include="generation\nodetype\SetValuesData.cs" />
     <Compile Include="generation\nodetype\SetValuesDataEntry.cs" />
+    <Compile Include="generation\nodetype\ProblemStartData.cs" />
     <Compile Include="generation\setter\IValueSetter.cs" />
     <Compile Include="generation\setter\RangeSetter.cs" />
     <Compile Include="generation\setter\RangeSetterData.cs" />

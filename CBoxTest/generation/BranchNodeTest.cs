@@ -12,7 +12,7 @@ namespace CBoxTest
         [TestMethod]
         public void PossibleSocketsTest()
         {
-            var b_node = new Node("Branch node", Branch.TYPE_IDENT, false);
+            var b_node = new Node("Branch node", Branch.TYPE_IDENT);
 
             // do we have the default setup?
             Assert.AreEqual(2, b_node.OutputSockets.Count);
@@ -21,7 +21,7 @@ namespace CBoxTest
         [TestMethod]
         public void BranchAllTest()
         {
-            var b_node = new Node("Branch node", Branch.TYPE_IDENT, false);
+            var b_node = new Node("Branch node", Branch.TYPE_IDENT);
             var data = (BranchData)b_node.HandlerData;
 
             // make node "ALL":
@@ -30,6 +30,9 @@ namespace CBoxTest
             // add a new socket:
             data.AddPossibleSocket(new BranchDataSocketEntry("C"));
 
+            // update handler data:
+            b_node.HandlerData = data;
+
             Assert.AreEqual(3, b_node.OutputSockets.Count);
             Assert.AreEqual(OutputSocketType.GUARANTEED, b_node.OutputSockets[2].Type);
         }
@@ -37,7 +40,7 @@ namespace CBoxTest
         [TestMethod]
         public void BranchMaybeTest()
         {
-            var b_node = new Node("Branch node", Branch.TYPE_IDENT, false);
+            var b_node = new Node("Branch node", Branch.TYPE_IDENT);
             var data = (BranchData)b_node.HandlerData;
 
             // make node "ALL":
@@ -45,6 +48,8 @@ namespace CBoxTest
 
             // add a new socket - shoud now be 3 in total:
             data.AddPossibleSocket(new BranchDataSocketEntry("C"));
+
+            b_node.HandlerData = data;  // triggers update
 
             Assert.AreEqual(3, b_node.OutputSockets.Count);
 
@@ -61,7 +66,7 @@ namespace CBoxTest
         [TestMethod]
         public void BranchNOffTest()
         {
-            var b_node = new Node("Branch node", Branch.TYPE_IDENT, false);
+            var b_node = new Node("Branch node", Branch.TYPE_IDENT);
             var data = (BranchData)b_node.HandlerData;
 
             // make node "ALL":
@@ -71,7 +76,8 @@ namespace CBoxTest
             // add two new sockets:
             data.AddPossibleSocket(new BranchDataSocketEntry("C"));
             data.AddPossibleSocket(new BranchDataSocketEntry("D"));
-            b_node.UpdateInternals();
+            //b_node.UpdateInternals();
+            b_node.HandlerData = data;  // triggers update
 
             /* Sockets B and C should now be marked as "possible" */
             Assert.AreEqual(OutputSocketType.GUARANTEED, b_node.OutputSockets[0].Type);

@@ -59,7 +59,7 @@ namespace CBoxTest
         }
 
         [TestMethod]
-        public void ProblemsTest()
+        public void ProblemsAssigmentTest()
         {
             var comp = MakeConnectionSetup2().RootComponent;
 
@@ -77,12 +77,11 @@ namespace CBoxTest
 
             // turn C into a problem, check if D is boud and F is not:
             C.ChangeType(ProblemStart.TYPE_IDENT);
-            C.AddSocket(new OutputSocket());
             C.FirstOutputSocket.Connect(D);
 
             E.ChangeType(ProblemEnd.TYPE_IDENT);
-            E.AddSocket(new OutputSocket());
             E.FirstOutputSocket.Connect(F);
+
             comp.Invalidate();
 
             Assert.AreEqual(1, comp.ProblemSets.Count);
@@ -91,13 +90,11 @@ namespace CBoxTest
 
             // make B into a problem, and I to and ender, check that G and H is bound:
             B.ChangeType(ProblemStart.TYPE_IDENT);
-            B.AddSocket(new OutputSocket());
-            B.AddSocket(new OutputSocket());
+            B.AddSocket(new OutputSocket());    // add one extra socket for debugging
             B.FirstOutputSocket.Connect(G);
             B.OutputSockets[1].Connect(H);
 
             I.ChangeType(ProblemEnd.TYPE_IDENT);
-            I.AddSocket(new OutputSocket());
             I.FirstOutputSocket.Connect(F);
             comp.Invalidate();
 
@@ -118,7 +115,6 @@ namespace CBoxTest
             // fix broken connection, remove E as endring, and check issue:
             G.FirstOutputSocket.Connect(I);
             E.ChangeType(BaseType.TYPE_IDENT);
-            E.AddSocket(new OutputSocket());
             E.FirstOutputSocket.Connect(F);
 
             comp.Invalidate();
@@ -127,6 +123,8 @@ namespace CBoxTest
             Assert.AreEqual(comp.Issues.First().IssueType, IssueType.PROBLEM_NO_END);
             Assert.AreEqual(comp.Issues.First().ObjectIdent, C.Ident);
         }
+
+
 
         [TestMethod]
         public void ExecutionOrderTest()
@@ -246,11 +244,11 @@ namespace CBoxTest
 
             var A = new Node("A", Branch.TYPE_IDENT);
             var B = new Node("B", Branch.TYPE_IDENT);
-            var C = new Node("C", BaseType.TYPE_IDENT, true);
-            var D = new Node("D", BaseType.TYPE_IDENT, true);
-            var E = new Node("E", BaseType.TYPE_IDENT, true);
-            var F = new Node("F", BaseType.TYPE_IDENT, true);
-            var G = new Node("G", BaseType.TYPE_IDENT, true);
+            var C = new Node("C", BaseType.TYPE_IDENT);
+            var D = new Node("D", BaseType.TYPE_IDENT);
+            var E = new Node("E", BaseType.TYPE_IDENT);
+            var F = new Node("F", BaseType.TYPE_IDENT);
+            var G = new Node("G", BaseType.TYPE_IDENT);
 
             comp.Add(true, A, B, C, D, E, F, G);
             comp.StartNode = A;
@@ -358,11 +356,11 @@ namespace CBoxTest
             var comp = new NodeCollection() { IsRoot = true };
 
             // create five nodes A to E: 
-            var A = new Node("A", BaseType.TYPE_IDENT, true);
-            var B = new Node("B", BaseType.TYPE_IDENT, true);
-            var C = new Node("C", BaseType.TYPE_IDENT, true);
-            var D = new Node("D", BaseType.TYPE_IDENT, true);
-            var E = new Node("E", BaseType.TYPE_IDENT, true);
+            var A = new Node("A", BaseType.TYPE_IDENT);
+            var B = new Node("B", BaseType.TYPE_IDENT);
+            var C = new Node("C", BaseType.TYPE_IDENT);
+            var D = new Node("D", BaseType.TYPE_IDENT);
+            var E = new Node("E", BaseType.TYPE_IDENT);
 
             B.AddSocket(new OutputSocket());
 
@@ -385,16 +383,16 @@ namespace CBoxTest
             var model = new Model(true);
             var comp = model.RootComponent;
 
-            var A = new Node("A", BaseType.TYPE_IDENT, true);
-            var B = new Node("B", BaseType.TYPE_IDENT, true);
-            var C = new Node("C", BaseType.TYPE_IDENT, true);
-            var D = new Node("D", BaseType.TYPE_IDENT, true);
-            var E = new Node("E", BaseType.TYPE_IDENT, true);
-            var F = new Node("F", BaseType.TYPE_IDENT, true);
-            var G = new Node("G", BaseType.TYPE_IDENT, true);
-            var H = new Node("H", BaseType.TYPE_IDENT, true);
-            var I = new Node("I", BaseType.TYPE_IDENT, true);
-            var J = new Node("J", BaseType.TYPE_IDENT, true);
+            var A = new Node("A", BaseType.TYPE_IDENT);
+            var B = new Node("B", BaseType.TYPE_IDENT);
+            var C = new Node("C", BaseType.TYPE_IDENT);
+            var D = new Node("D", BaseType.TYPE_IDENT);
+            var E = new Node("E", BaseType.TYPE_IDENT);
+            var F = new Node("F", BaseType.TYPE_IDENT);
+            var G = new Node("G", BaseType.TYPE_IDENT);
+            var H = new Node("H", BaseType.TYPE_IDENT);
+            var I = new Node("I", BaseType.TYPE_IDENT);
+            var J = new Node("J", BaseType.TYPE_IDENT);
 
             comp.Add(false, A, B, C, D, E, F, G, H, I, J);
 

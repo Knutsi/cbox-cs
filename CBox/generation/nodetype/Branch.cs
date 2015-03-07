@@ -116,11 +116,34 @@ namespace cbox.generation.nodetype
             return result;
         }
 
-        public object HandlerData
+        public INodeTypeData HandlerData
         {
             get
             {
                 return this.Data;
+            }
+
+            set
+            {
+                this.Data = (BranchData)value;
+                SaveData();
+                this.Node.UpdateInternals();
+            }
+        }
+
+        public INodeTypeData DefaultData
+        {
+            get
+            {
+                // default setup is "all" mode and two default sockets of which one is guaranteed:
+                var data = new BranchData() { 
+                    Mode = BranchMode.ALL, 
+                    GuaranteedSocket = new OutputSocket() { Label = "A" }
+                };
+
+                data.AddPossibleSocket(new BranchDataSocketEntry("B"));
+
+                return data;
             }
         }
 

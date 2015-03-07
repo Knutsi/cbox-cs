@@ -15,7 +15,7 @@ namespace cbox.generation.nodetype
         ALL
     }
 
-    public class BranchData : XMLSerializable<BranchData>
+    public class BranchData : XMLSerializable<BranchData>, INodeTypeData
     {
         [XmlIgnore]
         internal Node _ParentNode;
@@ -23,18 +23,8 @@ namespace cbox.generation.nodetype
         private BranchMode _Mode;
         public ushort N = 1;
 
-        public OutputSocket GuaranteedSocket = new OutputSocket() { Type = OutputSocketType.GUARANTEED };
+        public OutputSocket GuaranteedSocket;
         public List<BranchDataSocketEntry> PossibleSockets = new List<BranchDataSocketEntry>();
-
-        public BranchData()
-        {
-            Mode = BranchMode.ALL;
-
-            // default setup is "all" mode and two default sockets:
-            GuaranteedSocket.Label = "A";
-            //PossibleSockets.Add(new BranchDataSocketEntry("B"));
-            AddPossibleSocket(new BranchDataSocketEntry("B"));
-        }
 
 
         public void AddPossibleSocket(BranchDataSocketEntry entry)
@@ -107,7 +97,10 @@ namespace cbox.generation.nodetype
             set 
             {
                 _ParentNode = value;
-                GuaranteedSocket.ParentNode = ParentNode;
+                
+                if(GuaranteedSocket != null)
+                    GuaranteedSocket.ParentNode = ParentNode;
+
                 foreach (var entry in PossibleSockets)
                 {
                     entry.Socket.ParentNode = ParentNode;

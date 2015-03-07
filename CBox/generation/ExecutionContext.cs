@@ -19,16 +19,24 @@ namespace cbox.generation
         public Node CurrentNode { get; set; }
         public BuildPath BuildPath { get; set; }
 
-        Dictionary<ProblemSet, Problem> InstancedProblems = new Dictionary<ProblemSet, Problem>();
+        public Dictionary<Node, Problem> InstancedProblems = new Dictionary<Node, Problem>();
 
         public ExecutionContext()
         {
             Case = new Case();
         }
 
-        internal Problem GetProblemBySet(ProblemSet set)
+
+        internal Problem GetProblemByNode(Node node)
         {
-            return InstancedProblems[set];
+            return InstancedProblems[node];
+        }
+
+
+        internal void RegisterProblem(Node node, Problem prob)
+        {
+            Case.Problems.Add(prob);
+            InstancedProblems.Add(node, prob);
         }
     }
 }

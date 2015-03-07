@@ -24,7 +24,10 @@ namespace cbox.generation
         public string XmlData { get; set; }
 
         [XmlIgnore]
-        public object HandlerData { get { return Handler.HandlerData; } }
+        public INodeTypeData HandlerData { 
+            get { return Handler.HandlerData; }
+            set { this.Handler.HandlerData = value; }
+        }
 
         [XmlIgnore]
         public INodeType Handler { get; set; }
@@ -50,14 +53,10 @@ namespace cbox.generation
 
         }
 
-        public Node(string title="Untitled", string type=BaseType.TYPE_IDENT, bool create_default=false)
+        public Node(string title="Untitled", string type=BaseType.TYPE_IDENT)
         {
             Title = title;
             ChangeType(type);
-            Handler = TypeHandlerLibrary.GetHandler(this);
-
-            if(create_default)
-                this.AddSocket(new OutputSocket());
         }
 
         public ProblemSet BoundProblemSet
@@ -91,32 +90,43 @@ namespace cbox.generation
         }
 
 
-        /// <summary>
-        /// Updates all sockets to have this as their parent node and restores handler.  
-        /// This is called after derserializartion, as these fields cannot be serialzied.
-        /// </summary>
-        public void UpdateInternals()
-        {
-            if(Handler == null)
-                Handler = TypeHandlerLibrary.GetHandler(this);
-
-            foreach (var socket in OutputSockets)
-                socket.ParentNode = this;
-        }
-
-       
 
         public void ChangeType(string new_type)
         {
-            Type = new_type;
-            
+            this.Type = new_type;
+
             // type changes changes handler, and makes data incompatible.  We need to erase it:
-            XmlData = null;
-            Handler = null;
+            this.XmlData = null;
+            this.Handler = null;
 
             // this will fix handler and it's data, and set sockets to correct home:
             UpdateInternals();
         }
+
+        /// <summary>
+        /// After deserialization or handler change, nodes need to update it's data, reinstance it's
+        /// handler and ensure it has data.  All sockets also need to have their respective parents
+        /// set (us!). 
+        /// </summary>
+        public void UpdateInternals()
+        {
+            // if no handler, load the correct one:
+            if (Handler == null)
+                Handler = TypeHandlerLibrary.GetHandler(this);
+
+            // if no handler data, load the default one:
+            if (XmlData == null || XmlData == string.Empty)
+            {
+                XmlData = Handler.DefaultData.ToXML();
+                Handler.LoadData();
+            }
+
+            // ensure all output sockets are set to this:
+            foreach (var socket in OutputSockets)
+                socket.ParentNode = this;
+        }
+
+
 
         public override string ToString()
         {
