@@ -12,6 +12,8 @@ namespace cbox.generation
 {
     public class NodeCollection : IdentProvider
     {
+        public string Ident;
+
         public bool IsRoot = false;
 
         public List<Node> Nodes = new List<Node>();
@@ -39,6 +41,7 @@ namespace cbox.generation
 
         [XmlIgnore]
         public IssueReport Issues = null;
+        
 
         public Model ParentModel
         {
@@ -420,7 +423,7 @@ namespace cbox.generation
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public ExecutionContext Execute(BuildPath path, bool generate_values=true, bool generate_ranges=false)
+        public ExecutionContext Execute(BuildPath path, bool generate_values=true, bool generate_ranges=false, ExecutionContext parent_ctx=null, ComponentLibrary complib=null)
         {
             // ensure we are ready to go:
             Invalidate();
@@ -430,6 +433,14 @@ namespace cbox.generation
             // create execution context:
             var ctx = new ExecutionContext() { BuildPath = path };
 
+            // remember where we are called from, if we are working inside an include:
+            ctx.ParentContext = parent_ctx;
+
+            // if no component library, we make an empty one:
+            ctx.ComponentLibrary = complib;
+            if (complib == null)
+                ctx.ComponentLibrary = new ComponentLibrary();
+
             // step through execution order, execute nodes in path provided:
             foreach (var node in this.ExecutionOrder)
             {
@@ -437,6 +448,7 @@ namespace cbox.generation
                 {
                     // the node we are working on:
                     ctx.CurrentNode = node;
+                    ctx.CurrentModel = this.ParentModel;
 
                     // specify current problem (might be the root one):
                     if (node.BoundProblemSet != null)

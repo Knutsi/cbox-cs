@@ -7,6 +7,8 @@ namespace cbox.model
 {
     public class Problem
     {
+        public Case ParentCase;
+
         public string Ident { get; set; }
         public string Title { get; set; }
         public List<TestResult> TestResults{ get; set; }
@@ -57,5 +59,13 @@ namespace cbox.model
             get { return resultWithKey(key); }
         }
 
+
+        public bool IsRoot
+        {
+            get
+            {
+                return this == this.ParentCase.RootProblem;
+            }
+        }
     }
 }

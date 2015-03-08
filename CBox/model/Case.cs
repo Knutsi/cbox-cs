@@ -37,7 +37,7 @@ namespace cbox.model
         public Case()
         {
             // create root problem:
-            Problems.Add(new Problem() { Ident = ROOT_PROBLEM_IDENT });
+            this.AddProblem(new Problem() { Ident = ROOT_PROBLEM_IDENT });
         }
 
         public Problem this[string ident]
@@ -131,6 +131,12 @@ namespace cbox.model
                 return reader.ReadToEnd();
             }
         }
-        
+
+
+        public void AddProblem(Problem problem)
+        {
+            this.Problems.Add(problem);
+            problem.ParentCase = this;
+        }
     }
 }

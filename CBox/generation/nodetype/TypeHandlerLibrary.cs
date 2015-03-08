@@ -29,6 +29,9 @@ namespace cbox.generation.nodetype
                 case ProblemEnd.TYPE_IDENT:
                     return new ProblemEnd() { Node = node };
 
+                case Include.TYPE_IDENT:
+                    return new Include() { Node = node };
+
                 default:
                     throw new NoSuchHandlerException();
             }

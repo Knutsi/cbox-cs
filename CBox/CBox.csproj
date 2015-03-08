@@ -43,10 +43,10 @@
   <ItemGroup>
     <Compile Include="generation\BuildPath.cs" />
     <Compile Include="generation\BuildPathCollection.cs" />
+    <Compile Include="generation\ComponentLibrary.cs" />
     <Compile Include="generation\ConnectionCollection.cs" />
     <Compile Include="generation\exceptions\ExecutingInvalidNodeCollectionException.cs" />
     <Compile Include="generation\ExecutionContext.cs" />
-    <Compile Include="generation\IBuildPathCriteria.cs" />
     <Compile Include="generation\NodeCollection.cs" />
     <Compile Include="generation\Connection.cs" />
     <Compile Include="generation\IssueReport.cs" />
@@ -56,9 +56,12 @@
     <Compile Include="generation\nodetype\BaseTypeData.cs" />
     <Compile Include="generation\nodetype\BranchData.cs" />
     <Compile Include="generation\nodetype\BranchDataSocketEntry.cs" />
+    <Compile Include="generation\nodetype\Include.cs" />
+    <Compile Include="generation\nodetype\IncludeData.cs" />
     <Compile Include="generation\nodetype\INodeType.cs" />
     <Compile Include="generation\nodetype\BaseType.cs" />
     <Compile Include="generation\nodetype\INodeTypeData.cs" />
+    <Compile Include="generation\exceptions\ModelIntegrityException.cs" />
     <Compile Include="generation\nodetype\SetValuesData.cs" />
     <Compile Include="generation\nodetype\SetValuesDataEntry.cs" />
     <Compile Include="generation\nodetype\ProblemStartData.cs" />

@@ -55,6 +55,7 @@
     <Compile Include="generation\SetValueTest.cs" />
     <Compile Include="generation\SetterTest.cs" />
     <Compile Include="generation\ProblemStartTest.cs" />
+    <Compile Include="generation\IncludeNodeTest.cs" />
     <Compile Include="model\OntologyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +64,16 @@
       <Project>{c5cc0c4f-4929-465b-9410-4ba6be35896b}</Project>
       <Name>CBox</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\test_system\library\" />
+    <Folder Include="data\test_system\model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\test_system\ontology.cboxontology" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\test_system\system.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

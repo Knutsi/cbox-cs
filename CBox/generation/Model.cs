@@ -11,7 +11,7 @@ namespace cbox.generation
 {
     public class Model : IdentProvider
     {
-        public int Ident { get; set; }
+        public string Ident { get; set; }
 
         public List<NodeCollection> Components { get; set; }
 
@@ -27,7 +27,7 @@ namespace cbox.generation
 
             if(generate_default)
             {
-                var comp = new NodeCollection() { IsRoot = true };
+                var comp = new NodeCollection() { Ident = "_Root", IsRoot = true };
                 Components.Add(comp);
 
             }
@@ -131,6 +131,15 @@ namespace cbox.generation
         {
             foreach (var comp in Components)
                 comp.Invalidate();
+        }
+
+        public NodeCollection GetNodeCollection(string ident)
+        {
+            foreach (var ncol in this.Components)
+                if (ncol.Ident == ident)
+                    return ncol;
+
+            return null;
         }
     }
 }
