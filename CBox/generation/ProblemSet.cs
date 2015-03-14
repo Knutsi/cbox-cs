@@ -11,7 +11,9 @@ namespace cbox.generation
         public int Ident;
         public string Title;
         public Node StartNode;
+        public Node EndNode; 
 
         public List<Node> BoundNodes = new List<Node>();
+
     }
 }

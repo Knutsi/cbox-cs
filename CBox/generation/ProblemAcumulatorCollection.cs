@@ -47,7 +47,8 @@ namespace cbox.generation
                 {
                     var set = new ProblemSet()
                     {
-                        StartNode = StartNode
+                        StartNode = StartNode,
+                        EndNode = Ender
                     };
 
                     foreach (var kvp in this.Nodes)
