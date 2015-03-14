@@ -41,7 +41,10 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainSplitLayout = new System.Windows.Forms.SplitContainer();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplitLayout)).BeginInit();
+            this.mainSplitLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -143,17 +146,29 @@
             this.toolStripMenuItem9.Size = new System.Drawing.Size(102, 22);
             this.toolStripMenuItem9.Text = "200%";
             // 
+            // mainSplitLayout
+            // 
+            this.mainSplitLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainSplitLayout.Location = new System.Drawing.Point(0, 25);
+            this.mainSplitLayout.Name = "mainSplitLayout";
+            this.mainSplitLayout.Size = new System.Drawing.Size(983, 544);
+            this.mainSplitLayout.SplitterDistance = 775;
+            this.mainSplitLayout.TabIndex = 1;
+            // 
             // EditorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 569);
+            this.Controls.Add(this.mainSplitLayout);
             this.Controls.Add(this.toolStrip1);
             this.Name = "EditorWindow";
             this.Text = "EditorWindow";
             this.Load += new System.EventHandler(this.EditorWindow_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplitLayout)).EndInit();
+            this.mainSplitLayout.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +188,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
+        private System.Windows.Forms.SplitContainer mainSplitLayout;
 
 
     }

@@ -26,24 +26,31 @@ namespace ModelEditor
         private void EditorWindow_Load(object sender, EventArgs e)
         {
             Diagram = new NodeCollectionDiagram() { Dock = DockStyle.Fill };
-            Controls.Add(Diagram);
+            mainSplitLayout.Panel1.Controls.Add(Diagram);
 
             var model = new Model(true);
             var comp = model.RootComponent;
 
-            var A = new Node("A", BaseType.TYPE_IDENT) { PosX = 100, PosY = 100 };
-            var B = new Node("B", SetValue.TYPE_IDENT) { PosX = 250, PosY = 100 };
-            var C = new Node("C", BaseType.TYPE_IDENT) { PosX = 1050, PosY = 100 };
+            var A = new Node("A", BaseType.TYPE_IDENT) { PosX = 100, PosY = 150 };
+            var B = new Node("B", ProblemStart.TYPE_IDENT) { PosX = 250, PosY = 150 };
+            var C = new Node("C", BaseType.TYPE_IDENT) { PosX = 400, PosY = 150 };
+            var D = new Node("D", ProblemEnd.TYPE_IDENT) { PosX = 550, PosY = 150 };
+            var E = new Node("E", BaseType.TYPE_IDENT) { PosX = 700, PosY = 150 };
 
-            comp.Add(true, A, B, C);
+            comp.Add(true, A, B, C, D, E);
 
             A.FirstOutputSocket.Connect(B);
             B.FirstOutputSocket.Connect(C);
+            C.FirstOutputSocket.Connect(D);
+            D.FirstOutputSocket.Connect(E);
 
             comp.StartNode = A;
-            comp.EndNode = B;
+            comp.EndNode = E;
+
+            comp.Invalidate();
 
             Diagram.NodeCollection = model.RootComponent;
+
         }
 
         private void zoomInButton_Click(object sender, EventArgs e)

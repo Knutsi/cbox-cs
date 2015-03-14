@@ -27,7 +27,7 @@ namespace cbox.modelling
             this.ParentDiagram = parent;
         }
 
-        public void Paint(System.Drawing.Graphics g, DiagramComponentState state)
+        public void Paint(System.Drawing.Graphics g)
         {
             var shadow_rect = this.Rectangle;
             shadow_rect.Offset(2, 2);
@@ -77,7 +77,7 @@ namespace cbox.modelling
 
         public int HeightIndex
         {
-            get { return 2; }
+            get { return 30; }
         }
 
         public DiagramComponentType Type

@@ -10,7 +10,7 @@ namespace cbox.modelling
 {
     public enum DiagramComponentType
     {
-        NODE, SOCKET, CONNETION, DRAGLINE
+        NODE, SOCKET, CONNETION, DRAGLINE, PROBLEM
     }
 
     public interface IDiagramComponent
@@ -20,7 +20,7 @@ namespace cbox.modelling
         DiagramComponentType Type { get; }
         NodeCollectionDiagram ParentDiagram { get; set; }
 
-        void Paint(Graphics g, DiagramComponentState state);
+        void Paint(Graphics g);
         Rectangle Rectangle { get; }
         int HeightIndex { get; }
     }

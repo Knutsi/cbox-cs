@@ -37,7 +37,7 @@ namespace cbox.modelling
             set;
         }
 
-        public void Paint(System.Drawing.Graphics g, DiagramComponentState state)
+        public void Paint(System.Drawing.Graphics g)
         {
             if (ParentDiagram.CurrentDragOperation == null || ParentDiagram.CurrentDragOperation != DragOperation.CONNECT)
                 return;
@@ -59,7 +59,7 @@ namespace cbox.modelling
 
         public int HeightIndex
         {
-            get { return 10; }
+            get { return 100; }
         }
     }
 }

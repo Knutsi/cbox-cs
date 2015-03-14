@@ -15,5 +15,17 @@ namespace cbox.generation
 
         public List<Node> BoundNodes = new List<Node>();
 
+        public List<Node> BountNodesPlusStartEnd
+        {
+            get
+            {
+                var newlist = new List<Node>();
+                newlist.AddRange(BoundNodes);
+                newlist.Add(StartNode);
+                newlist.Add(EndNode);
+
+                return newlist;
+            }
+        }
     }
 }

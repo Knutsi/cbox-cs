@@ -35,7 +35,7 @@ namespace cbox.modelling
             get { return DiagramComponentType.CONNETION; }
         }
 
-        public void Paint(System.Drawing.Graphics g, DiagramComponentState state)
+        public void Paint(System.Drawing.Graphics g)
         {
             var from = SocketComponent.CalculateSocketPosition(
                 SourceSocket.ParentNode.PosX,
@@ -67,7 +67,7 @@ namespace cbox.modelling
 
         public int HeightIndex
         {
-            get { return 0; }
+            get { return 10; }
         }
     }
 }

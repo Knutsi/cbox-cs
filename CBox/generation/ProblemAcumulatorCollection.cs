@@ -48,7 +48,8 @@ namespace cbox.generation
                     var set = new ProblemSet()
                     {
                         StartNode = StartNode,
-                        EndNode = Ender
+                        EndNode = Ender,
+                        Title = StartNode.Title
                     };
 
                     foreach (var kvp in this.Nodes)

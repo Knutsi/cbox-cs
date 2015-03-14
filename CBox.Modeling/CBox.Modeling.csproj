@@ -42,13 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionComponent.cs" />
-    <Compile Include="DiagramComponentState.cs" />
     <Compile Include="DragLineComponent.cs" />
     <Compile Include="IDiagramComponent.cs" />
     <Compile Include="NodeCollectionDiagram.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="NodeComponent.cs" />
+    <Compile Include="ProblemOutlineComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocketComponent.cs" />
   </ItemGroup>

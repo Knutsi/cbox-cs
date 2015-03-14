@@ -30,8 +30,16 @@ namespace cbox.modelling
             } 
         }
 
-        public void Paint(System.Drawing.Graphics g, DiagramComponentState state)
+        public void Paint(System.Drawing.Graphics g)
         {
+            // selected?  If so, highlight:
+            if(ParentDiagram.SelectedNodes.Contains(this.Node))
+                g.FillRectangle(
+               Brushes.Orange,
+               new Rectangle(Node.PosX -2, Node.PosY - 2, WIDTH + 6, HEIGHT + 6)
+               );
+
+
             // background:
             g.FillRectangle(
                 Brushes.Black,
@@ -84,7 +92,7 @@ namespace cbox.modelling
 
         public int HeightIndex
         {
-            get { return 1;  }
+            get { return 20;  }
         }
 
 
