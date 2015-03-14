@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBoxTest", "CBoxTest\CBoxTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBoxClient", "CBoxClient\CBoxClient.csproj", "{D45D397E-4A06-4471-BDEF-9A529FA1CF87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBox.Modeling", "CBox.Modeling\CBox.Modeling.csproj", "{70734B43-866F-44F5-B559-CC5A4BD06CAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelEditor", "ModelEditor\ModelEditor.csproj", "{C8B55BD2-F48A-4E8D-80A1-F70B24BDE964}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{D45D397E-4A06-4471-BDEF-9A529FA1CF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D45D397E-4A06-4471-BDEF-9A529FA1CF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D45D397E-4A06-4471-BDEF-9A529FA1CF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70734B43-866F-44F5-B559-CC5A4BD06CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70734B43-866F-44F5-B559-CC5A4BD06CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70734B43-866F-44F5-B559-CC5A4BD06CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70734B43-866F-44F5-B559-CC5A4BD06CAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B55BD2-F48A-4E8D-80A1-F70B24BDE964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B55BD2-F48A-4E8D-80A1-F70B24BDE964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B55BD2-F48A-4E8D-80A1-F70B24BDE964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B55BD2-F48A-4E8D-80A1-F70B24BDE964}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
