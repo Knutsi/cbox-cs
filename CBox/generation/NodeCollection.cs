@@ -78,6 +78,11 @@ namespace cbox.generation
         /// <param name="node"></param>
         public void Remove(Node node, bool invalidate=true)
         {
+            // we cannot remove the end or start node:
+            if (node == StartNode || node == EndNode)
+                return; 
+
+            // remote others:
             this.Nodes.Remove(node);
             node.ParentComponent = null;
 

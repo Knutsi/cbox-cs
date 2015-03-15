@@ -316,7 +316,15 @@ namespace cbox.modelling
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
+
+            // select all:
+            if(e.KeyCode == Keys.A && e.Control)
+                SelectAll();
+
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+                DeleteSelected();
         }
+
 
         protected override void OnKeyUp(KeyEventArgs e)
         {
@@ -520,6 +528,26 @@ namespace cbox.modelling
                 Zoom_ = value;
                 this.Invalidate();
             }
+        }
+
+
+        private void SelectAll()
+        {
+            SelectedNodes = new List<Node>();
+            foreach (var node in NodeCollection.Nodes)
+                SelectedNodes.Add(node);
+
+            Invalidate();
+        }
+
+
+        private void DeleteSelected()
+        {
+            foreach (var node in SelectedNodes)
+                NodeCollection.Remove(node);
+
+            Reload();
+            Invalidate();
         }
 
 
