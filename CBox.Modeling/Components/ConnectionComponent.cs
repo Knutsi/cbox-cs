@@ -65,7 +65,7 @@ namespace cbox.modelling
             get { return new Rectangle(); }
         }
 
-        public int HeightIndex
+        public int Layer
         {
             get { return 10; }
         }

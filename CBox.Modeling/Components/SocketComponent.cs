@@ -75,7 +75,7 @@ namespace cbox.modelling
                 node.OutputSockets.IndexOf(socket));
         }
 
-        public int HeightIndex
+        public int Layer
         {
             get { return 30; }
         }

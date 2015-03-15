@@ -28,7 +28,7 @@ namespace cbox.modelling
 
         public DiagramComponentType Type
         {
-            get { return DiagramComponentType.DRAGLINE; }
+            get { return DiagramComponentType.AUXILLARY; }
         }
 
         public NodeCollectionDiagram ParentDiagram
@@ -57,7 +57,7 @@ namespace cbox.modelling
             get { return new Rectangle(); }
         }
 
-        public int HeightIndex
+        public int Layer
         {
             get { return 100; }
         }

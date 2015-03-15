@@ -41,16 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionComponent.cs" />
-    <Compile Include="DragLineComponent.cs" />
-    <Compile Include="IDiagramComponent.cs" />
+    <Compile Include="Components\ConnectionComponent.cs" />
+    <Compile Include="Components\DragLineComponent.cs" />
+    <Compile Include="Components\IDiagramComponent.cs" />
     <Compile Include="NodeCollectionDiagram.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="NodeComponent.cs" />
-    <Compile Include="ProblemOutlineComponent.cs" />
+    <Compile Include="Components\NodeComponent.cs" />
+    <Compile Include="Components\ProblemOutlineComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SocketComponent.cs" />
+    <Compile Include="Components\SelectBoxComponent.cs" />
+    <Compile Include="Components\SocketComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CBox\CBox.csproj">

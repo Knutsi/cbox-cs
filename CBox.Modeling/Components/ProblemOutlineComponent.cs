@@ -78,7 +78,7 @@ namespace cbox.modelling
             }
         }
 
-        public int HeightIndex
+        public int Layer
         {
             get { return 0; }
         }

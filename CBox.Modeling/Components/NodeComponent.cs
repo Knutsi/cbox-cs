@@ -90,7 +90,7 @@ namespace cbox.modelling
             get { return new Rectangle(Node.PosX, Node.PosY, WIDTH, HEIGHT); }
         }
 
-        public int HeightIndex
+        public int Layer
         {
             get { return 20;  }
         }

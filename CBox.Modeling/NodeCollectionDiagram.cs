@@ -14,7 +14,7 @@ namespace cbox.modelling
 {
     public enum DragOperation
     {
-        MOVE,  CONNECT, PAN
+        MOVE, CONNECT, PAN, SELECT
     }
 
     /// <summary>
@@ -32,12 +32,13 @@ namespace cbox.modelling
 
         // fields to assist various operations:
         public Point AdjustedMousePosition { get; set; }
+        private Point PreviousMousePosition;
         public IDiagramComponent ComponentUnderMouse { get; set; }
         
         // drag and drop state fields:
         public DragOperation? CurrentDragOperation { get; set; }
         public object DragObject { get; set; }
-        public Point DragOffset { get; set; }
+        public Point DragStartPoint;
 
         // size of diagram and what portion we see:
         public Size DiagramSize { get; set; }
@@ -50,6 +51,8 @@ namespace cbox.modelling
         public OutputSocket SelectedSocket { get; set; }
         internal List<Node> SelectedNodes = new List<Node>();
         private System.Drawing.Size DragDelta;
+        
+       
 
         public NodeCollectionDiagram()
         {
@@ -115,6 +118,7 @@ namespace cbox.modelling
 
             // special components:
             DiagramComponents.Add(new DragLineComponent(this));
+            DiagramComponents.Add(new SelectBoxComponent(this));
 
             // update size of diagram:
             UpdateSize();
@@ -127,9 +131,7 @@ namespace cbox.modelling
         {
             base.OnMouseDown(e);
 
-            // are we starting a drag?
-            if (ComponentUnderMouse != null)
-                StartDrag(AdjustedMousePosition.X, AdjustedMousePosition.Y);
+            StartDrag(AdjustedMousePosition.X, AdjustedMousePosition.Y);
 
             // are we selecting?
             if (ComponentUnderMouse != null)
@@ -165,18 +167,9 @@ namespace cbox.modelling
 
             if (CurrentDragOperation.HasValue)
                 EndDrag();
-                
+ 
         }
 
-        protected override void OnClick(EventArgs e)
-        {
-            base.OnClick(e);
-
-            if (ComponentUnderMouse == null)
-                SelectedNodes = new List<Node>();
-
-            this.Invalidate();
-        }
 
         /// <summary>
         /// We need to track what object is undeaneath the mouse pointer when the user moves it:
@@ -186,23 +179,33 @@ namespace cbox.modelling
         {
             base.OnMouseMove(e);
 
-            // update mouse position:
-            var adjustment = Zoom;
-            if (Zoom > 1)
-                adjustment = 1 / Zoom;
+            // update cursor:
+            if (Control.ModifierKeys == Keys.Shift)
+                Cursor.Current = Cursors.NoMove2D;
             else
-                adjustment = Zoom;
+                Cursor.Current = Cursors.Default;
+
+            // update mouse position and 
+            PreviousMousePosition = AdjustedMousePosition;
 
             AdjustedMousePosition = new Point(
-                Convert.ToInt32((e.X * adjustment) + (Viewport.X * adjustment)),
-                Convert.ToInt32((e.Y * adjustment) + (Viewport.Y * adjustment))
+                Convert.ToInt32((e.X / Zoom) + (Viewport.X / Zoom)),
+                Convert.ToInt32((e.Y / Zoom) + (Viewport.Y / Zoom))
                 );
+
+            // calculate delta moved since last update:
+            if (PreviousMousePosition != null)
+                DragDelta = new Size(
+                    AdjustedMousePosition.X - PreviousMousePosition.X,
+                    AdjustedMousePosition.Y - PreviousMousePosition.Y);
+            else
+                DragDelta = new Size(0, 0);
 
 
             // detect what object is underneath:
             var found = from comp in DiagramComponents
                         where comp.Rectangle.Contains(AdjustedMousePosition.X, AdjustedMousePosition.Y)
-                        orderby comp.HeightIndex descending
+                        orderby comp.Layer descending
                         select comp;
 
             if (found.Count() > 0)
@@ -215,8 +218,8 @@ namespace cbox.modelling
             {
                 foreach (var node in SelectedNodes)
                 {
-                    node.PosX = AdjustedMousePosition.X + DragOffset.X;
-                    node.PosY = AdjustedMousePosition.Y + DragOffset.Y;
+                    node.PosX += DragDelta.Width;
+                    node.PosY += DragDelta.Height;
                 }
                 
 
@@ -224,8 +227,42 @@ namespace cbox.modelling
                 UpdateSize();
             }
 
+            // are we selecting, and need to select in box?
+            if (CurrentDragOperation == DragOperation.SELECT)
+            {
+                var nodes = from n in
+                                (from c in this.DiagramComponents
+                                 where c.Type == DiagramComponentType.NODE
+                                 select c.SourceObject as Node)
+                            where DragRect.Contains(n.PosX, n.PosY)
+                            select n;
+
+                SelectedNodes = nodes.ToList();
+            }
+
+            // are we panning, and need to pan?
+            if(CurrentDragOperation == DragOperation.PAN)
+            {
+                int hval = HScrollBar.Value - Convert.ToInt32(DragDelta.Width * Zoom);
+                int vval = VScrollBar.Value - Convert.ToInt32(DragDelta.Height * Zoom);
+
+                // this will trigger a scroll and viewport change, so we'll adjust previous mouse position:
+                if (hval > HScrollBar.Minimum && hval < HScrollBar.Maximum)
+                {
+                    HScrollBar.Value = hval;
+                    AdjustedMousePosition.Offset(-hval , 0);
+                }
+
+                if (vval > VScrollBar.Minimum && vval < VScrollBar.Maximum)
+                {
+                    VScrollBar.Value = vval;
+                    AdjustedMousePosition.Offset(0, -vval);
+                }
+
+            }
+
             // update while dragging:
-            if(CurrentDragOperation != null)
+            if (CurrentDragOperation != null)
                 this.Invalidate();
         }
 
@@ -298,27 +335,48 @@ namespace cbox.modelling
 
         private void StartDrag(int x, int y)
         {
-            //Console.WriteLine("Starting drag on: " + ComponentUnderMouse);
 
-            switch (ComponentUnderMouse.Type)
+            // we need to remember how much the drag has been
+            DragStartPoint = new Point(x, y);
+
+            // take action depending on what is being dragged:
+            if (ComponentUnderMouse != null)
+                switch (ComponentUnderMouse.Type)
+                {
+                    case DiagramComponentType.NODE:
+                        CurrentDragOperation = DragOperation.MOVE;
+                        DragObject = ComponentUnderMouse.SourceObject;
+                        var node = (Node)DragObject;
+
+                        break;
+
+                    case DiagramComponentType.SOCKET:
+                        CurrentDragOperation = DragOperation.CONNECT;
+                        DragObject = ComponentUnderMouse.SourceObject;
+                        ((OutputSocket)DragObject).Disconnect();
+                        NodeCollection.Invalidate();
+                        break;
+
+                    default:
+                        if (Control.ModifierKeys == Keys.Shift)
+                            CurrentDragOperation = DragOperation.PAN;
+                        else
+                        {
+                            CurrentDragOperation = DragOperation.SELECT;
+                            SelectedNodes = new List<Node>();
+                        }
+                            
+                        break;
+                }
+            else
             {
-                case DiagramComponentType.NODE:
-                    CurrentDragOperation = DragOperation.MOVE;
-                    DragObject = ComponentUnderMouse.SourceObject;
-                    var node = (Node)DragObject;
-                    DragOffset = new Point(node.PosX - x, node.PosY - y);
-                    break;
-
-                case DiagramComponentType.SOCKET:
-                    CurrentDragOperation = DragOperation.CONNECT;
-                    DragObject = ComponentUnderMouse.SourceObject;
-                    ((OutputSocket)DragObject).Disconnect();
-                    NodeCollection.Invalidate();
-                    break;
-
-                default:
+                if (Control.ModifierKeys == Keys.Shift)
                     CurrentDragOperation = DragOperation.PAN;
-                    break;
+                else
+                {
+                    CurrentDragOperation = DragOperation.SELECT;
+                    SelectedNodes = new List<Node>();
+                }
             }
         }
 
@@ -340,6 +398,38 @@ namespace cbox.modelling
 
             CurrentDragOperation = null;
             DragObject = null;
+        }
+
+        public Rectangle DragRect
+        {
+            get
+            {
+                // check we have what we need:
+                if (DragStartPoint == null || AdjustedMousePosition == null)
+                    return new Rectangle();
+
+                // we need to draw a different rect depending of wether we are dragging left/right or up/down:
+                var px = DragStartPoint.X;
+                var py = DragStartPoint.Y;
+                var dx = AdjustedMousePosition.X - px;
+                var dy = AdjustedMousePosition.Y - py;
+
+                var x = px; var y = py; var w = dx; var h = dy;
+
+                if (dx < 0)
+                {
+                    x = px + dx;
+                    w = dx * -1;
+                }
+
+                if (dy < 0)
+                {
+                    y = py + dy;
+                    h = dy * -1;
+                }
+
+                return new Rectangle(x, y, w, h);
+            }
         }
 
         private void UpdateSize()
@@ -397,25 +487,26 @@ namespace cbox.modelling
         /// <param name="g"></param>
         private void Render(Graphics g)
         {
+            // account for pan and zoom:
             Matrix matrix = new System.Drawing.Drawing2D.Matrix();
-            matrix.Scale(this.Zoom, this.Zoom);
             matrix.Translate(-Viewport.X, -Viewport.Y);
+            matrix.Scale(this.Zoom, this.Zoom);
 
             g.Transform = matrix;
 
+            // settings:
             g.Clear(SystemColors.ControlDarkDark);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            // render all components:
+            // render all components by order of layer:
             var components = from c in this.DiagramComponents
-                        orderby c.HeightIndex ascending
+                        orderby c.Layer ascending
                         select c;
 
             foreach (var component in components)
                 component.Paint(g);
 
-
-            g.DrawEllipse(Pens.Green, AdjustedMousePosition.X, AdjustedMousePosition.Y, 3, 3);
+            //g.DrawEllipse(Pens.Green, AdjustedMousePosition.X, AdjustedMousePosition.Y, 3, 3);
         }
 
         /// <summary>
