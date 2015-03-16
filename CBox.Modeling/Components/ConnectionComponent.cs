@@ -50,7 +50,7 @@ namespace cbox.modelling
             from.Offset(SocketComponent.WIDTH / 2, SocketComponent.HEIGHT / 2);
             to.Offset(SocketComponent.WIDTH / 2, SocketComponent.HEIGHT / 2);
 
-            DrawLine(g, from, to, Color.Gray);
+            DrawLine(g, from, to, Color.Gray, SourceSocket.Label);
         }
 
 		public static void DrawLine(Graphics g, Point from, Point to, Color color, string label=null) 
@@ -60,9 +60,18 @@ namespace cbox.modelling
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g.DrawLine(pen, from, to);
 
-			// add label: 
+			// add label at halway point:
 			if (label != null) {
+				var font = SystemFonts.DefaultFont;
+				var size = g.MeasureString(label, font);
+				var width = Convert.ToInt32(size.Width);
+				var height = Convert.ToInt32(size.Height);
 
+				var p = new Point (
+					to.X - (to.X - from.X)/2 - width/2,  
+					to.Y - (to.Y - from.Y)/2 - height/2)
+					;
+				g.DrawString (label, font, Brushes.White, p);
 			}
         }
 

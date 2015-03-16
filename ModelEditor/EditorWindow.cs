@@ -31,11 +31,11 @@ namespace ModelEditor
             var model = new Model(true);
             var comp = model.RootComponent;
 
-            var A = new Node("A", BaseType.TYPE_IDENT) { PosX = 100, PosY = 150 };
-            var B = new Node("B", ProblemStart.TYPE_IDENT) { PosX = 250, PosY = 150 };
+            var A = new Node("Starter", BaseType.TYPE_IDENT) { PosX = 100, PosY = 150 };
+            var B = new Node("Problem #1", ProblemStart.TYPE_IDENT) { PosX = 250, PosY = 150 };
             var C = new Node("C", BaseType.TYPE_IDENT) { PosX = 400, PosY = 150 };
             var D = new Node("D", ProblemEnd.TYPE_IDENT) { PosX = 550, PosY = 150 };
-            var E = new Node("E", BaseType.TYPE_IDENT) { PosX = 700, PosY = 150 };
+            var E = new Node("Ender", BaseType.TYPE_IDENT) { PosX = 700, PosY = 150 };
 
             comp.Add(true, A, B, C, D, E);
 
@@ -43,6 +43,8 @@ namespace ModelEditor
             B.FirstOutputSocket.Connect(C);
             C.FirstOutputSocket.Connect(D);
             D.FirstOutputSocket.Connect(E);
+
+			A.FirstOutputSocket.Label = "Demo label";
 
             comp.StartNode = A;
             comp.EndNode = E;
