@@ -234,7 +234,7 @@ namespace cbox.modelling
                                 (from c in this.DiagramComponents
                                  where c.Type == DiagramComponentType.NODE
                                  select c.SourceObject as Node)
-                            where DragRect.Contains(n.PosX, n.PosY)
+							where DragRect.IntersectsWith(new Rectangle(n.PosX, n.PosY, NodeComponent.WIDTH, NodeComponent.HEIGHT))
                             select n;
 
                 SelectedNodes = nodes.ToList();

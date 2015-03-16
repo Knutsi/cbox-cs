@@ -53,11 +53,17 @@ namespace cbox.modelling
             DrawLine(g, from, to, Color.Gray);
         }
 
-		public static void DrawLine(Graphics g, Point from, Point to, Color color) 
+		public static void DrawLine(Graphics g, Point from, Point to, Color color, string label=null) 
         {
+			// darw line:
             var pen = new Pen(color, 3);
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g.DrawLine(pen, from, to);
+
+			// add label: 
+			if (label != null) {
+
+			}
         }
 
         public System.Drawing.Rectangle Rectangle
