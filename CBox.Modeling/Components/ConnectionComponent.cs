@@ -50,12 +50,12 @@ namespace cbox.modelling
             from.Offset(SocketComponent.WIDTH / 2, SocketComponent.HEIGHT / 2);
             to.Offset(SocketComponent.WIDTH / 2, SocketComponent.HEIGHT / 2);
 
-            DrawLine(g, from, to);
+            DrawLine(g, from, to, Color.Gray);
         }
 
-        public static void DrawLine(Graphics g, Point from, Point to) 
+		public static void DrawLine(Graphics g, Point from, Point to, Color color) 
         {
-            var pen = new Pen(Color.Gray, 3);
+            var pen = new Pen(color, 3);
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g.DrawLine(pen, from, to);
         }

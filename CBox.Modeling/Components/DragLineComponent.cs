@@ -49,7 +49,7 @@ namespace cbox.modelling
 
             from.Offset(SocketComponent.WIDTH / 2, SocketComponent.WIDTH / 2);
 
-            ConnectionComponent.DrawLine(g, from, to);
+            ConnectionComponent.DrawLine(g, from, to, Color.Gray);
         }
 
         public System.Drawing.Rectangle Rectangle
