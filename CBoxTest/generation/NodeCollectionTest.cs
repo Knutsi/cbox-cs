@@ -56,6 +56,9 @@ namespace CBoxTest
 
             // perform manipulations:
             NodeManipulation(postsave_model.RootComponent);
+
+            // save model again (to this cause some bugs!)
+            var postsave_xml = postsave_model.ToXML();
         }
 
         [TestMethod]
