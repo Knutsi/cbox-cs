@@ -25,44 +25,82 @@ namespace ModelEditor
 
         private void EditorWindow_Load(object sender, EventArgs e)
         {
+            SetupMenus();
+
             Diagram = new NodeCollectionDiagram() { Dock = DockStyle.Fill };
             mainSplitLayout.Panel1.Controls.Add(Diagram);
 
-            var model = new Model(true);
-            var comp = model.RootComponent;
-
-            var A = new Node("Starter", BaseType.TYPE_IDENT) { PosX = 100, PosY = 150 };
-            var B = new Node("Problem #1", ProblemStart.TYPE_IDENT) { PosX = 250, PosY = 150 };
-            var C = new Node("C", BaseType.TYPE_IDENT) { PosX = 400, PosY = 150 };
-            var D = new Node("D", ProblemEnd.TYPE_IDENT) { PosX = 550, PosY = 150 };
-            var E = new Node("Ender", BaseType.TYPE_IDENT) { PosX = 700, PosY = 150 };
-
-            comp.Add(true, A, B, C, D, E);
-
-            A.FirstOutputSocket.Connect(B);
-            B.FirstOutputSocket.Connect(C);
-            C.FirstOutputSocket.Connect(D);
-            D.FirstOutputSocket.Connect(E);
-
-			A.FirstOutputSocket.Label = "Demo label";
-
-            comp.StartNode = A;
-            comp.EndNode = E;
-
-            comp.Invalidate();
-
-            Diagram.NodeCollection = model.RootComponent;
-
+            // new model by default:
+            Program.NewModel();
         }
 
-        private void zoomInButton_Click(object sender, EventArgs e)
+        private void SetupMenus()
         {
-            Diagram.Zoom *= 1.5F;
+            // if we have recent menu items, we load them:
+            if (Program.Recents.Count <= 0)
+            {
+                openMostRecentMenuItem.Enabled = false;
+                recentMenuItem.Enabled = false;
+            }
+                
         }
 
-        private void zoomOutButton_Click(object sender, EventArgs e)
-        {
-            Diagram.Zoom *= 0.5F;
+        
+        /// <summary>
+        /// Sets the model currently being edited.
+        /// </summary>
+        public Model Model {
+            get
+            {
+                return _Model;
+            }
+            set
+            {
+                _Model = value;
+                this.Diagram.NodeCollection = _Model.RootComponent;
+            } 
         }
+        private Model _Model = null;
+
+
+        private void openMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Program.LoadModel(dialog.FileName);
+        }
+
+        private void openMostRecentMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.LoadMostRecent();
+        }
+
+        private void saveMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.SaveModel();
+        }
+
+        private void saveACopyMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.SaveModel(true);
+        }
+
+        private void quitMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.Quit();
+        }
+
+        private void newMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.NewModel();
+        }
+
+        private void selectAllMenuItem_Click(object sender, EventArgs e)
+        {
+            Diagram.SelectAll();
+        }
+
+
+
     }
 }

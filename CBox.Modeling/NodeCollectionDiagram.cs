@@ -90,6 +90,8 @@ namespace cbox.modelling
                 // reload all items:
                 if(value != null)
                     Reload();
+
+                this.Invalidate();
             }
         }
 
@@ -531,7 +533,7 @@ namespace cbox.modelling
         }
 
 
-        private void SelectAll()
+        public void SelectAll()
         {
             SelectedNodes = new List<Node>();
             foreach (var node in NodeCollection.Nodes)
