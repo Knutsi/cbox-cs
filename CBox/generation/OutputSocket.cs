@@ -35,7 +35,7 @@ namespace cbox.generation
             this.TargetNodeIdent = null;
         }
 
-
+        [XmlIgnore]
         public bool IsConnected 
         {
             get

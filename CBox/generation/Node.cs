@@ -59,6 +59,7 @@ namespace cbox.generation
             ChangeType(type);
         }
 
+        [XmlIgnore]
         public ProblemSet BoundProblemSet
         {
             get
@@ -67,6 +68,7 @@ namespace cbox.generation
             }
         }
 
+        [XmlIgnore]
         public OutputSocket FirstOutputSocket { 
             get 
             {

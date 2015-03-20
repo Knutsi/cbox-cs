@@ -15,11 +15,11 @@ namespace cbox.generation
         public string Ident;
 
         public bool IsRoot = false;
+        private int StartNodeIdent;
+        private int EndNodeIdent;
 
         public List<Node> Nodes = new List<Node>();
-        
-        public Node StartNode;
-        public Node EndNode;
+
 
         /// <summary>
         /// The sequence the nodes are executed in.
@@ -42,12 +42,41 @@ namespace cbox.generation
         [XmlIgnore]
         public IssueReport Issues = null;
         
-
+        [XmlIgnore]
         public Model ParentModel
         {
             get { return _ParentModel; }
             set {_ParentModel = value; }
         }
+
+        [XmlIgnore]
+        public Node StartNode
+        {
+            get
+            {
+                return NodeByIdent(StartNodeIdent);
+            }
+
+            set
+            {
+                StartNodeIdent = value.Ident;
+            }
+        }
+
+        [XmlIgnore]
+        public Node EndNode
+        {
+            get
+            {
+                return NodeByIdent(EndNodeIdent);
+            }
+
+            set
+            {
+                EndNodeIdent = value.Ident;
+            }
+        }
+
 
         /// <summary>
         /// Adds a node to the model.

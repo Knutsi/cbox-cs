@@ -73,20 +73,9 @@ namespace cbox.generation
             // prepare to serialize:
             var serializer = new XmlSerializer(this.GetType());
 
-            /* Create a StreamWriter to write with. First create a FileStream
-            object, and create the StreamWriter specifying an Encoding to use. */
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (TextWriter writer = new StreamWriter(ms, new UTF8Encoding()))
-                {
-                    // Serialize using the XmlTextWriter.
-                    serializer.Serialize(writer, this);
-
-                    ms.Position = 0;
-                    StreamReader reader = new StreamReader(ms);
-                    return reader.ReadToEnd();
-                }
-            }
+            var writer = new StringWriter();
+            serializer.Serialize(writer, this);
+            return writer.ToString();
         }
 
 
