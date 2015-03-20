@@ -12,11 +12,14 @@ using cbox.generation.nodetype;
 
 namespace ModelEditor
 {
+    public delegate void RecentFilesChangedEventHandler();
+
     static class Program
     {
         public static EditorWindow MainWindow { get; set; }
         public static string CurrentFilePath;
-        
+
+        public static event RecentFilesChangedEventHandler RecentFilesChanged;
 
         /// <summary>
         /// The main entry point for the application.
@@ -161,6 +164,9 @@ namespace ModelEditor
             ser.Serialize(stream, recents);
             Properties.Settings.Default.recent_files = stream.ToString();
             Properties.Settings.Default.Save();
+
+            // fire event:
+            RecentFilesChanged();
 
             Console.WriteLine("Added {0} to recently opened", filepath);
         }

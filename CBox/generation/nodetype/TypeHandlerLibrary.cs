@@ -36,6 +36,20 @@ namespace cbox.generation.nodetype
                     throw new NoSuchHandlerException();
             }
         }
+
+        public static List<string> TypeIdents
+        {
+            get
+            {
+                return new List<string> {
+                    Branch.TYPE_IDENT, 
+                    SetValue.TYPE_IDENT,
+                    ProblemStart.TYPE_IDENT,
+                    ProblemEnd.TYPE_IDENT,
+                    Include.TYPE_IDENT
+                };
+            }
+        }
     }
 
 

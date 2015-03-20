@@ -25,7 +25,10 @@ namespace ModelEditor
 
         private void EditorWindow_Load(object sender, EventArgs e)
         {
-            SetupMenus();
+            // setup menus, and call again when recent files change:
+            SetupRecentMenu();
+            SetupInsertMenu();
+            Program.RecentFilesChanged += this.SetupRecentMenu;
 
             Diagram = new NodeCollectionDiagram() { Dock = DockStyle.Fill };
             mainSplitLayout.Panel1.Controls.Add(Diagram);
@@ -34,7 +37,10 @@ namespace ModelEditor
             Program.NewModel();
         }
 
-        private void SetupMenus()
+        /// <summary>
+        /// Sets up a menu for easily opening recent files.
+        /// </summary>
+        private void SetupRecentMenu()
         {
             // if we have recent menu items, we load them:
             if (Program.Recents.Count <= 0)
@@ -42,9 +48,39 @@ namespace ModelEditor
                 openMostRecentMenuItem.Enabled = false;
                 recentMenuItem.Enabled = false;
             }
+            else
+            {
+                openMostRecentMenuItem.Enabled = true;
+                recentMenuItem.Enabled = true;
+
+                // add sub-items to recent menu:
+                recentMenuItem.DropDownItems.Clear();
+                foreach (var filepath in Program.Recents)
+                {
+                    var item = new ToolStripMenuItem(filepath);
+                    recentMenuItem.DropDownItems.Add(item);
+                    item.Click += recentMenuItem_Click;
+                    
+                }
+            }
                 
         }
 
+
+        /// <summary>
+        /// Inserts all nodes in the nodetype library as entries in the insert menu.
+        /// </summary>
+        private void SetupInsertMenu()
+        {
+            foreach (var entry in TypeHandlerLibrary.TypeIdents)
+            {
+                var item = new ToolStripMenuItem(entry);
+                insertMenu.DropDownItems.Add(item);
+                item.Tag = entry;   // associate with node type
+
+                item.Click += insertNode_Click;
+            }
+        }
         
         /// <summary>
         /// Sets the model currently being edited.
@@ -69,6 +105,13 @@ namespace ModelEditor
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 Program.LoadModel(dialog.FileName);
         }
+
+        void recentMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = (ToolStripMenuItem)sender;
+            Program.LoadModel(item.Text);
+        }
+
 
         private void openMostRecentMenuItem_Click(object sender, EventArgs e)
         {
@@ -98,6 +141,12 @@ namespace ModelEditor
         private void selectAllMenuItem_Click(object sender, EventArgs e)
         {
             Diagram.SelectAll();
+        }
+
+        private void insertNode_Click(object sender, EventArgs e)
+        {
+            var item = (ToolStripMenuItem)sender;
+            Diagram.NewNode((string)item.Tag);
         }
 
 

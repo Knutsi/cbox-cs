@@ -52,7 +52,7 @@
             this.selectProblemNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.editHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputDescriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +76,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.insertToolStripMenuItem,
+            this.insertMenu,
             this.viewToolStripMenuItem,
             this.debugToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -250,11 +250,11 @@
             this.editHistoryToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.editHistoryToolStripMenuItem.Text = "View history";
             // 
-            // insertToolStripMenuItem
+            // insertMenu
             // 
-            this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.insertToolStripMenuItem.Text = "Insert";
+            this.insertMenu.Name = "insertMenu";
+            this.insertMenu.Size = new System.Drawing.Size(48, 20);
+            this.insertMenu.Text = "Insert";
             // 
             // viewToolStripMenuItem
             // 
@@ -328,7 +328,7 @@
         private System.Windows.Forms.ToolStripMenuItem selectProblemNodesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem editHistoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertMenu;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showAllEditorsToolStripMenuItem;

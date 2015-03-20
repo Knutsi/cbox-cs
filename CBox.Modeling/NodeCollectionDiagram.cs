@@ -24,6 +24,8 @@ namespace cbox.modelling
     /// </summary>
     public class NodeCollectionDiagram : Control
     {
+        private const int INSERT_OFFSET = 30;
+
         private cbox.generation.NodeCollection _NodeCollection;
         public List<IDiagramComponent> DiagramComponents;
 
@@ -40,6 +42,9 @@ namespace cbox.modelling
         public object DragObject { get; set; }
         public Point DragStartPoint;
 
+        // default position for inserting new nodes:
+        public Point InsertPosition { get; set; }
+
         // size of diagram and what portion we see:
         public Size DiagramSize { get; set; }
         public Rectangle Viewport { get; set; }
@@ -52,7 +57,7 @@ namespace cbox.modelling
         internal List<Node> SelectedNodes = new List<Node>();
         private System.Drawing.Size DragDelta;
         
-       
+        
 
         public NodeCollectionDiagram()
         {
@@ -60,6 +65,8 @@ namespace cbox.modelling
 
             Controls.Add(this.VScrollBar);
             Controls.Add(this.HScrollBar);
+
+            InsertPosition = new Point(200, 200);
 
             // setup events:
             this.HScrollBar.ValueChanged += HandleScrolling;
@@ -92,6 +99,9 @@ namespace cbox.modelling
                     Reload();
 
                 this.Invalidate();
+
+                // invalidate on future changes:
+                this.NodeCollection.Changed += Reload;
             }
         }
 
@@ -124,6 +134,9 @@ namespace cbox.modelling
 
             // update size of diagram:
             UpdateSize();
+
+            // reload triggers invalidation:
+            Invalidate();
         }
 
 
@@ -482,7 +495,6 @@ namespace cbox.modelling
                 Height);
 
             Invalidate();
-            //Console.WriteLine(Viewport);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -553,5 +565,19 @@ namespace cbox.modelling
         }
 
 
+
+        public void NewNode(string type)
+        {
+            // create a node in the defautl position:
+            var node = new Node(type, type)
+            {
+                PosX = InsertPosition.X + Viewport.X,
+                PosY = InsertPosition.Y + Viewport.Y
+            };
+
+            InsertPosition.Offset(INSERT_OFFSET, INSERT_OFFSET);
+
+            NodeCollection.Add(node);
+        }
     }
 }

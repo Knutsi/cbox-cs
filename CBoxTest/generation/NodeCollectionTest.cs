@@ -16,6 +16,7 @@ namespace CBoxTest
         public void NodeManipulationTest()
         {
             NodeManipulation(null);
+
         }
 
         [TestMethod]

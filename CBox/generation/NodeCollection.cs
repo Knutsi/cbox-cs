@@ -10,6 +10,9 @@ using System.Runtime.Serialization;
 
 namespace cbox.generation
 {
+    public delegate void CollectionChangedEvent();
+    public delegate void BuildtEvent();
+
     public class NodeCollection : IdentProvider
     {
         public string Ident;
@@ -20,6 +23,8 @@ namespace cbox.generation
 
         public List<Node> Nodes = new List<Node>();
 
+        public event CollectionChangedEvent Changed;
+        public event BuildtEvent Built;
 
         /// <summary>
         /// The sequence the nodes are executed in.
@@ -60,6 +65,7 @@ namespace cbox.generation
             set
             {
                 StartNodeIdent = value.Ident;
+                FireChangedEvent();
             }
         }
 
@@ -74,9 +80,22 @@ namespace cbox.generation
             set
             {
                 EndNodeIdent = value.Ident;
+                FireChangedEvent();
             }
         }
 
+
+        public void FireChangedEvent()
+        {
+            if (Changed != null)
+                Changed();
+        }
+
+        private void FireBuildEvent()
+        {
+            if (Built != null)
+                Built();
+        }
 
         /// <summary>
         /// Adds a node to the model.
@@ -90,6 +109,8 @@ namespace cbox.generation
 
             if(invalidate)
                 Invalidate();
+
+            FireChangedEvent();
         }
 
         public void Add(bool invalidate, params Node[] nodes)
@@ -99,6 +120,8 @@ namespace cbox.generation
 
             if(invalidate)
                 Invalidate();
+
+            FireChangedEvent();
         }
 
         /// <summary>
@@ -122,11 +145,16 @@ namespace cbox.generation
 
             if(invalidate)
                 Invalidate();
+
+
+            FireChangedEvent();
         }
 
         private void AddProblemSet(ProblemSet problem_set)
         {
             this.ProblemSets.Add(problem_set);
+
+            FireChangedEvent();
         }
 
         /// <summary>
@@ -238,7 +266,12 @@ namespace cbox.generation
 
             if(Issues.Valid)
                 UpdateBuildPaths();
+
+            // fire event to tell we might be updated:
+            FireBuildEvent();
         }
+
+
 
         /// <summary>
         /// Evaluates the integrity of the nods.  All sockets must be connected. No nodes except
