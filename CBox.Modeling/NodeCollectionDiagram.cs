@@ -12,6 +12,8 @@ using cbox.generation;
 
 namespace cbox.modelling
 {
+    public delegate void SelectionChangedEvent();
+
     public enum DragOperation
     {
         MOVE, CONNECT, PAN, SELECT
@@ -25,6 +27,8 @@ namespace cbox.modelling
     public class NodeCollectionDiagram : Control
     {
         private const int INSERT_OFFSET = 30;
+
+        public event SelectionChangedEvent SelectionChanged;
 
         private cbox.generation.NodeCollection _NodeCollection;
         public List<IDiagramComponent> DiagramComponents;
@@ -171,6 +175,8 @@ namespace cbox.modelling
                         if(!SelectedNodes.Contains(node))
                             SelectedNodes = new List<Node> { node };
                     }
+
+                    FireSelectionChangedEvent();
                 }
             }
 
@@ -253,6 +259,7 @@ namespace cbox.modelling
                             select n;
 
                 SelectedNodes = nodes.ToList();
+                FireSelectionChangedEvent();
             }
 
             // are we panning, and need to pan?
@@ -544,6 +551,12 @@ namespace cbox.modelling
             }
         }
 
+        internal void FireSelectionChangedEvent() 
+        {
+            if(SelectionChanged != null)
+                SelectionChanged();
+        }
+
 
         public void SelectAll()
         {
@@ -552,6 +565,7 @@ namespace cbox.modelling
                 SelectedNodes.Add(node);
 
             Invalidate();
+            FireSelectionChangedEvent();
         }
 
 
@@ -562,6 +576,7 @@ namespace cbox.modelling
 
             Reload();
             Invalidate();
+            FireSelectionChangedEvent();
         }
 
 
