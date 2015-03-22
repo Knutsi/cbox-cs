@@ -21,11 +21,10 @@ namespace cbox.generation.nodetype
         internal Node _ParentNode;
 
         private BranchMode _Mode;
-        public ushort N = 1;
+        public short N = 1;
 
         public OutputSocket GuaranteedSocket;
         public List<BranchDataSocketEntry> PossibleSockets = new List<BranchDataSocketEntry>();
-
 
         public void AddPossibleSocket(BranchDataSocketEntry entry)
         {
@@ -33,7 +32,7 @@ namespace cbox.generation.nodetype
             entry.Socket.ParentNode = ParentNode;
 
             // ensure socket has the correct type for current mode:
-            UpdateSocketTypes();  
+            UpdateSocketTypes();
         }
 
 

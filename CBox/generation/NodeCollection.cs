@@ -85,11 +85,13 @@ namespace cbox.generation
         }
 
 
-        public void FireChangedEvent()
+        public void FireChangedEvent(Node n=null)
         {
             if (Changed != null)
                 Changed();
         }
+
+        //public void FireChangedEvent(Node n) { FireChangedEvent(); } // compatbility with node changed delegate
 
         private void FireBuildEvent()
         {
@@ -110,8 +112,12 @@ namespace cbox.generation
             if(invalidate)
                 Invalidate();
 
+            // subsscribe to future events:
+            node.Changed += FireChangedEvent;
+
             FireChangedEvent();
         }
+
 
         public void Add(bool invalidate, params Node[] nodes)
         {
@@ -476,6 +482,7 @@ namespace cbox.generation
             foreach (var node in Nodes)
             {
                 node.ParentComponent = this;
+                node.Changed += FireChangedEvent;
                 node.UpdateInternals();
             }
 

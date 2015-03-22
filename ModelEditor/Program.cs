@@ -30,7 +30,18 @@ namespace ModelEditor
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainWindow = new EditorWindow();
+
+            MainWindow.Shown += MainWindow_Shown;
+
             Application.Run(MainWindow);
+        }
+
+        static void MainWindow_Shown(object sender, EventArgs e)
+        {
+            // show debug windows, if settings apply:
+            if (Properties.Settings.Default.debug_open_editortest)
+                (new EditorsTest()).Show();
+
         }
 
         private static Model _CurrentModel;

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using cbox.generation;
 using cbox.generation.nodetype;
 using cbox.modelling;
+using cbox.modelling.editors;
 
 namespace ModelEditor
 {
@@ -33,10 +34,14 @@ namespace ModelEditor
             Diagram = new NodeCollectionDiagram() { Dock = DockStyle.Fill };
             mainSplitLayout.Panel1.Controls.Add(Diagram);
 
+            // make diagram react to nodes being selected:
+            Diagram.SelectionChanged += Diagram_SelectionChanged;
+
             // new model by default:
             Program.NewModel();
         }
 
+ 
         /// <summary>
         /// Sets up a menu for easily opening recent files.
         /// </summary>
@@ -147,6 +152,46 @@ namespace ModelEditor
         {
             var item = (ToolStripMenuItem)sender;
             Diagram.NewNode((string)item.Tag);
+        }
+
+        void Diagram_SelectionChanged()
+        {
+            if (Diagram.SelectedNodes.Count == 1)
+            {
+                // only one node?  Fill panel with editor:
+                var editor = new NodeEditor()
+                {
+                    Node = Diagram.SelectedNodes.First(),
+                    Dock = DockStyle.Fill
+                };
+
+                mainSplitLayout.Panel2.Controls.Clear();
+                mainSplitLayout.Panel2.Controls.Add(editor);
+            }
+            else if(Diagram.SelectedNodes.Count > 1)
+            {
+                // multiple nodes?  Use flow layout: 
+
+                // clear current editors:
+                editorFlowLayout.Controls.Clear();
+                mainSplitLayout.Panel2.Controls.Clear();
+                mainSplitLayout.Panel2.Controls.Add(editorFlowLayout);
+
+                // create an editor for each selected node
+                foreach (var node in Diagram.SelectedNodes)
+                {
+                    var editor = new NodeEditor() { Node = node };
+                    editorFlowLayout.Controls.Add(editor);
+                }
+
+            } else
+            {
+                // no nodes? dont show anything:
+                mainSplitLayout.Panel2.Controls.Clear();
+            }
+
+            
+            
         }
 
 

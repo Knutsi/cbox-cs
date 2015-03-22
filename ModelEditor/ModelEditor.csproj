@@ -44,15 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditorWindow.cs">
+    <Compile Include="forms\debug\EditorsTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditorWindow.Designer.cs">
+    <Compile Include="forms\debug\EditorsTest.Designer.cs">
+      <DependentUpon>EditorsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\EditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\EditorWindow.Designer.cs">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EditorWindow.resx">
+    <EmbeddedResource Include="forms\debug\EditorsTest.resx">
+      <DependentUpon>EditorsTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

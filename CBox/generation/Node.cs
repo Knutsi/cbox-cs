@@ -10,15 +10,20 @@ using cbox.generation.nodetype;
 
 namespace cbox.generation
 {
+    public delegate void NodeChangedEvent(Node node);
+
     public class Node
     {
+        public event NodeChangedEvent Changed;
+
         public int Ident;
         public string Title;
 
         public int PosX;
         public int PosY;
 
-        public List<string> ProvidesTags = new List<string>();
+        public List<string> Tags = new List<string>();
+        public string Comment { get; set; }
 
         public string Type { get; set; }
         public string XmlData { get; set; }
@@ -83,12 +88,16 @@ namespace cbox.generation
         {
             this.OutputSockets.Add(socket);
             socket.ParentNode = this;
+
+            FireChangedEvent();
         }
 
         public void RemoveSocket(OutputSocket socket)
         {
             this.OutputSockets.Remove(socket);
             socket.ParentNode = null;
+
+            FireChangedEvent();
         }
 
 
@@ -103,6 +112,7 @@ namespace cbox.generation
 
             // this will fix handler and it's data, and set sockets to correct home:
             UpdateInternals();
+            FireChangedEvent();
         }
 
         /// <summary>
@@ -153,6 +163,12 @@ namespace cbox.generation
             Handler.Describe(ctx);
         }
 
+
+        public void FireChangedEvent()
+        {
+            if (Changed != null)
+                Changed(this);
+        }
     }
 
 }

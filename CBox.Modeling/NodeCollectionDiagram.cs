@@ -58,7 +58,7 @@ namespace cbox.modelling
         internal IDiagramComponent SelectedComponent { get; set; }
         //public Node SelectedNode { get; set; }
         public OutputSocket SelectedSocket { get; set; }
-        internal List<Node> SelectedNodes = new List<Node>();
+        public List<Node> SelectedNodes = new List<Node>();
         private System.Drawing.Size DragDelta;
         
         
@@ -259,7 +259,6 @@ namespace cbox.modelling
                             select n;
 
                 SelectedNodes = nodes.ToList();
-                FireSelectionChangedEvent();
             }
 
             // are we panning, and need to pan?
@@ -422,6 +421,8 @@ namespace cbox.modelling
                 NodeCollection.Invalidate();
             }
 
+            if(CurrentDragOperation == DragOperation.SELECT)
+                FireSelectionChangedEvent();
             
             Reload();
             Invalidate();
@@ -573,6 +574,8 @@ namespace cbox.modelling
         {
             foreach (var node in SelectedNodes)
                 NodeCollection.Remove(node);
+
+            SelectedNodes = new List<Node>();
 
             Reload();
             Invalidate();

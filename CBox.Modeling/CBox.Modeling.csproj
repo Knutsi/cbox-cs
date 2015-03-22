@@ -44,6 +44,19 @@
     <Compile Include="Components\ConnectionComponent.cs" />
     <Compile Include="Components\DragLineComponent.cs" />
     <Compile Include="Components\IDiagramComponent.cs" />
+    <Compile Include="inner_editors\BranchNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="inner_editors\BranchNodeEditor.Designer.cs">
+      <DependentUpon>BranchNodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="inner_editors\IInnerEditor.cs" />
+    <Compile Include="NodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NodeEditor.Designer.cs">
+      <DependentUpon>NodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NodeCollectionDiagram.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -59,6 +72,15 @@
       <Name>CBox</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="inner_editors\BranchNodeEditor.resx">
+      <DependentUpon>BranchNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NodeEditor.resx">
+      <DependentUpon>NodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

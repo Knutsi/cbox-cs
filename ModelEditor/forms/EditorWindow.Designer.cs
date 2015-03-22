@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.mainSplitLayout = new System.Windows.Forms.SplitContainer();
+            this.editorFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +59,7 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllEditorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitLayout)).BeginInit();
+            this.mainSplitLayout.Panel2.SuspendLayout();
             this.mainSplitLayout.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,9 +69,23 @@
             this.mainSplitLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainSplitLayout.Location = new System.Drawing.Point(0, 24);
             this.mainSplitLayout.Name = "mainSplitLayout";
+            // 
+            // mainSplitLayout.Panel2
+            // 
+            this.mainSplitLayout.Panel2.Controls.Add(this.editorFlowLayout);
             this.mainSplitLayout.Size = new System.Drawing.Size(1161, 598);
             this.mainSplitLayout.SplitterDistance = 915;
             this.mainSplitLayout.TabIndex = 1;
+            // 
+            // editorFlowLayout
+            // 
+            this.editorFlowLayout.AutoScroll = true;
+            this.editorFlowLayout.AutoSize = true;
+            this.editorFlowLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editorFlowLayout.Location = new System.Drawing.Point(0, 0);
+            this.editorFlowLayout.Name = "editorFlowLayout";
+            this.editorFlowLayout.Size = new System.Drawing.Size(242, 598);
+            this.editorFlowLayout.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -295,6 +311,8 @@
             this.Name = "EditorWindow";
             this.Text = "EditorWindow";
             this.Load += new System.EventHandler(this.EditorWindow_Load);
+            this.mainSplitLayout.Panel2.ResumeLayout(false);
+            this.mainSplitLayout.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitLayout)).EndInit();
             this.mainSplitLayout.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -335,6 +353,7 @@
         private System.Windows.Forms.ToolStripMenuItem outputDescriptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openMostRecentMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel editorFlowLayout;
 
 
     }
