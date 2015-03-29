@@ -323,8 +323,22 @@ namespace ModelEditor
 
         private void newSubmodelItem_Click(object sender, EventArgs e)
         {
-            var comp = new NodeCollection();
+            // create a simple node collection:
+            var comp = new NodeCollection() { IsRoot = false };
+
+            var start_node = new Node("Start", BaseType.TYPE_IDENT) { PosX = 100, PosY = 200 };
+            var end_node = new Node("End", BaseType.TYPE_IDENT) { PosX = 500, PosY = 200 };
+            var value_node = new Node("Values", SetValue.TYPE_IDENT) { PosX = 300, PosY = 200 };
+            comp.Add(false, start_node, value_node, end_node);
+            
+            comp.StartNode = start_node;
+            comp.EndNode = end_node;
+
+            start_node.FirstOutputSocket.Connect(value_node);
+            value_node.FirstOutputSocket.Connect(end_node);
+
             Model.AddComponent(comp);
+            Model.Invalidate();
         }
 
         private void removeSubmodelItem_Click(object sender, EventArgs e)
