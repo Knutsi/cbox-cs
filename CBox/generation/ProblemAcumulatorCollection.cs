@@ -69,7 +69,7 @@ namespace cbox.generation
                 var issues = new List<IssueReportEntry>();
 
                 if (IsCircular)
-                    issues.Add(new IssueReportEntry()
+                    issues.Add(new IssueReportEntry(StartNode.ParentComponent)
                     {
                         IssueType = IssueType.PROBLEM_CIRCULAR,
                         ObjectType = ObjectType.NODE,
@@ -77,7 +77,7 @@ namespace cbox.generation
                     });
 
                 if(EndNodeFound || EnderCount > 1)
-                    issues.Add(new IssueReportEntry()
+                    issues.Add(new IssueReportEntry(StartNode.ParentComponent)
                     {
                         IssueType = IssueType.PROBLEM_NO_END,
                         ObjectType = ObjectType.NODE,

@@ -36,9 +36,12 @@ namespace cbox.generation
 
         public string CustomMessage = null;
 
+        public NodeCollection SourceCollection;
 
-        public IssueReportEntry(string custom_message=null)
+        public IssueReportEntry(NodeCollection collection, string custom_message=null)
         {
+            this.SourceCollection = collection;
+
             if (custom_message != null)
                 CustomMessage = custom_message;
         }

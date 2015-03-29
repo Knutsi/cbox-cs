@@ -313,7 +313,7 @@ namespace cbox.generation
                 if (socket.TargetNode == null && socket.ParentNode != EndNode)
                 {
                     this.Issues.HasUnconnectedNodes = true;
-                    this.Issues.Add(new IssueReportEntry()
+                    this.Issues.Add(new IssueReportEntry(this)
                     {
                         IssueType = IssueType.SOCKET_DISCONNECTED,
                         ObjectIdent = socket.ParentNode.Ident
@@ -327,7 +327,7 @@ namespace cbox.generation
                 if (node.OutputSockets.Count <= 0 && node != EndNode)
                 {
                     this.Issues.NodeMissingOutputSocket = true;
-                    this.Issues.Add(new IssueReportEntry()
+                    this.Issues.Add(new IssueReportEntry(this)
                     {
                         IssueType = IssueType.NODE_MISSING_OUTPUT_SOCKET,
                         ObjectIdent = node.Ident
@@ -416,7 +416,7 @@ namespace cbox.generation
 
             if (edges.Count > 0) 
             {
-                this.Issues.Add(new IssueReportEntry() { IssueType = IssueType.CYCLIC_CONNECTION });
+                this.Issues.Add(new IssueReportEntry(this) { IssueType = IssueType.CYCLIC_CONNECTION });
                 this.Issues.IsCyclic = true;
             }   
             else
