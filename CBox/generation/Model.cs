@@ -7,10 +7,19 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
 
+using cbox.model;
+
 namespace cbox.generation
 {
+
+    public delegate void ComponentAddedEvent(NodeCollection collection);
+    public delegate void ComponentRemovedEvent(NodeCollection collection);
+
     public class Model : IdentProvider
     {
+        public event ComponentAddedEvent ComponentAdded;
+        public event ComponentRemovedEvent ComponentRemoved;
+
         public string Ident { get; set; }
 
         public List<NodeCollection> Components { get; set; }
@@ -51,15 +60,32 @@ namespace cbox.generation
 
         public void AddComponent(NodeCollection comp)
         {
+            // check that component is not alreay here:
+            if (Components.Contains(comp))
+                throw new Exception("Adding component that already exists in model");
+
+            // add component, and make it know it's relations:
             this.Components.Add(comp);
             comp.ParentModel = this;
+
+            // fire event:
+            if (ComponentAdded != null)
+                ComponentAdded(comp);
         }
 
 
         public void RemoveComponent(NodeCollection comp)
         {
+            // we cannot remove root:
+            if (comp.IsRoot)
+                throw new Exception("Cannot remove root component");
+
             this.Components.Remove(comp);
             comp.ParentModel = null;
+
+            // fire event:
+            if (ComponentRemoved != null)
+                ComponentRemoved(comp);
         }
 
 
@@ -129,6 +155,24 @@ namespace cbox.generation
                     return ncol;
 
             return null;
+        }
+
+        public Case RandomCase
+        {
+            get
+            {
+                var rand = new Random();
+                var paths = RootComponent.BuildPaths;
+
+                if (paths != null)
+                {
+                    var path = paths[rand.Next(paths.Count)];
+                    return RootComponent.Execute(path).Case;
+                }
+                else
+                    return null;
+
+            }
         }
     }
 }
