@@ -80,6 +80,7 @@
             this.outputPanel = new System.Windows.Forms.TabPage();
             this.outputView1 = new ModelEditor.forms.OutputView();
             this.issuesPanel = new System.Windows.Forms.TabPage();
+            this.issuesView1 = new ModelEditor.forms.IssuesView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -91,6 +92,7 @@
             this.propertiesPanel.SuspendLayout();
             this.pathsPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
+            this.issuesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -293,26 +295,26 @@
             // newSubmodelItem
             // 
             this.newSubmodelItem.Name = "newSubmodelItem";
-            this.newSubmodelItem.Size = new System.Drawing.Size(152, 22);
+            this.newSubmodelItem.Size = new System.Drawing.Size(148, 22);
             this.newSubmodelItem.Text = "Create new";
             this.newSubmodelItem.Click += new System.EventHandler(this.newSubmodelItem_Click);
             // 
             // removeSubmodelItem
             // 
             this.removeSubmodelItem.Name = "removeSubmodelItem";
-            this.removeSubmodelItem.Size = new System.Drawing.Size(152, 22);
+            this.removeSubmodelItem.Size = new System.Drawing.Size(148, 22);
             this.removeSubmodelItem.Text = "Remove";
             this.removeSubmodelItem.Click += new System.EventHandler(this.removeSubmodelItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(145, 6);
             // 
             // extractSubmodelItem
             // 
             this.extractSubmodelItem.Name = "extractSubmodelItem";
-            this.extractSubmodelItem.Size = new System.Drawing.Size(152, 22);
+            this.extractSubmodelItem.Size = new System.Drawing.Size(148, 22);
             this.extractSubmodelItem.Text = "Extract to new";
             // 
             // viewToolStripMenuItem
@@ -509,6 +511,7 @@
             // 
             // issuesPanel
             // 
+            this.issuesPanel.Controls.Add(this.issuesView1);
             this.issuesPanel.Location = new System.Drawing.Point(23, 4);
             this.issuesPanel.Name = "issuesPanel";
             this.issuesPanel.Padding = new System.Windows.Forms.Padding(3);
@@ -516,6 +519,14 @@
             this.issuesPanel.TabIndex = 2;
             this.issuesPanel.Text = "Issues";
             this.issuesPanel.UseVisualStyleBackColor = true;
+            // 
+            // issuesView1
+            // 
+            this.issuesView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.issuesView1.Location = new System.Drawing.Point(3, 3);
+            this.issuesView1.Name = "issuesView1";
+            this.issuesView1.Size = new System.Drawing.Size(320, 559);
+            this.issuesView1.TabIndex = 0;
             // 
             // EditorWindow
             // 
@@ -542,6 +553,7 @@
             this.propertiesPanel.ResumeLayout(false);
             this.pathsPanel.ResumeLayout(false);
             this.outputPanel.ResumeLayout(false);
+            this.issuesPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,6 +612,7 @@
         private System.Windows.Forms.ToolStripMenuItem removeSubmodelItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem extractSubmodelItem;
+        private forms.IssuesView issuesView1;
 
 
     }

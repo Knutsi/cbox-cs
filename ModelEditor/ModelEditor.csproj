@@ -56,6 +56,12 @@
     <Compile Include="forms\EditorWindow.Designer.cs">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\IssuesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\IssuesView.Designer.cs">
+      <DependentUpon>IssuesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\OutputView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\IssuesView.resx">
+      <DependentUpon>IssuesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\OutputView.resx">
       <DependentUpon>OutputView.cs</DependentUpon>
