@@ -13,6 +13,7 @@ using cbox.generation.nodetype;
 namespace ModelEditor
 {
     public delegate void RecentFilesChangedEventHandler();
+    public delegate void ModelLoadedEventHandler();
 
     static class Program
     {
@@ -20,6 +21,7 @@ namespace ModelEditor
         public static string CurrentFilePath;
 
         public static event RecentFilesChangedEventHandler RecentFilesChanged;
+        public static event ModelLoadedEventHandler ModelLoaded;
 
         /// <summary>
         /// The main entry point for the application.
@@ -54,7 +56,12 @@ namespace ModelEditor
             set
             {
                 _CurrentModel = value;
-                Program.MainWindow.Model = CurrentModel;
+                //Program.MainWindow.Model = CurrentModel;
+
+                if (ModelLoaded != null)
+                    ModelLoaded();
+
+                CurrentModel.Invalidate();
             }
         }
 
@@ -93,6 +100,8 @@ namespace ModelEditor
             comp.Invalidate();
 
             CurrentModel = model;
+            CurrentFilePath = null;
+            MainWindow.Text = "(New model)";
         }
 
         /// <summary>

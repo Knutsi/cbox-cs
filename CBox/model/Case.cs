@@ -122,7 +122,8 @@ namespace cbox.model
         public string toJSON() {
             using (var mstream = new MemoryStream())
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Case));
+                var settings = new DataContractJsonSerializerSettings() { UseSimpleDictionaryFormat = true };
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Case), settings);
 
                 ser.WriteObject(mstream, this);
                 

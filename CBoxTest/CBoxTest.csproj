@@ -56,6 +56,7 @@
     <Compile Include="generation\SetterTest.cs" />
     <Compile Include="generation\ProblemStartTest.cs" />
     <Compile Include="generation\IncludeNodeTest.cs" />
+    <Compile Include="generation\ModelTest.cs" />
     <Compile Include="model\OntologyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

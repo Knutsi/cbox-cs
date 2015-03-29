@@ -56,13 +56,32 @@
     <Compile Include="forms\EditorWindow.Designer.cs">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\OutputView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\OutputView.Designer.cs">
+      <DependentUpon>OutputView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\PathsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\PathsView.Designer.cs">
+      <DependentUpon>PathsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="support\SubModelTabEntry.cs" />
     <EmbeddedResource Include="forms\debug\EditorsTest.resx">
       <DependentUpon>EditorsTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\OutputView.resx">
+      <DependentUpon>OutputView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\PathsView.resx">
+      <DependentUpon>PathsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

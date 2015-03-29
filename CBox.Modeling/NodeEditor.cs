@@ -65,6 +65,10 @@ namespace cbox.modelling.editors
                     inner_editor = new BranchNodeEditor();
                     break;
 
+                case SetValue.TYPE_IDENT:
+                    inner_editor = new SetValuesNodeEditor();
+                    break;
+
                 default:
                     return;
             }

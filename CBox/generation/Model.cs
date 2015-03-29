@@ -87,6 +87,19 @@ namespace cbox.generation
             if (ComponentRemoved != null)
                 ComponentRemoved(comp);
         }
+        
+        /// <summary>
+        /// Returns a list of all submodels (components that are not flagged as root).
+        /// </summary>
+        public List<NodeCollection> Submodels
+        {
+            get
+            {
+                return (from c in Components
+                        where c.IsRoot == false
+                        select c).ToList();
+            }
+        }
 
 
         public string ToXML()

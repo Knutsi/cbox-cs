@@ -12,10 +12,12 @@ namespace cbox.generation
 {
     public delegate void CollectionChangedEvent();
     public delegate void BuildtEvent();
+    public delegate void InvalidatedEvent();
+    public delegate void IdentChangedEvent(string ident);
 
     public class NodeCollection : IdentProvider
     {
-        public string Ident;
+
 
         public bool IsRoot = false;
         private int StartNodeIdent;
@@ -25,6 +27,8 @@ namespace cbox.generation
 
         public event CollectionChangedEvent Changed;
         public event BuildtEvent Built;
+        public event InvalidatedEvent Invalidated;
+        public event IdentChangedEvent IdentChanged;
 
         /// <summary>
         /// The sequence the nodes are executed in.
@@ -46,7 +50,22 @@ namespace cbox.generation
 
         [XmlIgnore]
         public IssueReport Issues = null;
-        
+
+        public string Ident { 
+            get 
+            {
+                return _Ident;
+            }
+
+            set
+            {
+                _Ident = value;
+                if (IdentChanged != null)
+                    IdentChanged(value);
+            } 
+        }
+        private string _Ident;
+
         [XmlIgnore]
         public Model ParentModel
         {
@@ -275,6 +294,10 @@ namespace cbox.generation
 
             // fire event to tell we might be updated:
             FireBuildEvent();
+
+            // fire invalidate event:
+            if (Invalidated != null)
+                Invalidated();
         }
 
 

@@ -3,15 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+
 namespace cbox.model
 {
+    [DataContract]
+    [Serializable]
     public class Problem
     {
+
         public Case ParentCase;
 
+        [DataMember]
         public string Ident { get; set; }
+
+        [DataMember]
         public string Title { get; set; }
+
+        [DataMember]
         public List<TestResult> TestResults{ get; set; }
+
+        [DataMember]
         public string[] Classes { get; set; }
 
         public Problem()
@@ -59,13 +72,15 @@ namespace cbox.model
             get { return resultWithKey(key); }
         }
 
-
+        [DataMember]
         public bool IsRoot
         {
             get
             {
                 return this == this.ParentCase.RootProblem;
             }
+
+            set { }
         }
     }
 }

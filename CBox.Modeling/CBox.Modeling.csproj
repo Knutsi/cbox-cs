@@ -41,9 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionPropertiesEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CollectionPropertiesEditor.Designer.cs">
+      <DependentUpon>CollectionPropertiesEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\ConnectionComponent.cs" />
     <Compile Include="Components\DragLineComponent.cs" />
     <Compile Include="Components\IDiagramComponent.cs" />
+    <Compile Include="inner_editors\SetValuesNodeEntryEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="inner_editors\SetValuesNodeEntryEditor.Designer.cs">
+      <DependentUpon>SetValuesNodeEntryEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="inner_editors\BranchNodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -51,6 +63,12 @@
       <DependentUpon>BranchNodeEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="inner_editors\IInnerEditor.cs" />
+    <Compile Include="inner_editors\SetValuesNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="inner_editors\SetValuesNodeEditor.Designer.cs">
+      <DependentUpon>SetValuesNodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,8 +91,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CollectionPropertiesEditor.resx">
+      <DependentUpon>CollectionPropertiesEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inner_editors\SetValuesNodeEntryEditor.resx">
+      <DependentUpon>SetValuesNodeEntryEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="inner_editors\BranchNodeEditor.resx">
       <DependentUpon>BranchNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inner_editors\SetValuesNodeEditor.resx">
+      <DependentUpon>SetValuesNodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NodeEditor.resx">
       <DependentUpon>NodeEditor.cs</DependentUpon>

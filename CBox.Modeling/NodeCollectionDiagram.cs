@@ -471,6 +471,8 @@ namespace cbox.modelling
             var nodes = from c in DiagramComponents 
                         where c.Type == DiagramComponentType.NODE 
                         select c;
+            if (nodes.Count() <= 0)
+                return;
 
             // calculate new size:
             var leftmost = (from c in nodes

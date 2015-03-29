@@ -66,7 +66,7 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.innerEditorPanel);
-            this.splitContainer.Size = new System.Drawing.Size(205, 441);
+            this.splitContainer.Size = new System.Drawing.Size(280, 441);
             this.splitContainer.SplitterDistance = 157;
             this.splitContainer.TabIndex = 0;
             // 
@@ -80,7 +80,7 @@
             this.panel1.Controls.Add(this.boundLink);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(205, 58);
+            this.panel1.Size = new System.Drawing.Size(280, 58);
             this.panel1.TabIndex = 7;
             // 
             // typeLabel
@@ -100,7 +100,7 @@
             this.titleInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleInput.Location = new System.Drawing.Point(6, 21);
             this.titleInput.Name = "titleInput";
-            this.titleInput.Size = new System.Drawing.Size(193, 31);
+            this.titleInput.Size = new System.Drawing.Size(268, 31);
             this.titleInput.TabIndex = 0;
             // 
             // boundLink
@@ -108,7 +108,7 @@
             this.boundLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boundLink.AutoSize = true;
             this.boundLink.Enabled = false;
-            this.boundLink.Location = new System.Drawing.Point(151, 5);
+            this.boundLink.Location = new System.Drawing.Point(226, 5);
             this.boundLink.Name = "boundLink";
             this.boundLink.Size = new System.Drawing.Size(51, 13);
             this.boundLink.TabIndex = 5;
@@ -120,7 +120,7 @@
             // 
             this.expandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.expandButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expandButton.Location = new System.Drawing.Point(161, 116);
+            this.expandButton.Location = new System.Drawing.Point(236, 116);
             this.expandButton.Name = "expandButton";
             this.expandButton.Size = new System.Drawing.Size(41, 21);
             this.expandButton.TabIndex = 6;
@@ -135,7 +135,7 @@
             this.commentInput.Location = new System.Drawing.Point(6, 116);
             this.commentInput.Multiline = true;
             this.commentInput.Name = "commentInput";
-            this.commentInput.Size = new System.Drawing.Size(146, 36);
+            this.commentInput.Size = new System.Drawing.Size(221, 36);
             this.commentInput.TabIndex = 4;
             // 
             // label2
@@ -153,7 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tagInput.Location = new System.Drawing.Point(6, 78);
             this.tagInput.Name = "tagInput";
-            this.tagInput.Size = new System.Drawing.Size(193, 20);
+            this.tagInput.Size = new System.Drawing.Size(268, 20);
             this.tagInput.TabIndex = 2;
             // 
             // label1
@@ -171,7 +171,7 @@
             this.innerEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.innerEditorPanel.Location = new System.Drawing.Point(0, 0);
             this.innerEditorPanel.Name = "innerEditorPanel";
-            this.innerEditorPanel.Size = new System.Drawing.Size(205, 280);
+            this.innerEditorPanel.Size = new System.Drawing.Size(280, 280);
             this.innerEditorPanel.TabIndex = 0;
             // 
             // NodeEditor
@@ -180,7 +180,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer);
             this.Name = "NodeEditor";
-            this.Size = new System.Drawing.Size(205, 441);
+            this.Size = new System.Drawing.Size(280, 441);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
