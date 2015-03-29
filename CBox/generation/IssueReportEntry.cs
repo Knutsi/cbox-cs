@@ -46,6 +46,17 @@ namespace cbox.generation
                 CustomMessage = custom_message;
         }
 
+        public Node Node
+        {
+            get
+            {
+                if (ObjectType == ObjectType.NODE)
+                    return SourceCollection.NodeByIdent(ObjectIdent);
+                else
+                    return null;
+            }
+        }
+
         public string Message
         {
             get
@@ -59,6 +70,12 @@ namespace cbox.generation
                         return "Circular problem detected";
                     case IssueType.PROBLEM_NO_END:
                         return "Problem started, but has not end";
+                    case IssueType.CYCLIC_CONNECTION:
+                        return "Cyclic connections";
+                    case IssueType.SOCKET_DISCONNECTED:
+                        return "Socket disconnected";
+                    case IssueType.NODE_MISSING_OUTPUT_SOCKET:
+                        return "Node missing output socket";
                     default:
                         return "Unknown problem";
                 }
