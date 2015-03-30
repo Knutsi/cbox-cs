@@ -15,6 +15,8 @@ namespace cbox.model
 
     public class CBoxSystem
     {
+        public const string MODEL_REL_ONTOLOGY_PATH = @"\..\Default.cboxontology";
+
         // action data stored:
         public List<Diagnosis> Diagnosis = new List<Diagnosis>();
         public List<cbox.model.Form> Forms = new List<Form>();

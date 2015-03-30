@@ -346,6 +346,12 @@ namespace ModelEditor
             Model.RemoveComponent(CurrentCollection);
         }
 
+        private void openOntologyItem_Click(object sender, EventArgs e)
+        {
+            var props = new forms.OntologySettings();
+            props.ShowDialog();
+        }
+
 
 
     }

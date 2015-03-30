@@ -10,10 +10,13 @@ using cbox.generation;
 using cbox.model;
 using cbox.generation.nodetype;
 
+using ModelEditor.forms;
+
 namespace ModelEditor
 {
     public delegate void RecentFilesChangedEventHandler();
     public delegate void ModelLoadedEventHandler();
+    public delegate void OntologyLoadedEventHandler(bool autoreload);
 
     static class Program
     {
@@ -22,6 +25,9 @@ namespace ModelEditor
 
         public static event RecentFilesChangedEventHandler RecentFilesChanged;
         public static event ModelLoadedEventHandler ModelLoaded;
+        public static event OntologyLoadedEventHandler OntologyLoaded;
+
+        private static FileSystemWatcher OntologyFileWatcher;
 
         /// <summary>
         /// The main entry point for the application.
@@ -65,7 +71,15 @@ namespace ModelEditor
             }
         }
 
+        /// <summary>
+        /// The ontology being used.
+        /// </summary>
         public static Ontology CurrentOntology 
+        { 
+            get; set; 
+        }
+
+        public static string CurrentOntologyPath 
         { 
             get; set; 
         }
@@ -123,10 +137,14 @@ namespace ModelEditor
             CurrentFilePath = filepath;
             MainWindow.Text = CurrentFilePath;
 
+            // try to load default ontology:
+            LoadDefaultOntology();
+
             Console.WriteLine("Opened model {0}", filepath);
 
             // remember that we used this file:
             SaveToRecents(filepath);
+
             
         }
 
@@ -208,6 +226,65 @@ namespace ModelEditor
                 return list;
             }
         }
+
+
+        /// <summary>
+        /// Looks for an ontology in the default locations related to currently 
+        /// loaded file and loads the one it finds. 
+        /// </summary>
+        public static void LoadDefaultOntology()
+        {
+            var path_elements = Program.CurrentFilePath.Split(new char[] { '\\' });
+            var model_dir = "";
+            for (int i = 0; i < path_elements.Length - 1; i++)
+                model_dir += path_elements[i] + "\\";
+
+            var ontology_path = model_dir + CBoxSystem.MODEL_REL_ONTOLOGY_PATH;
+
+            // check that this file exists:
+            if (File.Exists(ontology_path))
+            {
+                LoadOntology(ontology_path);
+            }
+            else
+            {
+                var ontology_editor = new OntologySettings();
+                ontology_editor.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Loads and ontololgy
+        /// </summary>
+        /// <param name="filepath"></param>
+        public static void LoadOntology(string filepath, bool autoreload=false)
+        {
+            if (!File.Exists(filepath))
+                throw new Exception("Program.LoadOntology could not find file " + filepath);
+
+            Program.CurrentOntology = Ontology.LoadFromFile(filepath);
+            Program.CurrentOntologyPath = filepath;
+
+            // fire event, if it exists:
+            if (OntologyLoaded != null)
+                OntologyLoaded(autoreload);
+
+            // todo: liste for events on the file
+            if (OntologyFileWatcher != null)
+                OntologyFileWatcher.Changed -= Ontology_FileChanged;
+
+            OntologyFileWatcher = new FileSystemWatcher();
+            OntologyFileWatcher.Filter = filepath;
+            OntologyFileWatcher.Changed += Ontology_FileChanged;
+        }
+
+
+        static void Ontology_FileChanged(object sender, FileSystemEventArgs e)
+        {
+            Console.Out.WriteLine("Ontology changed - reloading");
+            LoadOntology(CurrentOntologyPath, true);
+        }
+
 
         public static void Quit()
         {

@@ -50,6 +50,12 @@
     <Compile Include="forms\debug\EditorsTest.Designer.cs">
       <DependentUpon>EditorsTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\OntologySettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\OntologySettings.Designer.cs">
+      <DependentUpon>OntologySettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\EditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\IssuesView.resx">
       <DependentUpon>IssuesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\OntologySettings.resx">
+      <DependentUpon>OntologySettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\OutputView.resx">
       <DependentUpon>OutputView.cs</DependentUpon>

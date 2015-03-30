@@ -34,6 +34,9 @@ namespace ModelEditor.forms
 
             set
             {
+
+
+
                 // unwire old events:
                 if(Model != null)
                     foreach (var comp in Model.Components)
@@ -41,10 +44,13 @@ namespace ModelEditor.forms
 
                 // set new model:
                 _Model = value;
+                if (value == null)
+                    return;
                 
                 // wire events for all node components:
-                foreach (var comp in Model.Components)
-                    comp.Invalidated += Reload;
+                if(Model.Components != null)
+                    foreach (var comp in Model.Components)
+                        comp.Invalidated += Reload;
 
                 Reload();
                 

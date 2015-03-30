@@ -36,6 +36,9 @@
             this.openMostRecentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.openOntologyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editOntologyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveACopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -118,6 +121,9 @@
             this.openMostRecentMenuItem,
             this.recentMenuItem,
             this.toolStripSeparator3,
+            this.openOntologyItem,
+            this.editOntologyItem,
+            this.toolStripSeparator9,
             this.saveMenuItem,
             this.saveACopyMenuItem,
             this.toolStripSeparator4,
@@ -161,6 +167,27 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(241, 6);
+            // 
+            // openOntologyItem
+            // 
+            this.openOntologyItem.Name = "openOntologyItem";
+            this.openOntologyItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.O)));
+            this.openOntologyItem.Size = new System.Drawing.Size(244, 22);
+            this.openOntologyItem.Text = "Ontology...";
+            this.openOntologyItem.Click += new System.EventHandler(this.openOntologyItem_Click);
+            // 
+            // editOntologyItem
+            // 
+            this.editOntologyItem.Enabled = false;
+            this.editOntologyItem.Name = "editOntologyItem";
+            this.editOntologyItem.Size = new System.Drawing.Size(244, 22);
+            this.editOntologyItem.Text = "Edit ontology";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(241, 6);
             // 
             // saveMenuItem
             // 
@@ -524,6 +551,7 @@
             // 
             this.issuesView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.issuesView1.Location = new System.Drawing.Point(3, 3);
+            this.issuesView1.Model = null;
             this.issuesView1.Name = "issuesView1";
             this.issuesView1.Size = new System.Drawing.Size(320, 559);
             this.issuesView1.TabIndex = 0;
@@ -613,6 +641,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem extractSubmodelItem;
         private forms.IssuesView issuesView1;
+        private System.Windows.Forms.ToolStripMenuItem openOntologyItem;
+        private System.Windows.Forms.ToolStripMenuItem editOntologyItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
 
 
     }
