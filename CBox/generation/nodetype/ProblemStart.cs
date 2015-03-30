@@ -36,6 +36,7 @@ namespace cbox.generation.nodetype
             var prob = new Problem();
             prob.Title = this.Node.Title;
             prob.Ident = this.Node.Title;
+            prob.Classes = Data.Classes;
 
             ctx.RegisterProblem(this.Node, prob);
         }

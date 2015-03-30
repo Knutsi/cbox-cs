@@ -25,7 +25,7 @@ namespace cbox.model
         public List<TestResult> TestResults{ get; set; }
 
         [DataMember]
-        public string[] Classes { get; set; }
+        public List<string> Classes { get; set; }
 
         public Problem()
         {

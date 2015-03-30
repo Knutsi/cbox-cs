@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using cbox.generation.nodetype;
+
 namespace cbox.generation
 {
     public class ProblemSet
@@ -26,6 +28,16 @@ namespace cbox.generation
 
                 return newlist;
             }
+        }
+
+        public List<string> Classes
+        {
+            get 
+            {
+                var data = StartNode.HandlerData as ProblemStartData;
+                return data.Classes;
+            }
+            
         }
     }
 }
