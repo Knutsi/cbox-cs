@@ -20,8 +20,8 @@ namespace cbox.generation
 
 
         public bool IsRoot = false;
-        private int StartNodeIdent;
-        private int EndNodeIdent;
+        public int StartNodeIdent;
+        public int EndNodeIdent;
 
         public List<Node> Nodes = new List<Node>();
 

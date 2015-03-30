@@ -30,6 +30,10 @@ namespace CBoxTest
             // alter E to be EndProblem node:
             comp.NodesByTitle("E").First().ChangeType(ProblemEnd.TYPE_IDENT);
 
+            // assert start and end nodes exists:
+            Assert.IsTrue(model.RootComponent.StartNode != null);
+            Assert.IsTrue(model.RootComponent.EndNode != null);
+
             // write a component to drive:
             var tfile_path = Path.GetTempFileName();
             Console.WriteLine("Tempfile: " + tfile_path);
@@ -58,8 +62,14 @@ namespace CBoxTest
             // perform manipulations:
             NodeManipulation(postsave_model.RootComponent);
 
+            // ensure start and end nodes are preserved:
+            Assert.IsTrue(postsave_model.RootComponent.StartNode != null);
+            Assert.IsTrue(postsave_model.RootComponent.EndNode != null);
+
             // save model again (to this cause some bugs!)
             var postsave_xml = postsave_model.ToXML();
+
+           
         }
 
         [TestMethod]
