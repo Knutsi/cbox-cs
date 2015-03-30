@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using cbox.generation.nodetype;
-
+using cbox.generation;
+using cbox.model;
 
 namespace cbox.modelling
 {
@@ -20,6 +21,8 @@ namespace cbox.modelling
         public event DeleteEntryEvent Delete;
 
         private SetValuesDataEntry _Data;
+        public Node Node { get; set; }
+        public Ontology Ontology { get; set; }
 
         public SetValuesNodeEntryEditor()
         {
@@ -48,15 +51,37 @@ namespace cbox.modelling
 
         public void LoadData()
         {
+            PopulateKeys();
+
             // we have two modes - with or without node
-            if(!HasData) {
+            if(!HasData) 
+            {
                 keySelect.Text = "New..";
-                quickEditorPanel.Controls.Clear();
                 deleteButton.Visible = false;
             } 
             else {
                 keySelect.Text = Entry.Key;
                 deleteButton.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// What keys we can add depends on wether the node we are editing is bound or not.  
+        /// We will load the keys from the onology based on what classes are available.
+        /// </summary>
+        private void PopulateKeys()
+        {
+            if(Node != null && Node.BoundProblemSet != null)
+            {
+                // node is bound, we need to limit:
+
+
+            }
+            else
+            {
+                // node is unbound, get keys from "General" class:
+                var tests = this.Ontology.TestsByClass("General");
+                keySelect.DataSource = tests;
             }
         }
 

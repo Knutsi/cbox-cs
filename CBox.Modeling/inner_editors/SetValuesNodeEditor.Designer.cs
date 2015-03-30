@@ -37,7 +37,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.editorsFlow.AutoScroll = true;
-            this.editorsFlow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.editorsFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.editorsFlow.Location = new System.Drawing.Point(3, 3);
             this.editorsFlow.Name = "editorsFlow";
@@ -51,6 +50,7 @@
             this.Controls.Add(this.editorsFlow);
             this.Name = "SetValuesNodeEditor";
             this.Size = new System.Drawing.Size(357, 387);
+            this.Load += new System.EventHandler(this.SetValuesNodeEditor_Load);
             this.ResumeLayout(false);
 
         }

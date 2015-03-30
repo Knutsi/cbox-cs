@@ -42,12 +42,21 @@ namespace cbox.modelling.editors
             // add a small editor for each entry in the data:
             foreach (var entry in Data.Entries)
             {
-                var editor = new SetValuesNodeEntryEditor() { Entry = entry };
+                var editor = new SetValuesNodeEntryEditor() 
+                { 
+                    Ontology = this.Ontology,
+                    Node = this.Node, 
+                    Entry = entry
+                };
                 editorsFlow.Controls.Add(editor);
             }
 
             // add one extra for new lines:
-            var new_editor = new SetValuesNodeEntryEditor();
+            var new_editor = new SetValuesNodeEntryEditor()
+            {
+                Ontology = this.Ontology,
+                Node = this.Node
+            };
             editorsFlow.Controls.Add(new_editor);
         }
 
@@ -66,6 +75,12 @@ namespace cbox.modelling.editors
         {
             get;
             set;
+        }
+
+        private void SetValuesNodeEditor_Load(object sender, EventArgs e)
+        {
+
+            LoadNode();
         }
     }
 }

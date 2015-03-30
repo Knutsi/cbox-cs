@@ -95,7 +95,7 @@ namespace ModelEditor
 
             var A = new Node("Starter", BaseType.TYPE_IDENT) { PosX = 100, PosY = 150 };
             var B = new Node("Problem #1", ProblemStart.TYPE_IDENT) { PosX = 250, PosY = 150 };
-            var C = new Node("C", BaseType.TYPE_IDENT) { PosX = 400, PosY = 150 };
+            var C = new Node("C", SetValue.TYPE_IDENT) { PosX = 400, PosY = 150 };
             var D = new Node("D", ProblemEnd.TYPE_IDENT) { PosX = 550, PosY = 150 };
             var E = new Node("Ender", BaseType.TYPE_IDENT) { PosX = 700, PosY = 150 };
 

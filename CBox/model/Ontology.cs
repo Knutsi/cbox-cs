@@ -325,6 +325,27 @@ namespace cbox.model
 
             return null;
         }
-       
+
+
+        /// <summary>
+        /// Gets tests that can be applied in a given class. Classes are assigned on a Action level, so 
+        /// the results are derived by looking at the actions,  and determining what tests they include.
+        /// </summary>
+        /// <param name="class_"></param>
+        /// <returns></returns>
+        public List<string> TestsByClass(string class_)
+        {
+            var results = new List<string>();
+
+            foreach (var action in Actions)
+                if (action.TargetClasses.Contains(class_))
+                    foreach (var key in action.Yield)
+                        if (!results.Contains(key))
+                            results.Add(key);
+            
+            return results;
+        }
+
+        
     }
 }
