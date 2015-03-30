@@ -33,10 +33,11 @@ namespace ModelEditor.forms
                 // write some info about the loaded ontology:
                 ontologyPathInput.Text = Program.CurrentOntologyPath;
                 var info = string.Format(
-                    "Loaded ontology\r\nTests: {0}\r\nActions:{1}\r\nForms:{2}\r\n\r\nTests:\r\n", 
+                    "Loaded ontology\r\nClasses:{3}\r\nTests: {0}\r\nActions:{1}\r\nForms:{2}\r\n\r\nTests:\r\n", 
                     Program.CurrentOntology.Tests.Count, 
                     Program.CurrentOntology.Actions.Count,
-                    Program.CurrentOntology.Forms.Count);
+                    Program.CurrentOntology.Forms.Count,
+                    Program.CurrentOntology.Classes.Count);
 
                 // append all tests to info:
                 foreach (var test in Program.CurrentOntology.Tests)

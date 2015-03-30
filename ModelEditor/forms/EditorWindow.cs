@@ -280,8 +280,10 @@ namespace ModelEditor
                 // only one node?  Fill panel with editor:
                 var editor = new NodeEditor()
                 {
+                    Ontology = Program.CurrentOntology,
                     Node = CurrentDiagram.SelectedNodes.First(),
                     Dock = DockStyle.Fill
+                    
                 };
 
                 propertiesPanel.Controls.Clear();
@@ -299,7 +301,7 @@ namespace ModelEditor
                 // create an editor for each selected node
                 foreach (var node in CurrentDiagram.SelectedNodes)
                 {
-                    var editor = new NodeEditor() { Node = node };
+                    var editor = new NodeEditor() { Ontology = Program.CurrentOntology, Node = node };
                     editorFlowLayout.Controls.Add(editor);
                 }
 

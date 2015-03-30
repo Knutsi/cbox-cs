@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,12 @@
     <Compile Include="Components\ConnectionComponent.cs" />
     <Compile Include="Components\DragLineComponent.cs" />
     <Compile Include="Components\IDiagramComponent.cs" />
+    <Compile Include="inner_editors\ProblemStartNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="inner_editors\ProblemStartNodeEditor.Designer.cs">
+      <DependentUpon>ProblemStartNodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="inner_editors\SetValuesNodeEntryEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +100,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CollectionPropertiesEditor.resx">
       <DependentUpon>CollectionPropertiesEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inner_editors\ProblemStartNodeEditor.resx">
+      <DependentUpon>ProblemStartNodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="inner_editors\SetValuesNodeEntryEditor.resx">
       <DependentUpon>SetValuesNodeEntryEditor.cs</DependentUpon>

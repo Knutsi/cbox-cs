@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using cbox.model;
 using cbox.generation;
 using cbox.generation.nodetype;
 
@@ -18,6 +19,7 @@ namespace cbox.modelling.editors
     public partial class NodeEditor : UserControl
     {
         public event NodeSavedEvent NodeSaved;
+        public Ontology Ontology { get; set; }
         
 
         public NodeEditor()
@@ -69,6 +71,10 @@ namespace cbox.modelling.editors
                     inner_editor = new SetValuesNodeEditor();
                     break;
 
+                case ProblemStart.TYPE_IDENT:
+                    inner_editor = new ProblemStartNodeEditor();
+                    break;
+
                 default:
                     return;
             }
@@ -78,7 +84,9 @@ namespace cbox.modelling.editors
             
             // load the node:
             ((IInnerEditor)inner_editor).ParentEditor = this;
+            ((IInnerEditor)inner_editor).Ontology = this.Ontology;
             ((IInnerEditor)inner_editor).Node = Node;
+
         }
 
         public void SaveNode()

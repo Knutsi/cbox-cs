@@ -198,6 +198,13 @@ namespace cbox.modelling.editors
         }
 
 
-        
+
+
+
+        public model.Ontology Ontology
+        {
+            get;
+            set;
+        }
     }
 }
