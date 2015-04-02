@@ -116,6 +116,18 @@ namespace ModelEditor
             CurrentModel = model;
             CurrentFilePath = null;
             MainWindow.Text = "(New model)";
+
+            // load fallback ontology, if set:
+            var fallback_ont_path = Properties.Settings.Default.fallback_ontology ;
+            if(fallback_ont_path != null)
+            {
+                try
+                {
+                    LoadOntology(fallback_ont_path);
+                }
+                catch { }
+            }
+                
         }
 
         /// <summary>

@@ -90,6 +90,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\SelectBoxComponent.cs" />
     <Compile Include="Components\SocketComponent.cs" />
+    <Compile Include="setter_editors\ISetterEditor.cs" />
+    <Compile Include="setter_editors\RangeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="setter_editors\RangeEditor.Designer.cs">
+      <DependentUpon>RangeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="setter_editors\SetterEditorLibrary.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CBox\CBox.csproj">
@@ -115,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NodeEditor.resx">
       <DependentUpon>NodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="setter_editors\RangeEditor.resx">
+      <DependentUpon>RangeEditor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

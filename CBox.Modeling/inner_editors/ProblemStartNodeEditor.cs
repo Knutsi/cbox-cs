@@ -40,7 +40,7 @@ namespace cbox.modelling.editors
 
         public void OnOuterEditorClosing()
         {
-            throw new NotImplementedException();
+            SaveNode();
         }
 
 

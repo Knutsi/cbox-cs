@@ -13,6 +13,8 @@ namespace cbox.generation.setter
     {
         Random Random = new Random();
 
+        public static string Ident = "CHOICE";
+
         public string Eval(string xml_data, ExecutionContext ctx)
         {
             var data = ChoiceSetterData.FromXML(xml_data);
@@ -37,6 +39,14 @@ namespace cbox.generation.setter
         public string Describe(string xml_data, ExecutionContext ctx)
         {
             throw new NotImplementedException();
+        }
+
+
+        public string OutputDatatype { get { return "TEXT"; } }
+
+        public string Ident_
+        {
+            get { return ChoiceSetter.Ident; }
         }
     }
 }

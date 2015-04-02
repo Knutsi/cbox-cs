@@ -21,6 +21,7 @@ namespace ModelEditor
         private NodeCollection CurrentCollection;
         private NodeCollectionDiagram CurrentDiagram;
         private SubModelTabEntry CurrentSubmodelEntry;
+        private List<NodeEditor> ActiveEditors = new List<NodeEditor>();
 
         // holds a list of submodels vurrently open, and what tabs/diagrams they use:
         internal List<SubModelTabEntry> SubModelTabs = new List<SubModelTabEntry>();
@@ -275,6 +276,12 @@ namespace ModelEditor
 
         void Diagram_SelectionChanged()
         {
+            // do we have any previous editors open that we need to save?
+            foreach (var editor in ActiveEditors)
+                editor.SaveNode();
+            ActiveEditors = new List<NodeEditor>();
+
+            // dettermine what to do depending on how many are selected:
             if (CurrentDiagram.SelectedNodes.Count == 1)
             {
                 // only one node?  Fill panel with editor:
@@ -288,6 +295,7 @@ namespace ModelEditor
 
                 propertiesPanel.Controls.Clear();
                 propertiesPanel.Controls.Add(editor);
+                ActiveEditors.Add(editor);
             }
             else if (CurrentDiagram.SelectedNodes.Count > 1)
             {
@@ -303,6 +311,7 @@ namespace ModelEditor
                 {
                     var editor = new NodeEditor() { Ontology = Program.CurrentOntology, Node = node };
                     editorFlowLayout.Controls.Add(editor);
+                    ActiveEditors.Add(editor);
                 }
 
             } else

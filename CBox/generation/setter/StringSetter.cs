@@ -42,5 +42,12 @@ namespace cbox.generation.setter
         {
             throw new NotImplementedException();
         }
+
+        public string OutputDatatype { get { return "TEXT"; } }
+
+        public string Ident_
+        {
+            get { return StringSetter.Ident; }
+        }
     }
 }

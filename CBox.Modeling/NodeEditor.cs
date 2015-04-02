@@ -20,7 +20,9 @@ namespace cbox.modelling.editors
     {
         public event NodeSavedEvent NodeSaved;
         public Ontology Ontology { get; set; }
-        
+        private IInnerEditor InnerEditor;
+
+        private int? SplitPanelOriginalHeight = null;
 
         public NodeEditor()
         {
@@ -76,6 +78,7 @@ namespace cbox.modelling.editors
                     break;
 
                 default:
+                    InnerEditor = null;
                     return;
             }
 
@@ -87,7 +90,10 @@ namespace cbox.modelling.editors
             ((IInnerEditor)inner_editor).Ontology = this.Ontology;
             ((IInnerEditor)inner_editor).Node = Node;
 
+            // save for later:
+            InnerEditor = inner_editor as IInnerEditor;
         }
+
 
         public void SaveNode()
         {
@@ -100,9 +106,14 @@ namespace cbox.modelling.editors
             if (NodeSaved != null) 
                 NodeSaved(this.Node);
 
+            // notify inner editor we are closing:
+            if(InnerEditor != null)
+                InnerEditor.OnOuterEditorClosing();
+
             // fire event on node:
             this.Node.FireChangedEvent();
         }
+
 
         public void LoadNode()
         {
@@ -131,6 +142,22 @@ namespace cbox.modelling.editors
             if (tagInput.Text.Length > 2 || tagInput.Text == ", ")
                 tagInput.Text = tagInput.Text.Substring(0, tagInput.Text.Length - 2);
 
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            if (!SplitPanelOriginalHeight.HasValue)
+            {
+                SplitPanelOriginalHeight = splitContainer.SplitterDistance;
+                splitContainer.SplitterDistance = panel1.Height;
+            }
+            else
+            {
+                splitContainer.SplitterDistance = SplitPanelOriginalHeight.Value;
+                SplitPanelOriginalHeight = null;
+            }
+
+            
         }
     }
 }

@@ -346,6 +346,36 @@ namespace cbox.model
             return results;
         }
 
-        
+        /// <summary>
+        /// Returns a list of all tests available in provided classes.
+        /// </summary>
+        /// <param name="classes"></param>
+        /// <returns></returns>
+        public List<string> TestsByClasses(List<string> classes)
+        {
+            var tests = new List<string>();
+
+            foreach (var class_ in classes)
+            {
+                var class_tests = TestsByClass(class_);
+
+                foreach (var test in class_tests)
+                    if (!tests.Contains(test))
+                        tests.Add(test); 
+            }
+
+            return tests;
+        }
+
+
+
+        public Test TestByKey(string key)
+        {
+            foreach (var test in Tests)
+                if (test.Key == key)
+                    return test;
+
+            return null;
+        }
     }
 }

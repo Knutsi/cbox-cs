@@ -16,6 +16,7 @@ namespace cbox.modelling.editors
     public partial class SetValuesNodeEditor : UserControl, IInnerEditor
     {
         private Node _Node;
+        private List<SetValuesNodeEntryEditor> EntryEditors = new List<SetValuesNodeEntryEditor>();
 
         public SetValuesNodeEditor()
         {
@@ -35,39 +36,47 @@ namespace cbox.modelling.editors
         public SetValuesData Data { get  { return (SetValuesData)Node.HandlerData; } }
         public NodeEditor ParentEditor { get; set; }
 
+
         private void LoadNode()
         {
             editorsFlow.Controls.Clear();
 
             // add a small editor for each entry in the data:
             foreach (var entry in Data.Entries)
-            {
-                var editor = new SetValuesNodeEntryEditor() 
-                { 
-                    Ontology = this.Ontology,
-                    Node = this.Node, 
-                    Entry = entry
-                };
-                editorsFlow.Controls.Add(editor);
-            }
-
-            // add one extra for new lines:
-            var new_editor = new SetValuesNodeEntryEditor()
-            {
-                Ontology = this.Ontology,
-                Node = this.Node
-            };
-            editorsFlow.Controls.Add(new_editor);
+                AddEntryEditor(entry);
         }
+
 
         private void SaveNode() 
         {
+            foreach (var editor in EntryEditors)
+                editor.SaveEntry();
+        }
 
+
+        public void AddEntryEditor(SetValuesDataEntry entry)
+        {
+            var editor = new SetValuesNodeEntryEditor()
+            {
+                Ontology = this.Ontology,
+                Node = this.Node,
+                Entry = entry
+            };
+            editorsFlow.Controls.Add(editor);
+            EntryEditors.Add(editor);
+
+            // subscribe to delete event, and delete editor/entry when it happens:
+            editor.Deleted += () =>
+            {
+                Data.Entries.Remove(entry);
+                editorsFlow.Controls.Remove(editor);
+                EntryEditors.Remove(editor);
+            };
         }
 
         public void OnOuterEditorClosing()
         {
-            throw new NotImplementedException();
+            SaveNode();
         }
 
 
@@ -79,8 +88,14 @@ namespace cbox.modelling.editors
 
         private void SetValuesNodeEditor_Load(object sender, EventArgs e)
         {
+            //LoadNode();
+        }
 
-            LoadNode();
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            var entry = new SetValuesDataEntry();
+            Data.Entries.Add(entry);
+            AddEntryEditor(entry);
         }
     }
 }

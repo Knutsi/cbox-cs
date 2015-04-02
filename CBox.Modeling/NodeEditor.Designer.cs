@@ -78,14 +78,17 @@
             this.panel1.Controls.Add(this.typeLabel);
             this.panel1.Controls.Add(this.titleInput);
             this.panel1.Controls.Add(this.boundLink);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(280, 58);
             this.panel1.TabIndex = 7;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
+            this.typeLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.typeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.typeLabel.Location = new System.Drawing.Point(6, 4);
             this.typeLabel.Name = "typeLabel";
@@ -107,6 +110,7 @@
             // 
             this.boundLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boundLink.AutoSize = true;
+            this.boundLink.Cursor = System.Windows.Forms.Cursors.Default;
             this.boundLink.Enabled = false;
             this.boundLink.Location = new System.Drawing.Point(226, 5);
             this.boundLink.Name = "boundLink";
@@ -167,7 +171,7 @@
             // 
             // innerEditorPanel
             // 
-            this.innerEditorPanel.BackColor = System.Drawing.Color.SkyBlue;
+            this.innerEditorPanel.BackColor = System.Drawing.Color.LightBlue;
             this.innerEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.innerEditorPanel.Location = new System.Drawing.Point(0, 0);
             this.innerEditorPanel.Name = "innerEditorPanel";

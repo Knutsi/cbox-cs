@@ -25,7 +25,11 @@ namespace ModelEditor.forms
             // is an ontology loaded?
             if (Program.CurrentOntology == null)
             {
-                ontologyPathInput.Text = string.Empty;
+                if (Properties.Settings.Default.fallback_ontology != null)
+                    ontologyPathInput.Text = Properties.Settings.Default.fallback_ontology;
+                else
+                    ontologyPathInput.Text = string.Empty;
+
                 loadInfo.Text = "(No ontology loaded)";
             }
             else
@@ -52,9 +56,15 @@ namespace ModelEditor.forms
         private void ontologyPathInput_TextChanged(object sender, EventArgs e)
         {
             if (ontologyPathInput.Text.Trim() == string.Empty)
+            {
                 loadButton.Enabled = false;
+                useForNoneSystemCheckbox.Enabled = false;
+            }
             else
+            {
                 loadButton.Enabled = true;
+                useForNoneSystemCheckbox.Enabled = true;
+            }
         }
 
         private void findButton_Click(object sender, EventArgs e)
@@ -82,6 +92,21 @@ namespace ModelEditor.forms
             // load the ontology:
             Program.LoadOntology(path);
             Update();
+        }
+
+        private void useForNoneSystemCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (useForNoneSystemCheckbox.Checked == true)
+            {
+                Properties.Settings.Default.fallback_ontology = ontologyPathInput.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.fallback_ontology = null;
+                Properties.Settings.Default.Save();
+            }
+                
         }
     }
 }

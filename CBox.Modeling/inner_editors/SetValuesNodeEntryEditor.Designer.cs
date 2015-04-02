@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.setterSelect = new System.Windows.Forms.ComboBox();
+            this.datatypeLabel = new System.Windows.Forms.Label();
+            this.setterEditorPanel = new System.Windows.Forms.Panel();
             this.deleteButton = new System.Windows.Forms.Button();
             this.keySelect = new System.Windows.Forms.ComboBox();
-            this.setterEditorPanel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -43,32 +44,56 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.setterSelect);
+            this.panel1.Controls.Add(this.datatypeLabel);
             this.panel1.Controls.Add(this.setterEditorPanel);
-            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.deleteButton);
             this.panel1.Controls.Add(this.keySelect);
             this.panel1.Location = new System.Drawing.Point(18, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(309, 104);
+            this.panel1.Size = new System.Drawing.Size(293, 105);
             this.panel1.TabIndex = 0;
             // 
-            // comboBox1
+            // setterSelect
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(189, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(89, 20);
-            this.comboBox1.TabIndex = 5;
+            this.setterSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.setterSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.setterSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.setterSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setterSelect.FormattingEnabled = true;
+            this.setterSelect.Location = new System.Drawing.Point(173, 12);
+            this.setterSelect.Name = "setterSelect";
+            this.setterSelect.Size = new System.Drawing.Size(77, 17);
+            this.setterSelect.TabIndex = 5;
+            // 
+            // datatypeLabel
+            // 
+            this.datatypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.datatypeLabel.AutoSize = true;
+            this.datatypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datatypeLabel.Location = new System.Drawing.Point(171, 3);
+            this.datatypeLabel.Name = "datatypeLabel";
+            this.datatypeLabel.Size = new System.Drawing.Size(33, 9);
+            this.datatypeLabel.TabIndex = 7;
+            this.datatypeLabel.Text = "datatype";
+            // 
+            // setterEditorPanel
+            // 
+            this.setterEditorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.setterEditorPanel.Location = new System.Drawing.Point(3, 35);
+            this.setterEditorPanel.Name = "setterEditorPanel";
+            this.setterEditorPanel.Size = new System.Drawing.Size(287, 67);
+            this.setterEditorPanel.TabIndex = 6;
             // 
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(284, 3);
+            this.deleteButton.Location = new System.Drawing.Point(256, 2);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(22, 23);
+            this.deleteButton.Size = new System.Drawing.Size(34, 27);
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "X";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -77,22 +102,14 @@
             // 
             this.keySelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.keySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keySelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.keySelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.keySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.keySelect.FormattingEnabled = true;
             this.keySelect.Location = new System.Drawing.Point(3, 5);
             this.keySelect.Name = "keySelect";
-            this.keySelect.Size = new System.Drawing.Size(180, 20);
+            this.keySelect.Size = new System.Drawing.Size(164, 24);
             this.keySelect.TabIndex = 3;
-            // 
-            // setterEditorPanel
-            // 
-            this.setterEditorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.setterEditorPanel.Location = new System.Drawing.Point(3, 31);
-            this.setterEditorPanel.Name = "setterEditorPanel";
-            this.setterEditorPanel.Size = new System.Drawing.Size(303, 70);
-            this.setterEditorPanel.TabIndex = 6;
             // 
             // panel3
             // 
@@ -101,18 +118,21 @@
             this.panel3.BackColor = System.Drawing.Color.DimGray;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(19, 104);
+            this.panel3.Size = new System.Drawing.Size(19, 105);
             this.panel3.TabIndex = 1;
             // 
             // SetValuesNodeEntryEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "SetValuesNodeEntryEditor";
-            this.Size = new System.Drawing.Size(327, 104);
+            this.Size = new System.Drawing.Size(311, 105);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -121,10 +141,11 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel setterEditorPanel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox setterSelect;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ComboBox keySelect;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label datatypeLabel;
 
     }
 }

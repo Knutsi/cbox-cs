@@ -32,6 +32,7 @@
             this.findButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.loadInfo = new System.Windows.Forms.TextBox();
+            this.useForNoneSystemCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ontologyPathInput
@@ -71,18 +72,30 @@
             this.loadInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadInfo.Location = new System.Drawing.Point(12, 37);
+            this.loadInfo.Location = new System.Drawing.Point(12, 60);
             this.loadInfo.Multiline = true;
             this.loadInfo.Name = "loadInfo";
             this.loadInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.loadInfo.Size = new System.Drawing.Size(317, 273);
+            this.loadInfo.Size = new System.Drawing.Size(317, 250);
             this.loadInfo.TabIndex = 4;
+            // 
+            // useForNoneSystemCheckbox
+            // 
+            this.useForNoneSystemCheckbox.AutoSize = true;
+            this.useForNoneSystemCheckbox.Location = new System.Drawing.Point(13, 37);
+            this.useForNoneSystemCheckbox.Name = "useForNoneSystemCheckbox";
+            this.useForNoneSystemCheckbox.Size = new System.Drawing.Size(152, 17);
+            this.useForNoneSystemCheckbox.TabIndex = 5;
+            this.useForNoneSystemCheckbox.Text = "Use for non-system models";
+            this.useForNoneSystemCheckbox.UseVisualStyleBackColor = true;
+            this.useForNoneSystemCheckbox.CheckedChanged += new System.EventHandler(this.useForNoneSystemCheckbox_CheckedChanged);
             // 
             // OntologySettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 322);
+            this.Controls.Add(this.useForNoneSystemCheckbox);
             this.Controls.Add(this.loadInfo);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.findButton);
@@ -100,5 +113,6 @@
         private System.Windows.Forms.Button findButton;
         private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.TextBox loadInfo;
+        private System.Windows.Forms.CheckBox useForNoneSystemCheckbox;
     }
 }

@@ -58,5 +58,17 @@ namespace ModelEditor.Properties {
                 this["recent_files"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string fallback_ontology {
+            get {
+                return ((string)(this["fallback_ontology"]));
+            }
+            set {
+                this["fallback_ontology"] = value;
+            }
+        }
     }
 }

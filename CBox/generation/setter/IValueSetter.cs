@@ -10,7 +10,11 @@ namespace cbox.generation.setter
 {
     public interface IValueSetter
     {
+        string Ident_ { get; }
+
         string Eval(string xml_data, ExecutionContext ctx);
         string Describe(string xml_data, ExecutionContext ctx);
+
+        string OutputDatatype { get; }
     }
 }

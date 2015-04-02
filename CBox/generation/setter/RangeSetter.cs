@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using cbox.generation.setter;
+
 namespace cbox.generation.setter
 {
     public class RangeSetter : IValueSetter
     {
-        public static string Ident = "RANGE";
+        public const string Ident = "RANGE";
         public Random Random { get; set; }
 
 
@@ -28,6 +30,12 @@ namespace cbox.generation.setter
         public string Describe(string data, ExecutionContext ctx)
         {
             throw new NotImplementedException();
+        }
+
+        public string OutputDatatype { get { return "NUMBER"; } }
+        public string Ident_
+        {
+            get { return RangeSetter.Ident; }
         }
     }
 }
