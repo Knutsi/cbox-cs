@@ -363,6 +363,11 @@ namespace ModelEditor
             props.ShowDialog();
         }
 
+        private void deleteMenuItem_Click(object sender, EventArgs e)
+        {
+            CurrentDiagram.DeleteSelected();
+        }
+
 
 
     }

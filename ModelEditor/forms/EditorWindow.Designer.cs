@@ -84,6 +84,7 @@
             this.outputView1 = new ModelEditor.forms.OutputView();
             this.issuesPanel = new System.Windows.Forms.TabPage();
             this.issuesView1 = new ModelEditor.forms.IssuesView();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -228,6 +229,7 @@
             this.cutToolStripMenuItem,
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem,
+            this.deleteMenuItem,
             this.toolStripSeparator2,
             this.selectAllMenuItem,
             this.selectProblemNodesToolStripMenuItem,
@@ -531,6 +533,7 @@
             // 
             this.outputView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputView1.Location = new System.Drawing.Point(3, 3);
+            this.outputView1.Mode = ModelEditor.forms.OutputViewMode.TEXT;
             this.outputView1.Model = null;
             this.outputView1.Name = "outputView1";
             this.outputView1.Size = new System.Drawing.Size(320, 559);
@@ -555,6 +558,14 @@
             this.issuesView1.Name = "issuesView1";
             this.issuesView1.Size = new System.Drawing.Size(320, 559);
             this.issuesView1.TabIndex = 0;
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.deleteMenuItem.Text = "Delete";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
             // EditorWindow
             // 
@@ -644,6 +655,7 @@
         private System.Windows.Forms.ToolStripMenuItem openOntologyItem;
         private System.Windows.Forms.ToolStripMenuItem editOntologyItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
 
 
     }

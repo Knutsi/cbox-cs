@@ -572,7 +572,7 @@ namespace cbox.modelling
         }
 
 
-        private void DeleteSelected()
+        public void DeleteSelected()
         {
             foreach (var node in SelectedNodes)
                 NodeCollection.Remove(node);
