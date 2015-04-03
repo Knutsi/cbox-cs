@@ -78,6 +78,12 @@ namespace cbox.modelling.editors
             // eable or disable n-input:
             nSelect.Enabled = Data.Mode == BranchMode.NOFF;
 
+            // n-select:
+            if (Data.N != null)
+                nSelect.Value = Data.N;
+            else
+                nSelect.Value = 1;
+
             // load branches:
             var texbox_lines = "";
             if (Data.Mode != BranchMode.MAYBE)
