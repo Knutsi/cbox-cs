@@ -13,11 +13,15 @@ using cbox.model;
 
 namespace ModelEditor.forms
 {
-    
+    public enum OutputViewMode
+    {
+        TEXT, TABLE, JSON, TREE
+    }
 
     public partial class OutputView : UserControl
     {
         private Model _Model;
+        private OutputViewMode _Mode;
         private BackgroundWorker Worker = new BackgroundWorker();
         private Random Random = new Random();
         private Case LatestCase;
@@ -29,11 +33,52 @@ namespace ModelEditor.forms
             // ensure we pick up new models that are loaded:
             Program.ModelLoaded += Program_ModelLoaded;
 
+            // wire events:
+            SetupUIEvents();
+            SetupModelEvents();
+
+            // default mode is either null, or stored in app settings:
+            if (Properties.Settings.Default.default_output_view == null)
+                Mode = OutputViewMode.TEXT;
+            else
+                Mode = (OutputViewMode)Properties.Settings.Default.default_output_view;
+        }
+
+        public void SetupUIEvents()
+        {
+            // wire the mode swithcing radio buttons:
+            textViewCheck.CheckedChanged += (object s, EventArgs e) =>
+            {
+                if (textViewCheck.Checked)
+                    Mode = OutputViewMode.TEXT;
+            };
+
+            tableViewCheck.CheckedChanged += (object s, EventArgs e) =>
+            {
+                if (tableViewCheck.Checked)
+                    Mode = OutputViewMode.TABLE;
+            };
+
+            treeViewCheck.CheckedChanged += (object s, EventArgs e) =>
+            {
+                if (treeViewCheck.Checked)
+                    Mode = OutputViewMode.TREE;
+            };
+
+            jsonViewCheck.CheckedChanged += (object s, EventArgs e) =>
+            {
+                if (jsonViewCheck.Checked)
+                    Mode = OutputViewMode.JSON;
+            };
+        }
+
+
+        private void SetupModelEvents()
+        {
             // wire worker:
             Worker.DoWork += Worker_DoWork;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
-
 
 
 
@@ -50,9 +95,65 @@ namespace ModelEditor.forms
         }
 
 
+        public OutputViewMode Mode
+        {
+            get
+            {
+                return _Mode;
+            }
+
+            set
+            {
+                _Mode = value;
+
+                // remmeber for next time:
+                Properties.Settings.Default.default_output_view = (int)value;
+                Properties.Settings.Default.Save();
+
+                // load the ui needed:
+                LoadMode();
+            }
+        }
+
+        private void LoadMode()
+        {
+            outputViewPanel.Controls.Clear();
+
+            switch (Mode)
+            {
+                case OutputViewMode.TEXT:
+                    textViewCheck.Checked = true;
+                    outputViewPanel.Controls.Add(textView);
+                    textView.Dock = DockStyle.Fill;
+                    break;
+
+                case OutputViewMode.TABLE:
+                    tableViewCheck.Checked = true;
+                    outputViewPanel.Controls.Add(dataView);
+                    dataView.Dock = DockStyle.Fill;
+                    break;
+
+                case OutputViewMode.JSON:
+                    jsonViewCheck.Checked = true;
+                    outputViewPanel.Controls.Add(jsonView);
+                    jsonView.Dock = DockStyle.Fill;
+                    break;
+
+                case OutputViewMode.TREE:
+                    treeViewCheck.Checked = true;
+                    outputViewPanel.Controls.Add(treeView);
+                    treeView.Dock = DockStyle.Fill;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+
         public void Clear()
         {
-            rawOutput.Text = string.Empty;
+            textView.Text = string.Empty;
         }
 
 
@@ -67,6 +168,35 @@ namespace ModelEditor.forms
             Worker_RunWorkerCompleted(null, null);
         }
 
+        public void PopulateTree()
+        {
+
+        }
+
+        public void PopulateTable()
+        {
+
+        }
+
+        public void PopulateTextOutput()
+        {
+            StringBuilder output = new StringBuilder();
+
+            foreach (var problem in LatestCase.Problems)
+            {
+                var values = from t in problem.TestResults
+                             select t.ToString(Program.CurrentOntology);
+
+                output.AppendFormat("{0}: {1}\r\n\r\n", problem.Title, string.Join("", values));
+            }
+
+            textView.Text = output.ToString();
+        }
+
+        public void PopulateJSONOutput()
+        {
+            jsonView.Text = LatestCase.toJSON();
+        }
 
         // EVENTS
 
@@ -84,14 +214,18 @@ namespace ModelEditor.forms
         {
             if (LatestCase != null)
             {
-                rawOutput.Text = LatestCase.toJSON();
+                PopulateJSONOutput();
+                PopulateTextOutput();
+                PopulateTable();
+                PopulateTree();
+
             } 
             else
             {
                 if (Model.RootComponent.Issues.Count > 0)
-                    rawOutput.Text = String.Format("{0} issues prevented build", Model.RootComponent.Issues.Count);
+                    textView.Text = String.Format("{0} issues prevented build", Model.RootComponent.Issues.Count);
                 else
-                    rawOutput.Text = "Could nto build";
+                    textView.Text = "Could not build";
             }
         }
 

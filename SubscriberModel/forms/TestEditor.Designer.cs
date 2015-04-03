@@ -44,6 +44,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.deriveCheckbox = new System.Windows.Forms.CheckBox();
+            this.acumulativeCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,6 +180,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.acumulativeCheckbox);
             this.groupBox1.Controls.Add(this.deriveCheckbox);
             this.groupBox1.Controls.Add(this.derivedFromSelect);
             this.groupBox1.Controls.Add(this.label1);
@@ -211,6 +213,16 @@
             this.deriveCheckbox.Text = "Derive from parent:";
             this.deriveCheckbox.UseVisualStyleBackColor = true;
             this.deriveCheckbox.CheckedChanged += new System.EventHandler(this.deriveCheckbox_CheckedChanged);
+            // 
+            // acumulativeCheckbox
+            // 
+            this.acumulativeCheckbox.AutoSize = true;
+            this.acumulativeCheckbox.Location = new System.Drawing.Point(216, 130);
+            this.acumulativeCheckbox.Name = "acumulativeCheckbox";
+            this.acumulativeCheckbox.Size = new System.Drawing.Size(84, 17);
+            this.acumulativeCheckbox.TabIndex = 15;
+            this.acumulativeCheckbox.Text = "Acumualtive";
+            this.acumulativeCheckbox.UseVisualStyleBackColor = true;
             // 
             // TestEditor
             // 
@@ -245,5 +257,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox typeSelect;
         private System.Windows.Forms.CheckBox deriveCheckbox;
+        private System.Windows.Forms.CheckBox acumulativeCheckbox;
     }
 }

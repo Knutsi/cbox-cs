@@ -13,9 +13,15 @@ namespace cbox.model
         public string Title { get; set; }
         public string Suffix { get; set; }
         public string Unit { get; set; }
+        public bool Accumulative { get; set; }
         public string Datatype { get; set; }
         public string Parent { get; set; }
         public string GeneratorName { get; set; }
         public string GeneratorData { get; set; }
+
+        public Test()
+        {
+            Accumulative = true;
+        }
     }
 }

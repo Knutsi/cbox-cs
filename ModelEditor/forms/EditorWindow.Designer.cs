@@ -50,6 +50,7 @@
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectProblemNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +85,8 @@
             this.outputView1 = new ModelEditor.forms.OutputView();
             this.issuesPanel = new System.Windows.Forms.TabPage();
             this.issuesView1 = new ModelEditor.forms.IssuesView();
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -274,6 +276,14 @@
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.deleteMenuItem.Text = "Delete";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -316,7 +326,9 @@
             this.newSubmodelItem,
             this.removeSubmodelItem,
             this.toolStripSeparator8,
-            this.extractSubmodelItem});
+            this.extractSubmodelItem,
+            this.toolStripSeparator10,
+            this.exportToLibraryToolStripMenuItem});
             this.componentToolStripMenuItem.Name = "componentToolStripMenuItem";
             this.componentToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.componentToolStripMenuItem.Text = "Component";
@@ -324,26 +336,26 @@
             // newSubmodelItem
             // 
             this.newSubmodelItem.Name = "newSubmodelItem";
-            this.newSubmodelItem.Size = new System.Drawing.Size(148, 22);
+            this.newSubmodelItem.Size = new System.Drawing.Size(205, 22);
             this.newSubmodelItem.Text = "Create new";
             this.newSubmodelItem.Click += new System.EventHandler(this.newSubmodelItem_Click);
             // 
             // removeSubmodelItem
             // 
             this.removeSubmodelItem.Name = "removeSubmodelItem";
-            this.removeSubmodelItem.Size = new System.Drawing.Size(148, 22);
+            this.removeSubmodelItem.Size = new System.Drawing.Size(205, 22);
             this.removeSubmodelItem.Text = "Remove";
             this.removeSubmodelItem.Click += new System.EventHandler(this.removeSubmodelItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(145, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(202, 6);
             // 
             // extractSubmodelItem
             // 
             this.extractSubmodelItem.Name = "extractSubmodelItem";
-            this.extractSubmodelItem.Size = new System.Drawing.Size(148, 22);
+            this.extractSubmodelItem.Size = new System.Drawing.Size(205, 22);
             this.extractSubmodelItem.Text = "Extract to new";
             // 
             // viewToolStripMenuItem
@@ -559,13 +571,16 @@
             this.issuesView1.Size = new System.Drawing.Size(320, 559);
             this.issuesView1.TabIndex = 0;
             // 
-            // deleteMenuItem
+            // exportToLibraryToolStripMenuItem
             // 
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.deleteMenuItem.Text = "Delete";
-            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            this.exportToLibraryToolStripMenuItem.Name = "exportToLibraryToolStripMenuItem";
+            this.exportToLibraryToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.exportToLibraryToolStripMenuItem.Text = "Migrate to system library";
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(202, 6);
             // 
             // EditorWindow
             // 
@@ -656,6 +671,8 @@
         private System.Windows.Forms.ToolStripMenuItem editOntologyItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem exportToLibraryToolStripMenuItem;
 
 
     }

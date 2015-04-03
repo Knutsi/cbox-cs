@@ -30,6 +30,7 @@ namespace OntologyEditor
             typeSelect.DataBindings.Add("Text", test, "Datatype");
             derivedFromSelect.DataBindings.Add("Text", test, "Parent");
             generatorSelect.DataBindings.Add("Text", test, "GeneratorName");
+            acumulativeCheckbox.DataBindings.Add("Checked", test, "Accumulative");
 
             // bind to data:
             var bs = new BindingSource();

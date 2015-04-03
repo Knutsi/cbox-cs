@@ -29,5 +29,32 @@ namespace cbox.model
                 this.Values.Add(value);
             } 
         }
+
+        public string ToString(Ontology ontology)
+        {
+            // aquire info on this test:
+            var test = ontology.TestByKey(Key);
+
+            if (test == null)
+                return string.Format("({0} not in ontology)", Key);
+
+            var suffix = "";
+            if (test.Suffix != null)
+                suffix = test.Suffix + ": ";
+
+            var unit = "";
+            if (test.Unit != null)
+                unit = " " + test.Unit;
+
+            var value = Value;
+            if (test.Accumulative && Values.Count > 1)
+                value = string.Join(". ", Values);
+                
+            return String.Format("{0}{1}{2}. ",
+                suffix,
+                Value,
+                unit);
+
+        }
     }
 }

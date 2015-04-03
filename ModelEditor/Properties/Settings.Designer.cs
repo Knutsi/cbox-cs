@@ -70,5 +70,17 @@ namespace ModelEditor.Properties {
                 this["fallback_ontology"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int default_output_view {
+            get {
+                return ((int)(this["default_output_view"]));
+            }
+            set {
+                this["default_output_view"] = value;
+            }
+        }
     }
 }
