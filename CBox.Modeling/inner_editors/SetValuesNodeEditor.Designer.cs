@@ -40,10 +40,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.editorsFlow.AutoScroll = true;
+            this.editorsFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.editorsFlow.Location = new System.Drawing.Point(3, 32);
             this.editorsFlow.Name = "editorsFlow";
             this.editorsFlow.Size = new System.Drawing.Size(351, 352);
             this.editorsFlow.TabIndex = 0;
+            this.editorsFlow.WrapContents = false;
             // 
             // panel1
             // 

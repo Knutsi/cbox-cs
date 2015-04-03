@@ -8,7 +8,7 @@ namespace cbox.generation.setter
 {
     public class StringSetter : IValueSetter
     {
-        public static string Ident = "STRING"; 
+        public const string Ident = "STRING"; 
         public Random Random;
 
         public StringSetter ()
@@ -29,7 +29,8 @@ namespace cbox.generation.setter
             {
                 var to_replace = "{" + entry.Word + "}";
 
-                var j = this.Random.Next(data.Strings.Count);
+                // pick random synonym:
+                var j = this.Random.Next(entry.Synonyms.Count);
                 var replacement = entry.Synonyms[j];
 
                 str = str.Replace(to_replace, replacement);

@@ -18,6 +18,9 @@ namespace cbox.modelling.setter_editors
                 case RangeSetter.Ident:
                     return new RangeEditor();
 
+                case StringSetter.Ident:
+                    return new StringEditor();
+
                 default:
                     return null;
             }

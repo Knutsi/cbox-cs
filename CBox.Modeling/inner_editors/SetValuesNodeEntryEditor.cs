@@ -203,7 +203,7 @@ namespace cbox.modelling
                 if (SetterEditor != null)
                 {
                     SetterEditor.SetterXmlData = Entry.SetterXmlData;
-                    ((Control)SetterEditor).Dock = DockStyle.Fill;
+                    //((Control)SetterEditor).Dock = DockStyle.Fill;
                     setterEditorPanel.Controls.Add((Control)SetterEditor);
                 }
 

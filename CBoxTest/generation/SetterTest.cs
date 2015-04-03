@@ -79,6 +79,42 @@ namespace CBoxTest.generation
             }
         }
 
+        [TestMethod]
+        public void Setter_StringTestCheckAllIncluded()
+        {
+            // create a simple test data:
+            var xml_data = new StringSetterData()
+            {
+                Strings = new List<string> { "{INC}" },
+                Thesaurus = new List<ThesaurusEntry> 
+                {
+                    new ThesaurusEntry() 
+                    {
+                        Word = "INC",
+                        Synonyms = new List<string> { "A", "B", "C" }
+                    }
+                }
+            }.ToXML();
+
+            // random sample 100 outputs from setter to ensure we have all:
+            var A = 0;
+            var B = 0;
+            var C = 0;
+            for (int i = 0; i < 100; i++)
+            {
+                var setter = SetterLibrary.Default[StringSetter.Ident];
+                var output = setter.Eval(xml_data, null);
+
+                if (output == "A") { A += 1; }
+                else if (output == "B") { B += 1; }
+                else if (output == "C") { C += 1; }
+                else { throw new Exception("Unknown output"); }
+            }
+
+            Assert.IsTrue(A > 0 && B > 0 && C > 0);
+
+        }
+
         /// <summary>
         /// Tests choice setters ability to get a value from own data
         /// </summary>

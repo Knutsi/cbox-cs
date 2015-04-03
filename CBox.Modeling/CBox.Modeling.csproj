@@ -98,6 +98,24 @@
       <DependentUpon>RangeEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="setter_editors\SetterEditorLibrary.cs" />
+    <Compile Include="setter_editors\StringEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="setter_editors\StringEditor.Designer.cs">
+      <DependentUpon>StringEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="setter_editors\StringEditorStringEntry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="setter_editors\StringEditorStringEntry.Designer.cs">
+      <DependentUpon>StringEditorStringEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="setter_editors\StringEditorThesaurusEntry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="setter_editors\StringEditorThesaurusEntry.Designer.cs">
+      <DependentUpon>StringEditorThesaurusEntry.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CBox\CBox.csproj">
@@ -126,6 +144,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="setter_editors\RangeEditor.resx">
       <DependentUpon>RangeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="setter_editors\StringEditor.resx">
+      <DependentUpon>StringEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="setter_editors\StringEditorStringEntry.resx">
+      <DependentUpon>StringEditorStringEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="setter_editors\StringEditorThesaurusEntry.resx">
+      <DependentUpon>StringEditorThesaurusEntry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
