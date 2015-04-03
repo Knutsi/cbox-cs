@@ -144,9 +144,18 @@ namespace cbox.modelling.editors
                     continue;
                 }
 
-                // lines area added as possible sockets:
-                var entry = new BranchDataSocketEntry(lines[i]);
-                entries.Add(entry);
+                // lines are added as possible sockets, but check first if a socket with same label
+                // exists, in which case we recycle it:
+                var existing_entry = Data.PossibleSocketByLabel(lines[i]);
+                if(lines[i].Trim() != string.Empty && existing_entry != null)
+                {
+                    entries.Add(existing_entry);
+                }
+                else
+                {
+                    var entry = new BranchDataSocketEntry(lines[i]);
+                    entries.Add(entry);
+                }
             }
 
             // set and update:

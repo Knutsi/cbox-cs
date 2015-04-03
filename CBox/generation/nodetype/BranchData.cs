@@ -82,6 +82,22 @@ namespace cbox.generation.nodetype
                     entry.Socket.Type = socktype;
         }
 
+
+        /// <summary>
+        /// Returns the possible socket that matches the label provided.
+        /// </summary>
+        /// <param name="label"></param>
+        /// <returns></returns>
+        public BranchDataSocketEntry PossibleSocketByLabel(string label)
+        {
+            foreach (var possible_socket in PossibleSockets)
+                if (possible_socket.Socket.Label == label)
+                    return possible_socket;
+
+            return null;
+        }
+
+
         /// <summary>
         /// When the parent node changes, or is set initally, all sockets need to be updated:
         /// </summary>
