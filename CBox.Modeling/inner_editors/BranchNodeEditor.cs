@@ -83,8 +83,10 @@ namespace cbox.modelling.editors
             if (Data.Mode != BranchMode.MAYBE)
                 texbox_lines += Data.GuaranteedSocket.Label + Environment.NewLine;
 
-            foreach (var entry in Data.PossibleSockets)
-                texbox_lines += entry.Socket.Label.Trim() + Environment.NewLine;
+            var possibles = from p in Data.PossibleSockets
+                            select p.Socket.Label.Trim();
+
+            texbox_lines += string.Join(Environment.NewLine, possibles);
 
             branchesInput.Text = texbox_lines;
         }
