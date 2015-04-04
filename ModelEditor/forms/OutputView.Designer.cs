@@ -38,12 +38,18 @@
             this.tableViewCheck = new System.Windows.Forms.RadioButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.outputViewPanel = new System.Windows.Forms.Panel();
+            this.jsonView = new System.Windows.Forms.TextBox();
             this.dataView = new System.Windows.Forms.DataGridView();
             this.treeView = new System.Windows.Forms.TreeView();
             this.textView = new System.Windows.Forms.TextBox();
-            this.jsonView = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.outputViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
@@ -144,8 +150,16 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.outputViewPanel);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButton3);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButton2);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButton1);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Size = new System.Drawing.Size(473, 665);
-            this.splitContainer1.SplitterDistance = 572;
+            this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 11;
             // 
             // outputViewPanel
@@ -157,8 +171,19 @@
             this.outputViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputViewPanel.Location = new System.Drawing.Point(0, 0);
             this.outputViewPanel.Name = "outputViewPanel";
-            this.outputViewPanel.Size = new System.Drawing.Size(473, 572);
+            this.outputViewPanel.Size = new System.Drawing.Size(473, 531);
             this.outputViewPanel.TabIndex = 10;
+            // 
+            // jsonView
+            // 
+            this.jsonView.BackColor = System.Drawing.Color.Gainsboro;
+            this.jsonView.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jsonView.ForeColor = System.Drawing.Color.Black;
+            this.jsonView.Location = new System.Drawing.Point(11, 104);
+            this.jsonView.Multiline = true;
+            this.jsonView.Name = "jsonView";
+            this.jsonView.Size = new System.Drawing.Size(120, 66);
+            this.jsonView.TabIndex = 5;
             // 
             // dataView
             // 
@@ -190,16 +215,58 @@
             this.textView.Size = new System.Drawing.Size(120, 66);
             this.textView.TabIndex = 2;
             // 
-            // jsonView
+            // label2
             // 
-            this.jsonView.BackColor = System.Drawing.Color.Gainsboro;
-            this.jsonView.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jsonView.ForeColor = System.Drawing.Color.Black;
-            this.jsonView.Location = new System.Drawing.Point(11, 104);
-            this.jsonView.Multiline = true;
-            this.jsonView.Name = "jsonView";
-            this.jsonView.Size = new System.Drawing.Size(120, 66);
-            this.jsonView.TabIndex = 5;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Limit inclusion:";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(87, 3);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(36, 17);
+            this.radioButton1.TabIndex = 1;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "All";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(129, 3);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(95, 17);
+            this.radioButton2.TabIndex = 2;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Reccomended";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(222, 3);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(60, 17);
+            this.radioButton3.TabIndex = 3;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Custom";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(6, 21);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(464, 106);
+            this.panel1.TabIndex = 4;
             // 
             // OutputView
             // 
@@ -217,6 +284,8 @@
             this.Name = "OutputView";
             this.Size = new System.Drawing.Size(473, 714);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.outputViewPanel.ResumeLayout(false);
@@ -243,5 +312,10 @@
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.TextBox textView;
         private System.Windows.Forms.TextBox jsonView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label2;
     }
 }

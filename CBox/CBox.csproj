@@ -58,6 +58,7 @@
     <Compile Include="generation\nodetype\BranchDataSocketEntry.cs" />
     <Compile Include="generation\nodetype\Include.cs" />
     <Compile Include="generation\nodetype\IncludeData.cs" />
+    <Compile Include="generation\nodetype\IncludeDataEntry.cs" />
     <Compile Include="generation\nodetype\INodeType.cs" />
     <Compile Include="generation\nodetype\BaseType.cs" />
     <Compile Include="generation\nodetype\INodeTypeData.cs" />

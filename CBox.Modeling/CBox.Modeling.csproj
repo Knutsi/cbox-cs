@@ -51,6 +51,12 @@
     <Compile Include="Components\ConnectionComponent.cs" />
     <Compile Include="Components\DragLineComponent.cs" />
     <Compile Include="Components\IDiagramComponent.cs" />
+    <Compile Include="inner_editors\IncludeNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="inner_editors\IncludeNodeEditor.Designer.cs">
+      <DependentUpon>IncludeNodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="inner_editors\ProblemStartNodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -126,6 +132,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CollectionPropertiesEditor.resx">
       <DependentUpon>CollectionPropertiesEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inner_editors\IncludeNodeEditor.resx">
+      <DependentUpon>IncludeNodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="inner_editors\ProblemStartNodeEditor.resx">
       <DependentUpon>ProblemStartNodeEditor.cs</DependentUpon>

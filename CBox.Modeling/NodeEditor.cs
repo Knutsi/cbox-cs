@@ -77,6 +77,10 @@ namespace cbox.modelling.editors
                     inner_editor = new ProblemStartNodeEditor();
                     break;
 
+                case Include.TYPE_IDENT:
+                    inner_editor = new IncludeNodeEditor();
+                    break;
+
                 default:
                     InnerEditor = null;
                     return;

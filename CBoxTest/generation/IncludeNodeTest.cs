@@ -57,8 +57,12 @@ namespace CBoxTest.generation
             C.FirstOutputSocket.Connect(D);
 
             var data = (IncludeData)C.HandlerData;
-            data.Source = IncludeSource.MODEL;
-            data.NodeCollectionIdent = "subcomp";
+            var include = new IncludeDataEntry()
+            {
+                Local = true,
+                Ident = "subcomp"
+            };
+            data.Includes.Add(include);
 
             // execute model and see if it includes the value from the subcomp:
             Assert.IsTrue(comp.Issues.Count == 0 && subcomp.Issues.Count == 0);
@@ -91,8 +95,13 @@ namespace CBoxTest.generation
             lib.Models.Add(libmodel);
 
             // change data to reflect using external model:
-            data.Source = IncludeSource.LIBRARY;
-            data.NodeCollectionIdent = "external";
+            var ex_include = new IncludeDataEntry()
+            {
+                Local = false,
+                Ident = "external"
+            };
+            data.Includes.Clear();
+            data.Includes.Add(ex_include);
 
             // see what we get (should give exactly the same result as in part 2:
             case_ = comp.Execute(comp.BuildPaths[0], true, false, null, lib).Case;

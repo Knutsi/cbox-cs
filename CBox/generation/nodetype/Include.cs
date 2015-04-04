@@ -92,21 +92,29 @@ namespace cbox.generation.nodetype
         /// <param name="ctx"></param>
         public void Eval(ExecutionContext ctx)
         {
+            foreach (var include in Data.Includes)
+            {
+                ExecutSubmodel(include, ctx);
+            }
+        }
+
+        private void ExecutSubmodel(IncludeDataEntry include, ExecutionContext ctx) 
+        {
             NodeCollection ncol = null;
 
-            if (Data.Source == IncludeSource.MODEL)
+            if (include.Local)
             {
-                ncol = ctx.CurrentModel.GetNodeCollection(Data.NodeCollectionIdent);
+                ncol = ctx.CurrentModel.GetNodeCollection(include.Ident);
                 // ensure we never include root model:
                 if (ncol == ncol.ParentModel.RootComponent)
                     throw new Exception("Include node is trying to incldue root model.  This would cause cyclic infinite loops.");
             }
-            else if (Data.Source == IncludeSource.LIBRARY)
-                ncol = ctx.ComponentLibrary.GetModel(Data.NodeCollectionIdent).RootComponent; 
+            else
+                ncol = ctx.ComponentLibrary.GetModel(include.Ident).RootComponent; 
 
             // if we cannot find the model, this is a serious error:
             if (ncol == null)
-                throw new ModelIntegrityException(String.Format("The node collection {0} was not found", Data.NodeCollectionIdent));
+                throw new ModelIntegrityException(String.Format("The node collection {0} was not found", include.Ident));
 
             // *FIXME*: DO ALIGNMENT HERE BY LIMITING BUILD PATHS!
             // in absence of alignment, we'll just pick a random path:
@@ -144,7 +152,6 @@ namespace cbox.generation.nodetype
                 foreach (var result in include_ctx.Case.RootProblem.TestResults)
                     ctx.CurrentProblem.Add(result);
             }
-
         }
 
         public void Describe(ExecutionContext ctx)

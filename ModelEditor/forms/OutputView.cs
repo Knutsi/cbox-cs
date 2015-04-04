@@ -175,7 +175,25 @@ namespace ModelEditor.forms
 
         public void PopulateTable()
         {
+            var table = new DataTable();
+            table.Columns.Add("Problem");
+            table.Columns.Add("Key");
+            table.Columns.Add("Value");
 
+            foreach (var problem in LatestCase.Problems)
+            {
+                foreach (var result in problem.TestResults)
+                {
+                    var row = table.NewRow();
+                    row["Problem"] = problem.Ident;
+                    row["Key"] = result.Key;
+                    row["Value"] = result.ToString(Program.CurrentOntology);
+
+                    table.Rows.Add(row);
+                }
+            }
+
+            dataView.DataSource = table;
         }
 
         public void PopulateTextOutput()

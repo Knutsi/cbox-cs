@@ -37,7 +37,8 @@ namespace cbox.generation
             if(generate_default)
             {
                 var comp = new NodeCollection() { Ident = "_Root", IsRoot = true };
-                Components.Add(comp);
+                //Components.Add(comp);
+                AddComponent(comp);
 
             }
         }

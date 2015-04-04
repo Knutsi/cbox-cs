@@ -10,7 +10,18 @@ namespace cbox.generation.nodetype
     {
         public List<OutputSocket> OuputSockets = new List<OutputSocket>();
 
-        public IncludeSource Source { get; set; }
-        public string NodeCollectionIdent { get; set; }
+        //public IncludeSource Source { get; set; }
+        //public string NodeCollectionIdent { get; set; }
+        public List<IncludeDataEntry> Includes = new List<IncludeDataEntry>();
+
+
+        public IncludeDataEntry EntryByIdentAndLocalStatus(string ident, bool local)
+        {
+            foreach (var entry in Includes)
+                if (entry.Local == local && entry.Ident == ident)
+                    return entry;
+
+            return null;
+        }
     }
 }
