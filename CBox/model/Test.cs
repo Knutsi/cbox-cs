@@ -16,8 +16,8 @@ namespace cbox.model
         public bool Accumulative { get; set; }
         public string Datatype { get; set; }
         public string Parent { get; set; }
-        public string GeneratorName { get; set; }
-        public string GeneratorData { get; set; }
+        public string SetterIdent { get; set; }
+        public string SetterXMLData { get; set; }
 
         public Test()
         {

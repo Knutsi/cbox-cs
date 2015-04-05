@@ -76,6 +76,9 @@ namespace OntologyEditor
 
         private void testsDataGrid_DoubleClick(object sender, EventArgs e)
         {
+            if (testsDataGrid.SelectedRows.Count <= 0)
+                return;
+
             // get test from the column:
             var test = (cbox.model.Test)testsDataGrid.SelectedRows[0].DataBoundItem;
 

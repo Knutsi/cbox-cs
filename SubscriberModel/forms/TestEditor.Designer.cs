@@ -38,13 +38,14 @@
             this.unitInput = new System.Windows.Forms.TextBox();
             this.derivedFromSelect = new System.Windows.Forms.ComboBox();
             this.titleInput = new System.Windows.Forms.TextBox();
-            this.generatorSelect = new System.Windows.Forms.ComboBox();
+            this.setterSelect = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.typeSelect = new System.Windows.Forms.ComboBox();
+            this.datatypeSelect = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.deriveCheckbox = new System.Windows.Forms.CheckBox();
             this.acumulativeCheckbox = new System.Windows.Forms.CheckBox();
+            this.deriveCheckbox = new System.Windows.Forms.CheckBox();
+            this.setterPanel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,9 +98,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 131);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 13);
+            this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Type:";
+            this.label5.Text = "Datatype:";
             // 
             // suffixInput
             // 
@@ -134,38 +135,38 @@
             this.titleInput.Size = new System.Drawing.Size(296, 20);
             this.titleInput.TabIndex = 3;
             // 
-            // generatorSelect
+            // setterSelect
             // 
-            this.generatorSelect.FormattingEnabled = true;
-            this.generatorSelect.Items.AddRange(new object[] {
+            this.setterSelect.FormattingEnabled = true;
+            this.setterSelect.Items.AddRange(new object[] {
             "Model",
             "Javascript",
             "Setter"});
-            this.generatorSelect.Location = new System.Drawing.Point(97, 184);
-            this.generatorSelect.Name = "generatorSelect";
-            this.generatorSelect.Size = new System.Drawing.Size(95, 21);
-            this.generatorSelect.TabIndex = 12;
+            this.setterSelect.Location = new System.Drawing.Point(97, 184);
+            this.setterSelect.Name = "setterSelect";
+            this.setterSelect.Size = new System.Drawing.Size(95, 21);
+            this.setterSelect.TabIndex = 12;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 187);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 13);
+            this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Value generator:";
+            this.label7.Text = "Setter:";
             // 
-            // typeSelect
+            // datatypeSelect
             // 
-            this.typeSelect.FormattingEnabled = true;
-            this.typeSelect.Items.AddRange(new object[] {
+            this.datatypeSelect.FormattingEnabled = true;
+            this.datatypeSelect.Items.AddRange(new object[] {
             "NUMBER",
             "TEXT",
             "DATA"});
-            this.typeSelect.Location = new System.Drawing.Point(97, 128);
-            this.typeSelect.Name = "typeSelect";
-            this.typeSelect.Size = new System.Drawing.Size(95, 21);
-            this.typeSelect.TabIndex = 14;
+            this.datatypeSelect.Location = new System.Drawing.Point(97, 128);
+            this.datatypeSelect.Name = "datatypeSelect";
+            this.datatypeSelect.Size = new System.Drawing.Size(95, 21);
+            this.datatypeSelect.TabIndex = 14;
             // 
             // label6
             // 
@@ -191,17 +192,27 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.generatorSelect);
-            this.groupBox1.Controls.Add(this.typeSelect);
+            this.groupBox1.Controls.Add(this.setterSelect);
+            this.groupBox1.Controls.Add(this.datatypeSelect);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(833, 221);
+            this.groupBox1.Size = new System.Drawing.Size(417, 221);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test information";
+            // 
+            // acumulativeCheckbox
+            // 
+            this.acumulativeCheckbox.AutoSize = true;
+            this.acumulativeCheckbox.Location = new System.Drawing.Point(216, 130);
+            this.acumulativeCheckbox.Name = "acumulativeCheckbox";
+            this.acumulativeCheckbox.Size = new System.Drawing.Size(84, 17);
+            this.acumulativeCheckbox.TabIndex = 15;
+            this.acumulativeCheckbox.Text = "Acumualtive";
+            this.acumulativeCheckbox.UseVisualStyleBackColor = true;
             // 
             // deriveCheckbox
             // 
@@ -214,21 +225,23 @@
             this.deriveCheckbox.UseVisualStyleBackColor = true;
             this.deriveCheckbox.CheckedChanged += new System.EventHandler(this.deriveCheckbox_CheckedChanged);
             // 
-            // acumulativeCheckbox
+            // setterPanel
             // 
-            this.acumulativeCheckbox.AutoSize = true;
-            this.acumulativeCheckbox.Location = new System.Drawing.Point(216, 130);
-            this.acumulativeCheckbox.Name = "acumulativeCheckbox";
-            this.acumulativeCheckbox.Size = new System.Drawing.Size(84, 17);
-            this.acumulativeCheckbox.TabIndex = 15;
-            this.acumulativeCheckbox.Text = "Acumualtive";
-            this.acumulativeCheckbox.UseVisualStyleBackColor = true;
+            this.setterPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.setterPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.setterPanel.Location = new System.Drawing.Point(12, 240);
+            this.setterPanel.Name = "setterPanel";
+            this.setterPanel.Size = new System.Drawing.Size(417, 297);
+            this.setterPanel.TabIndex = 2;
             // 
             // TestEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 625);
+            this.ClientSize = new System.Drawing.Size(441, 549);
+            this.Controls.Add(this.setterPanel);
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
             this.Name = "TestEditor";
@@ -252,11 +265,12 @@
         private System.Windows.Forms.TextBox suffixInput;
         private System.Windows.Forms.TextBox unitInput;
         private System.Windows.Forms.ComboBox derivedFromSelect;
-        private System.Windows.Forms.ComboBox generatorSelect;
+        private System.Windows.Forms.ComboBox setterSelect;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox typeSelect;
+        private System.Windows.Forms.ComboBox datatypeSelect;
         private System.Windows.Forms.CheckBox deriveCheckbox;
         private System.Windows.Forms.CheckBox acumulativeCheckbox;
+        private System.Windows.Forms.Panel setterPanel;
     }
 }

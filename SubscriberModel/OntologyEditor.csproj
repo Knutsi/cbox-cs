@@ -204,6 +204,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CBox.Modeling\CBox.Modeling.csproj">
+      <Project>{70734b43-866f-44f5-b559-cc5a4bd06caa}</Project>
+      <Name>CBox.Modeling</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CBox\CBox.csproj">
       <Project>{c5cc0c4f-4929-465b-9410-4ba6be35896b}</Project>
       <Name>CBox</Name>

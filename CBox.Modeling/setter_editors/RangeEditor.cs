@@ -67,7 +67,10 @@ namespace cbox.modelling.setter_editors
         {
             get
             {
-                return _SetterData.ToXML();
+                if (_SetterData != null)
+                    return _SetterData.ToXML();
+                else
+                    return (new RangeSetterData()).ToXML();
             }
             set
             {
