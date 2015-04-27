@@ -62,6 +62,8 @@
             this.removeSubmodelItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.extractSubmodelItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportToLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputDescriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,7 +74,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.issueSummaryLabel = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.rootDiagramPanel = new System.Windows.Forms.TabPage();
@@ -85,8 +87,6 @@
             this.outputView1 = new ModelEditor.forms.OutputView();
             this.issuesPanel = new System.Windows.Forms.TabPage();
             this.issuesView1 = new ModelEditor.forms.IssuesView();
-            this.exportToLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -358,6 +358,17 @@
             this.extractSubmodelItem.Size = new System.Drawing.Size(205, 22);
             this.extractSubmodelItem.Text = "Extract to new";
             // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(202, 6);
+            // 
+            // exportToLibraryToolStripMenuItem
+            // 
+            this.exportToLibraryToolStripMenuItem.Name = "exportToLibraryToolStripMenuItem";
+            this.exportToLibraryToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.exportToLibraryToolStripMenuItem.Text = "Migrate to system library";
+            // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -406,7 +417,7 @@
             this.toolStripButton1,
             this.toolStripSeparator7,
             this.toolStripProgressBar1,
-            this.toolStripLabel1});
+            this.issueSummaryLabel});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1161, 25);
@@ -433,12 +444,12 @@
             this.toolStripProgressBar1.Size = new System.Drawing.Size(40, 22);
             this.toolStripProgressBar1.Value = 50;
             // 
-            // toolStripLabel1
+            // issueSummaryLabel
             // 
-            this.toolStripLabel1.ForeColor = System.Drawing.Color.Red;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(47, 22);
-            this.toolStripLabel1.Text = "5 issues";
+            this.issueSummaryLabel.ForeColor = System.Drawing.Color.Red;
+            this.issueSummaryLabel.Name = "issueSummaryLabel";
+            this.issueSummaryLabel.Size = new System.Drawing.Size(47, 22);
+            this.issueSummaryLabel.Text = "5 issues";
             // 
             // splitContainer1
             // 
@@ -544,12 +555,13 @@
             // outputView1
             // 
             this.outputView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputView1.LimitMode = ModelEditor.forms.OutputLimitMode.SET;
             this.outputView1.Location = new System.Drawing.Point(3, 3);
-            this.outputView1.Mode = ModelEditor.forms.OutputViewMode.TEXT;
             this.outputView1.Model = null;
             this.outputView1.Name = "outputView1";
             this.outputView1.Size = new System.Drawing.Size(320, 559);
             this.outputView1.TabIndex = 0;
+            this.outputView1.ViewMode = ModelEditor.forms.OutputViewMode.TEXT;
             // 
             // issuesPanel
             // 
@@ -570,17 +582,6 @@
             this.issuesView1.Name = "issuesView1";
             this.issuesView1.Size = new System.Drawing.Size(320, 559);
             this.issuesView1.TabIndex = 0;
-            // 
-            // exportToLibraryToolStripMenuItem
-            // 
-            this.exportToLibraryToolStripMenuItem.Name = "exportToLibraryToolStripMenuItem";
-            this.exportToLibraryToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.exportToLibraryToolStripMenuItem.Text = "Migrate to system library";
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(202, 6);
             // 
             // EditorWindow
             // 
@@ -649,7 +650,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel issueSummaryLabel;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage rootDiagramPanel;

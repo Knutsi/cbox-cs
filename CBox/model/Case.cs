@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
+using System.Xml;
 
 namespace cbox.model
 {
@@ -23,6 +24,7 @@ namespace cbox.model
     [Serializable]
     public class Case
     {
+        [DataMember]
         public const string ROOT_PROBLEM_IDENT = "_root";
 
         [DataMember]
@@ -37,7 +39,11 @@ namespace cbox.model
         public Case()
         {
             // create root problem:
-            this.AddProblem(new Problem() { Ident = ROOT_PROBLEM_IDENT });
+            this.AddProblem(new Problem()
+            {
+                Ident = ROOT_PROBLEM_IDENT,
+                Classes = new List<string> { "General" }
+            });
         }
 
         public Problem this[string ident]
@@ -119,6 +125,10 @@ namespace cbox.model
             return subcase;
         }
 
+        /// <summary>
+        /// Translates the case to JSON formatted string.
+        /// </summary>
+        /// <returns></returns>
         public string toJSON() {
             using (var mstream = new MemoryStream())
             {
@@ -133,11 +143,76 @@ namespace cbox.model
             }
         }
 
+        /// <summary>
+        /// Translates a JSON-formated string to a case.
+        /// </summary>
+        /// <returns></returns>
+        public static Case FromJSON(string json)
+        {
+            var ser = new DataContractJsonSerializer(typeof(Case));
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+
+            var case_ = (Case)ser.ReadObject(stream);
+
+            case_.UpdateInternalReferences();
+
+            return case_;
+        }
+
+        /// <summary>
+        /// Fixes references after serialziation.
+        /// </summary>
+        internal void UpdateInternalReferences() 
+        {
+            foreach (var prob in this.Problems)
+                prob.ParentCase = this;
+        }
+
+
 
         public void AddProblem(Problem problem)
         {
             this.Problems.Add(problem);
             problem.ParentCase = this;
         }
+
+        /// <summary>
+        /// Creates a deep copy of the case.
+        /// </summary>
+        /// <returns></returns>
+        public Case Clone()
+        {
+            var json = this.toJSON();
+            return Case.FromJSON(json);
+        }
+
+        /// <summary>
+        /// Looks up values for the action-problem-pairs provided, and adds them to the case
+        /// given. 
+        /// </summary>
+        /// <param name="case_"></param>
+        /// <param name="Expantions"></param>
+        public void Expand(List<ActionProblemPair> ap_pairs, Ontology ontology)
+        {
+            foreach (var ap_pair in ap_pairs)
+            {
+                // get the current action and problem:
+                var problem = this.problemWithIdent(ap_pair.ProblemIdent);
+                var action = ontology.ActionByIdent(ap_pair.ActionIdent);
+
+                // get keys 
+                var keys = action.Yield.ToList();
+
+                // look up each key in ontology, add result to current problem:
+                foreach (var key in keys)
+                {
+                    //problem.Add(new TestResult() { Key = key, Value = "Expanded!" });
+                    var result = ontology.Lookup(key, this);
+                    problem.Add(result);
+                }
+            }
+        }
+
+
     }
 }

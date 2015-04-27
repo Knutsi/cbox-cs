@@ -32,6 +32,7 @@ namespace ModelEditor
 
             // react to model changed:
             Program.ModelLoaded += ReloadModel;
+
         }
 
 
@@ -65,10 +66,9 @@ namespace ModelEditor
             // rewire events:
             this.Model.ComponentAdded += Model_ComponentAdded;
             this.Model.ComponentRemoved += Model_ComponentRemoved;
+
+            this.Model.Invalidated += () => { UpdateIssueToolstripLabel(); };
         }
-
-
-
 
  
         /// <summary>
@@ -125,6 +125,7 @@ namespace ModelEditor
             {
                 return _Model;
             }
+
             set
             {
                 // save model to internal reference, and open root component:
@@ -141,6 +142,8 @@ namespace ModelEditor
                 // add new submodel tabs:
                 foreach (var sub in Model.Submodels)
                     AddSubmodelTab(sub);
+
+                
             } 
         }
         private Model _Model = null;
@@ -179,6 +182,23 @@ namespace ModelEditor
 
         void Model_ComponentAdded(NodeCollection collection) { AddSubmodelTab(collection); }
         void Model_ComponentRemoved(NodeCollection collection) { RemoveSubmodelTab(collection); }
+
+
+        /// <summary>
+        /// Called when the model updates to report new issues.
+        /// </summary>
+        internal void UpdateIssueToolstripLabel()
+        {
+            if(Model == null)
+                return;
+
+            var count = Model.IssuesCount;
+
+            if(count > 0)
+                issueSummaryLabel.Text = string.Format("{0} issues", count);
+            else
+                issueSummaryLabel.Text = string.Empty;
+        }
 
         /// <summary>
         /// Called when a tab page is clciked:

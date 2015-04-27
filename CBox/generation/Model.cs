@@ -14,11 +14,13 @@ namespace cbox.generation
 
     public delegate void ComponentAddedEvent(NodeCollection collection);
     public delegate void ComponentRemovedEvent(NodeCollection collection);
+    public delegate void ModelInvalidatedEvent();
 
     public class Model : IdentProvider
     {
         public event ComponentAddedEvent ComponentAdded;
         public event ComponentRemovedEvent ComponentRemoved;
+        public event ModelInvalidatedEvent Invalidated;
 
         public string Ident { get; set; }
 
@@ -72,6 +74,9 @@ namespace cbox.generation
             // fire event:
             if (ComponentAdded != null)
                 ComponentAdded(comp);
+
+            // trigger invalidated event on node collection invalidation:
+            comp.Invalidated += HandleNodeCollectionInvalidate;
         }
 
 
@@ -87,6 +92,8 @@ namespace cbox.generation
             // fire event:
             if (ComponentRemoved != null)
                 ComponentRemoved(comp);
+
+            comp.Invalidated -= HandleNodeCollectionInvalidate;
         }
         
         /// <summary>
@@ -99,6 +106,31 @@ namespace cbox.generation
                 return (from c in Components
                         where c.IsRoot == false
                         select c).ToList();
+            }
+        }
+
+
+        [XmlIgnore]
+        public List<IssueReport> IssueReports
+        {
+            get
+            {
+                return (from r in Components
+                        select r.Issues).ToList();
+            }
+        }
+
+
+        [XmlIgnore]
+        public int IssuesCount
+        {
+            get
+            {
+                var count = 0;
+                foreach (var report in IssueReports)
+                    count += report.Count;
+
+                return count;
             }
         }
 
@@ -136,6 +168,8 @@ namespace cbox.generation
 
                 // invalidate to rebuild problem sets etc.:
                 model.Invalidate();
+                
+                
 
                 return model;
             }
@@ -150,6 +184,8 @@ namespace cbox.generation
             {
                 comp.ParentModel = this;
                 comp.UpdateInternalReferences();
+
+                comp.Invalidated += HandleNodeCollectionInvalidate;
             }  
         }
 
@@ -169,6 +205,14 @@ namespace cbox.generation
                     return ncol;
 
             return null;
+        }
+
+        internal void HandleNodeCollectionInvalidate()
+        {
+            if (Invalidated != null)
+                Invalidated();
+
+            Console.Out.WriteLine("Model: invalidated");
         }
 
         public Case RandomCase

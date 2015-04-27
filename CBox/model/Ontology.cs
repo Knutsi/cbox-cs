@@ -10,6 +10,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 
+using cbox.generation;
+using cbox.generation.setter;
+
 namespace cbox.model
 {
     public delegate void OntolgyChangedHandler(object sender);
@@ -377,5 +380,68 @@ namespace cbox.model
 
             return null;
         }
+
+        /// <summary>
+        /// Retuns a list of actions possible on class with provided name.
+        /// </summary>
+        /// <param name="class_"></param>
+        /// <returns></returns>
+        public List<Action> ActionsByClass(string class_)
+        {
+            var results = new List<Action>();
+
+            foreach (var action in Actions)
+                if (action.TargetClasses.Contains(class_) && !results.Contains(action))
+                    results.Add(action);
+
+            return results;
+        }
+
+
+        public Action ActionByIdent(int ident)
+        {
+            foreach (var action in Actions)
+                if (action.Ident == ident)
+                    return action;
+
+            return null;
+        }
+
+
+
+        public TestResult Lookup(string key, Case case_)
+        {
+            // get test associated with key:
+            var test = this.TestByKey(key);
+
+            // make some error checks:
+            if (test == null)
+                return new TestResult() { Key = key, Value = "ERROR: test does not exist: " + key };
+
+            if (test.SetterIdent == null)
+                return new TestResult() { Key = key, Value = "ERROR: no setter for test: " + key };
+
+            if (test.SetterXMLData == null || test.SetterXMLData == string.Empty)
+                return new TestResult() { Key = key, Value = "ERROR: no setter XML data for " + test.SetterIdent + " on " + key };
+
+            // all well? Then get setter, and request value:
+            var setter = SetterLibrary.Default.SetterByIdent(test.SetterIdent);
+            var ctx = new ExecutionContext()
+            {
+                Case = case_, 
+                Ontology = this, 
+                IsOntologyLookup = true
+            };
+            var value = setter.Eval(test.SetterXMLData, ctx);
+            
+            // return the value retrieved:
+            return new TestResult()
+            {
+                Key = key,
+                Value = value
+            };
+        }
+
     }
 }
+

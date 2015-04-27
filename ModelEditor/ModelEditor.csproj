@@ -82,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="support\OutputViewCaseExtention.cs" />
+    <Compile Include="support\SavedLimitSet.cs" />
+    <Compile Include="support\SavedLimitSetCollection.cs" />
     <Compile Include="support\SubModelTabEntry.cs" />
     <EmbeddedResource Include="forms\debug\EditorsTest.resx">
       <DependentUpon>EditorsTest.cs</DependentUpon>

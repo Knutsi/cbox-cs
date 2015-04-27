@@ -82,5 +82,29 @@ namespace ModelEditor.Properties {
                 this["default_output_view"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int default_output_limit {
+            get {
+                return ((int)(this["default_output_limit"]));
+            }
+            set {
+                this["default_output_limit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string saved_limit_sets {
+            get {
+                return ((string)(this["saved_limit_sets"]));
+            }
+            set {
+                this["saved_limit_sets"] = value;
+            }
+        }
     }
 }

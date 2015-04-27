@@ -75,6 +75,7 @@
     <Compile Include="generation\setter\StringSetter.cs" />
     <Compile Include="generation\setter\StringSetterData.cs" />
     <Compile Include="generation\setter\ThesaurusEntry.cs" />
+    <Compile Include="model\ActionProblemPair.cs" />
     <Compile Include="model\ChoiceList.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="XMLSerializable.cs" />

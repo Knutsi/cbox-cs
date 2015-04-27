@@ -25,12 +25,20 @@ namespace cbox.generation.setter
             this[ChoiceSetter.Ident] = choice_setter;
         }
 
+        public IValueSetter SetterByIdent(string ident)
+        {
+            if (this.Keys.Contains(ident))
+                return this[ident];
+            else
+                return null;
+        }
+
         /// <summary>
         /// Returns a list of setters that can provde the given datatype.
         /// </summary>
         /// <param name="datatype"></param>
         /// <returns></returns>
-        public List<IValueSetter> SetterByDatatype(string datatype)
+        public List<IValueSetter> SettersByDatatype(string datatype)
         {
             var setters = new List<IValueSetter>();
 

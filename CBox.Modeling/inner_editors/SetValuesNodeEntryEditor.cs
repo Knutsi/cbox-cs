@@ -103,7 +103,7 @@ namespace cbox.modelling
                 throw new Exception("PopulateSetters() called on key that does not exist in ontology.  Call validate first.");
 
             // fill in the setters for this datatype:
-            var setters = SetterLibrary.Default.SetterByDatatype(test.Datatype);
+            var setters = SetterLibrary.Default.SettersByDatatype(test.Datatype);
             var setter_titles = (from s in setters select s.Ident_).ToList();
             setterSelect.DataSource = setter_titles;
         }
@@ -135,7 +135,7 @@ namespace cbox.modelling
             if(Entry.SetterIdent != null)
             {
                 var test = this.Ontology.TestByKey(Entry.Key);
-                var setters_for_test = (from s in SetterLibrary.Default.SetterByDatatype(test.Datatype)
+                var setters_for_test = (from s in SetterLibrary.Default.SettersByDatatype(test.Datatype)
                                         select s.Ident_).ToList();
                 
                 if (!setters_for_test.Contains(Entry.SetterIdent))
@@ -268,7 +268,7 @@ namespace cbox.modelling
                 ClearEntry();
                 Entry.Key = key;
 
-                var setters = SetterLibrary.Default.SetterByDatatype(test.Datatype);
+                var setters = SetterLibrary.Default.SettersByDatatype(test.Datatype);
                 Entry.SetterIdent = setters.First().Ident_;
 
                 LoadEntry();

@@ -119,7 +119,7 @@ namespace OntologyEditor
         {
             get 
             {
-                return (from s in SetterLibrary.Default.SetterByDatatype(CurrentTest.Datatype)
+                return (from s in SetterLibrary.Default.SettersByDatatype(CurrentTest.Datatype)
                         select s.Ident_).ToList(); 
             }
         }

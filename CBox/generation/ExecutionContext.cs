@@ -24,6 +24,7 @@ namespace cbox.generation
         public BuildPath BuildPath { get; set; }
         public Ontology Ontology { get; set; }
         public ComponentLibrary ComponentLibrary { get; set; }
+        public bool IsOntologyLookup { get; set; }
 
 
         public Dictionary<Node, Problem> InstancedProblems = new Dictionary<Node, Problem>();
