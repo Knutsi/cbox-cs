@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 using cbox.generation;
 using cbox.model;
+using cbox.system;
 using cbox.generation.nodetype;
 
 using ModelEditor.forms;
@@ -17,15 +18,22 @@ namespace ModelEditor
     public delegate void RecentFilesChangedEventHandler();
     public delegate void ModelLoadedEventHandler();
     public delegate void OntologyLoadedEventHandler(bool autoreload);
+    public delegate void SystemLoadedEventHandler();
 
     static class Program
     {
         public static EditorWindow MainWindow { get; set; }
         public static string CurrentFilePath;
 
+        public static Ontology CurrentOntology { get; set; }
+        public static string CurrentOntologyPath { get; set; }
+
+        public static CBoxSystem CurrentSystem { get; set; }
+
         public static event RecentFilesChangedEventHandler RecentFilesChanged;
         public static event ModelLoadedEventHandler ModelLoaded;
         public static event OntologyLoadedEventHandler OntologyLoaded;
+        public static event SystemLoadedEventHandler SystemLoaded;
 
         private static FileSystemWatcher OntologyFileWatcher;
 
@@ -62,7 +70,6 @@ namespace ModelEditor
             set
             {
                 _CurrentModel = value;
-                //Program.MainWindow.Model = CurrentModel;
 
                 if (ModelLoaded != null)
                     ModelLoaded();
@@ -74,15 +81,8 @@ namespace ModelEditor
         /// <summary>
         /// The ontology being used.
         /// </summary>
-        public static Ontology CurrentOntology 
-        { 
-            get; set; 
-        }
 
-        public static string CurrentOntologyPath 
-        { 
-            get; set; 
-        }
+
 
 
         /// <summary>
@@ -151,6 +151,9 @@ namespace ModelEditor
 
             // try to load default ontology:
             LoadDefaultOntology();
+
+            // load system:
+            CurrentSystem = CBoxSystem.FromModelPath(filepath);
 
             Console.WriteLine("Opened model {0}", filepath);
 
@@ -290,7 +293,7 @@ namespace ModelEditor
             OntologyFileWatcher.Changed += Ontology_FileChanged;
         }
 
-
+  
         static void Ontology_FileChanged(object sender, FileSystemEventArgs e)
         {
             Console.Out.WriteLine("Ontology changed - reloading");

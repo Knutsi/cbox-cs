@@ -8,6 +8,8 @@ using System.IO;
 
 using System.Runtime.Serialization;
 
+using cbox.system;
+
 namespace cbox.generation
 {
     public delegate void CollectionChangedEvent();
@@ -520,7 +522,7 @@ namespace cbox.generation
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public ExecutionContext Execute(BuildPath path, bool generate_values=true, bool generate_ranges=false, ExecutionContext parent_ctx=null, ComponentLibrary complib=null)
+        public ExecutionContext Execute(BuildPath path, bool generate_values=true, bool generate_ranges=false, ExecutionContext parent_ctx=null, CBoxSystem system=null)
         {
             // ensure we are ready to go:
             Invalidate();
@@ -534,9 +536,9 @@ namespace cbox.generation
             ctx.ParentContext = parent_ctx;
 
             // if no component library, we make an empty one:
-            ctx.ComponentLibrary = complib;
-            if (complib == null)
-                ctx.ComponentLibrary = new ComponentLibrary();
+            ctx.System = system;
+            /*if (system == null)
+                ctx.System = new CBoxSystem(null);*/
 
             // step through execution order, execute nodes in path provided:
             foreach (var node in this.ExecutionOrder)

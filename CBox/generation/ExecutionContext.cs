@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using cbox.model;
+using cbox.system;
 
 namespace cbox.generation
 {
@@ -23,7 +24,7 @@ namespace cbox.generation
         public Node CurrentNode { get; set; }
         public BuildPath BuildPath { get; set; }
         public Ontology Ontology { get; set; }
-        public ComponentLibrary ComponentLibrary { get; set; }
+        public CBoxSystem System { get; set; }
         public bool IsOntologyLookup { get; set; }
 
 

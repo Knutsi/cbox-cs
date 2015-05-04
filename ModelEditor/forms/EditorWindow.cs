@@ -299,6 +299,7 @@ namespace ModelEditor
             // do we have any previous editors open that we need to save?
             foreach (var editor in ActiveEditors)
                 editor.SaveNode();
+
             ActiveEditors = new List<NodeEditor>();
 
             // dettermine what to do depending on how many are selected:
@@ -307,6 +308,7 @@ namespace ModelEditor
                 // only one node?  Fill panel with editor:
                 var editor = new NodeEditor()
                 {
+                    CBoxSystem = Program.CurrentSystem,
                     Ontology = Program.CurrentOntology,
                     Node = CurrentDiagram.SelectedNodes.First(),
                     Dock = DockStyle.Fill
@@ -329,7 +331,7 @@ namespace ModelEditor
                 // create an editor for each selected node
                 foreach (var node in CurrentDiagram.SelectedNodes)
                 {
-                    var editor = new NodeEditor() { Ontology = Program.CurrentOntology, Node = node };
+                    var editor = new NodeEditor() { Ontology = Program.CurrentOntology, CBoxSystem = Program.CurrentSystem, Node = node };
                     editorFlowLayout.Controls.Add(editor);
                     ActiveEditors.Add(editor);
                 }

@@ -13,6 +13,9 @@ using cbox.generation.nodetype;
 
 namespace cbox.modelling.editors
 {
+    /// <summary>
+    /// Editor to allow submodels to be included. 
+    /// </summary>
     public partial class IncludeNodeEditor : UserControl, IInnerEditor
     {
         private Node _Node;
@@ -25,7 +28,12 @@ namespace cbox.modelling.editors
 
             addButton.Enabled = false;
 
-            // setup events:
+            SetupEvents();
+        }
+
+        public void SetupEvents()
+        {
+            // enable and disable add button depending on item being slected enough:
             possibleIncludesList.SelectedIndexChanged += (object s, EventArgs e) =>
             {
                 if (possibleIncludesList.SelectedItem != null)
@@ -34,9 +42,11 @@ namespace cbox.modelling.editors
                     addButton.Enabled = false;
             };
 
-            possibleIncludesList.DoubleClick += (object s, EventArgs e) => { addButton.PerformClick();  };
+            // add/remove selected include when double clicked (by simulating click):
+            possibleIncludesList.DoubleClick += (object s, EventArgs e) => { addButton.PerformClick(); };
             selectedList.DoubleClick += (object s, EventArgs e) => { removeButton.PerformClick(); };
 
+            // add button: add selected include:
             addButton.Click += (object s, EventArgs e) =>
             {
                 if (possibleIncludesList.SelectedItem == null)
@@ -48,8 +58,10 @@ namespace cbox.modelling.editors
                 Data.Includes.Add(new IncludeDataEntry { Ident = ident, Local = local });
 
                 Load();
+                Console.WriteLine("-");
             };
 
+            // remove button: remove selected include:
             removeButton.Click += (object s, EventArgs e) =>
             {
                 if (selectedList.SelectedItem == null)
@@ -88,7 +100,6 @@ namespace cbox.modelling.editors
             set;
         }
 
-
         public List<NodeCollection> AvailableLocalComponents
         {
             get
@@ -105,24 +116,36 @@ namespace cbox.modelling.editors
             }
         }
 
-
         public void Load() 
         {
             // load list of possible includes, filtered by search box:
-            var local_includes = (from i in AvailableLocalComponents
+            var includes = (from i in AvailableLocalComponents
                                  select new { Label = "* " + i.Ident, Ident = i.Ident, Local = true }).ToList();
 
-            possibleIncludesList.DataSource = local_includes;
+
+            // load the remainder of possible includes from the cbox-system:
+            var system_includes = (from c in ParentEditor.CBoxSystem.Components
+                                   where Data.EntryByIdentAndLocalStatus(c.Ident, false) == null
+                                  select new { Label = c.Title, Ident = c.Title, Local = false }).ToList();
+
+            includes.AddRange(system_includes);
+
+            // add system and local includes as dawta source:
+            possibleIncludesList.DataSource = includes;
             possibleIncludesList.DisplayMember = "Label";
 
-            // TODO: popualte remainder from system 
-            // TODO: filter from search field
-
             // populate list of selected items:
-            var local_selected = (from i in Data.Includes
-                                  select new { Label = "* " + i.Ident, Ident = i.Ident, Local = true, SourceInclude = i }).ToList();
+            var selected = (from i in Data.Includes
+                            where i.Local == true
+                            select new { Label = "* " + i.Ident, Ident = i.Ident, Local = true, SourceInclude = i }).ToList();
 
-            selectedList.DataSource = local_selected;
+            var remote_selected = (from i in Data.Includes
+                                  where i.Local == false
+                                  select new { Label = i.Ident, Ident = i.Ident, Local = true, SourceInclude = i }).ToList();
+
+            selected.AddRange(remote_selected);
+
+            selectedList.DataSource = selected;
             selectedList.DisplayMember = "Label";
         }
 

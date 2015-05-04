@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using cbox.model;
 using cbox.generation;
 using cbox.generation.nodetype;
+using cbox.system;
 
 namespace cbox.modelling.editors
 {
@@ -20,6 +21,7 @@ namespace cbox.modelling.editors
     {
         public event NodeSavedEvent NodeSaved;
         public Ontology Ontology { get; set; }
+        public CBoxSystem CBoxSystem { get; set; }
         private IInnerEditor InnerEditor;
 
         private int? SplitPanelOriginalHeight = null;

@@ -110,7 +110,7 @@ namespace cbox.generation.nodetype
                     throw new Exception("Include node is trying to incldue root model.  This would cause cyclic infinite loops.");
             }
             else
-                ncol = ctx.ComponentLibrary.GetModel(include.Ident).RootComponent; 
+                ncol = ctx.System.GetComponent(include.Ident).RootComponent; 
 
             // if we cannot find the model, this is a serious error:
             if (ncol == null)
@@ -128,7 +128,7 @@ namespace cbox.generation.nodetype
                 true, 
                 false, 
                 ctx, 
-                ctx.ComponentLibrary);
+                ctx.System);
 
             // now to add the collected values to case.  If we are bound, we add all values
             // on root problem to current problem.  If not, we add each problem that

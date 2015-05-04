@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using cbox.system;
 
 namespace OntologyEditor
 {
     public partial class EditDiagnosis : Form
     {
-        cbox.model.CBoxSystem CurrentSystem;
+        CBoxSystem CurrentSystem;
         cbox.model.Diagnosis CurrentDiagnosis;
 
         public EditDiagnosis()
@@ -21,7 +22,7 @@ namespace OntologyEditor
             InitializeComponent();
         }
 
-        public EditDiagnosis(cbox.model.CBoxSystem system, cbox.model.Diagnosis dx)
+        public EditDiagnosis(CBoxSystem system, cbox.model.Diagnosis dx)
         {
             InitializeComponent();
 
@@ -34,7 +35,6 @@ namespace OntologyEditor
         private void button1_Click(object sender, EventArgs e)
         {
             this.CurrentDiagnosis.Name = this.titleTextBox.Text;
-            this.CurrentSystem.TestFire();
         }
     }
 }

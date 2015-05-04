@@ -492,7 +492,7 @@ namespace ModelEditor.forms
             if(existing_set != null)
             {
                 // give a chance to cancel:
-                if (MessageBox.Show("Overwrite?", string.Format("Overwriset set '{0}'", title), MessageBoxButtons.OKCancel) == DialogResult.No)
+                if (MessageBox.Show(string.Format("Overwriset set '{0}'", title), "Overwrite?", MessageBoxButtons.OKCancel) == DialogResult.No)
                     return;
 
                 // perform overwrite?
@@ -572,7 +572,7 @@ namespace ModelEditor.forms
                 return;
 
             // generate a random case:
-            BaseCase = Model.RandomCase;
+            BaseCase = Model.RandomCase(Program.CurrentSystem);
             PopulateOutputViews();
 
             if (LimitMode == OutputLimitMode.CUSTOM)

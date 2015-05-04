@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using System.IO;
 
 using cbox.model;
+using cbox.system;
 
 namespace cbox.generation
 {
@@ -116,6 +117,7 @@ namespace cbox.generation
             get
             {
                 return (from r in Components
+                        where r.Issues != null
                         select r.Issues).ToList();
             }
         }
@@ -215,22 +217,22 @@ namespace cbox.generation
             Console.Out.WriteLine("Model: invalidated");
         }
 
-        public Case RandomCase
+        /// <summary>
+        /// Generates a random case.
+        /// </summary>
+        /// <returns></returns>
+        public Case RandomCase(CBoxSystem system=null)
         {
-            get
+            var rand = new Random();
+            var paths = RootComponent.BuildPaths;
+
+            if (paths != null)
             {
-                var rand = new Random();
-                var paths = RootComponent.BuildPaths;
-
-                if (paths != null)
-                {
-                    var path = paths[rand.Next(paths.Count)];
-                    return RootComponent.Execute(path).Case;
-                }
-                else
-                    return null;
-
+                var path = paths[rand.Next(paths.Count)];
+                return RootComponent.Execute(path, true, false, null, system).Case;
             }
+            else
+                return null;
         }
     }
 }
