@@ -42,7 +42,7 @@ namespace cbox.server
         {
             Task tast = Task.Factory.StartNew(() =>
             {
-                Listener.Start();
+                //Listener.Start();
 
                 while (Listener.IsListening)
                 {

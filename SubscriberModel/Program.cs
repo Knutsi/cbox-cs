@@ -45,6 +45,9 @@ namespace OntologyEditor
         [STAThread]
         static void Main()
         {
+            if (Environment.OSVersion.Version.Major >= 6)
+                SetProcessDPIAware();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -56,10 +59,12 @@ namespace OntologyEditor
 
             // create main windows and run app:
             Program.MainWindowInstance = new MainWindow();
-            Application.Run(Program.MainWindowInstance);
-
-           
+            Application.Run(Program.MainWindowInstance); 
         }
+
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
 
         public static void SaveRecents() {
             XmlSerializer serializer = new XmlSerializer(typeof(RecentMenuEntryCollection));

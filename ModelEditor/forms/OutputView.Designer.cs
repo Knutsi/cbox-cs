@@ -68,18 +68,20 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(81, 25);
+            this.checkBox1.Location = new System.Drawing.Point(162, 48);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(129, 17);
+            this.checkBox1.Size = new System.Drawing.Size(254, 29);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Auto-build on updates";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // buildButton
             // 
-            this.buildButton.Location = new System.Drawing.Point(-1, 21);
+            this.buildButton.Location = new System.Drawing.Point(-2, 40);
+            this.buildButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.buildButton.Name = "buildButton";
-            this.buildButton.Size = new System.Drawing.Size(75, 23);
+            this.buildButton.Size = new System.Drawing.Size(150, 44);
             this.buildButton.TabIndex = 3;
             this.buildButton.Text = "Build";
             this.buildButton.UseVisualStyleBackColor = true;
@@ -87,9 +89,10 @@
             // jsonViewCheck
             // 
             this.jsonViewCheck.AutoSize = true;
-            this.jsonViewCheck.Location = new System.Drawing.Point(206, 2);
+            this.jsonViewCheck.Location = new System.Drawing.Point(412, 4);
+            this.jsonViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.jsonViewCheck.Name = "jsonViewCheck";
-            this.jsonViewCheck.Size = new System.Drawing.Size(53, 17);
+            this.jsonViewCheck.Size = new System.Drawing.Size(99, 29);
             this.jsonViewCheck.TabIndex = 4;
             this.jsonViewCheck.Text = "JSON";
             this.jsonViewCheck.UseVisualStyleBackColor = true;
@@ -98,9 +101,10 @@
             // 
             this.textViewCheck.AutoSize = true;
             this.textViewCheck.Checked = true;
-            this.textViewCheck.Location = new System.Drawing.Point(45, 2);
+            this.textViewCheck.Location = new System.Drawing.Point(90, 4);
+            this.textViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textViewCheck.Name = "textViewCheck";
-            this.textViewCheck.Size = new System.Drawing.Size(46, 17);
+            this.textViewCheck.Size = new System.Drawing.Size(85, 29);
             this.textViewCheck.TabIndex = 5;
             this.textViewCheck.TabStop = true;
             this.textViewCheck.Text = "Text";
@@ -109,18 +113,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-3, 4);
+            this.label1.Location = new System.Drawing.Point(-6, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(85, 25);
             this.label1.TabIndex = 6;
             this.label1.Text = "Format:";
             // 
             // onlyWithSelectedCheckbox
             // 
             this.onlyWithSelectedCheckbox.AutoSize = true;
-            this.onlyWithSelectedCheckbox.Location = new System.Drawing.Point(216, 25);
+            this.onlyWithSelectedCheckbox.Location = new System.Drawing.Point(432, 48);
+            this.onlyWithSelectedCheckbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.onlyWithSelectedCheckbox.Name = "onlyWithSelectedCheckbox";
-            this.onlyWithSelectedCheckbox.Size = new System.Drawing.Size(90, 17);
+            this.onlyWithSelectedCheckbox.Size = new System.Drawing.Size(174, 29);
             this.onlyWithSelectedCheckbox.TabIndex = 7;
             this.onlyWithSelectedCheckbox.Text = "Selected only";
             this.onlyWithSelectedCheckbox.UseVisualStyleBackColor = true;
@@ -128,9 +134,10 @@
             // treeViewCheck
             // 
             this.treeViewCheck.AutoSize = true;
-            this.treeViewCheck.Location = new System.Drawing.Point(153, 2);
+            this.treeViewCheck.Location = new System.Drawing.Point(306, 4);
+            this.treeViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.treeViewCheck.Name = "treeViewCheck";
-            this.treeViewCheck.Size = new System.Drawing.Size(47, 17);
+            this.treeViewCheck.Size = new System.Drawing.Size(87, 29);
             this.treeViewCheck.TabIndex = 8;
             this.treeViewCheck.Text = "Tree";
             this.treeViewCheck.UseVisualStyleBackColor = true;
@@ -138,9 +145,10 @@
             // tableViewCheck
             // 
             this.tableViewCheck.AutoSize = true;
-            this.tableViewCheck.Location = new System.Drawing.Point(94, 2);
+            this.tableViewCheck.Location = new System.Drawing.Point(188, 4);
+            this.tableViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tableViewCheck.Name = "tableViewCheck";
-            this.tableViewCheck.Size = new System.Drawing.Size(52, 17);
+            this.tableViewCheck.Size = new System.Drawing.Size(97, 29);
             this.tableViewCheck.TabIndex = 10;
             this.tableViewCheck.Text = "Table";
             this.tableViewCheck.UseVisualStyleBackColor = true;
@@ -150,7 +158,8 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 94);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -169,8 +178,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.setRecModeSelect);
             this.splitContainer1.Panel2.Controls.Add(this.setModeSelect);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Size = new System.Drawing.Size(444, 527);
-            this.splitContainer1.SplitterDistance = 283;
+            this.splitContainer1.Size = new System.Drawing.Size(888, 1013);
+            this.splitContainer1.SplitterDistance = 543;
+            this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 11;
             // 
             // outputViewPanel
@@ -181,8 +191,9 @@
             this.outputViewPanel.Controls.Add(this.textView);
             this.outputViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputViewPanel.Location = new System.Drawing.Point(0, 0);
+            this.outputViewPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.outputViewPanel.Name = "outputViewPanel";
-            this.outputViewPanel.Size = new System.Drawing.Size(444, 283);
+            this.outputViewPanel.Size = new System.Drawing.Size(888, 543);
             this.outputViewPanel.TabIndex = 10;
             // 
             // jsonView
@@ -190,10 +201,11 @@
             this.jsonView.BackColor = System.Drawing.Color.Gainsboro;
             this.jsonView.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jsonView.ForeColor = System.Drawing.Color.Black;
-            this.jsonView.Location = new System.Drawing.Point(11, 104);
+            this.jsonView.Location = new System.Drawing.Point(22, 200);
+            this.jsonView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.jsonView.Multiline = true;
             this.jsonView.Name = "jsonView";
-            this.jsonView.Size = new System.Drawing.Size(120, 66);
+            this.jsonView.Size = new System.Drawing.Size(236, 123);
             this.jsonView.TabIndex = 5;
             // 
             // dataView
@@ -202,17 +214,19 @@
             this.dataView.AllowUserToDeleteRows = false;
             this.dataView.AllowUserToOrderColumns = true;
             this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataView.Location = new System.Drawing.Point(265, 32);
+            this.dataView.Location = new System.Drawing.Point(530, 62);
+            this.dataView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataView.Name = "dataView";
             this.dataView.ReadOnly = true;
-            this.dataView.Size = new System.Drawing.Size(115, 66);
+            this.dataView.Size = new System.Drawing.Size(230, 127);
             this.dataView.TabIndex = 4;
             // 
             // treeView
             // 
-            this.treeView.Location = new System.Drawing.Point(138, 32);
+            this.treeView.Location = new System.Drawing.Point(276, 62);
+            this.treeView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(108, 66);
+            this.treeView.Size = new System.Drawing.Size(212, 123);
             this.treeView.TabIndex = 3;
             // 
             // textView
@@ -220,18 +234,20 @@
             this.textView.BackColor = System.Drawing.Color.Navy;
             this.textView.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textView.ForeColor = System.Drawing.Color.Snow;
-            this.textView.Location = new System.Drawing.Point(11, 32);
+            this.textView.Location = new System.Drawing.Point(22, 62);
+            this.textView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textView.Multiline = true;
             this.textView.Name = "textView";
-            this.textView.Size = new System.Drawing.Size(120, 66);
+            this.textView.Size = new System.Drawing.Size(236, 123);
             this.textView.TabIndex = 2;
             // 
             // deleteLimitSetButton
             // 
             this.deleteLimitSetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteLimitSetButton.Location = new System.Drawing.Point(394, 24);
+            this.deleteLimitSetButton.Location = new System.Drawing.Point(788, 46);
+            this.deleteLimitSetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.deleteLimitSetButton.Name = "deleteLimitSetButton";
-            this.deleteLimitSetButton.Size = new System.Drawing.Size(50, 23);
+            this.deleteLimitSetButton.Size = new System.Drawing.Size(100, 44);
             this.deleteLimitSetButton.TabIndex = 9;
             this.deleteLimitSetButton.Text = "Delete";
             this.deleteLimitSetButton.UseVisualStyleBackColor = true;
@@ -239,9 +255,10 @@
             // saveLimitSetButton
             // 
             this.saveLimitSetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveLimitSetButton.Location = new System.Drawing.Point(321, 24);
+            this.saveLimitSetButton.Location = new System.Drawing.Point(642, 46);
+            this.saveLimitSetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.saveLimitSetButton.Name = "saveLimitSetButton";
-            this.saveLimitSetButton.Size = new System.Drawing.Size(67, 23);
+            this.saveLimitSetButton.Size = new System.Drawing.Size(134, 44);
             this.saveLimitSetButton.TabIndex = 8;
             this.saveLimitSetButton.Text = "Save set";
             this.saveLimitSetButton.UseVisualStyleBackColor = true;
@@ -256,9 +273,10 @@
             "All",
             "(Save current..)",
             "(Delete current..)"});
-            this.customLimitSetSelections.Location = new System.Drawing.Point(0, 26);
+            this.customLimitSetSelections.Location = new System.Drawing.Point(0, 50);
+            this.customLimitSetSelections.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.customLimitSetSelections.Name = "customLimitSetSelections";
-            this.customLimitSetSelections.Size = new System.Drawing.Size(315, 21);
+            this.customLimitSetSelections.Size = new System.Drawing.Size(626, 33);
             this.customLimitSetSelections.TabIndex = 7;
             // 
             // actionListView
@@ -275,9 +293,10 @@
             this.actionListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.actionListView.Location = new System.Drawing.Point(0, 50);
+            this.actionListView.Location = new System.Drawing.Point(0, 96);
+            this.actionListView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.actionListView.Name = "actionListView";
-            this.actionListView.Size = new System.Drawing.Size(444, 187);
+            this.actionListView.Size = new System.Drawing.Size(884, 356);
             this.actionListView.TabIndex = 6;
             this.actionListView.UseCompatibleStateImageBehavior = false;
             this.actionListView.View = System.Windows.Forms.View.Details;
@@ -294,9 +313,10 @@
             // customLimitSelect
             // 
             this.customLimitSelect.AutoSize = true;
-            this.customLimitSelect.Location = new System.Drawing.Point(245, 3);
+            this.customLimitSelect.Location = new System.Drawing.Point(490, 6);
+            this.customLimitSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.customLimitSelect.Name = "customLimitSelect";
-            this.customLimitSelect.Size = new System.Drawing.Size(60, 17);
+            this.customLimitSelect.Size = new System.Drawing.Size(116, 29);
             this.customLimitSelect.TabIndex = 5;
             this.customLimitSelect.Text = "Custom";
             this.customLimitSelect.UseVisualStyleBackColor = true;
@@ -304,9 +324,10 @@
             // journalModeSelect
             // 
             this.journalModeSelect.AutoSize = true;
-            this.journalModeSelect.Location = new System.Drawing.Point(146, 3);
+            this.journalModeSelect.Location = new System.Drawing.Point(292, 6);
+            this.journalModeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.journalModeSelect.Name = "journalModeSelect";
-            this.journalModeSelect.Size = new System.Drawing.Size(93, 17);
+            this.journalModeSelect.Size = new System.Drawing.Size(182, 29);
             this.journalModeSelect.TabIndex = 3;
             this.journalModeSelect.Text = "Default journal";
             this.journalModeSelect.UseVisualStyleBackColor = true;
@@ -314,9 +335,10 @@
             // setRecModeSelect
             // 
             this.setRecModeSelect.AutoSize = true;
-            this.setRecModeSelect.Location = new System.Drawing.Point(75, 3);
+            this.setRecModeSelect.Location = new System.Drawing.Point(150, 6);
+            this.setRecModeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.setRecModeSelect.Name = "setRecModeSelect";
-            this.setRecModeSelect.Size = new System.Drawing.Size(68, 17);
+            this.setRecModeSelect.Size = new System.Drawing.Size(129, 29);
             this.setRecModeSelect.TabIndex = 2;
             this.setRecModeSelect.Text = "Set + rec";
             this.setRecModeSelect.UseVisualStyleBackColor = true;
@@ -325,9 +347,10 @@
             // 
             this.setModeSelect.AutoSize = true;
             this.setModeSelect.Checked = true;
-            this.setModeSelect.Location = new System.Drawing.Point(31, 3);
+            this.setModeSelect.Location = new System.Drawing.Point(62, 6);
+            this.setModeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.setModeSelect.Name = "setModeSelect";
-            this.setModeSelect.Size = new System.Drawing.Size(41, 17);
+            this.setModeSelect.Size = new System.Drawing.Size(75, 29);
             this.setModeSelect.TabIndex = 1;
             this.setModeSelect.TabStop = true;
             this.setModeSelect.Text = "Set";
@@ -336,16 +359,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(-3, 5);
+            this.label2.Location = new System.Drawing.Point(-6, 10);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(63, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "Limit:";
             // 
             // OutputView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.tableViewCheck);
             this.Controls.Add(this.treeViewCheck);
@@ -355,8 +378,9 @@
             this.Controls.Add(this.jsonViewCheck);
             this.Controls.Add(this.buildButton);
             this.Controls.Add(this.checkBox1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "OutputView";
-            this.Size = new System.Drawing.Size(444, 576);
+            this.Size = new System.Drawing.Size(888, 1108);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

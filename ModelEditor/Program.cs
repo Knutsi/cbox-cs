@@ -43,6 +43,9 @@ namespace ModelEditor
         [STAThread]
         static void Main()
         {
+            if (Environment.OSVersion.Version.Major >= 6)
+                SetProcessDPIAware();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainWindow = new EditorWindow();
@@ -51,6 +54,9 @@ namespace ModelEditor
 
             Application.Run(MainWindow);
         }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
 
         static void MainWindow_Shown(object sender, EventArgs e)
         {

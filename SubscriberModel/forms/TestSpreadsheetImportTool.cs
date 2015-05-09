@@ -44,6 +44,7 @@ namespace OntologyEditor
             }
         }
 
+
         private void Clear()
         {
             dataGrid.Rows.Clear();
