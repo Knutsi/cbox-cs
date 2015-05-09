@@ -16,6 +16,7 @@ namespace OntologyEditor
         const string TITLE_SUFFIX = "CBox Editor v0.1dev (DO NOT DEMO - knutsindre@gmail.com)";
 
         TestsWindow TestsWindowInstance;
+        TestSpreadsheetImportTool TestImportInstance;
         FormsEditor FormsEditorInstance;
         ActionEditor ActionEditorInstance;
 
@@ -200,6 +201,19 @@ namespace OntologyEditor
 
         void FormsEditorInstance_FormClosed(object sender, FormClosedEventArgs e) { this.FormsEditorInstance = null; }
 
+
+        private void testImportMenuItem_Click(object sender, EventArgs e)
+        {
+            this.TestImportInstance = new TestSpreadsheetImportTool();
+            if(Program.UseMDI)
+                this.TestImportInstance.MdiParent = this;
+
+            this.TestImportInstance.Show();
+        }
+
+ 
+
+
         /// <summary>
         /// Inserts the standard classes into the ontolgy.
         /// </summary>
@@ -262,7 +276,7 @@ namespace OntologyEditor
             Program.OpenInternalURL(((ToolStripMenuItem)sender).Text);
         }
 
- 
+
   
 
     }

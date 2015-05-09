@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\TestSpreadsheetImportTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\TestSpreadsheetImportTool.Designer.cs">
+      <DependentUpon>TestSpreadsheetImportTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="server\ActionConsequenceResponse.cs" />
     <Compile Include="server\ClientRequest.cs" />
     <Compile Include="forms\DataExportView.cs">
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\TestEditor.resx">
       <DependentUpon>TestEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\TestSpreadsheetImportTool.resx">
+      <DependentUpon>TestSpreadsheetImportTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\TextInputPrompt.resx">
       <DependentUpon>TextInputPrompt.cs</DependentUpon>

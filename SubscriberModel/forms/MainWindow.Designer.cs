@@ -61,6 +61,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.clientPreviewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.testImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -206,20 +207,20 @@
             // 
             this.serverMenuIItem.Name = "serverMenuIItem";
             this.serverMenuIItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.serverMenuIItem.Size = new System.Drawing.Size(250, 22);
+            this.serverMenuIItem.Size = new System.Drawing.Size(226, 22);
             this.serverMenuIItem.Text = "Internal server";
             this.serverMenuIItem.Click += new System.EventHandler(this.serverMenuIItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(247, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(223, 6);
             // 
             // indexURLMenuItem
             // 
             this.indexURLMenuItem.Name = "indexURLMenuItem";
             this.indexURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.indexURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.indexURLMenuItem.Size = new System.Drawing.Size(226, 22);
             this.indexURLMenuItem.Text = "/lib/view/play.html";
             this.indexURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
             // 
@@ -227,7 +228,7 @@
             // 
             this.clipackURLMenuItem.Name = "clipackURLMenuItem";
             this.clipackURLMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.clipackURLMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.clipackURLMenuItem.Size = new System.Drawing.Size(226, 22);
             this.clipackURLMenuItem.Text = "/asset/dynamic/clipack";
             this.clipackURLMenuItem.Click += new System.EventHandler(this.OpenURLFromMenuItemText);
             // 
@@ -242,14 +243,14 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(247, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(223, 6);
             // 
             // advancedToolStripMenuItem
             // 
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.insStdClassesMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.advancedToolStripMenuItem.Text = "Quick fixes";
             // 
             // insStdClassesMenuItem
@@ -263,6 +264,7 @@
             this.editorsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.formsMenuItem,
             this.testEditorMenuItem,
+            this.testImportMenuItem,
             this.actionEditorMenuItem,
             this.diagnosisEditorMenuItem,
             this.treatmentsEditorMenuItem,
@@ -277,7 +279,7 @@
             this.formsMenuItem.Name = "formsMenuItem";
             this.formsMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.F)));
-            this.formsMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.formsMenuItem.Size = new System.Drawing.Size(231, 22);
             this.formsMenuItem.Text = "Forms";
             this.formsMenuItem.Click += new System.EventHandler(this.formsMenuItem_Click);
             // 
@@ -286,7 +288,7 @@
             this.testEditorMenuItem.Name = "testEditorMenuItem";
             this.testEditorMenuItem.ShortcutKeyDisplayString = "Ctrl+T";
             this.testEditorMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.testEditorMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.testEditorMenuItem.Size = new System.Drawing.Size(231, 22);
             this.testEditorMenuItem.Text = "&Tests";
             this.testEditorMenuItem.Click += new System.EventHandler(this.testEditorMenuItem_Click);
             // 
@@ -295,7 +297,7 @@
             this.actionEditorMenuItem.Name = "actionEditorMenuItem";
             this.actionEditorMenuItem.ShortcutKeyDisplayString = "Ctrl+A";
             this.actionEditorMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.actionEditorMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.actionEditorMenuItem.Size = new System.Drawing.Size(231, 22);
             this.actionEditorMenuItem.Text = "&Actions";
             this.actionEditorMenuItem.Click += new System.EventHandler(this.actionEditorMenuItem_Click);
             // 
@@ -304,7 +306,7 @@
             this.diagnosisEditorMenuItem.Name = "diagnosisEditorMenuItem";
             this.diagnosisEditorMenuItem.ShortcutKeyDisplayString = "Ctrl+D";
             this.diagnosisEditorMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.diagnosisEditorMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.diagnosisEditorMenuItem.Size = new System.Drawing.Size(231, 22);
             this.diagnosisEditorMenuItem.Text = "&Diagnosis";
             // 
             // treatmentsEditorMenuItem
@@ -312,20 +314,20 @@
             this.treatmentsEditorMenuItem.Name = "treatmentsEditorMenuItem";
             this.treatmentsEditorMenuItem.ShortcutKeyDisplayString = "Ctrl+R";
             this.treatmentsEditorMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.treatmentsEditorMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.treatmentsEditorMenuItem.Size = new System.Drawing.Size(231, 22);
             this.treatmentsEditorMenuItem.Text = "T&reatments";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(219, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(228, 6);
             // 
             // clientPreviewMenuItem
             // 
             this.clientPreviewMenuItem.Name = "clientPreviewMenuItem";
             this.clientPreviewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.B)));
-            this.clientPreviewMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.clientPreviewMenuItem.Size = new System.Drawing.Size(231, 22);
             this.clientPreviewMenuItem.Text = "Client Preview";
             this.clientPreviewMenuItem.Click += new System.EventHandler(this.clientPreviewMenuItem_Click);
             // 
@@ -336,6 +338,15 @@
             this.statusStrip.Size = new System.Drawing.Size(1020, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
+            // 
+            // testImportMenuItem
+            // 
+            this.testImportMenuItem.Name = "testImportMenuItem";
+            this.testImportMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.T)));
+            this.testImportMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.testImportMenuItem.Text = "Test import tool";
+            this.testImportMenuItem.Click += new System.EventHandler(this.testImportMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -393,5 +404,6 @@
         private System.Windows.Forms.ToolStripMenuItem indexURLMenuItem;
         private System.Windows.Forms.ToolStripMenuItem randomCaseURLMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem testImportMenuItem;
     }
 }

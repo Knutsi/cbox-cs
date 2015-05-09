@@ -22,6 +22,9 @@ namespace cbox.model
         public string Title { get; set; }
 
         [DataMember]
+        public string PeerNumber { get; set; }
+
+        [DataMember]
         public List<TestResult> TestResults{ get; set; }
 
         [DataMember]
