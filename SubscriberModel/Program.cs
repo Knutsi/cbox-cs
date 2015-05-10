@@ -115,7 +115,7 @@ namespace OntologyEditor
                 var dialog = new OpenFileDialog()
                 {
                     Title = "Locate ontology file",
-                    Filter = "ontology files (*.cboxontology)|*.txt|All files (*.*)|*.*"
+                    Filter = "All files (*.*)|*.*"
                 };
 
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)

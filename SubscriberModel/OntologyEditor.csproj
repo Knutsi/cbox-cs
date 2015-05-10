@@ -70,6 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleBufferedDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="forms\TestSpreadsheetImportTool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +149,8 @@
     <Compile Include="server\Game.cs" />
     <Compile Include="server\ServerResponse.cs" />
     <Compile Include="server\TestServer.cs" />
+    <Compile Include="support\ShorthandCommand.cs" />
+    <Compile Include="support\TabularDataTestImporter.cs" />
     <EmbeddedResource Include="forms\DataExportView.resx">
       <DependentUpon>DataExportView.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,7 +11,7 @@ namespace cbox.model
     {
         public string Key { get; set; }
         public string Title { get; set; }
-        public string Suffix { get; set; }
+        public string Prefix { get; set; }
         public string Unit { get; set; }
         public bool Accumulative { get; set; }
         public string Datatype { get; set; }

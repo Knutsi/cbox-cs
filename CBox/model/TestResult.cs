@@ -39,21 +39,26 @@ namespace cbox.model
                 return string.Format("({0} not in ontology)", Key);
 
             var suffix = "";
-            if (test.Suffix != null)
-                suffix = test.Suffix + ": ";
+            if (test.Prefix != null && test.Prefix != string.Empty)
+                suffix = test.Prefix + ": ";
 
             var unit = "";
-            if (test.Unit != null)
+            if (test.Unit != null && test.Unit != string.Empty)
                 unit = " " + test.Unit;
 
             var value = Value;
             if (test.Accumulative && Values.Count > 1)
                 value = string.Join(". ", Values);
+
+            var punctuation = "";
+            if (value.Trim()[value.Trim().Length-1] != '.')
+                punctuation = ".";
                 
-            return String.Format("{0}{1}{2}. ",
+            return String.Format("{0}{1}{2}{3}",
                 suffix,
-                Value,
-                unit);
+                value,
+                unit,
+                punctuation).Trim();
 
         }
     }

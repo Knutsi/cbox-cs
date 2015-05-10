@@ -23,12 +23,14 @@ namespace cbox.model
             Title = "Untitled form";
         }
 
-        public void AddHeadline(string title)
+        public Headline AddHeadline(string title)
         {
             var headline = new Headline();
             headline.Title = title;
 
             this.Headlines.Add(headline);
+
+            return headline;
         }
 
         public void RemoveHeadline(Headline headline)

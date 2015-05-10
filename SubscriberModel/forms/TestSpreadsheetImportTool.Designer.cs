@@ -28,115 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGrid = new System.Windows.Forms.DataGridView();
             this.pasteButton = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            this.writeButton = new System.Windows.Forms.Button();
+            this.gridPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // dataGrid
-            // 
-            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column7,
-            this.Column8,
-            this.Column6});
-            this.dataGrid.Location = new System.Drawing.Point(1, 41);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(1076, 528);
-            this.dataGrid.TabIndex = 0;
             // 
             // pasteButton
             // 
-            this.pasteButton.Location = new System.Drawing.Point(12, 12);
+            this.pasteButton.Location = new System.Drawing.Point(24, 23);
+            this.pasteButton.Margin = new System.Windows.Forms.Padding(6);
             this.pasteButton.Name = "pasteButton";
-            this.pasteButton.Size = new System.Drawing.Size(91, 23);
+            this.pasteButton.Size = new System.Drawing.Size(236, 44);
             this.pasteButton.TabIndex = 1;
-            this.pasteButton.Text = "Paste";
+            this.pasteButton.Text = "Import from clipboard";
             this.pasteButton.UseVisualStyleBackColor = true;
             this.pasteButton.Click += new System.EventHandler(this.pasteButton_Click);
             // 
-            // Column1
+            // writeButton
             // 
-            this.Column1.HeaderText = "Key";
-            this.Column1.Name = "Column1";
+            this.writeButton.Enabled = false;
+            this.writeButton.Location = new System.Drawing.Point(269, 23);
+            this.writeButton.Name = "writeButton";
+            this.writeButton.Size = new System.Drawing.Size(177, 44);
+            this.writeButton.TabIndex = 2;
+            this.writeButton.Text = "Write ontology";
+            this.writeButton.UseVisualStyleBackColor = true;
+            this.writeButton.Click += new System.EventHandler(this.writeButton_Click);
             // 
-            // Column2
+            // gridPanel
             // 
-            this.Column2.HeaderText = "Datatype";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Accumulative";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Parent";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Setter";
-            this.Column5.Name = "Column5";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Prefix";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Unit";
-            this.Column8.Name = "Column8";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Shorthand";
-            this.Column6.Name = "Column6";
+            this.gridPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridPanel.Location = new System.Drawing.Point(1, 90);
+            this.gridPanel.Name = "gridPanel";
+            this.gridPanel.Size = new System.Drawing.Size(2151, 1004);
+            this.gridPanel.TabIndex = 3;
             // 
             // TestSpreadsheetImportTool
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 569);
+            this.ClientSize = new System.Drawing.Size(2152, 1094);
+            this.Controls.Add(this.gridPanel);
+            this.Controls.Add(this.writeButton);
             this.Controls.Add(this.pasteButton);
-            this.Controls.Add(this.dataGrid);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "TestSpreadsheetImportTool";
             this.Text = "Test import tool";
-            this.Load += new System.EventHandler(this.TestSpreadsheetImportTool_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.Button pasteButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Button writeButton;
+        private System.Windows.Forms.Panel gridPanel;
     }
 }

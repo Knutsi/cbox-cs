@@ -31,7 +31,7 @@ namespace OntologyEditor
             // use data binding for most values:
             keyInput.DataBindings.Add("Text", test, "Key");
             titleInput.DataBindings.Add("Text", test, "Title");
-            suffixInput.DataBindings.Add("Text", test, "Suffix");
+            suffixInput.DataBindings.Add("Text", test, "Prefix");
             unitInput.DataBindings.Add("Text", test, "Unit");
             derivedFromSelect.DataBindings.Add("Text", test, "Parent");
             acumulativeCheckbox.DataBindings.Add("Checked", test, "Accumulative");

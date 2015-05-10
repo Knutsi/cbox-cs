@@ -69,7 +69,7 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(162, 48);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(254, 29);
             this.checkBox1.TabIndex = 2;
@@ -79,7 +79,7 @@
             // buildButton
             // 
             this.buildButton.Location = new System.Drawing.Point(-2, 40);
-            this.buildButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buildButton.Margin = new System.Windows.Forms.Padding(6);
             this.buildButton.Name = "buildButton";
             this.buildButton.Size = new System.Drawing.Size(150, 44);
             this.buildButton.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             this.jsonViewCheck.AutoSize = true;
             this.jsonViewCheck.Location = new System.Drawing.Point(412, 4);
-            this.jsonViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.jsonViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.jsonViewCheck.Name = "jsonViewCheck";
             this.jsonViewCheck.Size = new System.Drawing.Size(99, 29);
             this.jsonViewCheck.TabIndex = 4;
@@ -102,7 +102,7 @@
             this.textViewCheck.AutoSize = true;
             this.textViewCheck.Checked = true;
             this.textViewCheck.Location = new System.Drawing.Point(90, 4);
-            this.textViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.textViewCheck.Name = "textViewCheck";
             this.textViewCheck.Size = new System.Drawing.Size(85, 29);
             this.textViewCheck.TabIndex = 5;
@@ -124,7 +124,7 @@
             // 
             this.onlyWithSelectedCheckbox.AutoSize = true;
             this.onlyWithSelectedCheckbox.Location = new System.Drawing.Point(432, 48);
-            this.onlyWithSelectedCheckbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.onlyWithSelectedCheckbox.Margin = new System.Windows.Forms.Padding(6);
             this.onlyWithSelectedCheckbox.Name = "onlyWithSelectedCheckbox";
             this.onlyWithSelectedCheckbox.Size = new System.Drawing.Size(174, 29);
             this.onlyWithSelectedCheckbox.TabIndex = 7;
@@ -135,7 +135,7 @@
             // 
             this.treeViewCheck.AutoSize = true;
             this.treeViewCheck.Location = new System.Drawing.Point(306, 4);
-            this.treeViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.treeViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.treeViewCheck.Name = "treeViewCheck";
             this.treeViewCheck.Size = new System.Drawing.Size(87, 29);
             this.treeViewCheck.TabIndex = 8;
@@ -146,7 +146,7 @@
             // 
             this.tableViewCheck.AutoSize = true;
             this.tableViewCheck.Location = new System.Drawing.Point(188, 4);
-            this.tableViewCheck.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.tableViewCheck.Name = "tableViewCheck";
             this.tableViewCheck.Size = new System.Drawing.Size(97, 29);
             this.tableViewCheck.TabIndex = 10;
@@ -159,7 +159,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 94);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -191,7 +191,7 @@
             this.outputViewPanel.Controls.Add(this.textView);
             this.outputViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputViewPanel.Location = new System.Drawing.Point(0, 0);
-            this.outputViewPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.outputViewPanel.Margin = new System.Windows.Forms.Padding(6);
             this.outputViewPanel.Name = "outputViewPanel";
             this.outputViewPanel.Size = new System.Drawing.Size(888, 543);
             this.outputViewPanel.TabIndex = 10;
@@ -202,7 +202,7 @@
             this.jsonView.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jsonView.ForeColor = System.Drawing.Color.Black;
             this.jsonView.Location = new System.Drawing.Point(22, 200);
-            this.jsonView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.jsonView.Margin = new System.Windows.Forms.Padding(6);
             this.jsonView.Multiline = true;
             this.jsonView.Name = "jsonView";
             this.jsonView.Size = new System.Drawing.Size(236, 123);
@@ -213,9 +213,10 @@
             this.dataView.AllowUserToAddRows = false;
             this.dataView.AllowUserToDeleteRows = false;
             this.dataView.AllowUserToOrderColumns = true;
+            this.dataView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataView.Location = new System.Drawing.Point(530, 62);
-            this.dataView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataView.Margin = new System.Windows.Forms.Padding(6);
             this.dataView.Name = "dataView";
             this.dataView.ReadOnly = true;
             this.dataView.Size = new System.Drawing.Size(230, 127);
@@ -224,7 +225,7 @@
             // treeView
             // 
             this.treeView.Location = new System.Drawing.Point(276, 62);
-            this.treeView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.treeView.Margin = new System.Windows.Forms.Padding(6);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(212, 123);
             this.treeView.TabIndex = 3;
@@ -235,7 +236,7 @@
             this.textView.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textView.ForeColor = System.Drawing.Color.Snow;
             this.textView.Location = new System.Drawing.Point(22, 62);
-            this.textView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textView.Margin = new System.Windows.Forms.Padding(6);
             this.textView.Multiline = true;
             this.textView.Name = "textView";
             this.textView.Size = new System.Drawing.Size(236, 123);
@@ -245,7 +246,7 @@
             // 
             this.deleteLimitSetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteLimitSetButton.Location = new System.Drawing.Point(788, 46);
-            this.deleteLimitSetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.deleteLimitSetButton.Margin = new System.Windows.Forms.Padding(6);
             this.deleteLimitSetButton.Name = "deleteLimitSetButton";
             this.deleteLimitSetButton.Size = new System.Drawing.Size(100, 44);
             this.deleteLimitSetButton.TabIndex = 9;
@@ -256,7 +257,7 @@
             // 
             this.saveLimitSetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveLimitSetButton.Location = new System.Drawing.Point(642, 46);
-            this.saveLimitSetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.saveLimitSetButton.Margin = new System.Windows.Forms.Padding(6);
             this.saveLimitSetButton.Name = "saveLimitSetButton";
             this.saveLimitSetButton.Size = new System.Drawing.Size(134, 44);
             this.saveLimitSetButton.TabIndex = 8;
@@ -274,7 +275,7 @@
             "(Save current..)",
             "(Delete current..)"});
             this.customLimitSetSelections.Location = new System.Drawing.Point(0, 50);
-            this.customLimitSetSelections.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.customLimitSetSelections.Margin = new System.Windows.Forms.Padding(6);
             this.customLimitSetSelections.Name = "customLimitSetSelections";
             this.customLimitSetSelections.Size = new System.Drawing.Size(626, 33);
             this.customLimitSetSelections.TabIndex = 7;
@@ -294,9 +295,9 @@
             listViewItem1,
             listViewItem2});
             this.actionListView.Location = new System.Drawing.Point(0, 96);
-            this.actionListView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.actionListView.Margin = new System.Windows.Forms.Padding(6);
             this.actionListView.Name = "actionListView";
-            this.actionListView.Size = new System.Drawing.Size(884, 356);
+            this.actionListView.Size = new System.Drawing.Size(884, 348);
             this.actionListView.TabIndex = 6;
             this.actionListView.UseCompatibleStateImageBehavior = false;
             this.actionListView.View = System.Windows.Forms.View.Details;
@@ -304,17 +305,18 @@
             // actioncOLUMN
             // 
             this.actioncOLUMN.Text = "Action";
-            this.actioncOLUMN.Width = 184;
+            this.actioncOLUMN.Width = 416;
             // 
             // problemColumn
             // 
             this.problemColumn.Text = "Problem";
+            this.problemColumn.Width = 156;
             // 
             // customLimitSelect
             // 
             this.customLimitSelect.AutoSize = true;
             this.customLimitSelect.Location = new System.Drawing.Point(490, 6);
-            this.customLimitSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.customLimitSelect.Margin = new System.Windows.Forms.Padding(6);
             this.customLimitSelect.Name = "customLimitSelect";
             this.customLimitSelect.Size = new System.Drawing.Size(116, 29);
             this.customLimitSelect.TabIndex = 5;
@@ -325,7 +327,7 @@
             // 
             this.journalModeSelect.AutoSize = true;
             this.journalModeSelect.Location = new System.Drawing.Point(292, 6);
-            this.journalModeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.journalModeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.journalModeSelect.Name = "journalModeSelect";
             this.journalModeSelect.Size = new System.Drawing.Size(182, 29);
             this.journalModeSelect.TabIndex = 3;
@@ -336,7 +338,7 @@
             // 
             this.setRecModeSelect.AutoSize = true;
             this.setRecModeSelect.Location = new System.Drawing.Point(150, 6);
-            this.setRecModeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.setRecModeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.setRecModeSelect.Name = "setRecModeSelect";
             this.setRecModeSelect.Size = new System.Drawing.Size(129, 29);
             this.setRecModeSelect.TabIndex = 2;
@@ -348,7 +350,7 @@
             this.setModeSelect.AutoSize = true;
             this.setModeSelect.Checked = true;
             this.setModeSelect.Location = new System.Drawing.Point(62, 6);
-            this.setModeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.setModeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.setModeSelect.Name = "setModeSelect";
             this.setModeSelect.Size = new System.Drawing.Size(75, 29);
             this.setModeSelect.TabIndex = 1;
@@ -378,7 +380,7 @@
             this.Controls.Add(this.jsonViewCheck);
             this.Controls.Add(this.buildButton);
             this.Controls.Add(this.checkBox1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "OutputView";
             this.Size = new System.Drawing.Size(888, 1108);
             this.splitContainer1.Panel1.ResumeLayout(false);

@@ -143,7 +143,7 @@ namespace cbox.model
             if(!this.Tests.Contains(test))
                 this.Tests.Add(test);
 
-            if(triggerEvent)
+            if(triggerEvent && OnChange != null)
                 OnChange(this);
         }
 
@@ -181,7 +181,9 @@ namespace cbox.model
         {
             this.Forms.Add(form);
             form.Ident = NextFormIdent;
-            OnChange(this);
+
+            if(OnChange != null)
+                OnChange(this);
         }
 
         public void RemoveForm(cbox.model.Form form)
@@ -195,6 +197,18 @@ namespace cbox.model
             foreach (var form_headline in AllHeadlines)
                 if (form_headline.Item2.ActionIdents.Contains(ident))
                     return form_headline.Item2;
+
+            return null;
+        }
+
+
+
+
+        public Form FormByTitle(string title)
+        {
+            foreach (var form in this.Forms)
+                if (form.Title == title)
+                    return form;
 
             return null;
         }
@@ -281,7 +295,7 @@ namespace cbox.model
         public void AddAction(Action action)
         {
             this.Actions.Add(action);
-            //OnChange(this);
+            action.Ident = this.NextActionIdent;
         }
 
         public void RemoveAction(Action action)
@@ -408,6 +422,15 @@ namespace cbox.model
         }
 
 
+        public Action ActionByTitle(string title)
+        {
+            foreach (var action in Actions)
+                if (action.Title == title && title != string.Empty)
+                    return action;
+
+            return null;
+        }
+
 
         public TestResult Lookup(string key, Case case_)
         {
@@ -441,6 +464,7 @@ namespace cbox.model
                 Value = value
             };
         }
+
 
     }
 }
