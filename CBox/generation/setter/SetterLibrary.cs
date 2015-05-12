@@ -16,11 +16,15 @@ namespace cbox.generation.setter
             var range_setter = new RangeSetter();
             this[RangeSetter.Ident] = range_setter;
 
+            // multirange-setter:
+            var mrange_setter = new RangeSetter();
+            this["MRANGE"] = mrange_setter;
+
             // string setter:
             var string_setter = new StringSetter();
             this[StringSetter.Ident] = string_setter;
 
-            // string setter:
+            // choice setter:
             var choice_setter = new ChoiceSetter();
             this[ChoiceSetter.Ident] = choice_setter;
         }

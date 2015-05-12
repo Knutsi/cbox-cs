@@ -18,13 +18,21 @@ namespace OntologyEditor
             this.Params = parts[1];
         }
 
-        public List<string> CommaSplitParams 
-        { 
-            get
-            {
-                return this.Params.Split(',').ToList();
-            }
-            
+
+        public ASShorthandParams AS_Params
+        {
+            get { return new ASShorthandParams(this.Params); }
+        }
+
+
+        public ARShorthandParams AR_Params
+        {
+            get { return new ARShorthandParams(this.Params); }
+        }
+
+        public RShorthandParams R_Params
+        {
+            get { return new RShorthandParams(this.Params); }
         }
     }
 }

@@ -182,6 +182,10 @@ namespace OntologyEditor
                         test.SetterXMLData = this.RangeDataFromShorthand(cmds);
                         break;
 
+                    /*case "MRANGE":
+                        test.SetterXMLData = this.RangeDataFromShorthand(cmds);
+                        break;*/
+
                     default:
                         break;
                 }
@@ -190,7 +194,21 @@ namespace OntologyEditor
 
         private string RangeDataFromShorthand(List<ShorthandCommand> cmds)
         {
-            return (new RangeSetterData()).ToXML();
+            var data = new RangeSetterData();
+
+            foreach (var cmd in cmds)
+            {
+                if(cmd.Command == "R")
+                {
+                    if (!cmd.R_Params.Valid)
+                        throw new Exception("Invalid R command in shorthand");
+
+                    data.Min = cmd.R_Params.ValueStart;
+                    data.Max = cmd.R_Params.ValueEnd;
+                }
+            }
+
+            return data.ToXML();
         }
 
         private string StringDataFromShorthand(List<ShorthandCommand> cmds)
@@ -200,7 +218,7 @@ namespace OntologyEditor
             foreach (var cmd in cmds)
             {
                 if (cmd.Command == "AS")
-                    data.Strings.Add(cmd.Params);
+                    data.Strings.Add(cmd.AS_Params.StringText);
             }
 
             return data.ToXML();

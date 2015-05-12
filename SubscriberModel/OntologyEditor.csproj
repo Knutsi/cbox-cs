@@ -149,6 +149,9 @@
     <Compile Include="server\Game.cs" />
     <Compile Include="server\ServerResponse.cs" />
     <Compile Include="server\TestServer.cs" />
+    <Compile Include="support\ARShorthandParams.cs" />
+    <Compile Include="support\ASShorthandParams.cs" />
+    <Compile Include="support\RShorthandParams.cs" />
     <Compile Include="support\ShorthandCommand.cs" />
     <Compile Include="support\TabularDataTestImporter.cs" />
     <EmbeddedResource Include="forms\DataExportView.resx">
