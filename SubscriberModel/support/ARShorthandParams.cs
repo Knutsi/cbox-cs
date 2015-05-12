@@ -16,7 +16,7 @@ namespace OntologyEditor
         public double ValueStart;
         public double ValueEnd;
 
-        bool Valid = false;
+        public bool Valid = false;
 
 
         public ARShorthandParams(string parameters)
@@ -24,7 +24,7 @@ namespace OntologyEditor
             this.ParamsText = parameters;
 
             // parse:
-            var regex = new Regex("(.*?):(.)(.*)-(.*):(.*)-(.*)");
+            var regex = new Regex("(.)(.*)-(.*):(.*)-(.*)");
             var match = regex.Match(this.ParamsText);
 
 

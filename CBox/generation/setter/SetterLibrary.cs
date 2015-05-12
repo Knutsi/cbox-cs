@@ -12,13 +12,15 @@ namespace cbox.generation.setter
 
         public SetterLibrary()
         {
+            // initialize all setters in the library:
+
             // range setter:
             var range_setter = new RangeSetter();
             this[RangeSetter.Ident] = range_setter;
 
             // multirange-setter:
-            var mrange_setter = new RangeSetter();
-            this["MRANGE"] = mrange_setter;
+            var mrange_setter = new MultiRangeSetter();
+            this[MultiRangeSetter.Ident] = mrange_setter;
 
             // string setter:
             var string_setter = new StringSetter();
@@ -29,6 +31,7 @@ namespace cbox.generation.setter
             this[ChoiceSetter.Ident] = choice_setter;
         }
 
+
         public IValueSetter SetterByIdent(string ident)
         {
             if (this.Keys.Contains(ident))
@@ -36,6 +39,7 @@ namespace cbox.generation.setter
             else
                 return null;
         }
+
 
         /// <summary>
         /// Returns a list of setters that can provde the given datatype.

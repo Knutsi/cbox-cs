@@ -182,15 +182,44 @@ namespace OntologyEditor
                         test.SetterXMLData = this.RangeDataFromShorthand(cmds);
                         break;
 
-                    /*case "MRANGE":
-                        test.SetterXMLData = this.RangeDataFromShorthand(cmds);
-                        break;*/
+                    case "MRANGE":
+                        test.SetterXMLData = this.MultiRangeDataFromShorthand(cmds);
+                        break;
 
                     default:
                         break;
                 }
             }    
         }
+
+
+        private string MultiRangeDataFromShorthand(List<ShorthandCommand> cmds)
+        {
+            var data = new MultiRangeSetterData();
+
+            // format of AR-commands: AR:F00-13: 11.0-15.0
+            foreach (var cmd in cmds)
+            {
+                // each AR-command means a
+                if(cmd.Command == "AR" && cmd.AR_Params.Valid)
+                {
+                    var param = cmd.AR_Params;
+                    var range = new MultiRangeSetterDataEntry()
+                    {
+                        AgeStart = param.AgeStart,
+                        AgeEnd = param.AgeEnd,
+                        Min = param.ValueStart,
+                        Max = param.ValueEnd,
+                        Gender = param.Gender
+                    };
+
+                    data.Ranges.Add(range);
+                }
+            }
+
+            return data.ToXML();
+        }
+
 
         private string RangeDataFromShorthand(List<ShorthandCommand> cmds)
         {

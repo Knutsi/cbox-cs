@@ -69,6 +69,9 @@
     <Compile Include="generation\setter\ChoiceSetter.cs" />
     <Compile Include="generation\setter\ChoiceSetterData.cs" />
     <Compile Include="generation\setter\IValueSetter.cs" />
+    <Compile Include="generation\setter\MultiRangeSetter.cs" />
+    <Compile Include="generation\setter\MultiRangeSetterData.cs" />
+    <Compile Include="generation\setter\MultiRangeSetterDataEntry.cs" />
     <Compile Include="generation\setter\RangeSetter.cs" />
     <Compile Include="generation\setter\RangeSetterData.cs" />
     <Compile Include="generation\setter\SetterLibrary.cs" />

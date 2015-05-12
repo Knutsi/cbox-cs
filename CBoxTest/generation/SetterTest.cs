@@ -183,5 +183,40 @@ namespace CBoxTest.generation
             Assert.IsTrue(positives > 300);
             Assert.IsTrue(negatives > 300);   
         }
+
+        [TestMethod]
+        public void Setter_MultiRangeTest()
+        {
+            // create a multi-range:
+            var data = new MultiRangeSetterData();
+            var m0_50 = new MultiRangeSetterDataEntry() { Gender = "M", AgeStart = 0, AgeEnd = 50, Min = 10, Max = 20 };
+            var m51_100 = new MultiRangeSetterDataEntry() { Gender = "M", AgeStart = 51, AgeEnd = 100, Min = 0, Max = 10 };
+            var f0_100 = new MultiRangeSetterDataEntry() { Gender = "F", AgeStart = 0, AgeEnd = 100, Min = 9000, Max = 10000 };
+            data.Ranges.Add(m0_50);
+            data.Ranges.Add(m51_100);
+            data.Ranges.Add(f0_100);
+
+            // generate a test case:
+            var case_ = new Case();
+            case_.AddProblem(new Problem() { IsRoot = true, Ident = "root_", Title = "Test" });
+            case_.RootProblem.Add("history.age", "52");
+            case_.RootProblem.Add("history.gender", "M");
+
+            var ctx = new ExecutionContext() { Case = case_ };
+
+            // get setter and execute for value:
+            var setter = SetterLibrary.Default[MultiRangeSetter.Ident];
+            var value = double.Parse(setter.Eval(data.ToXML(), ctx));
+
+            // assert over 100 samples that value is correct:
+            for (int i = 0; i < 100; i++)
+                Assert.IsTrue(value > m51_100.Min && value < m51_100.Max);
+
+            // change to female, try again:
+            case_.RootProblem["history.gender"].Value = "F";
+            value = double.Parse(setter.Eval(data.ToXML(), ctx));
+            for (int i = 0; i < 100; i++)
+                Assert.IsTrue(value > f0_100.Min && value < f0_100.Max);
+        }
     }
 }
