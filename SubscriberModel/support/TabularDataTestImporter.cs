@@ -44,11 +44,18 @@ namespace OntologyEditor
                 var test = GetOrAddTest(row["Key"].ToString());
                 test.Title = row["Title"].ToString();
                 test.Datatype = row["Datatype"].ToString();
-                test.Parent = row["Parent"].ToString();
                 test.SetterIdent = row["Setter"].ToString();
                 test.Unit = row["Unit"].ToString();
                 test.Accumulative = row["Accumulative"].ToString() == "yes";
 
+                // dependencies:
+                test.Dependencies = (
+                    from d in row["Dependencies"].ToString().Split(';') 
+                    where d.Trim() != string.Empty
+                    select d.Trim()
+                    ).ToList(); 
+
+                // prefix:
                 if (test.Prefix != null && test.Prefix.Trim() == string.Empty)
                     test.Prefix = null;
 

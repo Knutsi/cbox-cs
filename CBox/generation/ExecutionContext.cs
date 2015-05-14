@@ -9,6 +9,11 @@ using cbox.system;
 
 namespace cbox.generation
 {
+    public enum ExecutionPurpose
+    {
+        MODEL, LOOKUP
+    }
+
     /// <summary>
     /// Holds information about an ongoing case generation.  It is give to each
     /// node in the build path, in sequence of the execution order. 
@@ -23,10 +28,10 @@ namespace cbox.generation
         public Case Case { get; set; }
         public Node CurrentNode { get; set; }
         public BuildPath BuildPath { get; set; }
-        public Ontology Ontology { get; set; }
+        //public Ontology Ontology { get; set; }
         public CBoxSystem System { get; set; }
         public bool IsOntologyLookup { get; set; }
-
+        public ExecutionPurpose Purpose { get; set; }
 
         public Dictionary<Node, Problem> InstancedProblems = new Dictionary<Node, Problem>();
 

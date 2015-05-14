@@ -35,6 +35,9 @@ namespace cbox.system
 
         public string Path; // system's location
 
+        // cached objects:
+        private Ontology Ontology_;
+
         public List<ModelReference> Models = new List<ModelReference>(); // all models in the system
         public List<ModelReference> Components = new List<ModelReference>(); // all components in the system
 
@@ -42,10 +45,16 @@ namespace cbox.system
         {
             this.Path = path;
 
-            ValidateDirectoryStructure();
-            Load();
+            if (path != null)
+            {
+                ValidateDirectoryStructure();
+                Load();
 
-            Console.WriteLine("Loaded CBoxSystem '{0}'", this.Path);
+                Console.WriteLine("Loaded CBoxSystem '{0}'", this.Path);
+            }
+            else
+                Console.WriteLine("WARNING: loading null CBoxSystem");
+
         }
 
         /// <summary>
@@ -81,6 +90,29 @@ namespace cbox.system
             }
         }
 
+        /// <summary>
+        /// Gets or sets the onology in this system.  It will auto-load from 
+        /// filesystem on first request unless specifically set.
+        /// </summary>
+        public Ontology Ontology
+        {
+            get
+            {
+                if (this.Ontology_ == null)
+                {
+                    this.Ontology_ = Ontology.LoadFromFile(OntologyPath);
+                    this.Ontology_.ParentSystem = this;
+                }
+
+                return this.Ontology_;
+            }
+        }
+
+        public void OverrideFilesystemOntology(Ontology ontology)
+        {
+            this.Ontology_ = ontology;
+            this.Ontology_.ParentSystem = this;
+        }
 
         /// <summary>
         /// Ensure the correct dirs and ontology are present.

@@ -530,15 +530,14 @@ namespace cbox.generation
                 throw new ExecutingInvalidNodeCollectionException(Issues);
 
             // create execution context:
-            var ctx = new ExecutionContext() { BuildPath = path };
+            var ctx = new ExecutionContext() 
+            { 
+                BuildPath = path, 
+                Purpose = ExecutionPurpose.MODEL,
+                ParentContext = parent_ctx,
+                System = system
+            };
 
-            // remember where we are called from, if we are working inside an include:
-            ctx.ParentContext = parent_ctx;
-
-            // if no component library, we make an empty one:
-            ctx.System = system;
-            /*if (system == null)
-                ctx.System = new CBoxSystem(null);*/
 
             // step through execution order, execute nodes in path provided:
             foreach (var node in this.ExecutionOrder)

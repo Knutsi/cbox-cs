@@ -31,7 +31,7 @@ namespace cbox.generation.setter
             else
             {
                 // if no choices, pick directly from list:
-                var choices = ctx.Ontology.GetChoiceListByIdent(data.SourceListIdent);
+                var choices = ctx.System.Ontology.GetChoiceListByIdent(data.SourceListIdent);
                 return choices[this.Random.Next(choices.Count)];
             }
         }

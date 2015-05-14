@@ -33,8 +33,11 @@ namespace OntologyEditor
             titleInput.DataBindings.Add("Text", test, "Title");
             suffixInput.DataBindings.Add("Text", test, "Prefix");
             unitInput.DataBindings.Add("Text", test, "Unit");
-            derivedFromSelect.DataBindings.Add("Text", test, "Parent");
+            //derivedFromSelect.DataBindings.Add("Text", test, "Parent");
             acumulativeCheckbox.DataBindings.Add("Checked", test, "Accumulative");
+
+            // bind dependencies to dependencies list:
+            dependenciesList.DataSource = test.Dependencies;
 
             // load the datatype (w/o binding):
             datatypeSelect.Text = CurrentTest.Datatype;
@@ -53,11 +56,11 @@ namespace OntologyEditor
             bs.DataSource = this.CurrentTest;
 
             // update derive checkbox:
-            deriveCheckbox.Checked = (test.Parent != string.Empty && test.Parent != null);
+            //deriveCheckbox.Checked = (test.Parent != string.Empty && test.Parent != null);
 
             // ensure we have the correct selects available now, and in the future:
             this.UpdateDeriveSelects();
-            deriveCheckbox_CheckedChanged(null, null);  // simulate event
+            //deriveCheckbox_CheckedChanged(null, null);  // simulate event
             Program.OntologyInstance.OnChange += OntologyInstance_OnChange;
 
             SetupUIEvents();
@@ -86,13 +89,13 @@ namespace OntologyEditor
 
         public void UpdateDeriveSelects()
         {
-            this.derivedFromSelect.Items.Clear();
+            /*this.derivedFromSelect.Items.Clear();
 
             foreach (cbox.model.Test test in Program.OntologyInstance.Tests)
             {
                 if(test.Key != null)
                     this.derivedFromSelect.Items.Add(test.Key);
-            }
+            }*/
         }
 
         /// <summary>
@@ -186,14 +189,5 @@ namespace OntologyEditor
         }
         
 
-
-        private void deriveCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            derivedFromSelect.Enabled = (deriveCheckbox.Checked == true);
-
-            if (!deriveCheckbox.Checked)
-                derivedFromSelect.Text = string.Empty;
-
-        }
     }
 }

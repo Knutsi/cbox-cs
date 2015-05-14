@@ -15,13 +15,15 @@ namespace cbox.model
         public string Unit { get; set; }
         public bool Accumulative { get; set; }
         public string Datatype { get; set; }
-        public string Parent { get; set; }
+        //public string Parent { get; set; }
         public string SetterIdent { get; set; }
         public string SetterXMLData { get; set; }
+        public List<string> Dependencies { get; set; }
 
         public Test()
         {
             Accumulative = true;
+            Dependencies = new List<string>();
         }
     }
 }

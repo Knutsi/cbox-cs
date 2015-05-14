@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 
+using cbox.system;
 using cbox.generation;
 using cbox.generation.setter;
 
@@ -42,6 +43,9 @@ namespace cbox.model
 
         [DataMember]
         public BindingList<ProblemClass> Classes { get; set; }
+
+        [XmlIgnore]
+        public CBoxSystem ParentSystem { get; set; }
 
         public event OntolgyChangedHandler OnChange;
 
@@ -432,7 +436,7 @@ namespace cbox.model
         }
 
 
-        public TestResult Lookup(string key, Case case_)
+        public TestResult Lookup(string key, Case case_, Problem target_problem)
         {
             // get test associated with key:
             var test = this.TestByKey(key);
@@ -447,14 +451,24 @@ namespace cbox.model
             if (test.SetterXMLData == null || test.SetterXMLData == string.Empty)
                 return new TestResult() { Key = key, Value = "ERROR: no setter XML data for " + test.SetterIdent + " on " + key };
 
+            // if no problem is provided, we use root problem:
+            var problem = target_problem;
+            if (problem == null)
+                problem = case_.RootProblem;
+
             // all well? Then get setter, and request value:
             var setter = SetterLibrary.Default.SetterByIdent(test.SetterIdent);
             var ctx = new ExecutionContext()
             {
                 Case = case_, 
-                Ontology = this, 
-                IsOntologyLookup = true
+                System = ParentSystem,
+                IsOntologyLookup = true,
+                Purpose = ExecutionPurpose.LOOKUP,
+                CurrentProblem = problem
             };
+
+            // do we need to look up dependencies?
+            ResolveDependencies(test, case_, problem);
             var value = setter.Eval(test.SetterXMLData, ctx);
             
             // return the value retrieved:
@@ -465,6 +479,18 @@ namespace cbox.model
             };
         }
 
+        private void ResolveDependencies(Test test, Case case_, Problem problem)
+        {
+            foreach (var dependency_key in test.Dependencies)
+            {
+                if(problem[dependency_key] == null)
+                {
+                    // dependency not fullfilled, we need to look it up:
+                    var result = this.Lookup(dependency_key, case_, problem);
+                    problem.Add(result);
+                }
+            }
+        }
 
     }
 }

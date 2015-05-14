@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using cbox.system;
+using cbox.model;
 using cbox.generation;
 using cbox.generation.nodetype;
 using cbox.generation.setter;
@@ -49,6 +51,12 @@ namespace CBoxTest
             
             comp.Invalidate();
 
+            // create dummy ontology and context to use in execution;
+            var ontology = new Ontology();
+            ontology.AddTest(new Test() { Key = "history.gender" });
+            var system = new CBoxSystem(null);
+            system.OverrideFilesystemOntology(ontology);
+
             // execute multiple times, and ensure we get both "male" and "female":
             var path = comp.BuildPaths.First();  // no branches, has only one
             var males = 0;
@@ -56,7 +64,7 @@ namespace CBoxTest
 
             for (int i = 0; i < 10; i++)
             {
-                var ctx = comp.Execute(path);
+                var ctx = comp.Execute(path, true, false, null, system);
 
                 switch (ctx.Case.RootProblem["history.gender"].Value)
                 {
@@ -77,5 +85,69 @@ namespace CBoxTest
             Assert.IsTrue(females > 0);
         }
 
+
+        [TestMethod]
+        public void SetValuesTest_DependentTest()
+        {
+            // create a fake ontology:
+            var ontology = new Ontology();
+            var target_test = new Test()
+            {
+                Key = "unittest.target",
+                Datatype = "TEXT",
+                Dependencies = new List<string> { "unittest.dep1", "unittest.dep2" }
+            };
+
+            var dep1_test = new Test()
+            {
+                Key = "unittest.dep1",
+                Datatype = "TEXT",
+                SetterIdent = "STRING",
+                SetterXMLData = (new StringSetterData() { Strings = new List<string> { "DEP1" } }).ToXML()
+            };
+
+            var dep2_test = new Test()
+            {
+                Key = "unittest.dep2",
+                Datatype = "TEXT",
+                SetterIdent = "STRING",
+                SetterXMLData = (new StringSetterData() { Strings = new List<string> { "DEP2" } }).ToXML()
+            };
+
+            ontology.AddTest(target_test);
+            ontology.AddTest(dep1_test);
+            ontology.AddTest(dep2_test);
+
+            // create fake execution context and system:
+            var case_ = new Case();
+            case_.AddProblem( new Problem() { IsRoot = true});
+            var system = new CBoxSystem(null);
+            system.OverrideFilesystemOntology(ontology);    // fake ontology
+            var ctx = new ExecutionContext() { Case = case_, CurrentProblem = case_.RootProblem, System = system };
+
+            // create node and setter::
+            var setter_data_xml = (new StringSetterData() { Strings = new List<string> { "NODE" } }).ToXML();
+            var node = new SetValue();
+            var data = new SetValuesData();
+            data.Entries.Add(
+                new SetValuesDataEntry() 
+                { 
+                    Key = "unittest.target", 
+                    SetterIdent = "STRING", 
+                    SetterXmlData = setter_data_xml
+                } 
+            );   
+
+            // execute:
+            node.Data = data;
+            node.Eval(ctx);
+
+            // assert that we now have three keys in the case: unittest.target with "NODE", and unittest.dep1 and unittest.dep2,
+            // meaning those where called as dependencies and evaluated:
+            Assert.AreEqual(3, ctx.Case.RootProblem.TestResults.Count);
+            Assert.AreEqual("NODE", ctx.Case.RootProblem["unittest.target"].Value);
+            Assert.AreEqual("DEP1", ctx.Case.RootProblem["unittest.dep1"].Value);
+            Assert.AreEqual("DEP2", ctx.Case.RootProblem["unittest.dep2"].Value);
+        }
     }
 }

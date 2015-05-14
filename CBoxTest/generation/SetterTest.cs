@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using cbox.system;
 using cbox.generation;
 using cbox.generation.setter;
 using cbox.model;
@@ -158,9 +159,13 @@ namespace CBoxTest.generation
             list.Add("Negative");
             ont.AddChoiceList(list);
 
+            // make fake system to add ontology to:
+            var system = new CBoxSystem(null);
+            system.OverrideFilesystemOntology(ont);
+
             // fake execution context using the ontology:
             var ctx = new ExecutionContext();
-            ctx.Ontology = ont;
+            ctx.System = system;
 
             // make a setter:
             var setter = new ChoiceSetter();

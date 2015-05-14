@@ -207,7 +207,7 @@ namespace cbox.model
                 foreach (var key in keys)
                 {
                     //problem.Add(new TestResult() { Key = key, Value = "Expanded!" });
-                    var result = ontology.Lookup(key, this);
+                    var result = ontology.Lookup(key, this, problem);
                     problem.Add(result);
                 }
             }
