@@ -16,6 +16,8 @@ namespace OntologyEditor
     public class TabularDataTestImporter
     {
         private Ontology Ontology;
+        public List<string> ImportLog;
+        public int Errors = 0;
 
         public TabularDataTestImporter(Ontology ontology)
         {
@@ -28,10 +30,40 @@ namespace OntologyEditor
         /// <param name="rows"></param>
         public void Import(DataTable table)
         {
+            ImportLog = new List<string>() { "Import start" };
+
+            DoPreImportChecks(table);
+
             ImportTests(table);
             ImportActions(table);
             ImportCategories(table);
             ImportShorthand(table);
+
+            ImportLog.Add("Import complete");
+        }
+
+
+        private void DoPreImportChecks(DataTable table)
+        {
+            Check_ActionClassCount(table);
+        }
+
+        /// <summary>
+        /// Checks if all action entries have a corresponding number of action entries.
+        /// </summary>
+        private void Check_ActionClassCount(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                var action_count = row["Action"].ToString().Split(';').Count();
+                var classes_count = row["ActionClasses"].ToString().Split(';').Count();
+
+                if(action_count != classes_count)
+                {
+                    this.Errors += 1;
+                    this.ImportLog.Add(string.Format("{0}: Action and class count mismatch", row["Key"].ToString()));
+                }
+            }
         }
 
 

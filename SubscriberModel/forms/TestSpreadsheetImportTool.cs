@@ -85,6 +85,7 @@ namespace OntologyEditor
                 case ImportMode.TESTS:
                     var importer = new TabularDataTestImporter(Program.OntologyInstance);
                     importer.Import(CurrentTable);
+                    importLog.Text = string.Join("\r\n", importer.ImportLog);
                     break;
                 case ImportMode.ACTIONS:
                     break;
