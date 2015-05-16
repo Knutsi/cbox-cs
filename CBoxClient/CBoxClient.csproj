@@ -22,9 +22,11 @@
     <Content Include="lib\view\client_debug.html" />
     <Content Include="lib\view\play.html" />
     <Content Include="lib\view\play_js.js" />
+    <Content Include="devtools\xslt-builder.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="devtools\xslt-builder.ts" />
     <TypeScriptCompile Include="lib\controller\ActionPickerController.ts" />
     <TypeScriptCompile Include="lib\controller\ActionQueueController.ts" />
     <TypeScriptCompile Include="lib\controller\BaseController.ts" />

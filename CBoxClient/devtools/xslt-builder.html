@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>XSLT-debug</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .panel {
+            padding: 20px;
+            border: 1px solid lightgray;
+            flex: 1 1;
+            display:flex;
+            flex-direction: column;
+        }
+
+        textarea { height: 800px; }
+
+        @media screen and (max-width: 1000px) {
+            body {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="source" class="panel">
+        <h1>Source</h1>
+        <div>
+            <label for="actionIdents">Action IDs:</label> <input id="actionsInput" type="text" />
+        </div>
+        <div>
+            <label for="actionIdents">Data URL:</label><input id="urlInput" type="text" value="http://localhost:8008/service/xml/case/random" />
+        </div>
+        <div>
+            <button onclick="XSLTBuilder.load()">Get</button>
+        </div>
+
+
+        <textarea id="rawXml"></textarea>
+    </div>
+
+    <div id="template" class="panel">
+        <h1>Template</h1>
+        <textarea id="templateInput">
+<?xml version="1.0" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+    <h2>My CD Collection</h2>
+    <table border="1">
+        <tr bgcolor="#9acd32">
+            <th>Title</th>
+            <th>Artist</th>
+        </tr>
+        <xsl:for-each select="catalog/cd">
+            <tr>
+                <td><xsl:value-of select="title" /></td>
+                <td><xsl:value-of select="artist" /></td>
+            </tr>
+        </xsl:for-each>
+    </table>
+</xsl:template>
+
+</xsl:stylesheet>
+        </textarea>
+    </div>
+
+    <div id="output" class="panel">
+        <h1>Output</h1>
+        <div>
+            <button onclick="XSLTBuilder.render()">Render</button>
+        </div>
+        <div id="outputRender"></div>
+    </div>
+    <script src="xslt-builder.js"></script>
+</body>
+</html>

@@ -216,5 +216,25 @@ namespace cbox.model
         }
 
 
+        /// <summary>
+        /// Extracts a case containing only the subset of test results abd problems that are
+        /// revealed through the actions given.  This is the core of the game-mechanic for 
+        /// players.  If the test result does not exist in the case, it will call Expand
+        /// to add those results to the case.  This means that the case might grow in content
+        /// following this call, as it also does the same as Expand.
+        /// </summary>
+        /// <param name="ap_pairs"></param>
+        /// <param name="ontology"></param>
+        public Case Extract(List<ActionProblemPair> ap_pairs, Ontology ontology)
+        {
+            // expand:
+            Expand(ap_pairs, ontology);
+
+            // extract the subset case:
+
+            return this;
+        }
+
+
     }
 }
