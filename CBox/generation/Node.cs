@@ -69,7 +69,10 @@ namespace cbox.generation
         {
             get
             {
-                return this.ParentComponent.ProblemSetByNode(this);
+                if (this.ParentComponent != null)
+                    return this.ParentComponent.ProblemSetByNode(this);
+                else
+                    return null;
             }
         }
 

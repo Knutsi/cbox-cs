@@ -46,6 +46,7 @@ namespace cbox.model
             });
         }
 
+        [XmlIgnore]
         public Problem this[string ident]
         {
             get { return problemWithIdent(ident); }
@@ -54,6 +55,7 @@ namespace cbox.model
         /// <summary>
         /// The problem that unbound nodes adds their values to.
         /// </summary>
+        [XmlIgnore]
         public Problem RootProblem
         {
             get

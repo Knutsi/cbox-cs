@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
@@ -12,7 +13,7 @@ namespace cbox.model
     [Serializable]
     public class Problem
     {
-
+        [XmlIgnore]
         public Case ParentCase;
 
         [DataMember]

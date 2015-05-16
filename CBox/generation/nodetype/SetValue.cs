@@ -26,6 +26,9 @@ namespace cbox.generation.nodetype
         {
             foreach (var entry in Data.Entries)
             {
+                if (entry.Key == null)
+                    continue;
+
                 // check if we need to resolve dependencies:
                 /*if (ctx.System != null)
                 {

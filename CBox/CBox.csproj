@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -80,6 +82,10 @@
     <Compile Include="generation\setter\ThesaurusEntry.cs" />
     <Compile Include="model\ActionProblemPair.cs" />
     <Compile Include="model\ChoiceList.cs" />
+    <Compile Include="server\Config.cs" />
+    <Compile Include="server\GameSession.cs" />
+    <Compile Include="server\Server.cs" />
+    <Compile Include="server\SessionManager.cs" />
     <Compile Include="system\ModelReference.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="XMLSerializable.cs" />
