@@ -84,6 +84,9 @@
     <Compile Include="model\ChoiceList.cs" />
     <Compile Include="server\Config.cs" />
     <Compile Include="server\GameSession.cs" />
+    <Compile Include="server\ResponseEnvelope.cs" />
+    <Compile Include="server\responses\ClientPackageResponse.cs" />
+    <Compile Include="server\responses\NewGameData.cs" />
     <Compile Include="server\Server.cs" />
     <Compile Include="server\SessionManager.cs" />
     <Compile Include="system\ModelReference.cs" />

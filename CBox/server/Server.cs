@@ -10,7 +10,9 @@ using System.IO;
 using System.Xml.Serialization;
 
 using cbox.system;
+using cbox.model;
 using cbox.generation;
+using cbox.server.responses;
 
 namespace cbox.server
 {
@@ -21,11 +23,24 @@ namespace cbox.server
         CBoxSystem System;
         Random Random = new Random();
 
+        private int NextGameID_ = 0;
+
         public Server(Config config)
         {
             this.Config = config;
             this.System = new CBoxSystem(config.SystemPath);
             Listener.Prefixes.Add("http://+:8008/");
+        }
+
+
+        public int NextSessionID { 
+            get
+            {
+                NextGameID_ += 1;
+                return NextGameID_;
+            }
+
+        
         }
 
         public void Start()
@@ -52,11 +67,38 @@ namespace cbox.server
                     SendString(writer.ToString(), ctx.Response);
                 }
 
-                else if (ctx.Request.RawUrl == "/service/json/client-package")
+                else if (ctx.Request.RawUrl == "/service/clipack/get")
                 {
                     // send client package:
                     ctx.Response.ContentType = "application/json";
-                    SendString(this.System.Ontology.ExportClientPackage(), ctx.Response);
+                    //SendString(this.System.Ontology.ExportClientPackageString(), ctx.Response);
+
+                    // prepare envelope:
+                    var response = new ResponseEnvelope<Ontology>()
+                    {
+                        type = "client-package",
+                        data = this.System.Ontology
+                    };
+
+                    SendString(response.ToJSON(), ctx.Response);
+                }
+
+                else if (ctx.Request.RawUrl == "/service/game/new")
+                {
+                    var session = new GameSession() 
+                    {
+                        SessionID = NextSessionID,
+                        Case = this.System.GetRandomCase()
+                    };
+                    
+                    var data = new NewGameData(session.SessionID);
+                    
+                    var response = new ResponseEnvelope<NewGameData>() 
+                    {
+                        type = "new-game",
+                        data = data
+                    };
+                    SendString(response.ToJSON(), ctx.Response);
                 }
 
                 else

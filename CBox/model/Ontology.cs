@@ -97,7 +97,7 @@ namespace cbox.model
         /// Serializes a client package to JSON.
         /// </summary>
         /// <returns></returns>
-        public string ExportClientPackage()
+        public string ExportClientPackageString()
         {
             using(var mstream = new MemoryStream())
             {
@@ -111,8 +111,16 @@ namespace cbox.model
                 mstream.Position = 0;
                 return reader.ReadToEnd();
             }
-    }
-           
+        }
+
+        /// <summary>
+        /// Serializes a client package to JSON.
+        /// </summary>
+        /// <returns></returns>
+        public object ExportClientPackage()
+        {
+            return this;
+        }
 
         /// <summary>
         /// Returns a list og all headlines in all forms.  The list consists of

@@ -16,7 +16,7 @@ namespace TestServer
             var config = new Config()
             {
                 SystemPath = @"C:\Users\KnutSindre\Documents\cbox-basesystem",
-                DocumentRoot = @"C:\Users\KnutSindre\Documents\Visual Studio 2013\Projects\SubscriberModel\CBoxClient"
+                DocumentRoot = @"C:\Users\KnutSindre\Documents\cbox-client"
             };
 
             Console.Out.WriteLine("Starting test server on port 8008");

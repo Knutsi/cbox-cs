@@ -255,7 +255,7 @@ namespace OntologyEditor
         private void exportClientPackageMenuItem_Click(object sender, EventArgs e)
         {
             var export_dialog = new DataExportView(
-                Program.OntologyInstance.ExportClientPackage(),
+                Program.OntologyInstance.ExportClientPackageString(),
                 "Client package");
 
             export_dialog.Show();

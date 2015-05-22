@@ -34,7 +34,7 @@ module XSLTBuilder {
         var xml = xmlTextArea.value;
 
         var xsl_doc = document.implementation.createDocument("", "test", null);
-        xsl_doc.lo(xsl);
+        xsl_doc.load(xsl);
 
         var xml_doc = document.implementation.createDocument("", "test", null);
         xml_doc.load(xml);

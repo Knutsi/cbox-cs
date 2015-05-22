@@ -192,5 +192,10 @@ namespace cbox.system
         }
 
 
+
+        internal Case GetRandomCase()
+        {
+            return null;
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace cbox.server
             {
                 case URL_CLIPACK:
                     response.ContentType = MIMETYPES[".json"];
-                    SendString(Program.OntologyInstance.ExportClientPackage(), response);
+                    SendString(Program.OntologyInstance.ExportClientPackageString(), response);
                     break;
 
                 case URL_SERVICE:
