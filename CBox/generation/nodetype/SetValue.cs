@@ -138,7 +138,7 @@ namespace cbox.generation.nodetype
             get 
             {
                 var data = new SetValuesData();
-                data.OutputSockets.Add(new OutputSocket() {  Label = "Default socket" });
+                data.OutputSockets.Add(new OutputSocket() {  /*Label = "Default socket"*/ });
                 return data;
             }
         }

@@ -52,7 +52,7 @@ namespace cbox.generation.setter
         private MultiRangeSetterDataEntry MatchRange(int age, string gender, List<MultiRangeSetterDataEntry> list)
         {
             foreach (var entry in list)
-                if (entry.Gender == gender && entry.AgeStart < age && entry.AgeEnd > age)
+                if ((entry.Gender == gender | entry.Gender == "B") && entry.AgeStart < age && entry.AgeEnd > age)
                     return entry;
 
             return null;
