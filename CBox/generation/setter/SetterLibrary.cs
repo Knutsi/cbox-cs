@@ -29,6 +29,10 @@ namespace cbox.generation.setter
             // choice setter:
             var choice_setter = new ChoiceSetter();
             this[ChoiceSetter.Ident] = choice_setter;
+
+            // text derivat setter:
+            var text_derivat_setter = new TextDerivatSetter();
+            this[TextDerivatSetter.Ident] = text_derivat_setter;
         }
 
 

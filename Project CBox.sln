@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OntologyEditor", "SubscriberModel\OntologyEditor.csproj", "{9D42BE88-84B2-4E06-B9E1-7A4FC61B37E2}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestServer", "TestServer\TestServer.csproj", "{ACDA15AA-BC92-4592-BE77-A297F408E637}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateBuilder", "TemplateBuilder\TemplateBuilder.csproj", "{8E725E57-BD81-429B-9712-4DFB6ADC96E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchExporter", "BatchExporter\BatchExporter.csproj", "{8D479530-ADE4-4B4F-A8B4-25D089E0487D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{8E725E57-BD81-429B-9712-4DFB6ADC96E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E725E57-BD81-429B-9712-4DFB6ADC96E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E725E57-BD81-429B-9712-4DFB6ADC96E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D479530-ADE4-4B4F-A8B4-25D089E0487D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D479530-ADE4-4B4F-A8B4-25D089E0487D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D479530-ADE4-4B4F-A8B4-25D089E0487D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D479530-ADE4-4B4F-A8B4-25D089E0487D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
