@@ -490,7 +490,9 @@ namespace cbox.model
             return new TestResult()
             {
                 Key = key,
-                Value = value
+                Value = value,
+                Prefix = test.Prefix,
+                Unit = test.Unit
             };
         }
 

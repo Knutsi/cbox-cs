@@ -51,6 +51,20 @@ namespace cbox.model
             Add(result);
         }
 
+        public void Add(string key, string value, string prefix, string unit)
+        {
+            var result = new TestResult()
+            {
+                Key = key,
+                Value = value,
+                Prefix = prefix,
+                Unit = unit
+            };
+
+            Add(result);
+        }
+
+
         public void Add(TestResult[] results)
         {
             foreach (TestResult r in results)

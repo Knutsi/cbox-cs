@@ -78,8 +78,11 @@ namespace OntologyEditor
                 test.Datatype = row["Datatype"].ToString();
                 test.SetterIdent = row["Setter"].ToString();
                 test.Unit = row["Unit"].ToString();
-                test.Decimals = Convert.ToInt32(row["Decimals"].ToString());
                 test.Accumulative = row["Accumulative"].ToString() == "yes";
+
+                // decimals:
+                if(row["Decimals"] != null && row["Decimals"] != "")
+                    test.Decimals = Convert.ToInt32(row["Decimals"].ToString());
 
                 // dependencies:
                 test.Dependencies = (

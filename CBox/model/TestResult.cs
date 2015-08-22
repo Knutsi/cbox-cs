@@ -17,6 +17,8 @@ namespace cbox.model
     {
         public string Key { get; set; }
         public List<string> Values = new List<string>();
+        public string Prefix { get; set; }
+        public string Unit { get; set; }
 
         public string Value
         {

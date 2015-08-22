@@ -1,4 +1,4 @@
-﻿declare var XSLTProcessor: any;
+﻿//declare var XSLTProcessor: any;
 interface Document { load: any; }
 
 module XSLTBuilder {
