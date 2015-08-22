@@ -22,7 +22,7 @@ namespace CBoxTest.generation
             // run 100 tests, ensure all are in range:
             for (int i = 0; i < 100; i++)
             {
-                var value = Library[RangeSetter.Ident].Eval(data.ToXML(), null);
+                var value = Library[RangeSetter.Ident].Eval(data.ToXML(), null, null);
                 var value_dbl = Convert.ToDouble(value);
                 Assert.IsTrue(value_dbl > 10 && value_dbl < 100);
                 Console.WriteLine(value);
@@ -41,7 +41,7 @@ namespace CBoxTest.generation
             var worlds = 0;
             for (int i = 0; i < 100; i++)
             {
-                var value = Library[StringSetter.Ident].Eval(data.ToXML(), null);
+                var value = Library[StringSetter.Ident].Eval(data.ToXML(), null, null);
                 if (value == "Hello")
                     hellos += 1;
                 else if (value == "World")
@@ -75,7 +75,7 @@ namespace CBoxTest.generation
             // run 100 samples to see if it crashes etc:
             for (int i = 0; i < 100; i++)
             {
-                var value = Library[StringSetter.Ident].Eval(data.ToXML(), null);
+                var value = Library[StringSetter.Ident].Eval(data.ToXML(), null, null);
                 Console.WriteLine(value);
             }
         }
@@ -104,7 +104,7 @@ namespace CBoxTest.generation
             for (int i = 0; i < 100; i++)
             {
                 var setter = SetterLibrary.Default[StringSetter.Ident];
-                var output = setter.Eval(xml_data, null);
+                var output = setter.Eval(xml_data, null, null);
 
                 if (output == "A") { A += 1; }
                 else if (output == "B") { B += 1; }
@@ -134,7 +134,7 @@ namespace CBoxTest.generation
             var females = 0;
             for (int i = 0; i < 1000; i++)
             {
-                var value = setter.Eval(xml_data, null);
+                var value = setter.Eval(xml_data, null, null);
                 if (value == "male")
                     males += 1;
                 else if (value == "female")
@@ -177,7 +177,7 @@ namespace CBoxTest.generation
             var negatives = 0;
             for (int i = 0; i < 1000; i++)
             {
-                var value = setter.Eval(xml_data, ctx);
+                var value = setter.Eval(xml_data, ctx, null);
                 if (value == "Positive")
                     positives += 1;
                 else if (value == "Negative")
@@ -211,7 +211,7 @@ namespace CBoxTest.generation
 
             // get setter and execute for value:
             var setter = SetterLibrary.Default[MultiRangeSetter.Ident];
-            var value = double.Parse(setter.Eval(data.ToXML(), ctx));
+            var value = double.Parse(setter.Eval(data.ToXML(), ctx, null));
 
             // assert over 100 samples that value is correct:
             for (int i = 0; i < 100; i++)
@@ -219,7 +219,7 @@ namespace CBoxTest.generation
 
             // change to female, try again:
             case_.RootProblem["history.gender"].Value = "F";
-            value = double.Parse(setter.Eval(data.ToXML(), ctx));
+            value = double.Parse(setter.Eval(data.ToXML(), ctx, null));
             for (int i = 0; i < 100; i++)
                 Assert.IsTrue(value > f0_100.Min && value < f0_100.Max);
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using cbox.generation;
+using cbox.model;
 
 namespace cbox.generation.setter
 {
@@ -12,7 +13,7 @@ namespace cbox.generation.setter
     {
         string Ident_ { get; }
 
-        string Eval(string xml_data, ExecutionContext ctx);
+        string Eval(string xml_data, ExecutionContext ctx, Test test);
         string Describe(string xml_data, ExecutionContext ctx);
 
         string OutputDatatype { get; }

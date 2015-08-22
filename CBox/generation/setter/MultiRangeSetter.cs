@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using cbox.model;
+
 namespace cbox.generation.setter
 {
     public class MultiRangeSetter : IValueSetter
@@ -27,7 +29,7 @@ namespace cbox.generation.setter
         /// The multi range setter reads the gender and age from the case, picks a range 
         /// that matches from the data, and generates a value from that range's span.
         /// </summary>
-        public string Eval(string xml_data, ExecutionContext ctx)
+        public string Eval(string xml_data, ExecutionContext ctx, Test test)
         {
             // get the values we need:
             var age = double.Parse(ctx.Case.RootProblem["history.age"].Value);
@@ -42,7 +44,13 @@ namespace cbox.generation.setter
 
             // generate the value:
             var value = range.Min + (this.Random.NextDouble() * (range.Max - range.Min));
-            value = Math.Round(value, 1);
+            //value = Math.Round(value, 1);
+
+            // round value:
+            if (test != null)
+                value = Math.Round(value, test.Decimals);
+            else
+                value = Math.Round(value);
 
             return value.ToString();
 

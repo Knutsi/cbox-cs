@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using cbox.generation.setter;
+using cbox.model;
 
 namespace cbox.generation.setter
 {
@@ -19,11 +20,16 @@ namespace cbox.generation.setter
             Random = new Random();
         }
 
-        public string Eval(string xml_data, ExecutionContext ctx)
+        public string Eval(string xml_data, ExecutionContext ctx, Test test)
         {
             var data = RangeSetterData.FromXML(xml_data);
             var value = data.Min + (this.Random.NextDouble() * (data.Max - data.Min));
-            value = Math.Round(value, 1);
+
+            // round value:
+            if (test != null)
+                value = Math.Round(value, test.Decimals);
+            else
+                value = Math.Round(value);
 
             return value.ToString();
         }

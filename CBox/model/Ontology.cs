@@ -484,7 +484,7 @@ namespace cbox.model
 
             // do we need to look up dependencies?
             ResolveDependencies(test, case_, problem);
-            var value = setter.Eval(test.SetterXMLData, ctx);
+            var value = setter.Eval(test.SetterXMLData, ctx, test);
             
             // return the value retrieved:
             return new TestResult()

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using cbox.model;
+
 namespace cbox.generation.setter
 {
     /// <summary>
@@ -15,7 +17,7 @@ namespace cbox.generation.setter
 
         public static string Ident = "CHOICE";
 
-        public string Eval(string xml_data, ExecutionContext ctx)
+        public string Eval(string xml_data, ExecutionContext ctx, Test test)
         {
             var data = ChoiceSetterData.FromXML(xml_data);
 

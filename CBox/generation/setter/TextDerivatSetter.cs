@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using cbox.model;
+
 namespace cbox.generation.setter
 {
     public class TextDerivatSetter : IValueSetter
@@ -17,7 +19,7 @@ namespace cbox.generation.setter
             throw new NotImplementedException();
         }
 
-        public string Eval(string xml_data, ExecutionContext ctx)
+        public string Eval(string xml_data, ExecutionContext ctx, Test test)
         {
             return "(not immplemented)";
         }

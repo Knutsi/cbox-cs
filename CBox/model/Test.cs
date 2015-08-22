@@ -13,7 +13,8 @@ namespace cbox.model
         public string Title { get; set; }
         public string Prefix { get; set; }
         public string Unit { get; set; }
-        public bool Accumulative { get; set; }
+        public int Decimals { get; set; }       // decimals when rounding
+        public bool Accumulative { get; set; }  // can hold a list of values
         public string Datatype { get; set; }
         //public string Parent { get; set; }
         public string SetterIdent { get; set; }

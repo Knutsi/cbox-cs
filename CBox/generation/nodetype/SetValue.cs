@@ -43,10 +43,14 @@ namespace cbox.generation.nodetype
                  might be given a warning however, that there are dependencsies to consider
                  for the given key.. and that they might want to model those too. */
 
+                // get ontology data for this value:
+                var test = ctx.System.Ontology.TestByKey(entry.Key);
+
                 // evaluate setter:
                 var value = SetterLibrary.Default[entry.SetterIdent].Eval(
                     entry.SetterXmlData, 
-                    ctx);
+                    ctx,
+                    test);
 
                 // add value to current problem:
                 ctx.CurrentProblem.Add(entry.Key, value);
@@ -77,7 +81,8 @@ namespace cbox.generation.nodetype
                     // execute the test from the ontology;:
                     var value = SetterLibrary.Default[dependency.SetterIdent].Eval(
                         dependency.SetterXMLData,
-                        ctx);
+                        ctx,
+                        dependency);
                     
                     // append result to current problem:
                     ctx.CurrentProblem.Add(dependency_key, value);
