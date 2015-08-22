@@ -444,6 +444,13 @@ namespace cbox.model
         }
 
 
+        /// <summary>
+        /// Looks up a test for a key-problem-pair.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="case_"></param>
+        /// <param name="target_problem"></param>
+        /// <returns></returns>
         public TestResult Lookup(string key, Case case_, Problem target_problem)
         {
             // get test associated with key:
@@ -499,6 +506,34 @@ namespace cbox.model
                 }
             }
         }
+
+
+        /// <summary>
+        /// Expands case by solving for every single key available in ontology.
+        /// </summary>
+        /// <param name="case_"></param>
+        public void ExpandCompletely(Case case_, List<string> error_list)
+        {
+            // expand each problem:
+            foreach (var problem in case_.Problems)
+            {
+                // get tests for the classes on this problem:
+                var tests = this.TestsByClasses(problem.Classes);
+                foreach (var key in tests)
+                {
+                    try {
+                        var result = this.Lookup(key, case_, problem);
+                        problem.Add(result);
+                    }
+                    catch(Exception exp)
+                    {
+                        var message = string.Format("ERROR! '{0}' throws {1}", key, exp.Message);
+                        error_list.Add(message);
+                    }
+                }
+            }
+        }
+
 
     }
 }

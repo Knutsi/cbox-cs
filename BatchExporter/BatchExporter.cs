@@ -104,7 +104,8 @@ namespace BatchExporter
                 if (!dirinfo.Exists)
                     throw new Exception("Service directory does not exist at {0}" + value);
 
-                var casedir = new DirectoryInfo(dirinfo.FullName + BatchExporter.CASE_DIR_NAME);
+                var casedir_path = Path.Combine(dirinfo.FullName, BatchExporter.CASE_DIR_NAME);
+                var casedir = new DirectoryInfo(casedir_path);
                 if (!casedir.Exists)
                     throw new Exception(string.Format("Service dir does not contain a '{0}' directory", BatchExporter.CASE_DIR_NAME));
 
@@ -121,7 +122,7 @@ namespace BatchExporter
         {
             // move all files in case direcotyr a backup dir:
             var backupdir_name = string.Format("backup-{0}", DateTime.Today.Millisecond);
-            var backupdir_path = this.ServiceDirInfo.FullName + backupdir_name;
+            var backupdir_path = Path.Combine(this.ServiceDirInfo.FullName, backupdir_name);
             var backupdir = Directory.CreateDirectory(backupdir_path);
             if (!backupdir.Exists)
                 throw new Exception("Could not create backup dir at " + backupdir_path);
@@ -130,13 +131,22 @@ namespace BatchExporter
             {
                 Log("Moving old case files to " + backupdir.FullName);
                 foreach (var file in CaseDirInfo.GetFiles())
-                    file.MoveTo(backupdir.FullName);
+                {
+                    // make sure we dont move anyting by accident..
+                    if(file.Name.EndsWith(".json"))
+                        file.MoveTo(backupdir.FullName);
+
+                }
             }
             else
             {
                 Log("Deleting old case files");
                 foreach (var file in CaseDirInfo.GetFiles())
-                    file.Delete();
+                {
+                    // make sure we dont kill anyting by accident..
+                    if (file.Name.EndsWith(".json"))
+                        file.Delete();
+                }
             }
 
             Log("CleanCaseDir() done");
@@ -145,11 +155,12 @@ namespace BatchExporter
 
         private void ExportOntology()
         {
-            Log("Exporting client package");
+            
 
             var ontology = CBoxSystem_.Ontology;
             var clipack_text = ontology.ExportClientPackageString();
-            var clipack_path = CBoxSystem_.Path + "\\" + BatchExporter.CLIENT_PACKAGE_NAME;
+            var clipack_path = Path.Combine(ServiceDirInfo.FullName, BatchExporter.CLIENT_PACKAGE_NAME);
+            Log("Exporting client package to "+ clipack_path);
 
             File.WriteAllText(clipack_path, clipack_text);
 
@@ -164,12 +175,22 @@ namespace BatchExporter
             var count = 0;
             foreach (var modelref in CBoxSystem_.Models)
             {
-                var model = Model.FromXML(modelref.Path);
+                var model_xml = File.ReadAllText(modelref.Path);
+                var model = Model.FromXML(model_xml);
 
                 // generate the number of cases we want:
                 for (int i = 0; i < CaseCount; i++)
                 {
-                    var case_ = model.RandomCase();
+                    // generate the case:
+                    var case_ = model.RandomCase(CBoxSystem_);
+
+                    // expand the case with all possible values:
+                    var errors = new List<string>();
+                    CBoxSystem_.Ontology.ExpandCompletely(case_, errors);
+                    foreach (var error in errors)
+                        Log(error);
+
+                    // write case as JSON:
                     var path = Path.Combine(ServiceDirInfo.FullName, BatchExporter.CASE_DIR_NAME, i + ".json");
                     File.WriteAllText(path, case_.toJSON());
 

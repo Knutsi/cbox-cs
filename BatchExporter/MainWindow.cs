@@ -70,6 +70,14 @@ namespace BatchExporter
                 );
 
             exporter.RunExport();
+            logOutput.Text = string.Format("Log output @ {0}{1}{2}", 
+                DateTime.Now.ToLongTimeString(),
+                DateTime.Now.ToLongDateString(),
+                Environment.NewLine);
+            foreach (var line in exporter.MessageLog)
+            {
+                logOutput.Text += line + Environment.NewLine;
+            }
         }
     }
 }
