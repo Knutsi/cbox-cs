@@ -14,13 +14,14 @@ namespace cbox.model
         public string Title { get; set; }
         public BindingList<string> TargetClasses = new BindingList<string>();
 
+        public int Time { get; set; }
         public double Risk { get; set; }
         public double Pain { get; set; }
-        public double Cost { get; set; }
+        public int Money { get; set; }
 
-        public double TimeUsedOccupied { get; set; }
-        public double TimeUsedProcess { get; set; }
+        public bool VisibleHeadlineHint{ get; set; }
 
-
+        /*public double TimeUsedOccupied { get; set; }
+        public double TimeUsedProcess { get; set; }*/
     }
 }

@@ -139,6 +139,18 @@ namespace OntologyEditor
                     var key = row["Key"].ToString();
                     if (!action.Yield.Contains(key))
                         action.Yield.Add(key);
+
+                    if (key.Trim() != string.Empty)
+                    {
+                        // set flag for visible headline hit (used in case rendering if context is needed for yield):
+                        action.VisibleHeadlineHint = row["VisibleHeadlineHint"].ToString() == "yes";
+
+                        // import time, risk, pain, money:
+                        action.Time = Int32.Parse(row["Time"].ToString());
+                        action.Risk = double.Parse(row["Risk"].ToString());
+                        action.Pain = double.Parse(row["Pain"].ToString());
+                        action.Money = Int32.Parse(row["Money"].ToString());
+                    }
                 }
             }
         }
