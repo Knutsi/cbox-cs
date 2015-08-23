@@ -40,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buildAutoButton = new System.Windows.Forms.Button();
             this.backupCheckbox = new System.Windows.Forms.CheckBox();
+            this.rethrowExceptionCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.caseCountPicker)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,11 +163,23 @@
             this.backupCheckbox.UseVisualStyleBackColor = true;
             this.backupCheckbox.CheckStateChanged += new System.EventHandler(this.backupCheckbox_CheckStateChanged);
             // 
+            // rethrowExceptionCheckbox
+            // 
+            this.rethrowExceptionCheckbox.AutoSize = true;
+            this.rethrowExceptionCheckbox.Location = new System.Drawing.Point(163, 95);
+            this.rethrowExceptionCheckbox.Name = "rethrowExceptionCheckbox";
+            this.rethrowExceptionCheckbox.Size = new System.Drawing.Size(158, 21);
+            this.rethrowExceptionCheckbox.TabIndex = 10;
+            this.rethrowExceptionCheckbox.Text = "Re-throw exceptions";
+            this.rethrowExceptionCheckbox.UseVisualStyleBackColor = true;
+            this.rethrowExceptionCheckbox.CheckedChanged += new System.EventHandler(this.rethrowExceptionCheckbox_CheckedChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(498, 633);
+            this.Controls.Add(this.rethrowExceptionCheckbox);
             this.Controls.Add(this.backupCheckbox);
             this.Controls.Add(this.buildAutoButton);
             this.Controls.Add(this.label3);
@@ -201,6 +214,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buildAutoButton;
         private System.Windows.Forms.CheckBox backupCheckbox;
+        private System.Windows.Forms.CheckBox rethrowExceptionCheckbox;
     }
 }
 

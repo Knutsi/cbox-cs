@@ -32,12 +32,15 @@ namespace BatchExporter
         
         public int CaseCount { get; set; }
         public bool Backup { get; set; }
+        public bool RethrowExceptions { get; set; }
 
-        public BatchExporter(string systemPath, string servicePath, int caseCount)
+
+        public BatchExporter(string systemPath, string servicePath, int caseCount, bool rethrow)
         {
             this.SystemPath = systemPath;
             this.ServicePath = servicePath;
             this.CaseCount = caseCount;
+            this.RethrowExceptions = rethrow;
         }
 
         /// <summary>
@@ -186,7 +189,7 @@ namespace BatchExporter
 
                     // expand the case with all possible values:
                     var errors = new List<string>();
-                    CBoxSystem_.Ontology.ExpandCompletely(case_, errors);
+                    CBoxSystem_.Ontology.ExpandCompletely(case_, errors, RethrowExceptions);
                     foreach (var error in errors)
                         Log(error);
 

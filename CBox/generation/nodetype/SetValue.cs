@@ -54,9 +54,9 @@ namespace cbox.generation.nodetype
 
                 // add value to current problem:
                 if(test != null)
-                    ctx.CurrentProblem.Add(entry.Key, value, test.Prefix, test.Unit);
+                    ctx.CurrentProblem.Add(entry.Key, value, test.Prefix, test.Unit, test.ParentKey, true);
                 else
-                    ctx.CurrentProblem.Add(entry.Key, value);
+                    ctx.CurrentProblem.Add(entry.Key, value, string.Empty, true);
 
             }
         }
@@ -89,7 +89,7 @@ namespace cbox.generation.nodetype
                         dependency);
                     
                     // append result to current problem:
-                    ctx.CurrentProblem.Add(dependency_key, value, dependency.Prefix, dependency.Unit);
+                    ctx.CurrentProblem.Add(dependency_key, value, dependency.Prefix, dependency.Unit, dependency.ParentKey, true);
                 }
             }
         }

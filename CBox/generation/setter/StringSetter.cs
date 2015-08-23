@@ -22,6 +22,10 @@ namespace cbox.generation.setter
         {
             var data = StringSetterData.FromXML(xml_data);
 
+            // if empty, return empty:
+            if (data.Strings.Count == 0)
+                return string.Empty;
+
             // pick a random string:
             int i = this.Random.Next(data.Strings.Count);
             var str = data.Strings[i];

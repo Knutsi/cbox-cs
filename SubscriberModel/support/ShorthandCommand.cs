@@ -14,7 +14,6 @@ namespace OntologyEditor
         public ShorthandCommand(string cmd)
         {
             // format is: COMMAND:PARAMS; COMMAND:PARAMS; ... 
-
             var parts = cmd.Split(':');
             this.Command = parts[0].Trim(); ;
             this.Params = cmd.Substring(parts[0].Length + 1);   // from command and colon

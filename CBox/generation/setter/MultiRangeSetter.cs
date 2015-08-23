@@ -37,6 +37,9 @@ namespace cbox.generation.setter
 
             // get the data and find a mathcing range:
             var data = MultiRangeSetterData.FromXML(xml_data);
+            if (data.Ranges.Count == 0)
+                return string.Empty;    // no ranges, no results..
+
             var range = this.MatchRange(Convert.ToInt32(age), gender, data.Ranges);
 
             if (range == null)

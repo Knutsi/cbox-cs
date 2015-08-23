@@ -79,9 +79,10 @@ namespace OntologyEditor
                 test.SetterIdent = row["Setter"].ToString();
                 test.Unit = row["Unit"].ToString();
                 test.Accumulative = row["Accumulative"].ToString() == "yes";
+                test.ParentKey = row["ParentKey"].ToString();
 
                 // decimals:
-                if(row["Decimals"] != null && row["Decimals"] != "")
+                if (row["Decimals"] != null && row["Decimals"] != "")
                     test.Decimals = Convert.ToInt32(row["Decimals"].ToString());
 
                 // dependencies:
@@ -211,20 +212,23 @@ namespace OntologyEditor
             foreach (DataRow row in table.Rows)
             {
                 var shorthand = row["Shorthand"].ToString();
-                if (shorthand == string.Empty)
-                    continue;
+                /*if (shorthand == string.Empty)
+                    continue;*/
 
                 // grab relevant test:
                 var test = Ontology.TestByKey(row["Key"].ToString());
+                if (test.Key == string.Empty)
+                    continue;   // skip blank lines
 
                 // get setter:
                 var setter = SetterLibrary.Default[test.SetterIdent];
                 if (setter == null)
-                    throw new Exception(string.Format("Could not find setter", test.SetterIdent));
+                    throw new Exception(string.Format("Could not find setter '{0}'", test.SetterIdent));
 
                 // parse shorthand commands:
                 var cmds = (from c in shorthand.Split(';')
-                           select new ShorthandCommand(c)).ToList();
+                            where c != string.Empty
+                            select new ShorthandCommand(c)).ToList();
 
                 // grab a shorthand reader from the setter type:
                 switch (test.SetterIdent)

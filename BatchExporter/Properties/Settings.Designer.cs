@@ -82,5 +82,17 @@ namespace BatchExporter.Properties {
                 this["backupOldCases"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rethrowExcepions {
+            get {
+                return ((bool)(this["rethrowExcepions"]));
+            }
+            set {
+                this["rethrowExcepions"] = value;
+            }
+        }
     }
 }

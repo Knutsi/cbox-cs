@@ -14,12 +14,13 @@ namespace cbox.model
         public string Prefix { get; set; }
         public string Unit { get; set; }
         public int Decimals { get; set; }       // decimals when rounding
-        public bool Accumulative { get; set; }  // can hold a list of values
+        public bool Accumulative { get; set; }  // can hold a *list* of values?
         public string Datatype { get; set; }
-        //public string Parent { get; set; }
+        public string ParentKey { get; set; }   // parent key to use if not set
         public string SetterIdent { get; set; }
         public string SetterXMLData { get; set; }
-        public List<string> Dependencies { get; set; }
+
+        public List<string> Dependencies { get; set; }  // results it needs to have before evaluating
 
         public Test()
         {

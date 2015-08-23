@@ -40,25 +40,29 @@ namespace cbox.model
             TestResults.Add(tr);
         }
 
-        public void Add(string key, string value)
+        public void Add(string key, string value, string parent_key, bool abnormal=false)
         {
             var result = new TestResult()
             {
                 Key = key,
-                Value = value
+                Value = value,
+                Abnormal = abnormal,
+                ParentKey = parent_key
             };
 
             Add(result);
         }
 
-        public void Add(string key, string value, string prefix, string unit)
+        public void Add(string key, string value, string prefix, string unit, string parent_key, bool abnormal = false)
         {
             var result = new TestResult()
             {
                 Key = key,
                 Value = value,
                 Prefix = prefix,
-                Unit = unit
+                Unit = unit,
+                Abnormal = abnormal,
+                ParentKey = parent_key
             };
 
             Add(result);

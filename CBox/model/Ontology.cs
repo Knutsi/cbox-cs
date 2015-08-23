@@ -492,7 +492,9 @@ namespace cbox.model
                 Key = key,
                 Value = value,
                 Prefix = test.Prefix,
-                Unit = test.Unit
+                Unit = test.Unit,
+                Abnormal = false,
+                ParentKey = test.ParentKey
             };
         }
 
@@ -514,7 +516,7 @@ namespace cbox.model
         /// Expands case by solving for every single key available in ontology.
         /// </summary>
         /// <param name="case_"></param>
-        public void ExpandCompletely(Case case_, List<string> error_list)
+        public void ExpandCompletely(Case case_, List<string> error_list, bool rethrow)
         {
             // expand each problem:
             foreach (var problem in case_.Problems)
@@ -523,14 +525,25 @@ namespace cbox.model
                 var tests = this.TestsByClasses(problem.Classes);
                 foreach (var key in tests)
                 {
-                    try {
+
+                    if (rethrow)
+                    {
                         var result = this.Lookup(key, case_, problem);
                         problem.Add(result);
                     }
-                    catch(Exception exp)
+                    else
                     {
-                        var message = string.Format("ERROR! '{0}' throws {1}", key, exp.Message);
-                        error_list.Add(message);
+                        try
+                        {
+                            var result = this.Lookup(key, case_, problem);
+                            problem.Add(result);
+                        }
+                        catch (Exception exp)
+                        {
+                            var message = string.Format("ERROR! '{0}' throws {1}", key, exp.Message);
+                            error_list.Add(message);
+
+                        }
                     }
                 }
             }

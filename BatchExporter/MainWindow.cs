@@ -23,6 +23,7 @@ namespace BatchExporter
             serviceRootInput.Text = Properties.Settings.Default.servicePath;
             caseCountPicker.Value = Properties.Settings.Default.caseCount;
             backupCheckbox.Checked = Properties.Settings.Default.backupOldCases;
+            backupCheckbox.Checked = Properties.Settings.Default.rethrowExcepions;
         }
 
         private void pickSystemRootButton_Click(object sender, EventArgs e)
@@ -61,12 +62,20 @@ namespace BatchExporter
             Properties.Settings.Default.Save();
         }
 
+
+        private void rethrowExceptionCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.rethrowExcepions = rethrowExceptionCheckbox.Checked;
+            Properties.Settings.Default.Save();
+        }
+
         private void buildButton_Click(object sender, EventArgs e)
         {
             var exporter = new BatchExporter(
                 systemRootInput.Text,
                 serviceRootInput.Text,
-                Convert.ToInt32(caseCountPicker.Value)
+                Convert.ToInt32(caseCountPicker.Value),
+                rethrowExceptionCheckbox.Checked
                 );
 
             exporter.RunExport();
@@ -79,5 +88,6 @@ namespace BatchExporter
                 logOutput.Text += line + Environment.NewLine;
             }
         }
+
     }
 }

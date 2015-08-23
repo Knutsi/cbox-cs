@@ -204,8 +204,8 @@ namespace CBoxTest.generation
             // generate a test case:
             var case_ = new Case();
             case_.AddProblem(new Problem() { IsRoot = true, Ident = "root_", Title = "Test" });
-            case_.RootProblem.Add("history.age", "52");
-            case_.RootProblem.Add("history.gender", "M");
+            case_.RootProblem.Add("history.age", "52", null);
+            case_.RootProblem.Add("history.gender", "M", null);
 
             var ctx = new ExecutionContext() { Case = case_ };
 

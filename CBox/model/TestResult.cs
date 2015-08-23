@@ -15,10 +15,14 @@ namespace cbox.model
     /// </summary>
     public class TestResult
     {
+      
         public string Key { get; set; }
         public List<string> Values = new List<string>();
         public string Prefix { get; set; }
         public string Unit { get; set; }
+        public string ParentKey { get; set; }
+
+        public bool Abnormal = false; // set to true if value is abnormal, unexpected etc. 
 
         public string Value
         {
