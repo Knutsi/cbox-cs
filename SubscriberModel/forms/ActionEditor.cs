@@ -38,8 +38,8 @@ namespace OntologyEditor
 
             foreach (cbox.model.ProblemClass class_ in Program.OntologyInstance.Classes)
             {
-                var checked_ = SelectedAction.TargetClasses.Contains(class_.Title);
-                classSelect.Items.Add(class_.Title, checked_);
+                var checked_ = SelectedAction.TargetClasses.Contains(class_.Ident);
+                classSelect.Items.Add(class_.Ident, checked_);
             }
         }
 
@@ -128,11 +128,11 @@ namespace OntologyEditor
                 titleInput.DataBindings.Add("Text", _SelectedAction, "Title");
 
                 riskInput.DataBindings.Add("Value", _SelectedAction, "Risk");
-                costInput.DataBindings.Add("Value", _SelectedAction, "Cost");
+                costInput.DataBindings.Add("Value", _SelectedAction, "Money");
                 painInput.DataBindings.Add("Value", _SelectedAction, "Pain");
 
-                occtimeInput.DataBindings.Add("Value", _SelectedAction, "TimeUsedOccupied");
-                waittimeInput.DataBindings.Add("Value", _SelectedAction, "TimeUsedProcess");
+                //occtimeInput.DataBindings.Add("Value", _SelectedAction, "TimeUsedOccupied");
+                //waittimeInput.DataBindings.Add("Value", _SelectedAction, "TimeUsedProcess");
 
                 yieldsSelect.DataSource = SelectedAction.Yield;
 

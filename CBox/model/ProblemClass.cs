@@ -9,17 +9,15 @@ namespace cbox.model
     public class ProblemClass
     {
         public string Ident { get; set; }
-        public string Title { get; set; }
 
         public ProblemClass()
         {
 
         }
 
-        public ProblemClass(string ident, string title)
+        public ProblemClass(string ident)
         {
             Ident = ident;
-            Title = title;
         }
     }
 }

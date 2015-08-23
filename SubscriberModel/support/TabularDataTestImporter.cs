@@ -257,15 +257,15 @@ namespace OntologyEditor
         {
             foreach (DataRow row in table.Rows)
             {
-                var name = row["ActionClasses"].ToString().ToLower();
-                var ident = name.ToLower();
+                var ident = row["ActionClasses"].ToString();
+                //var ident = name.ToLower();
 
                 var problem = Ontology.ClassByIdent(ident);
-                if (problem != null || name.Trim() == string.Empty)
+                if (problem != null || ident.Trim() == string.Empty)
                     continue;
 
                 // add class:
-                Ontology.AddClass(ident, name);
+                Ontology.AddClass(ident);
             }
 
         }

@@ -257,12 +257,12 @@ namespace cbox.model
         /// </summary>
         /// <param name="ident"></param>
         /// <param name="title"></param>
-        public void AddClass(string ident, string title)
+        public void AddClass(string ident)
         {
             if (ClassByIdent(ident) != null)
                 return;
 
-            var cls = new ProblemClass(ident, title);
+            var cls = new ProblemClass(ident);
             Classes.Add(cls);
             //OnChange(this);
         }

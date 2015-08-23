@@ -65,11 +65,11 @@ namespace cbox.modelling.editors
                     foreach (var class_ in Ontology.Classes)
                     {
                         // create checboxes, add to our own list and the flow control:
-                        var cb = new CheckBox() { Text = class_.Title, Tag = class_.Ident };
+                        var cb = new CheckBox() { Text = class_.Ident, Tag = class_.Ident };
                         checkboxFlowLayout.Controls.Add(cb);
                         Checkboxes.Add(cb);
 
-                        if (class_.Ident == "general")
+                        if (class_.Ident == "General")
                             cb.Enabled = false;
                         
                         // when changed, they should save the node:
