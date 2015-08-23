@@ -82,6 +82,12 @@
     <Compile Include="inner_editors\SetValuesNodeEditor.Designer.cs">
       <DependentUpon>SetValuesNodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="modal_editors\ProblemRevealConditionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modal_editors\ProblemRevealConditionEditor.Designer.cs">
+      <DependentUpon>ProblemRevealConditionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="inner_editors\SetValuesNodeEditor.resx">
       <DependentUpon>SetValuesNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modal_editors\ProblemRevealConditionEditor.resx">
+      <DependentUpon>ProblemRevealConditionEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NodeEditor.resx">
       <DependentUpon>NodeEditor.cs</DependentUpon>

@@ -97,6 +97,9 @@ namespace cbox.modelling.editors
                     if (class_ == checkbox.Text)
                         checkbox.Checked = true;
 
+            // bind trigger conditions:
+            triggerConditionList.DataSource = Data.Triggers;
+            triggerConditionList.DisplayMember = "DisplayName";
 
             EventsDisabled = false;
         }
@@ -112,6 +115,39 @@ namespace cbox.modelling.editors
             // save that as chose classes:
             Data.Classes = classes;
             Node.Handler.SaveData();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            var editor = new ProblemRevealConditionEditor(this.Ontology);
+            editor.Trigger = new ProblemRevealCondition() { Key = "demo.key" };
+            editor.ShowDialog();
+
+            Data.Triggers.Add(editor.Trigger);
+        }
+
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            var selected = triggerConditionList.SelectedItem as ProblemRevealCondition;
+            if(selected != null)
+            {
+                var editor = new ProblemRevealConditionEditor(this.Ontology);
+                editor.Trigger = selected;
+                editor.ShowDialog();
+            }
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            var remove = new List<ProblemRevealCondition>();
+
+            foreach (var selected in triggerConditionList.SelectedItems)
+                remove.Add(selected as ProblemRevealCondition);
+
+            foreach (var trigger in remove)
+                Data.Triggers.Remove(trigger);
+
         }
 
     }

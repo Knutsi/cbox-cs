@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.ComponentModel;
+
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -31,9 +33,13 @@ namespace cbox.model
         [DataMember]
         public List<string> Classes { get; set; }
 
+        [DataMember]
+        public BindingList<ProblemRevealCondition> Triggers { get; set; }
+
         public Problem()
         {
             TestResults = new List<TestResult>();
+            Triggers = new BindingList<ProblemRevealCondition>();
         }
 
         public void Add(TestResult tr) {

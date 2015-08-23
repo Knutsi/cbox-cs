@@ -13,6 +13,7 @@ namespace cbox.model
         public BindingList<string> Yield = new BindingList<string>();
         public string Title { get; set; }
         public BindingList<string> TargetClasses = new BindingList<string>();
+        public BindingList<string> RevealsClasses = new BindingList<string>();
 
         public int Time { get; set; }
         public double Risk { get; set; }
