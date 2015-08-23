@@ -38,6 +38,7 @@ namespace OntologyEditor
             ImportActions(table);
             ImportCategories(table);
             ImportShorthand(table);
+            ImportClasses(table);
 
             ImportLog.Add("Import complete");
         }
@@ -252,6 +253,24 @@ namespace OntologyEditor
         }
 
 
+        public void ImportClasses(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                var name = row["ActionClasses"].ToString().ToLower();
+                var ident = name.ToLower();
+
+                var problem = Ontology.ClassByIdent(ident);
+                if (problem != null || name.Trim() == string.Empty)
+                    continue;
+
+                // add class:
+                Ontology.AddClass(ident, name);
+            }
+
+        }
+
+
         private string MultiRangeDataFromShorthand(List<ShorthandCommand> cmds)
         {
             var data = new MultiRangeSetterData();
@@ -373,6 +392,8 @@ namespace OntologyEditor
 
             return headline;
         }
+
+
 
     }
 }

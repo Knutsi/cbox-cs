@@ -100,7 +100,7 @@ namespace OntologyEditor
             Program.IsNewOntology = true;
 
             // install default classes:
-            Program.OntologyInstance.AddDefaultClasses();
+            //Program.OntologyInstance.AddDefaultClasses(); // replaced by dynamic selection from ontology importer
 
             // run server
             Program.InternalServerRunning = true;

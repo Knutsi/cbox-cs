@@ -221,9 +221,9 @@ namespace OntologyEditor
         /// <param name="e"></param>
         private void insStdClassesMenuItem_Click(object sender, EventArgs e)
         {
-            var check = MessageBox.Show("Are you sure you want to reistall all default classes?", "Add default classes", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            /*var check = MessageBox.Show("Are you sure you want to reistall all default classes?", "Add default classes", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if(check == System.Windows.Forms.DialogResult.OK)
-                Program.OntologyInstance.AddDefaultClasses();
+                Program.OntologyInstance.AddDefaultClasses();*/
         }
 
 

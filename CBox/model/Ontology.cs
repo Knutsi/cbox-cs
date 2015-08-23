@@ -275,7 +275,7 @@ namespace cbox.model
             return null;
         }
 
-        public void AddDefaultClasses()
+        /*public void AddDefaultClasses()
         {
             AddClass("temporal", "Temporal");
             AddClass("spatial", "Spatial");
@@ -285,7 +285,7 @@ namespace cbox.model
             AddClass("faecal", "Faecal");
             AddClass("feeling", "Feeling");
             AddClass("general", "General");
-        }
+        }*/
 
         /// <summary>
         /// Adds an action with the given title, and all other fields blank.

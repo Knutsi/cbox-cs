@@ -68,6 +68,9 @@ namespace cbox.modelling.editors
                         var cb = new CheckBox() { Text = class_.Title, Tag = class_.Ident };
                         checkboxFlowLayout.Controls.Add(cb);
                         Checkboxes.Add(cb);
+
+                        if (class_.Ident == "general")
+                            cb.Enabled = false;
                         
                         // when changed, they should save the node:
                         cb.CheckedChanged += (object sender, EventArgs e) => 
