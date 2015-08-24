@@ -52,7 +52,7 @@
             this.panel1.Controls.Add(this.deleteButton);
             this.panel1.Controls.Add(this.keySelect);
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(448, 428);
             this.panel1.TabIndex = 0;
@@ -64,7 +64,7 @@
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel3.BackColor = System.Drawing.Color.DimGray;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.MinimumSize = new System.Drawing.Size(25, 113);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(25, 1218);
@@ -78,7 +78,7 @@
             this.setterSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.setterSelect.FormattingEnabled = true;
             this.setterSelect.Location = new System.Drawing.Point(1393, 15);
-            this.setterSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.setterSelect.Margin = new System.Windows.Forms.Padding(4);
             this.setterSelect.Name = "setterSelect";
             this.setterSelect.Size = new System.Drawing.Size(101, 21);
             this.setterSelect.TabIndex = 5;
@@ -102,7 +102,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.setterEditorPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.setterEditorPanel.Location = new System.Drawing.Point(33, 43);
-            this.setterEditorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.setterEditorPanel.Margin = new System.Windows.Forms.Padding(4);
             this.setterEditorPanel.MinimumSize = new System.Drawing.Size(405, 66);
             this.setterEditorPanel.Name = "setterEditorPanel";
             this.setterEditorPanel.Size = new System.Drawing.Size(410, 381);
@@ -113,7 +113,7 @@
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteButton.Location = new System.Drawing.Point(1503, 2);
-            this.deleteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(45, 33);
             this.deleteButton.TabIndex = 4;
@@ -129,9 +129,9 @@
             this.keySelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.keySelect.FormattingEnabled = true;
             this.keySelect.Location = new System.Drawing.Point(33, 6);
-            this.keySelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.keySelect.Margin = new System.Windows.Forms.Padding(4);
             this.keySelect.Name = "keySelect";
-            this.keySelect.Size = new System.Drawing.Size(407, 28);
+            this.keySelect.Size = new System.Drawing.Size(381, 28);
             this.keySelect.TabIndex = 3;
             // 
             // SetValuesNodeEntryEditor
@@ -140,7 +140,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SetValuesNodeEntryEditor";
             this.Size = new System.Drawing.Size(452, 432);
             this.panel1.ResumeLayout(false);
