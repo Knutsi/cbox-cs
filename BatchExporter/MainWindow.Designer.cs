@@ -59,13 +59,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.systemRootInput.Location = new System.Drawing.Point(106, 10);
             this.systemRootInput.Name = "systemRootInput";
-            this.systemRootInput.Size = new System.Drawing.Size(296, 22);
+            this.systemRootInput.Size = new System.Drawing.Size(504, 22);
             this.systemRootInput.TabIndex = 1;
             // 
             // pickSystemRootButton
             // 
             this.pickSystemRootButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pickSystemRootButton.Location = new System.Drawing.Point(408, 10);
+            this.pickSystemRootButton.Location = new System.Drawing.Point(616, 10);
             this.pickSystemRootButton.Name = "pickSystemRootButton";
             this.pickSystemRootButton.Size = new System.Drawing.Size(75, 23);
             this.pickSystemRootButton.TabIndex = 2;
@@ -88,13 +88,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.serviceRootInput.Location = new System.Drawing.Point(106, 38);
             this.serviceRootInput.Name = "serviceRootInput";
-            this.serviceRootInput.Size = new System.Drawing.Size(296, 22);
+            this.serviceRootInput.Size = new System.Drawing.Size(504, 22);
             this.serviceRootInput.TabIndex = 1;
             // 
             // pickServiceRootButton
             // 
             this.pickServiceRootButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pickServiceRootButton.Location = new System.Drawing.Point(408, 38);
+            this.pickServiceRootButton.Location = new System.Drawing.Point(616, 38);
             this.pickServiceRootButton.Name = "pickServiceRootButton";
             this.pickServiceRootButton.Size = new System.Drawing.Size(75, 23);
             this.pickServiceRootButton.TabIndex = 2;
@@ -122,7 +122,7 @@
             this.logOutput.Location = new System.Drawing.Point(16, 151);
             this.logOutput.Multiline = true;
             this.logOutput.Name = "logOutput";
-            this.logOutput.Size = new System.Drawing.Size(467, 470);
+            this.logOutput.Size = new System.Drawing.Size(675, 470);
             this.logOutput.TabIndex = 5;
             this.logOutput.Text = "Ready";
             // 
@@ -178,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 633);
+            this.ClientSize = new System.Drawing.Size(706, 633);
             this.Controls.Add(this.rethrowExceptionCheckbox);
             this.Controls.Add(this.backupCheckbox);
             this.Controls.Add(this.buildAutoButton);
