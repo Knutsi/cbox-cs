@@ -198,8 +198,9 @@ namespace cbox.modelling
             base.OnDoubleClick(e);
 
             // if it's a node, we notify:
-            if (ComponentUnderMouse.Type == DiagramComponentType.NODE)
-                NodeDoubleClicked(ComponentUnderMouse.SourceObject as Node);
+            if (ComponentUnderMouse != null && ComponentUnderMouse.Type == DiagramComponentType.NODE)
+                if(NodeDoubleClicked != null)
+                    NodeDoubleClicked(ComponentUnderMouse.SourceObject as Node);
         }
 
 

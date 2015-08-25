@@ -164,6 +164,7 @@ namespace ModelEditor
             SubModelTabs.Add(entry);
 
             entry.Diagram.SelectionChanged += Diagram_SelectionChanged;
+            entry.Diagram.NodeDoubleClicked += HandleNodeDoubleClicked;
         }
 
         /// <summary>
