@@ -13,6 +13,7 @@ using cbox.generation;
 namespace cbox.modelling
 {
     public delegate void SelectionChangedEvent();
+    public delegate void NodeDoubleClickedEvent(Node node);
 
     public enum DragOperation
     {
@@ -29,6 +30,7 @@ namespace cbox.modelling
         private const int INSERT_OFFSET = 30;
 
         public event SelectionChangedEvent SelectionChanged;
+        public event NodeDoubleClickedEvent NodeDoubleClicked;
 
         private cbox.generation.NodeCollection _NodeCollection;
         public List<IDiagramComponent> DiagramComponents;
@@ -189,6 +191,15 @@ namespace cbox.modelling
             if (CurrentDragOperation.HasValue)
                 EndDrag();
  
+        }
+
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            base.OnDoubleClick(e);
+
+            // if it's a node, we notify:
+            if (ComponentUnderMouse.Type == DiagramComponentType.NODE)
+                NodeDoubleClicked(ComponentUnderMouse.SourceObject as Node);
         }
 
 

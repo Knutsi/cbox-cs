@@ -23,5 +23,8 @@
     <Setting Name="saved_limit_sets" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DefaultSystemPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\knut\Development\cbox-basesystem</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

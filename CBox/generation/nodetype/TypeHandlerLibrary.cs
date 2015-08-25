@@ -32,6 +32,9 @@ namespace cbox.generation.nodetype
                 case Include.TYPE_IDENT:
                     return new Include() { Node = node };
 
+                case Diagnosis.TYPE_IDENT:
+                    return new Diagnosis() { Node = node };
+
                 default:
                     throw new NoSuchHandlerException();
             }
@@ -46,7 +49,8 @@ namespace cbox.generation.nodetype
                     SetValue.TYPE_IDENT,
                     ProblemStart.TYPE_IDENT,
                     ProblemEnd.TYPE_IDENT,
-                    Include.TYPE_IDENT
+                    Include.TYPE_IDENT,
+                    Diagnosis.TYPE_IDENT
                 };
             }
         }

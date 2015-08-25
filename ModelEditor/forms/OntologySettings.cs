@@ -90,7 +90,7 @@ namespace ModelEditor.forms
             }
 
             // load the ontology:
-            Program.LoadOntology(path);
+            //Program.LoadOntology(path);
             Update();
         }
 

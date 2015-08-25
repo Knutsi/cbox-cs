@@ -32,6 +32,8 @@ namespace cbox.system
         public const string COMPONENT_DIR_NAME = "Components";
         public const string MODEL_DIR_NAME = "Models";
         public const string ONTOLOGY_NAME = "Default.cbxont";
+        public const string Dx_CATALOG_NAME = "DxCatalog.txt";
+        public const string Rx_CATALOG_NAME = "RxCatalog.txt";
 
         public string Path; // system's location
 
@@ -40,6 +42,7 @@ namespace cbox.system
 
         public List<ModelReference> Models = new List<ModelReference>(); // all models in the system
         public List<ModelReference> Components = new List<ModelReference>(); // all components in the system
+        public DiagnosisCatalog Diagnosis;
 
         public CBoxSystem(string path)
         {
@@ -91,6 +94,28 @@ namespace cbox.system
         }
 
         /// <summary>
+        /// Ontology path.
+        /// </summary>
+        public string DxCatalogPath
+        {
+            get
+            {
+                return System.IO.Path.Combine(this.Path, Dx_CATALOG_NAME);
+            }
+        }
+
+        /// <summary>
+        /// Ontology path.
+        /// </summary>
+        public string RxCatalogPath
+        {
+            get
+            {
+                return System.IO.Path.Combine(this.Path, Rx_CATALOG_NAME);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the onology in this system.  It will auto-load from 
         /// filesystem on first request unless specifically set.
         /// </summary>
@@ -127,6 +152,9 @@ namespace cbox.system
 
             if (!File.Exists(OntologyPath))
                 throw new InvalidCBoxSystemException("OntologyPath does not exist on filesystem");
+
+            if (!File.Exists(DxCatalogPath))
+                throw new InvalidCBoxSystemException("OntologyPath does not exist on filesystem");
         }
 
 
@@ -140,6 +168,8 @@ namespace cbox.system
 
             Components = (from m in Directory.GetFiles(ComponentDirPath)
                           select new ModelReference() { Path = m, Title = System.IO.Path.GetFileName(m) }).ToList();
+
+            Diagnosis = DiagnosisCatalog.LoadICD10(DxCatalogPath);
         }
 
 

@@ -55,9 +55,11 @@
     <Compile Include="generation\IssueReportEntry.cs" />
     <Compile Include="generation\Model.cs" />
     <Compile Include="generation\Node.cs" />
+    <Compile Include="generation\nodetype\DiagnosisData.cs" />
     <Compile Include="generation\nodetype\BaseTypeData.cs" />
     <Compile Include="generation\nodetype\BranchData.cs" />
     <Compile Include="generation\nodetype\BranchDataSocketEntry.cs" />
+    <Compile Include="generation\nodetype\Diagnosis.cs" />
     <Compile Include="generation\nodetype\Include.cs" />
     <Compile Include="generation\nodetype\IncludeData.cs" />
     <Compile Include="generation\nodetype\IncludeDataEntry.cs" />
@@ -83,6 +85,8 @@
     <Compile Include="generation\setter\ThesaurusEntry.cs" />
     <Compile Include="model\ActionProblemPair.cs" />
     <Compile Include="model\ChoiceList.cs" />
+    <Compile Include="model\DiagnosisCatalog.cs" />
+    <Compile Include="model\DiagnosisCatalogEntry.cs" />
     <Compile Include="model\ProblemRevealCondition.cs" />
     <Compile Include="server\Config.cs" />
     <Compile Include="server\GameSession.cs" />

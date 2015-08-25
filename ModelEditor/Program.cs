@@ -84,12 +84,6 @@ namespace ModelEditor
             }
         }
 
-        /// <summary>
-        /// The ontology being used.
-        /// </summary>
-
-
-
 
         /// <summary>
         /// Creates a new model.
@@ -112,7 +106,7 @@ namespace ModelEditor
             C.FirstOutputSocket.Connect(D);
             D.FirstOutputSocket.Connect(E);
 
-            A.FirstOutputSocket.Label = "Demo label";
+            //A.FirstOutputSocket.Label = "Demo label";
 
             comp.StartNode = A;
             comp.EndNode = E;
@@ -124,16 +118,21 @@ namespace ModelEditor
             MainWindow.Text = "(New model)";
 
             // load fallback ontology, if set:
-            var fallback_ont_path = Properties.Settings.Default.fallback_ontology ;
+            /*var fallback_ont_path = Properties.Settings.Default.fallback_ontology ;
             if(fallback_ont_path != null)
             {
                 try
                 {
-                    LoadOntology(fallback_ont_path);
+                    //LoadOntology(fallback_ont_path);
                 }
                 catch { }
-            }
-                
+            }*/
+
+            // load default system:
+            var syspath = Properties.Settings.Default.DefaultSystemPath;
+            CurrentSystem = new CBoxSystem(syspath);
+            CurrentOntology = CurrentSystem.Ontology;
+            CurrentOntologyPath = CurrentSystem.OntologyPath; 
         }
 
         /// <summary>
@@ -156,10 +155,12 @@ namespace ModelEditor
             MainWindow.Text = CurrentFilePath;
 
             // try to load default ontology:
-            LoadDefaultOntology();
+            //LoadDefaultOntology();
 
             // load system:
             CurrentSystem = CBoxSystem.FromModelPath(filepath);
+            CurrentOntology = CurrentSystem.Ontology;
+            CurrentOntologyPath = CurrentSystem.OntologyPath;
 
             Console.WriteLine("Opened model {0}", filepath);
 
@@ -265,7 +266,7 @@ namespace ModelEditor
             // check that this file exists:
             if (File.Exists(ontology_path))
             {
-                LoadOntology(ontology_path);
+                //LoadOntology(ontology_path);
             }
             else
             {
@@ -278,7 +279,7 @@ namespace ModelEditor
         /// Loads and ontololgy
         /// </summary>
         /// <param name="filepath"></param>
-        public static void LoadOntology(string filepath, bool autoreload=false)
+        /*public static void LoadOntology(string filepath, bool autoreload=false)
         {
             if (!File.Exists(filepath))
                 throw new Exception("Program.LoadOntology could not find file " + filepath);
@@ -297,13 +298,13 @@ namespace ModelEditor
             OntologyFileWatcher = new FileSystemWatcher();
             OntologyFileWatcher.Filter = filepath;
             OntologyFileWatcher.Changed += Ontology_FileChanged;
-        }
+        }*/
 
   
         static void Ontology_FileChanged(object sender, FileSystemEventArgs e)
         {
             Console.Out.WriteLine("Ontology changed - reloading");
-            LoadOntology(CurrentOntologyPath, true);
+            //LoadOntology(CurrentOntologyPath, true);
         }
 
 

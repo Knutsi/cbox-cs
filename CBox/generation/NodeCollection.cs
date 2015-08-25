@@ -19,8 +19,6 @@ namespace cbox.generation
 
     public class NodeCollection : IdentProvider
     {
-
-
         public bool IsRoot = false;
         public int StartNodeIdent;
         public int EndNodeIdent;

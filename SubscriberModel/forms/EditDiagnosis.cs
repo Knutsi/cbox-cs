@@ -29,12 +29,12 @@ namespace OntologyEditor
             this.CurrentSystem = system;
             this.CurrentDiagnosis = dx;
 
-            this.titleTextBox.Text = dx.Name;
+            //this.titleTextBox.Text = dx.Name;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.CurrentDiagnosis.Name = this.titleTextBox.Text;
+            //this.CurrentDiagnosis.Name = this.titleTextBox.Text;
         }
     }
 }

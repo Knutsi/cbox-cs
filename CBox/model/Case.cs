@@ -31,7 +31,7 @@ namespace cbox.model
         public List<Problem> Problems = new List<Problem>();
 
         [DataMember]
-        public Diagnosis Diagnosis { get; set; }
+        public List<Diagnosis> Diagnosis = new List<Diagnosis>();
 
         [DataMember]
         public string Treatments { get; set; }

@@ -44,6 +44,8 @@ namespace cbox.model
         [DataMember]
         public BindingList<ProblemClass> Classes { get; set; }
 
+        public DiagnosisCatalog Diagnosis { get { return ParentSystem.Diagnosis; } }
+
         [XmlIgnore]
         public CBoxSystem ParentSystem { get; set; }
 

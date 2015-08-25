@@ -46,8 +46,10 @@ namespace ModelEditor
             RootDiagram = new NodeCollectionDiagram() { Dock = DockStyle.Fill };
             rootDiagramPanel.Controls.Add(RootDiagram);
 
-            // make diagram react to nodes being selected:
+            // make diagram react to nodes being selected or double clicked:
             RootDiagram.SelectionChanged += Diagram_SelectionChanged;
+            RootDiagram.NodeDoubleClicked += HandleNodeDoubleClicked;
+
 
             // make the window work with the diagram on the current tab page:
             tabControl.Selected += tabControl_Selected;
@@ -55,6 +57,7 @@ namespace ModelEditor
             // new model by default:
             Program.NewModel();
         }
+
 
         /// <summary>
         /// Called whent he program loads a model.
@@ -350,9 +353,39 @@ namespace ModelEditor
                 propertiesPanel.Controls.Add(editor);
             }
 
-            
+        }
+
+
+        /// <summary>
+        /// Called when a node gets double clicked in the diagram.  This opens the
+        /// windowed editor.
+        /// </summary>
+        /// <param name="node"></param>
+        private void HandleNodeDoubleClicked(Node node)
+        {
+            System.Windows.Forms.Form editor = null;
+
+            // pick an editor
+            switch (node.Type)
+            {
+                case Diagnosis.TYPE_IDENT:
+                    editor = new DiagnosisNodeEditor()
+                    {
+                        Node = node,
+                        Ontology = Program.CurrentOntology
+                    };
+                    break;
+
+                default:
+                    break;
+            }
+
+            // show editor, if any:
+            if (editor != null)
+                editor.Show();
             
         }
+
 
         private void newSubmodelItem_Click(object sender, EventArgs e)
         {
