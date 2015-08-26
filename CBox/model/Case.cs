@@ -24,6 +24,8 @@ namespace cbox.model
     [Serializable]
     public class Case
     {
+        public const string KEY_PAST_CONDITIONS = "history.past-conditions";
+
         [DataMember]
         public const string ROOT_PROBLEM_IDENT = "_root";
 

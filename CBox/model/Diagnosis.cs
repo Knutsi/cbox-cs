@@ -19,6 +19,7 @@ namespace cbox.model
     public class Diagnosis
     {
         public static string DEFAULT_GROUP_NAME = "DEFAULT";
+        public static string PREVIOUS_GROUP = "PREVIOUS";
 
         private string Group_ = Diagnosis.DEFAULT_GROUP_NAME;
 
@@ -47,6 +48,9 @@ namespace cbox.model
         [DataMember]
         public bool Specific { get; set; }
 
+        [DataMember]
+        public string MissComment { get; set; }
+
         public Diagnosis()
         {
             Group = Diagnosis.DEFAULT_GROUP_NAME;
@@ -54,6 +58,7 @@ namespace cbox.model
             Title = "Unset diagnosis";
             Major = true;
             Specific = true;
+            MissComment = String.Empty;
         }
     }
 }

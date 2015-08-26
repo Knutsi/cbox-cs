@@ -71,6 +71,8 @@ namespace cbox.generation.nodetype
             get { return false; }
         }
 
+        
+
         public void SaveData()
         {
             Node.XmlData = Data.ToXML();

@@ -69,6 +69,8 @@ namespace cbox.modelling.editors
             majorCheckbox.Enabled = true;
             specificChecbox.Enabled = true;
             groupNameInput.Enabled = true;
+            previousCheckbox.Enabled = true;
+            missCommentInput.Enabled = true;
 
             CurrentDx = dx;
 
@@ -79,6 +81,11 @@ namespace cbox.modelling.editors
             specificChecbox.Checked = dx.Specific;
             codeLabel.Text = dx.Code;
             dxNameInput.Text = dx.Title;
+            missCommentInput.Enabled = true;
+
+            if (groupNameInput.Text == model.Diagnosis.PREVIOUS_GROUP)
+                groupNameInput.Enabled = false;
+            
 
             MuteEvents = false;
         }
@@ -94,6 +101,7 @@ namespace cbox.modelling.editors
             dx.Specific = specificChecbox.Checked;
             dx.Code = codeLabel.Text;
             dx.Title = dxNameInput.Text;
+            dx.MissComment = missCommentInput.Text;
 
             if(populate)
                 PopulateTree();
@@ -234,6 +242,17 @@ namespace cbox.modelling.editors
 
             CurrentDx.Code = dx.Code;
             CurrentDx.Title = dx.Name;
+
+            SaveDiagnosis(true);
+        }
+
+
+        private void previousCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            groupNameInput.Text = model.Diagnosis.PREVIOUS_GROUP;
+            groupNameInput.Enabled = !previousCheckbox.Checked;
+            if (!previousCheckbox.Checked)
+                groupNameInput.Text = model.Diagnosis.DEFAULT_GROUP_NAME;
 
             SaveDiagnosis(true);
         }

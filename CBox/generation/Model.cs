@@ -228,8 +228,15 @@ namespace cbox.generation
 
             if (paths != null)
             {
+                // pick a random path, and generate that:
                 var path = paths[rand.Next(paths.Count)];
-                return RootComponent.Execute(path, true, false, null, system).Case;
+                var case_ = RootComponent.Execute(path, true, false, null, system).Case;
+
+                // post-process the case:
+                var processor = new PostProcessor();
+                processor.Process(case_);
+
+                return case_;
             }
             else
                 return null;
