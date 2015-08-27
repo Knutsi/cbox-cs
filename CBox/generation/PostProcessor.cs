@@ -17,6 +17,7 @@ namespace cbox.generation
         {
             // process all steps:
             AddPreviousDx(case_);
+            PickFollowup(case_);
         }
 
 
@@ -25,21 +26,41 @@ namespace cbox.generation
         /// </summary>
         private void AddPreviousDx(Case case_)
         {
-            var prev = from d in case_.Diagnosis
+            var prev_dx = from d in case_.Diagnosis
                        where d.Group == Diagnosis.PREVIOUS_GROUP
-                       select d.Title;
+                       select d;
+
+            var prev_titles = from d in prev_dx select d.Title;
 
             // did we get any results?
-            if (prev.Count() > 0)
+            if (prev_titles.Count() > 0)
             {
                 var result = new TestResult()
                 {
                     Key = Case.KEY_PAST_CONDITIONS,
-                    Values = prev.ToList()
+                    Values = prev_titles.ToList()
                 };
 
                 case_.RootProblem.Add(result);
             }
+
+            // remove those dx from case:
+            foreach (var dx in prev_dx.ToArray())
+            {
+                case_.Diagnosis.Remove(dx);
+            }
+        }
+
+
+        /// <summary>
+        /// Chooses randomly a single followup-quesiton from all available.
+        /// </summary>
+        /// <param name="case_"></param>
+        private void PickFollowup(Case case_)
+        {
+            var chosen = case_.Followup[Tools.Random.Next(case_.Followup.Count)];
+            case_.Followup = new List<FollowupQuestion>();
+            case_.Followup.Add(chosen);
         }
     }
 }

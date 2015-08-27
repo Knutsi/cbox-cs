@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using cbox;
 using cbox.generation;
 using cbox.model;
 
@@ -35,7 +36,8 @@ namespace ModelEditor.forms
         private Model _Model;
         private OutputViewMode _ViewMode;
         private OutputLimitMode _LimitMode;
-        private Random Random = new Random();
+        //private Random Random = new Random();
+        private Random Random = Tools.Random;
         private Case BaseCase;
 
         private SavedLimitSetCollection SavedLimitSets; // sets of actions on problems selected

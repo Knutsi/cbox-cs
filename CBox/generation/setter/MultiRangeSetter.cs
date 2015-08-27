@@ -16,7 +16,8 @@ namespace cbox.generation.setter
 
         public MultiRangeSetter()
         {
-            this.Random = new Random();
+            //this.Random = new Random();
+            this.Random = Tools.Random;
         }
 
         public string Ident_

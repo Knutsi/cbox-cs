@@ -15,8 +15,9 @@ namespace cbox.generation.setter
 
         public StringSetter ()
 	    {
-            this.Random = new Random();
-	    }
+            //this.Random = new Random();
+            Random = Tools.Random;
+        }
 
         public string Eval(string xml_data, ExecutionContext ctx, Test test)
         {

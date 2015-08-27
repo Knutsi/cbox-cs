@@ -21,7 +21,8 @@ namespace cbox.server
         HttpListener Listener = new HttpListener();
         Config Config;
         CBoxSystem System;
-        Random Random = new Random();
+        //Random Random = new Random();
+        Random Random = Tools.Random;
 
         private int NextGameID_ = 0;
 

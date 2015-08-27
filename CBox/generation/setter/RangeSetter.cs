@@ -17,7 +17,8 @@ namespace cbox.generation.setter
 
         public RangeSetter()
         {
-            Random = new Random();
+            //Random = new Random();
+            Random = Tools.Random;
         }
 
         public string Eval(string xml_data, ExecutionContext ctx, Test test)

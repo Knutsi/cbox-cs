@@ -36,6 +36,9 @@ namespace cbox.model
         public List<Diagnosis> Diagnosis = new List<Diagnosis>();
 
         [DataMember]
+        public List<FollowupQuestion> Followup = new List<FollowupQuestion>();
+
+        [DataMember]
         public string Treatments { get; set; }
 
         public Case()

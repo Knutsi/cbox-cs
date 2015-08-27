@@ -35,6 +35,9 @@ namespace cbox.generation.nodetype
                 case Diagnosis.TYPE_IDENT:
                     return new Diagnosis() { Node = node };
 
+                case Followup.TYPE_IDENT:
+                    return new Followup() { Node = node };
+
                 default:
                     throw new NoSuchHandlerException();
             }
@@ -50,7 +53,8 @@ namespace cbox.generation.nodetype
                     ProblemStart.TYPE_IDENT,
                     ProblemEnd.TYPE_IDENT,
                     Include.TYPE_IDENT,
-                    Diagnosis.TYPE_IDENT
+                    Diagnosis.TYPE_IDENT,
+                    Followup.TYPE_IDENT
                 };
             }
         }

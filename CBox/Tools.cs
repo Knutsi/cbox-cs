@@ -8,6 +8,8 @@ namespace cbox
 {
     public static class Tools
     {
+        public static Random Random = new Random();
+
         /// <summary>
         /// Shamelessly ripped from http://rosettacode.org/wiki/Power_set#C.23
         /// </summary>
@@ -22,5 +24,6 @@ namespace cbox
                        where (m & (1 << i)) != 0
                        select list[i];
         }
+
     }
 }

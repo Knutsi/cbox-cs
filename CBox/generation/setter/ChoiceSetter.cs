@@ -13,7 +13,8 @@ namespace cbox.generation.setter
     /// </summary>
     public class ChoiceSetter : IValueSetter
     {
-        Random Random = new Random();
+        //Random Random = new Random()
+        Random Random = Tools.Random;
 
         public static string Ident = "CHOICE";
 

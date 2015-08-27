@@ -223,7 +223,8 @@ namespace cbox.generation
         /// <returns></returns>
         public Case RandomCase(CBoxSystem system=null)
         {
-            var rand = new Random();
+            //var rand = new Random();
+            var rand = Tools.Random;
             var paths = RootComponent.BuildPaths;
 
             if (paths != null)

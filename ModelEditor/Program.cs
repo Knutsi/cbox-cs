@@ -158,7 +158,16 @@ namespace ModelEditor
             //LoadDefaultOntology();
 
             // load system:
-            CurrentSystem = CBoxSystem.FromModelPath(filepath);
+            try
+            {
+                CurrentSystem = CBoxSystem.FromModelPath(filepath);
+            }
+            catch (Exception)
+            {
+                var syspath = Properties.Settings.Default.DefaultSystemPath;
+                CurrentSystem = new CBoxSystem(syspath);
+            }
+            
             CurrentOntology = CurrentSystem.Ontology;
             CurrentOntologyPath = CurrentSystem.OntologyPath;
 

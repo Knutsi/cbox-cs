@@ -377,6 +377,14 @@ namespace ModelEditor
                     };
                     break;
 
+                case Followup.TYPE_IDENT:
+                    editor = new FollowupNodeEditor()
+                    {
+                        Node = node,
+                        Ontology = Program.CurrentOntology
+                    };
+                    break;
+
                 default:
                     break;
             }

@@ -118,7 +118,8 @@ namespace cbox.generation.nodetype
 
             // *FIXME*: DO ALIGNMENT HERE BY LIMITING BUILD PATHS!
             // in absence of alignment, we'll just pick a random path:
-            var rand = new Random();
+            //var rand = new Random();
+            var rand = Tools.Random;
             var paths = ncol.BuildPaths;
             var path = paths[rand.Next(paths.Count)];
 
@@ -152,6 +153,12 @@ namespace cbox.generation.nodetype
                 foreach (var result in include_ctx.Case.RootProblem.TestResults)
                     ctx.CurrentProblem.Add(result);
             }
+
+            // add diagnosis to case:
+            ctx.Case.Diagnosis.AddRange(include_ctx.Case.Diagnosis);
+
+            // add followup to case:
+            ctx.Case.Followup.AddRange(include_ctx.Case.Followup);
         }
 
         public void Describe(ExecutionContext ctx)
