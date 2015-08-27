@@ -530,15 +530,21 @@ namespace cbox.model
 
                     if (rethrow)
                     {
-                        var result = this.Lookup(key, case_, problem);
-                        problem.Add(result);
+                        if (problem.resultWithKey(key) == null)
+                        {
+                            var result = this.Lookup(key, case_, problem);
+                            problem.Add(result);
+                        }
                     }
                     else
                     {
                         try
                         {
-                            var result = this.Lookup(key, case_, problem);
-                            problem.Add(result);
+                            if (problem.resultWithKey(key) == null)
+                            {
+                                var result = this.Lookup(key, case_, problem);
+                                problem.Add(result);
+                            }
                         }
                         catch (Exception exp)
                         {

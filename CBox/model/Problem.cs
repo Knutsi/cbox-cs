@@ -43,6 +43,21 @@ namespace cbox.model
         }
 
         public void Add(TestResult tr) {
+
+            /*if (tr.Value == "(NULL)" || tr.Value == string.Empty)
+                return;*/
+
+            // check if test result already existst - if it does, we accumulate values:
+            foreach (var existing_result in this.TestResults)
+            {
+                if (existing_result.Key == tr.Key)
+                {
+                    existing_result.Values.Add(tr.Value);
+                    return;
+                }
+            }
+
+            // if we get here, we can add the result:
             TestResults.Add(tr);
         }
 

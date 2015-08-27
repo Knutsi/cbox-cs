@@ -44,6 +44,9 @@ namespace cbox.model
             if (test == null)
                 return string.Format("({0} not in ontology)", Key);
 
+            if (this.Value == string.Empty)
+                return "(error: empty string)";  
+
             var suffix = "";
             if (test.Prefix != null && test.Prefix != string.Empty)
                 suffix = test.Prefix + ": ";
