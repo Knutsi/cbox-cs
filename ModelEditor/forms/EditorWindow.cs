@@ -385,6 +385,14 @@ namespace ModelEditor
                     };
                     break;
 
+                case Score.TYPE_IDENT:
+                    editor = new ScoreNodeEditor()
+                    {
+                        Node = node,
+                        Ontology = Program.CurrentOntology
+                    };
+                    break;
+
                 default:
                     break;
             }

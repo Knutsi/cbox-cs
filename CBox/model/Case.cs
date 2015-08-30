@@ -11,6 +11,8 @@ using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 using System.Xml;
 
+using cbox.scoretree;
+
 namespace cbox.model
 {
     /// <summary>
@@ -40,6 +42,9 @@ namespace cbox.model
 
         [DataMember]
         public string Treatments { get; set; }
+
+        [DataMember]
+        public ScoreTree ScoreTree = new ScoreTree();
 
         public Case()
         {

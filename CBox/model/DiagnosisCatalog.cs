@@ -8,9 +8,8 @@ using System.IO;
 
 namespace cbox.model
 {
-    public class DiagnosisCatalog
+    public class DiagnosisCatalog : List<DiagnosisCatalogEntry>
     {
-        public List<DiagnosisCatalogEntry> Entries = new List<DiagnosisCatalogEntry>();
 
         public static DiagnosisCatalog LoadICD10(string path)
         {
@@ -22,7 +21,7 @@ namespace cbox.model
             var lines = File.ReadAllLines(file.FullName);
 
             var catalog = new DiagnosisCatalog();
-            catalog.Entries = (from l in lines select DiagnosisCatalogEntry.FromLineICD10(l)).ToList();
+            catalog.AddRange((from l in lines select DiagnosisCatalogEntry.FromLineICD10(l)).ToList());
 
             return catalog;
         }
@@ -33,7 +32,7 @@ namespace cbox.model
                 return new List<DiagnosisCatalogEntry>();
 
             // search (got to love linq):
-            var results = from e in Entries
+            var results = from e in this
                           where e.Name.ToLower().Contains(query) || e.Code.ToLower().Contains(query)
                           select e;
 

@@ -38,6 +38,9 @@ namespace cbox.generation.nodetype
                 case Followup.TYPE_IDENT:
                     return new Followup() { Node = node };
 
+                case Score.TYPE_IDENT:
+                    return new Score() { Node = node };
+
                 default:
                     throw new NoSuchHandlerException();
             }
@@ -54,7 +57,8 @@ namespace cbox.generation.nodetype
                     ProblemEnd.TYPE_IDENT,
                     Include.TYPE_IDENT,
                     Diagnosis.TYPE_IDENT,
-                    Followup.TYPE_IDENT
+                    Followup.TYPE_IDENT,
+                    Score.TYPE_IDENT
                 };
             }
         }

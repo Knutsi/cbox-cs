@@ -72,6 +72,8 @@
     <Compile Include="generation\nodetype\SetValuesData.cs" />
     <Compile Include="generation\nodetype\SetValuesDataEntry.cs" />
     <Compile Include="generation\nodetype\ProblemStartData.cs" />
+    <Compile Include="generation\nodetype\Score.cs" />
+    <Compile Include="generation\nodetype\ScoreData.cs" />
     <Compile Include="generation\PostProcessor.cs" />
     <Compile Include="generation\setter\ChoiceSetter.cs" />
     <Compile Include="generation\setter\ChoiceSetterData.cs" />
@@ -86,6 +88,16 @@
     <Compile Include="generation\setter\StringSetter.cs" />
     <Compile Include="generation\setter\StringSetterData.cs" />
     <Compile Include="generation\setter\ThesaurusEntry.cs" />
+    <Compile Include="model\TreatmentCatalog.cs" />
+    <Compile Include="model\TreatmentCatalogEntry.cs" />
+    <Compile Include="scoretree\ConsequenceNode.cs" />
+    <Compile Include="scoretree\DiagnosisNode.cs" />
+    <Compile Include="scoretree\LogicNode.cs" />
+    <Compile Include="scoretree\PointsNode.cs" />
+    <Compile Include="scoretree\Result.cs" />
+    <Compile Include="scoretree\ScoreTree.cs" />
+    <Compile Include="scoretree\TestNode.cs" />
+    <Compile Include="scoretree\TreatmentNode.cs" />
     <Compile Include="model\ActionProblemPair.cs" />
     <Compile Include="model\ChoiceList.cs" />
     <Compile Include="model\DiagnosisCatalog.cs" />

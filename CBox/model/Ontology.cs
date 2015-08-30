@@ -44,7 +44,11 @@ namespace cbox.model
         [DataMember]
         public BindingList<ProblemClass> Classes { get; set; }
 
+        [XmlIgnore]
         public DiagnosisCatalog Diagnosis { get { return ParentSystem.Diagnosis; } }
+
+        [XmlIgnore]
+        public TreatmentCatalog Treatments { get { return ParentSystem.Treatments; } }
 
         [XmlIgnore]
         public CBoxSystem ParentSystem { get; set; }
@@ -443,6 +447,16 @@ namespace cbox.model
                     return action;
 
             return null;
+        }
+
+
+        public List<Test> SearchTests(string query)
+        {
+            var ql = query.ToLower();
+
+            return (from t in Tests
+                    where t.Key.IndexOf(ql) != -1 || t.Title.ToLower().IndexOf(ql) != -1
+                    select t).ToList();
         }
 
 

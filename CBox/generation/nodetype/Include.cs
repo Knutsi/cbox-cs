@@ -159,6 +159,9 @@ namespace cbox.generation.nodetype
 
             // add followup to case:
             ctx.Case.Followup.AddRange(include_ctx.Case.Followup);
+
+            // add scoretrees:
+            ctx.Case.ScoreTree.Merge(include_ctx.Case.ScoreTree);
         }
 
         public void Describe(ExecutionContext ctx)

@@ -51,6 +51,12 @@
     <Compile Include="Components\ConnectionComponent.cs" />
     <Compile Include="Components\DragLineComponent.cs" />
     <Compile Include="Components\IDiagramComponent.cs" />
+    <Compile Include="DiagnosisPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DiagnosisPicker.Designer.cs">
+      <DependentUpon>DiagnosisPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="inner_editors\IncludeNodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +88,43 @@
     <Compile Include="inner_editors\SetValuesNodeEditor.Designer.cs">
       <DependentUpon>SetValuesNodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="logicnode_editors\ConsequenceNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="logicnode_editors\ConsequenceNodeEditor.Designer.cs">
+      <DependentUpon>ConsequenceNodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logicnode_editors\DxNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="logicnode_editors\DxNodeEditor.Designer.cs">
+      <DependentUpon>DxNodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logicnode_editors\ILogicNodeEditor.cs" />
+    <Compile Include="logicnode_editors\LogicNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="logicnode_editors\LogicNodeEditor.Designer.cs">
+      <DependentUpon>LogicNodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logicnode_editors\PointsNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="logicnode_editors\PointsNodeEditor.Designer.cs">
+      <DependentUpon>PointsNodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logicnode_editors\TestNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="logicnode_editors\TestNodeEditor.Designer.cs">
+      <DependentUpon>TestNodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logicnode_editors\TreatmentNodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="logicnode_editors\TreatmentNodeEditor.Designer.cs">
+      <DependentUpon>TreatmentNodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="modal_editors\DiagnosisNodeEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +144,12 @@
     <Compile Include="modal_editors\ProblemRevealConditionEditor.Designer.cs">
       <DependentUpon>ProblemRevealConditionEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="modal_editors\ScoreNodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modal_editors\ScoreNodeEditor.Designer.cs">
+      <DependentUpon>ScoreNodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +164,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\SelectBoxComponent.cs" />
     <Compile Include="Components\SocketComponent.cs" />
+    <Compile Include="ScoreTreeTester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreTreeTester.Designer.cs">
+      <DependentUpon>ScoreTreeTester.cs</DependentUpon>
+    </Compile>
     <Compile Include="setter_editors\ISetterEditor.cs" />
     <Compile Include="setter_editors\RangeEditor.cs">
       <SubType>UserControl</SubType>
@@ -141,6 +196,18 @@
     <Compile Include="setter_editors\StringEditorThesaurusEntry.Designer.cs">
       <DependentUpon>StringEditorThesaurusEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TestPicker.Designer.cs">
+      <DependentUpon>TestPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreatmentPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreatmentPicker.Designer.cs">
+      <DependentUpon>TreatmentPicker.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CBox\CBox.csproj">
@@ -151,6 +218,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CollectionPropertiesEditor.resx">
       <DependentUpon>CollectionPropertiesEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiagnosisPicker.resx">
+      <DependentUpon>DiagnosisPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="inner_editors\IncludeNodeEditor.resx">
       <DependentUpon>IncludeNodeEditor.cs</DependentUpon>
@@ -167,6 +237,24 @@
     <EmbeddedResource Include="inner_editors\SetValuesNodeEditor.resx">
       <DependentUpon>SetValuesNodeEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="logicnode_editors\ConsequenceNodeEditor.resx">
+      <DependentUpon>ConsequenceNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="logicnode_editors\DxNodeEditor.resx">
+      <DependentUpon>DxNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="logicnode_editors\LogicNodeEditor.resx">
+      <DependentUpon>LogicNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="logicnode_editors\PointsNodeEditor.resx">
+      <DependentUpon>PointsNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="logicnode_editors\TestNodeEditor.resx">
+      <DependentUpon>TestNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="logicnode_editors\TreatmentNodeEditor.resx">
+      <DependentUpon>TreatmentNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="modal_editors\DiagnosisNodeEditor.resx">
       <DependentUpon>DiagnosisNodeEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,8 +264,14 @@
     <EmbeddedResource Include="modal_editors\ProblemRevealConditionEditor.resx">
       <DependentUpon>ProblemRevealConditionEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="modal_editors\ScoreNodeEditor.resx">
+      <DependentUpon>ScoreNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NodeEditor.resx">
       <DependentUpon>NodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreTreeTester.resx">
+      <DependentUpon>ScoreTreeTester.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="setter_editors\RangeEditor.resx">
       <DependentUpon>RangeEditor.cs</DependentUpon>
@@ -190,6 +284,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="setter_editors\StringEditorThesaurusEntry.resx">
       <DependentUpon>StringEditorThesaurusEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestPicker.resx">
+      <DependentUpon>TestPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreatmentPicker.resx">
+      <DependentUpon>TreatmentPicker.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

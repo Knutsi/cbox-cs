@@ -33,7 +33,7 @@ namespace cbox.system
         public const string MODEL_DIR_NAME = "Models";
         public const string ONTOLOGY_NAME = "Default.cbxont";
         public const string Dx_CATALOG_NAME = "DxCatalog.txt";
-        public const string Rx_CATALOG_NAME = "RxCatalog.txt";
+        public const string Rx_CATALOG_NAME = "RxCatalog.json";
 
         public string Path; // system's location
 
@@ -43,6 +43,7 @@ namespace cbox.system
         public List<ModelReference> Models = new List<ModelReference>(); // all models in the system
         public List<ModelReference> Components = new List<ModelReference>(); // all components in the system
         public DiagnosisCatalog Diagnosis;
+        public TreatmentCatalog Treatments;
 
         public CBoxSystem(string path)
         {
@@ -170,6 +171,8 @@ namespace cbox.system
                           select new ModelReference() { Path = m, Title = System.IO.Path.GetFileName(m) }).ToList();
 
             Diagnosis = DiagnosisCatalog.LoadICD10(DxCatalogPath);
+
+            Treatments = TreatmentCatalog.LoadJSON(RxCatalogPath);
         }
 
 

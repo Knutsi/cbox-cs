@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace cbox.generation.nodetype
 {
-
-    public class Diagnosis : INodeType
+    public class Score : INodeType
     {
-        public const string TYPE_IDENT = "DIAGNOSIS_HANDLER";
+        public const string TYPE_IDENT = "SCORE_HANDLER";
 
         private Node _Node;
-        private DiagnosisData Data;
-    
+        private ScoreData Data;
+
 
         public Node Node
         {
@@ -46,16 +45,16 @@ namespace cbox.generation.nodetype
             }
             set
             {
-                this.Data = (DiagnosisData)value;
+                this.Data = (ScoreData)value;
                 this.Node.UpdateInternals();
             }
         }
 
         public INodeTypeData DefaultData
         {
-            get 
+            get
             {
-                var data = new DiagnosisData();
+                var data = new ScoreData();
                 data.OutputSockets.Add(new OutputSocket());
                 return data;
             }
@@ -71,7 +70,8 @@ namespace cbox.generation.nodetype
             get { return false; }
         }
 
-        
+
+
         public void SaveData()
         {
             Node.XmlData = Data.ToXML();
@@ -79,7 +79,7 @@ namespace cbox.generation.nodetype
 
         public void LoadData()
         {
-            this.Data = DiagnosisData.FromXML(Node.XmlData);
+            this.Data = ScoreData.FromXML(Node.XmlData);
         }
 
         /// <summary>
@@ -89,14 +89,13 @@ namespace cbox.generation.nodetype
         /// <param name="ctx"></param>
         public void Eval(ExecutionContext ctx)
         {
-            // append all diagnosis to the current case:
-            ctx.Case.Diagnosis.AddRange(this.Data.Diagnosis);
+            ctx.Case.ScoreTree.Merge(Data.LogicTree);
         }
 
 
         public void Describe(ExecutionContext ctx)
         {
-            throw new NotImplementedException(); 
+            throw new NotImplementedException();
         }
     }
 }

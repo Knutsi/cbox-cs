@@ -58,9 +58,12 @@ namespace cbox.generation
         /// <param name="case_"></param>
         private void PickFollowup(Case case_)
         {
-            var chosen = case_.Followup[Tools.Random.Next(case_.Followup.Count)];
-            case_.Followup = new List<FollowupQuestion>();
-            case_.Followup.Add(chosen);
+            if (case_.Followup.Count > 0)
+            {
+                var chosen = case_.Followup[Tools.Random.Next(case_.Followup.Count)];
+                case_.Followup = new List<FollowupQuestion>();
+                case_.Followup.Add(chosen);
+            }
         }
     }
 }
