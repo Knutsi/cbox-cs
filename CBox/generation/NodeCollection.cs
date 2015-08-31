@@ -557,6 +557,10 @@ namespace cbox.generation
                         node.Eval(ctx);
                     if (generate_ranges)
                         node.Describe(ctx);
+
+                    // append node's tags:
+                    var new_tags = from t in node.Tags where !ctx.Case.Tags.Contains(t) select t.Trim();
+                    ctx.Case.Tags.AddRange(new_tags);
                 }
             }
 

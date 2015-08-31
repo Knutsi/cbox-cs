@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 
 namespace cbox.scoretree
 {
@@ -24,6 +21,7 @@ namespace cbox.scoretree
         public const string LOGIC_EITHER_OF = "IF_EITHER_OF";
         public const string LOGIC_NONE_OF = "IF_NONE_OF";
 
+        [XmlIgnore]
         private List<object> Objects_ = new List<object>();
 
         [DataMember]
@@ -39,7 +37,7 @@ namespace cbox.scoretree
         [DataMember]
         public List<LogicNode> Children = new List<LogicNode>();
 
-        /*[DataMember]*/
+        [DataMember]
         public string Logic = LOGIC_EITHER_OF;
 
         public LogicNode()

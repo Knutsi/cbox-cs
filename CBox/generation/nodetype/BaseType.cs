@@ -12,7 +12,7 @@ namespace cbox.generation.nodetype
 
         // internal fields:
         private Node _Node = null;
-        public virtual BaseTypeData Data { get; set; }
+        public virtual BaseTypeData Data { get; set; } 
 
         // fullfilling the interface:
         public bool StartsProblem { get; set; }

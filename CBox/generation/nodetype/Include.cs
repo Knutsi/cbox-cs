@@ -162,6 +162,10 @@ namespace cbox.generation.nodetype
 
             // add scoretrees:
             ctx.Case.ScoreTree.Merge(include_ctx.Case.ScoreTree);
+
+            // add new tags:
+            var new_tags = from t in include_ctx.Case.Tags where !ctx.Case.Tags.Contains(t) select t;
+            ctx.Case.Tags.AddRange(new_tags);
         }
 
         public void Describe(ExecutionContext ctx)

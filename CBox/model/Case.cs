@@ -46,6 +46,9 @@ namespace cbox.model
         [DataMember]
         public ScoreTree ScoreTree = new ScoreTree();
 
+        [DataMember]
+        public List<string> Tags = new List<string>();
+
         public Case()
         {
             // create root problem:

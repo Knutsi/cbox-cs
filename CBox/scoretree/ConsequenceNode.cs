@@ -133,10 +133,8 @@ namespace cbox.scoretree
                     comments.AddRange(unmatched_comments);
                 }
 
-                // clearn unmatched comments:
-                var cleaned_comments = (from c in comments where c.Trim() != string.Empty select c).ToList();
-
-                return cleaned_comments;
+                // clean and return unmatched comments:
+                return (from c in comments where c.Trim() != string.Empty select c).ToList();
             }
         }
     }

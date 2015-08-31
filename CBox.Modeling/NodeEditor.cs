@@ -26,6 +26,8 @@ namespace cbox.modelling.editors
 
         private int? SplitPanelOriginalHeight = null;
 
+        private bool EventsDisabled = false;
+
         public NodeEditor()
         {
             InitializeComponent();
@@ -42,7 +44,8 @@ namespace cbox.modelling.editors
 
         void HandleInputChanged(object sender, EventArgs e)
         {
-            SaveNode();
+            if(!EventsDisabled)
+                SaveNode();
         }
 
         private Node _Node;
@@ -107,6 +110,9 @@ namespace cbox.modelling.editors
                 return;
 
             Node.Title = titleInput.Text;
+            Node.Tags = (from t in tagInput.Text.Split(';')
+                         where t.Trim() != String.Empty
+                         select t.Trim()).ToList();
 
             // split and read tags:
             if (NodeSaved != null) 
@@ -123,10 +129,13 @@ namespace cbox.modelling.editors
 
         public void LoadNode()
         {
+            EventsDisabled = true;
+
             // load fields:
             titleInput.Text = Node.Title;
             commentInput.Text = Node.Comment;
             typeLabel.Text = Node.Type;
+            tagInput.Text = String.Join("; ", Node.Tags);
             
             // notify if bound:
             if (Node.BoundProblemSet != null)
@@ -141,12 +150,14 @@ namespace cbox.modelling.editors
             }
 
             // load tags:
-            tagInput.Text = string.Empty;
+            /*tagInput.Text = string.Empty;
             foreach (var tag in Node.Tags)
                 tagInput.Text += tag + ", ";
 
             if (tagInput.Text.Length > 2 || tagInput.Text == ", ")
-                tagInput.Text = tagInput.Text.Substring(0, tagInput.Text.Length - 2);
+                tagInput.Text = tagInput.Text.Substring(0, tagInput.Text.Length - 2);*/
+
+            EventsDisabled = false;
 
         }
 
