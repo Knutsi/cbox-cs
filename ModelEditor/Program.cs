@@ -129,8 +129,27 @@ namespace ModelEditor
             }*/
 
             // load default system:
+
             var syspath = Properties.Settings.Default.DefaultSystemPath;
-            CurrentSystem = new CBoxSystem(syspath);
+
+            try
+            {
+                CurrentSystem = new CBoxSystem(syspath);
+            }
+            catch
+            {
+                var browser = new FolderBrowserDialog()
+                {
+                    Description = "Please choose a valid CBoxSystem path"
+                } ;
+                if (browser.ShowDialog() == DialogResult.OK) 
+                    CurrentSystem = new CBoxSystem(browser.SelectedPath);
+                else
+                    Application.Exit();
+            }
+            
+
+
             CurrentOntology = CurrentSystem.Ontology;
             CurrentOntologyPath = CurrentSystem.OntologyPath; 
         }

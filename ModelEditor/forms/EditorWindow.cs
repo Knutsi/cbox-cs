@@ -431,8 +431,26 @@ namespace ModelEditor
 
         private void openOntologyItem_Click(object sender, EventArgs e)
         {
-            var props = new forms.OntologySettings();
-            props.ShowDialog();
+            var dialog = new FolderBrowserDialog()
+            {
+                Description = "Choose a CBoSystem directory to set as default"
+            };
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Program.CurrentSystem = new cbox.system.CBoxSystem(dialog.SelectedPath);
+                    Properties.Settings.Default.DefaultSystemPath = dialog.SelectedPath;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Default system saved and will be used as default.  Models loaded will still use system they are part of.");
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("The chosen directory is not a valid CBoxSystem");
+                }
+                
+            }
         }
 
         private void deleteMenuItem_Click(object sender, EventArgs e)
