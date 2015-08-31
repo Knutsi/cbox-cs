@@ -73,6 +73,7 @@ namespace cbox.modelling.editors
                 return;
 
             nameLabel.Text = Data.Name;
+            positiveOnAnyCheckbox.Checked = Data.PositiveOnAny;
         }
 
 
@@ -82,6 +83,7 @@ namespace cbox.modelling.editors
                 return;
 
             Data.Name = nameLabel.Text;
+            Data.PositiveOnAny = positiveOnAnyCheckbox.Checked;
 
             if (NodeChanged != null)
                 NodeChanged(this, new EventArgs());
@@ -97,5 +99,20 @@ namespace cbox.modelling.editors
             SaveData();
         }
 
+        private void positiveOnAnyCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (positiveOnAnyCheckbox.Checked)
+            {
+                modifierSelect.Enabled = false;
+                treatmentPicker.Enabled = false;
+            }
+            else
+            {
+                modifierSelect.Enabled = true;
+                treatmentPicker.Enabled = true;
+            }
+
+            SaveData();       
+        }
     }
 }

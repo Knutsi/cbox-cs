@@ -21,6 +21,9 @@ namespace cbox.scoretree
         {
             Type = "PointsNode"; // for javascript to find on the other side
             Logic = LOGIC_EITHER_OF;
+            MatchedComment = string.Empty;
+            UnmatchedComment = string.Empty;
+               
         }
 
         public override string displayName

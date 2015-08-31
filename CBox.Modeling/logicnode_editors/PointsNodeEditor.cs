@@ -17,6 +17,8 @@ namespace cbox.modelling.editors
     {
         private LogicNode Node_;
 
+        private bool EventsDisabled = false;
+
         public PointsNodeEditor()
         {
             InitializeComponent();
@@ -70,14 +72,21 @@ namespace cbox.modelling.editors
 
         public void LoadData()
         {
+            EventsDisabled = true;
+
             pointsInput.Value = Data.Points;
             matchedCommentInput.Text = Data.MatchedComment;
             unmatchedCommentInput.Text = Data.UnmatchedComment;
+
+            EventsDisabled = false;
         }
 
 
         private void HandleControlValueChanged(object sender, EventArgs e)
         {
+            if (EventsDisabled)
+                return;
+
             SaveData();
             if (NodeChanged != null)
                 NodeChanged(this, new EventArgs());

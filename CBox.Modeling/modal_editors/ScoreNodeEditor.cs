@@ -335,5 +335,10 @@ namespace cbox.modelling.editors
                 item.ListView.Items.Remove(item);
             }
         }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

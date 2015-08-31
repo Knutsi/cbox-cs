@@ -87,6 +87,13 @@ namespace cbox.scoretree
 
         [XmlIgnore]
         [IgnoreDataMember]
+        public bool Matched
+        {
+            get { return Eval(); }
+        }
+
+        [XmlIgnore]
+        [IgnoreDataMember]
         public int PositiveChildren
         {
             get
@@ -95,5 +102,7 @@ namespace cbox.scoretree
                 return positives.Count();
             }
         }
+
+
     }
 }

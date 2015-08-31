@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Runtime.Serialization;
+
 namespace cbox.scoretree
 {
     public class ScoreTree : List<ConsequenceNode>
@@ -31,15 +33,18 @@ namespace cbox.scoretree
                 see if we have any fails */
                 foreach (var conseq_node in this)
                 {
+                    // points:
                     result.Score += conseq_node.Points;
                     result.MaxScore += conseq_node.MaxPoints;
+
+                    // fail:
                     if (conseq_node.Fail)
                         result.Failed = true;
 
-                    result.Comments.AddRange(conseq_node.Comments);
+                    // comments:
+                    var comments = conseq_node.Comments;
+                    result.Comments.AddRange(comments);
                 }
-
-
 
                 // and done:
                 return result;

@@ -64,10 +64,14 @@ namespace cbox.modelling
             ScoreTree.Objects = objects.ToList();
             var result = ScoreTree.Result;
 
-            outputView.Text += result.Score + "pt." + Environment.NewLine;
-            outputView.Text += result.MaxScore + "max" + Environment.NewLine;
-            outputView.Text += result.Percentage + "%" + Environment.NewLine;
-            outputView.Text += result.Failed + "<- failed status";
+            var nl = Environment.NewLine;
+
+            outputView.Text += result.Score + "pt." + nl;
+            outputView.Text += result.MaxScore + "max" + nl;
+            outputView.Text += result.Percentage + "%" + nl;
+            outputView.Text += result.Failed + " failed status" + nl;
+            outputView.Text += "Comments: " + nl;
+                
             outputView.Text += string.Join(Environment.NewLine, result.Comments);
         }
 
@@ -112,7 +116,7 @@ namespace cbox.modelling
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if (choiceList.Items.Count <= 0)
+            if (choiceList.Items.Count <= 0 && choiceList.SelectedItems.Count > 0)
                 return;
 
             var item = choiceList.SelectedItems[0];

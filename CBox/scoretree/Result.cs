@@ -15,11 +15,19 @@ namespace cbox.scoretree
         public List<string> Comments { get; set; }
         public bool Failed { get; set; }
 
+
         public Result()
         {
             Comments = new List<string>();
+            Failed = false;
         }
-        public int Percentage { get { return (Score / MaxScore) * 100; } }
+
+
+        public int Percentage {
+            get {
+                return Convert.ToInt32((Convert.ToDouble(Score) / Convert.ToDouble(MaxScore)) * 100);
+            }
+        }
 
     }
 }

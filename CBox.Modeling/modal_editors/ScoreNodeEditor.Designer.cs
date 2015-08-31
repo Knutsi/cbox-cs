@@ -39,7 +39,7 @@
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.treeView = new System.Windows.Forms.TreeView();
             this.newConseqButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
             this.testButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -178,15 +178,16 @@
             this.newConseqButton.UseVisualStyleBackColor = true;
             this.newConseqButton.Click += new System.EventHandler(this.newConseqButton_Click);
             // 
-            // cancelButton
+            // closeButton
             // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(1197, 728);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(80, 29);
-            this.cancelButton.TabIndex = 7;
-            this.cancelButton.Text = "Close";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.Location = new System.Drawing.Point(1197, 728);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(80, 29);
+            this.closeButton.TabIndex = 7;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // testButton
             // 
@@ -205,7 +206,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1289, 769);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.testButton);
             this.Name = "ScoreNodeEditor";
             this.Text = "Score node editor";
@@ -222,7 +223,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button newConseqButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Button testButton;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.Button newLogicButton;

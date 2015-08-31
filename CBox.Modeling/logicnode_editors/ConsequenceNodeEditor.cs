@@ -16,6 +16,8 @@ namespace cbox.modelling.editors
     {
         private LogicNode Node_;
 
+        private bool EventsDisabled = false;
+
         public ConsequenceNodeEditor()
         {
             InitializeComponent();
@@ -54,6 +56,7 @@ namespace cbox.modelling.editors
 
         public void LoadData()
         {
+            EventsDisabled = true;
             var node = Node as ConsequenceNode;
 
             groupInput.Text = node.Group;
@@ -83,6 +86,8 @@ namespace cbox.modelling.editors
                 default:
                     break;
             }
+
+            EventsDisabled = false;
         }
 
 
@@ -124,6 +129,9 @@ namespace cbox.modelling.editors
 
         private void HandleControlValueChanged(object sender, EventArgs e)
         {
+            if (EventsDisabled)
+                return;
+
             SaveData();
         }
     }

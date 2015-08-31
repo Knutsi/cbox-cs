@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nameLabel = new System.Windows.Forms.Label();
             this.modifierSelect = new System.Windows.Forms.ComboBox();
             this.treatmentPicker = new cbox.modelling.TreatmentPicker();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.positiveOnAnyCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,6 +41,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.positiveOnAnyCheckbox);
             this.groupBox1.Controls.Add(this.modifierSelect);
             this.groupBox1.Controls.Add(this.treatmentPicker);
             this.groupBox1.Controls.Add(this.nameLabel);
@@ -49,16 +51,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rx node:";
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLabel.Location = new System.Drawing.Point(6, 26);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(70, 25);
-            this.nameLabel.TabIndex = 1;
-            this.nameLabel.Text = "Name:";
             // 
             // modifierSelect
             // 
@@ -74,12 +66,33 @@
             this.treatmentPicker.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treatmentPicker.Location = new System.Drawing.Point(7, 96);
+            this.treatmentPicker.Location = new System.Drawing.Point(7, 122);
             this.treatmentPicker.Name = "treatmentPicker";
             this.treatmentPicker.Ontology = null;
             this.treatmentPicker.SelectedRx = null;
-            this.treatmentPicker.Size = new System.Drawing.Size(717, 468);
+            this.treatmentPicker.Size = new System.Drawing.Size(717, 442);
             this.treatmentPicker.TabIndex = 2;
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.Location = new System.Drawing.Point(6, 26);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(70, 25);
+            this.nameLabel.TabIndex = 1;
+            this.nameLabel.Text = "Name:";
+            // 
+            // positiveOnAnyCheckbox
+            // 
+            this.positiveOnAnyCheckbox.AutoSize = true;
+            this.positiveOnAnyCheckbox.Location = new System.Drawing.Point(11, 95);
+            this.positiveOnAnyCheckbox.Name = "positiveOnAnyCheckbox";
+            this.positiveOnAnyCheckbox.Size = new System.Drawing.Size(159, 21);
+            this.positiveOnAnyCheckbox.TabIndex = 4;
+            this.positiveOnAnyCheckbox.Text = "Positive on any drug";
+            this.positiveOnAnyCheckbox.UseVisualStyleBackColor = true;
+            this.positiveOnAnyCheckbox.CheckedChanged += new System.EventHandler(this.positiveOnAnyCheckbox_CheckedChanged);
             // 
             // TreatmentNodeEditor
             // 
@@ -100,5 +113,6 @@
         private System.Windows.Forms.ComboBox modifierSelect;
         private TreatmentPicker treatmentPicker;
         private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.CheckBox positiveOnAnyCheckbox;
     }
 }
