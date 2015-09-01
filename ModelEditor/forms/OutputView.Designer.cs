@@ -71,7 +71,7 @@
             this.checkBox1.Location = new System.Drawing.Point(162, 48);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(254, 29);
+            this.checkBox1.Size = new System.Drawing.Size(169, 21);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Auto-build on updates";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             this.jsonViewCheck.Location = new System.Drawing.Point(412, 4);
             this.jsonViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.jsonViewCheck.Name = "jsonViewCheck";
-            this.jsonViewCheck.Size = new System.Drawing.Size(99, 29);
+            this.jsonViewCheck.Size = new System.Drawing.Size(66, 21);
             this.jsonViewCheck.TabIndex = 4;
             this.jsonViewCheck.Text = "JSON";
             this.jsonViewCheck.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             this.textViewCheck.Location = new System.Drawing.Point(90, 4);
             this.textViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.textViewCheck.Name = "textViewCheck";
-            this.textViewCheck.Size = new System.Drawing.Size(85, 29);
+            this.textViewCheck.Size = new System.Drawing.Size(56, 21);
             this.textViewCheck.TabIndex = 5;
             this.textViewCheck.TabStop = true;
             this.textViewCheck.Text = "Text";
@@ -116,7 +116,7 @@
             this.label1.Location = new System.Drawing.Point(-6, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 25);
+            this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 6;
             this.label1.Text = "Format:";
             // 
@@ -126,7 +126,7 @@
             this.onlyWithSelectedCheckbox.Location = new System.Drawing.Point(432, 48);
             this.onlyWithSelectedCheckbox.Margin = new System.Windows.Forms.Padding(6);
             this.onlyWithSelectedCheckbox.Name = "onlyWithSelectedCheckbox";
-            this.onlyWithSelectedCheckbox.Size = new System.Drawing.Size(174, 29);
+            this.onlyWithSelectedCheckbox.Size = new System.Drawing.Size(115, 21);
             this.onlyWithSelectedCheckbox.TabIndex = 7;
             this.onlyWithSelectedCheckbox.Text = "Selected only";
             this.onlyWithSelectedCheckbox.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             this.treeViewCheck.Location = new System.Drawing.Point(306, 4);
             this.treeViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.treeViewCheck.Name = "treeViewCheck";
-            this.treeViewCheck.Size = new System.Drawing.Size(87, 29);
+            this.treeViewCheck.Size = new System.Drawing.Size(59, 21);
             this.treeViewCheck.TabIndex = 8;
             this.treeViewCheck.Text = "Tree";
             this.treeViewCheck.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@
             this.tableViewCheck.Location = new System.Drawing.Point(188, 4);
             this.tableViewCheck.Margin = new System.Windows.Forms.Padding(6);
             this.tableViewCheck.Name = "tableViewCheck";
-            this.tableViewCheck.Size = new System.Drawing.Size(97, 29);
+            this.tableViewCheck.Size = new System.Drawing.Size(65, 21);
             this.tableViewCheck.TabIndex = 10;
             this.tableViewCheck.Text = "Table";
             this.tableViewCheck.UseVisualStyleBackColor = true;
@@ -277,7 +277,7 @@
             this.customLimitSetSelections.Location = new System.Drawing.Point(0, 50);
             this.customLimitSetSelections.Margin = new System.Windows.Forms.Padding(6);
             this.customLimitSetSelections.Name = "customLimitSetSelections";
-            this.customLimitSetSelections.Size = new System.Drawing.Size(626, 33);
+            this.customLimitSetSelections.Size = new System.Drawing.Size(626, 24);
             this.customLimitSetSelections.TabIndex = 7;
             // 
             // actionListView
@@ -297,7 +297,7 @@
             this.actionListView.Location = new System.Drawing.Point(0, 96);
             this.actionListView.Margin = new System.Windows.Forms.Padding(6);
             this.actionListView.Name = "actionListView";
-            this.actionListView.Size = new System.Drawing.Size(884, 348);
+            this.actionListView.Size = new System.Drawing.Size(884, 344);
             this.actionListView.TabIndex = 6;
             this.actionListView.UseCompatibleStateImageBehavior = false;
             this.actionListView.View = System.Windows.Forms.View.Details;
@@ -318,7 +318,7 @@
             this.customLimitSelect.Location = new System.Drawing.Point(490, 6);
             this.customLimitSelect.Margin = new System.Windows.Forms.Padding(6);
             this.customLimitSelect.Name = "customLimitSelect";
-            this.customLimitSelect.Size = new System.Drawing.Size(116, 29);
+            this.customLimitSelect.Size = new System.Drawing.Size(76, 21);
             this.customLimitSelect.TabIndex = 5;
             this.customLimitSelect.Text = "Custom";
             this.customLimitSelect.UseVisualStyleBackColor = true;
@@ -329,7 +329,7 @@
             this.journalModeSelect.Location = new System.Drawing.Point(292, 6);
             this.journalModeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.journalModeSelect.Name = "journalModeSelect";
-            this.journalModeSelect.Size = new System.Drawing.Size(182, 29);
+            this.journalModeSelect.Size = new System.Drawing.Size(121, 21);
             this.journalModeSelect.TabIndex = 3;
             this.journalModeSelect.Text = "Default journal";
             this.journalModeSelect.UseVisualStyleBackColor = true;
@@ -340,7 +340,7 @@
             this.setRecModeSelect.Location = new System.Drawing.Point(150, 6);
             this.setRecModeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.setRecModeSelect.Name = "setRecModeSelect";
-            this.setRecModeSelect.Size = new System.Drawing.Size(129, 29);
+            this.setRecModeSelect.Size = new System.Drawing.Size(86, 21);
             this.setRecModeSelect.TabIndex = 2;
             this.setRecModeSelect.Text = "Set + rec";
             this.setRecModeSelect.UseVisualStyleBackColor = true;
@@ -352,7 +352,7 @@
             this.setModeSelect.Location = new System.Drawing.Point(62, 6);
             this.setModeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.setModeSelect.Name = "setModeSelect";
-            this.setModeSelect.Size = new System.Drawing.Size(75, 29);
+            this.setModeSelect.Size = new System.Drawing.Size(50, 21);
             this.setModeSelect.TabIndex = 1;
             this.setModeSelect.TabStop = true;
             this.setModeSelect.Text = "Set";
@@ -364,7 +364,7 @@
             this.label2.Location = new System.Drawing.Point(-6, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 25);
+            this.label2.Size = new System.Drawing.Size(41, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Limit:";
             // 

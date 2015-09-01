@@ -147,12 +147,25 @@ namespace cbox.modelling.editors
 
             selectedList.DataSource = selected;
             selectedList.DisplayMember = "Label";
+
+            // add exclude tags:
+            excludeTagInput.Text = string.Join("; ", Data.ExcludeTags);
+        }
+
+
+        public void Save()
+        {
+            // save tags:
+            Data.ExcludeTags = (from t in excludeTagInput.Text.Split(';')
+                                where t.Trim() != string.Empty
+                                select t.Trim()).ToList();
+
         }
 
 
         public void OnOuterEditorClosing()
         {
-
+            Save();
         }
     }
 }

@@ -20,6 +20,8 @@ namespace ModelEditor.forms
         {
             InitializeComponent();
             Program.ModelLoaded += Program_ModelLoaded;
+            pathList.SelectedIndexChanged += HandlePathSelection;
+            pathList.MouseClick += HandlePathSelection;
         }
 
 
@@ -56,10 +58,11 @@ namespace ModelEditor.forms
 
             if (comp != null && comp.BuildPaths != null && comp.BuildPaths.Count > 0)
             {
-                var paths = from p in comp.BuildPaths
-                            select p.Title;
+                var paths = (from p in comp.BuildPaths
+                            select p).ToList();
 
-                pathList.DataSource = paths.ToList();
+                pathList.DataSource = paths;
+                pathList.DisplayMember = "Title";
 
                 messageLabel.Text = string.Format("{0} paths", paths.Count());
             }
@@ -79,6 +82,17 @@ namespace ModelEditor.forms
         void Program_ModelLoaded()
         {
             this.Model = Program.CurrentModel;
+        }
+
+
+        private void HandlePathSelection(object sender, EventArgs e)
+        {
+            // ensure we have an item:
+            var path = pathList.SelectedItem as BuildPath;
+            if (path == null)
+                return;
+
+            tagsBox.Text = String.Join(" ; ", path.Tags);
         }
 
     }

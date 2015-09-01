@@ -13,7 +13,8 @@ namespace cbox.generation.nodetype
         //public IncludeSource Source { get; set; }
         //public string NodeCollectionIdent { get; set; }
         public List<IncludeDataEntry> Includes = new List<IncludeDataEntry>();
-
+        public List<string> ExcludeTags = new List<string>();
+        public List<string> IncludeTags = new List<string>();
 
         public IncludeDataEntry EntryByIdentAndLocalStatus(string ident, bool local)
         {

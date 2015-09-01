@@ -116,12 +116,19 @@ namespace cbox.generation.nodetype
             if (ncol == null)
                 throw new ModelIntegrityException(String.Format("The node collection {0} was not found", include.Ident));
 
+            // get tags from context and combine with out own:
+            var exclude_tags = ctx.SubmodelExcludeTags.Concat(Data.ExcludeTags).ToList();
+            var include_tags = ctx.SubmodelIncludeTags.Concat(Data.IncludeTags).ToList();
+
             // *FIXME*: DO ALIGNMENT HERE BY LIMITING BUILD PATHS!
             // in absence of alignment, we'll just pick a random path:
             //var rand = new Random();
-            var rand = Tools.Random;
-            var paths = ncol.BuildPaths;
-            var path = paths[rand.Next(paths.Count)];
+            BuildPath path = null;
+            var paths = ncol.BuildPaths.Filter(include_tags, exclude_tags);
+            if (paths.Count > 0)
+                path = paths[Tools.Random.Next(paths.Count)];
+            else
+                return;
 
             // execute:
             var include_ctx = ncol.Execute(
@@ -129,7 +136,9 @@ namespace cbox.generation.nodetype
                 true, 
                 false, 
                 ctx, 
-                ctx.System);
+                ctx.System,
+                exclude_tags,  
+                include_tags);
 
             // now to add the collected values to case.  If we are bound, we add all values
             // on root problem to current problem.  If not, we add each problem that

@@ -25,9 +25,30 @@ namespace cbox.generation
         /// provided.
         /// </summary>
         /// <returns></returns>
-        public BuildPathCollection Filter()
+        public BuildPathCollection Filter(List<string> include_tags, List<string> exclude_tags)
         {
-            throw new NotImplementedException();
+            var filtered = new BuildPathCollection();
+
+            // either include all, or only the ones selected:
+            if (include_tags.Count == 0)
+                filtered = this;
+            else
+                foreach (var tag in include_tags)
+                    foreach (var path in this)
+                        if (path.Tags.Contains(tag))
+                            filtered.Add(path);
+
+            // remove
+            var to_remove = new List<BuildPath>();
+            foreach (var tag in exclude_tags)
+                foreach (var path in filtered)
+                    if (path.Tags.Contains(tag))
+                        to_remove.Add(path);
+
+            foreach (var path in to_remove)
+                filtered.Remove(path);
+
+            return filtered;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace cbox.generation
     /// </summary>
     public class BuildPath
     {
-        public List<string> Tags = new List<string>();
+        private List<string> CachedTags = null;
         public List<TestReferenceRange> ReferenceRanges = new List<TestReferenceRange>();
         
         public BuildPathCollection ParentPathCollection = null;
@@ -109,6 +109,28 @@ namespace cbox.generation
             }
 
         }
+
+        public List<string> Tags
+        {
+            get
+            {
+                // returned cached tags if we have already performed this operation:
+                if (CachedTags != null)
+                    return CachedTags;
+
+                // create cached tags by finding unique tags in each included node:
+                CachedTags = new List<string>();
+
+                foreach (var node in Nodes)
+                    foreach (var tag in node.Tags)
+                        if (!CachedTags.Contains(tag))
+                            CachedTags.Add(tag);
+
+                return CachedTags;
+            }
+        }
+
+
 
         public new string ToString()
         {

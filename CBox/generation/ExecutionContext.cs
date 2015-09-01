@@ -33,6 +33,10 @@ namespace cbox.generation
         public bool IsOntologyLookup { get; set; }
         public ExecutionPurpose Purpose { get; set; }
 
+        // tags that are used to determine if specific submodel paths are to be included or not:
+        public List<string> SubmodelExcludeTags = new List<string>();
+        public List<string> SubmodelIncludeTags = new List<string>();
+
         public Dictionary<Node, Problem> InstancedProblems = new Dictionary<Node, Problem>();
 
         public ExecutionContext()

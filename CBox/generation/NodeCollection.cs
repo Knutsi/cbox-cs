@@ -289,7 +289,7 @@ namespace cbox.generation
             UpdateProblems();
             UpdateExecutionOrder();
 
-            if(Issues.Valid)
+            if (Issues.Valid)
                 UpdateBuildPaths();
 
             // fire event to tell we might be updated:
@@ -348,8 +348,8 @@ namespace cbox.generation
             this.BuildPaths.Add(start_path);
 
             start_path.Trace();
-
         }
+
 
         /***
         * Calculates the order in which the nodes are executed. We use a topographical sort.
@@ -520,12 +520,25 @@ namespace cbox.generation
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public ExecutionContext Execute(BuildPath path, bool generate_values=true, bool generate_ranges=false, ExecutionContext parent_ctx=null, CBoxSystem system=null)
+        public ExecutionContext Execute(
+            BuildPath path, 
+            bool generate_values=true, 
+            bool generate_ranges=false, 
+            ExecutionContext parent_ctx=null, 
+            CBoxSystem system=null,
+            List<string> exclude_tags=null,
+            List<string> include_tags=null)
         {
             // ensure we are ready to go:
             Invalidate();
             if (!Issues.Valid)
                 throw new ExecutingInvalidNodeCollectionException(Issues);
+
+            // ensure we have valid tag lists:
+            if (exclude_tags == null)
+                exclude_tags = new List<string>();
+            if (include_tags == null)
+                include_tags = new List<string>();
 
             // create execution context:
             var ctx = new ExecutionContext() 
@@ -533,7 +546,9 @@ namespace cbox.generation
                 BuildPath = path, 
                 Purpose = ExecutionPurpose.MODEL,
                 ParentContext = parent_ctx,
-                System = system
+                System = system,
+                SubmodelExcludeTags = exclude_tags,
+                SubmodelIncludeTags = include_tags
             };
 
 
