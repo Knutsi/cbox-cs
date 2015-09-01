@@ -28,65 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.editorsFlow = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.addButton = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.entryList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.resampleButton = new System.Windows.Forms.Button();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // editorsFlow
+            // entryList
             // 
-            this.editorsFlow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.entryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.editorsFlow.AutoScroll = true;
-            this.editorsFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.editorsFlow.Location = new System.Drawing.Point(3, 32);
-            this.editorsFlow.Name = "editorsFlow";
-            this.editorsFlow.Size = new System.Drawing.Size(351, 352);
-            this.editorsFlow.TabIndex = 0;
-            this.editorsFlow.WrapContents = false;
+            this.entryList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.entryList.Location = new System.Drawing.Point(3, 38);
+            this.entryList.Name = "entryList";
+            this.entryList.Size = new System.Drawing.Size(513, 446);
+            this.entryList.TabIndex = 3;
+            this.entryList.UseCompatibleStateImageBehavior = false;
+            this.entryList.View = System.Windows.Forms.View.Details;
             // 
-            // panel1
+            // columnHeader1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.panel1.Controls.Add(this.addButton);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(357, 29);
-            this.panel1.TabIndex = 2;
+            this.columnHeader1.Text = "Key";
+            this.columnHeader1.Width = 169;
             // 
-            // addButton
+            // columnHeader2
             // 
-            this.addButton.Location = new System.Drawing.Point(3, 3);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(68, 23);
-            this.addButton.TabIndex = 2;
-            this.addButton.Text = "Add test";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.columnHeader2.Text = "Title";
+            this.columnHeader2.Width = 176;
+            // 
+            // resampleButton
+            // 
+            this.resampleButton.Location = new System.Drawing.Point(4, 4);
+            this.resampleButton.Name = "resampleButton";
+            this.resampleButton.Size = new System.Drawing.Size(105, 28);
+            this.resampleButton.TabIndex = 4;
+            this.resampleButton.Text = "Resample";
+            this.resampleButton.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Sample";
+            this.columnHeader3.Width = 158;
             // 
             // SetValuesNodeEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.editorsFlow);
+            this.Controls.Add(this.resampleButton);
+            this.Controls.Add(this.entryList);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SetValuesNodeEditor";
-            this.Size = new System.Drawing.Size(357, 387);
-            this.Load += new System.EventHandler(this.SetValuesNodeEditor_Load);
-            this.panel1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(519, 487);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel editorsFlow;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button addButton;
-
+        private System.Windows.Forms.ListView entryList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button resampleButton;
     }
 }

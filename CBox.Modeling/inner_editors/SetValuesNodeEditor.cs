@@ -44,6 +44,25 @@ namespace cbox.modelling.editors
             // add a small editor for each entry in the data:
             foreach (var entry in Data.Entries)
                 AddEntryEditor(entry);*/
+
+            foreach (var entry in (Node.HandlerData as SetValuesData).Entries)
+            {
+                var test = Ontology.TestByKey(entry.Key);
+                var item = new ListViewItem(entry.Key);
+                entryList.Items.Add(item);
+
+                if (test != null)
+                {
+                    item.SubItems.Add(test.Title);
+                    item.SubItems.Add("---");
+                }
+                else
+                {
+                    item.ForeColor = Color.Red;
+                    item.Font = new Font(DefaultFont, FontStyle.Strikeout);
+                }
+                
+            }
         }
 
 
@@ -54,7 +73,7 @@ namespace cbox.modelling.editors
         }
 
 
-        public void AddEntryEditor(SetValuesDataEntry entry)
+        /*public void AddEntryEditor(SetValuesDataEntry entry)
         {
             var editor = new SetValuesNodeEntryEditor()
             {
@@ -72,7 +91,7 @@ namespace cbox.modelling.editors
                 editorsFlow.Controls.Remove(editor);
                 EntryEditors.Remove(editor);
             };
-        }
+        }*/
 
         public void OnOuterEditorClosing()
         {
@@ -95,7 +114,7 @@ namespace cbox.modelling.editors
         {
             var entry = new SetValuesDataEntry();
             Data.Entries.Add(entry);
-            AddEntryEditor(entry);
+            //AddEntryEditor(entry);
         }
     }
 }

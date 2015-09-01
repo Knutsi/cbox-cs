@@ -332,5 +332,12 @@ namespace cbox.modelling.editors
 
             UpdateEntryListView();
         }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            SaveEntry();
+            SaveNode();
+            Close();
+        }
     }
 }
