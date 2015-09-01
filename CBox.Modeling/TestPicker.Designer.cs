@@ -69,7 +69,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Key/title";
-            this.columnHeader1.Width = 575;
+            this.columnHeader1.Width = 506;
             // 
             // searchInput
             // 

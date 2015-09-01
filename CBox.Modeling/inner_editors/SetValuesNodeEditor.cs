@@ -39,18 +39,18 @@ namespace cbox.modelling.editors
 
         private void LoadNode()
         {
-            editorsFlow.Controls.Clear();
+            /*editorsFlow.Controls.Clear();
 
             // add a small editor for each entry in the data:
             foreach (var entry in Data.Entries)
-                AddEntryEditor(entry);
+                AddEntryEditor(entry);*/
         }
 
 
         private void SaveNode() 
         {
-            foreach (var editor in EntryEditors)
-                editor.SaveEntry();
+            /*foreach (var editor in EntryEditors)
+                editor.SaveEntry();*/
         }
 
 

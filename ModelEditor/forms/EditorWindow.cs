@@ -393,6 +393,15 @@ namespace ModelEditor
                     };
                     break;
 
+                case SetValue.TYPE_IDENT:
+                    editor = new SetValuesModalEditor()
+                    {
+                        Ontology = Program.CurrentOntology,
+                        Node = node
+                        
+                    };
+                    break;
+
                 default:
                     break;
             }

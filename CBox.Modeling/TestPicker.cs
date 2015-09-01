@@ -17,6 +17,8 @@ namespace cbox.modelling
         public Ontology Ontology { get; set; }
         public event EventHandler TestPicked;
         public Test SelectedTest { get; set; }
+        private List<string> LimitToClasses_;
+
 
         public TestPicker()
         {
@@ -26,6 +28,19 @@ namespace cbox.modelling
             searchResults.SelectedIndexChanged += HandleSelection;
         }
 
+
+        public List<string> LimitToClasses
+        {
+            get
+            {
+                return LimitToClasses_;
+            }
+            set
+            {
+                LimitToClasses_ = value;
+                searchResults.Items.Clear();
+            }
+        }
 
         /// <summary>
         /// Searches the ontology's diagnosis catalog.
@@ -41,7 +56,7 @@ namespace cbox.modelling
 
             searchResults.Items.Clear();
 
-            var items = from t in this.Ontology.SearchTests(query)
+            var items = from t in this.Ontology.SearchTests(query, LimitToClasses)
                         select new ListViewItem(t.Title + " [" + t.Key + "]") { Tag = t };
 
             searchResults.Items.AddRange(items.ToArray());

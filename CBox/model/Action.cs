@@ -22,7 +22,12 @@ namespace cbox.model
 
         public bool VisibleHeadlineHint{ get; set; }
 
-        /*public double TimeUsedOccupied { get; set; }
-        public double TimeUsedProcess { get; set; }*/
+        public string TitleWithClassnames
+        {
+            get
+            {
+                return Title + " <" + string.Join(", ", TargetClasses) + ">";
+            }
+        }
     }
 }

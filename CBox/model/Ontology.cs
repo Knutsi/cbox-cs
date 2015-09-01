@@ -450,11 +450,24 @@ namespace cbox.model
         }
 
 
-        public List<Test> SearchTests(string query)
+        /// <summary>
+        /// Searches for a test with title containing the query.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="classes"></param>
+        /// <returns></returns>
+        public List<Test> SearchTests(string query, List<string> classes)
         {
             var ql = query.ToLower();
 
-            return (from t in Tests
+            List<Test> tests = null;
+            if (classes != null && classes.Count > 0)
+                tests = (from k in TestsByClasses(classes) select TestByKey(k)).ToList();
+            else
+                tests = Tests.ToList();
+                
+
+            return (from t in tests
                     where t.Key.IndexOf(ql) != -1 || t.Title.ToLower().IndexOf(ql) != -1
                     select t).ToList();
         }

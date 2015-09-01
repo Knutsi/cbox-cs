@@ -196,6 +196,12 @@
     <Compile Include="setter_editors\StringEditorThesaurusEntry.Designer.cs">
       <DependentUpon>StringEditorThesaurusEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="modal_editors\SetValuesModalEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modal_editors\SetValuesModalEditor.Designer.cs">
+      <DependentUpon>SetValuesModalEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="setter_editors\StringEditorThesaurusEntry.resx">
       <DependentUpon>StringEditorThesaurusEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modal_editors\SetValuesModalEditor.resx">
+      <DependentUpon>SetValuesModalEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestPicker.resx">
       <DependentUpon>TestPicker.cs</DependentUpon>
