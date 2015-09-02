@@ -11,5 +11,15 @@ namespace cbox.generation.nodetype
         public string Key { get; set; }
         public string SetterIdent { get; set; }
         public string SetterXmlData { get; set; }
+
+        public SetValuesDataEntry Clone()
+        {
+            return new SetValuesDataEntry()
+            {
+                Key = Key,
+                SetterIdent = SetterIdent,
+                SetterXmlData = SetterXmlData
+            };
+        }
     }
 }

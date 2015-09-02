@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Button();
             this.entryList = new System.Windows.Forms.ListView();
@@ -41,8 +42,13 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.classLabel = new System.Windows.Forms.Label();
             this.useDefaultDataCheckbox = new System.Windows.Forms.CheckBox();
+            this.entryListContextMeny = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testPicker = new cbox.modelling.TestPicker();
             this.panel1.SuspendLayout();
+            this.entryListContextMeny.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,6 +83,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.entryList.ContextMenuStrip = this.entryListContextMeny;
             this.entryList.Location = new System.Drawing.Point(12, 32);
             this.entryList.Name = "entryList";
             this.entryList.Size = new System.Drawing.Size(556, 399);
@@ -174,6 +181,39 @@
             this.useDefaultDataCheckbox.Text = "Copy ontology setter data on add";
             this.useDefaultDataCheckbox.UseVisualStyleBackColor = true;
             // 
+            // entryListContextMeny
+            // 
+            this.entryListContextMeny.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.entryListContextMeny.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutMenuItem,
+            this.copyMenuItem,
+            this.pasteMenuItem});
+            this.entryListContextMeny.Name = "entryListContextMeny";
+            this.entryListContextMeny.Size = new System.Drawing.Size(182, 110);
+            // 
+            // copyMenuItem
+            // 
+            this.copyMenuItem.Name = "copyMenuItem";
+            this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.copyMenuItem.Text = "Copy";
+            this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
+            // 
+            // pasteMenuItem
+            // 
+            this.pasteMenuItem.Name = "pasteMenuItem";
+            this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.pasteMenuItem.Text = "Paste";
+            this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
+            // 
+            // cutMenuItem
+            // 
+            this.cutMenuItem.Name = "cutMenuItem";
+            this.cutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cutMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.cutMenuItem.Text = "Cut";
+            // 
             // testPicker
             // 
             this.testPicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -205,6 +245,7 @@
             this.Text = "Set values editor";
             this.Load += new System.EventHandler(this.SetValuesModalEditor_Load);
             this.panel1.ResumeLayout(false);
+            this.entryListContextMeny.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,5 +267,9 @@
         private TestPicker testPicker;
         private System.Windows.Forms.Label classLabel;
         private System.Windows.Forms.CheckBox useDefaultDataCheckbox;
+        private System.Windows.Forms.ContextMenuStrip entryListContextMeny;
+        private System.Windows.Forms.ToolStripMenuItem cutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
     }
 }

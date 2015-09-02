@@ -339,5 +339,40 @@ namespace cbox.modelling.editors
             SaveNode();
             Close();
         }
+
+
+        private void copyMenuItem_Click(object sender, EventArgs e)
+        {
+            /*if (entryList.SelectedItems.Count <= 0)
+                return;
+            
+            var items = new List<SetValuesDataEntry>();
+            foreach (ListViewItem item in entryList.SelectedItems)
+            {
+                var entry = (item.Tag as SetValuesDataEntry).Clone();
+                items.Add(entry);
+            }
+
+            Clipboard.SetData(DataFor, false);
+            Clipboard.sa*/
+        }
+
+
+        private void pasteMenuItem_Click(object sender, EventArgs ev)
+        {
+            /*IDataObject data = Clipboard.GetDataObject();
+
+            object clipboard_data = data.GetData(DataFormats.Serializable, false);
+            var pasted_entries = clipboard_data as List<SetValuesDataEntry>;
+            var existing_keys = from e in Data.Entries select e.Key;
+            var non_duplicate_entries = from e in pasted_entries where !existing_keys.Contains(e.Key) select e;
+
+            foreach (var entry in non_duplicate_entries)
+            {
+                
+                Data.Entries.Add(entry);
+                UpdateEntryListView();
+            }*/
+        }
     }
 }
