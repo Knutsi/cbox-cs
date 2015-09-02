@@ -263,6 +263,61 @@ namespace cbox.generation
             return list;
         }
 
+
+        public string Cut(List<int> idents)
+        {
+            var clipboard_data = Copy(idents);
+
+            var nodes = (from n in this.Nodes
+                        where idents.Contains(n.Ident)
+                        select n).ToList();
+
+            foreach (var node in nodes)
+                Remove(node, true);
+
+            return clipboard_data;
+        }
+
+
+        public string Copy(List<int> idents)
+        {
+            var nodes = (from n in this.Nodes
+                        where idents.Contains(n.Ident)
+                        select n).ToList();
+
+            foreach (var node in nodes)
+                node.Handler.SaveData();
+
+            // prepare to serialize:
+            var serializer = new XmlSerializer(typeof(List<Node>));
+
+            var writer = new StringWriter();
+            serializer.Serialize(writer, nodes);
+            return writer.ToString();
+        }
+
+
+        public void Paste(string data)
+        {
+            // deserialize the nodes:
+            var deserializer = new XmlSerializer(typeof(List<Node>));
+            var stream = new StringReader(data);
+            var nodes = deserializer.Deserialize(stream) as List<Node>;
+
+            // introduce the nodes to their new home:
+            foreach (var node in nodes)
+            {
+                node.ParentComponent = this;
+                node.UpdateInternals();
+
+                // make sure sockets have no tragets:
+                foreach (var socket in node.OutputSockets)
+                    socket.Disconnect();
+
+                this.Add(true, node);
+            }
+        }
+
         /// <summary>
         /// Returns the problem set node is bound to, or null if not bound.
         /// </summary>

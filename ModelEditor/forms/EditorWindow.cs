@@ -462,12 +462,45 @@ namespace ModelEditor
             }
         }
 
+
         private void deleteMenuItem_Click(object sender, EventArgs e)
         {
             CurrentDiagram.DeleteSelected();
         }
 
 
+        private void copyMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CurrentDiagram.SelectedNodes.Count <= 0)
+                return;
 
+            var node_idents = (from n in CurrentDiagram.SelectedNodes
+                              select n.Ident).ToList();
+
+            var clipboard_data = CurrentCollection.Copy(node_idents);
+            Clipboard.SetData("cbox-serialized-nodeslist", clipboard_data);
+        }
+
+
+        private void pasteMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Clipboard.ContainsData("cbox-serialized-nodeslist"))
+                return;
+
+            var data = Clipboard.GetData("cbox-serialized-nodeslist") as string;
+            CurrentCollection.Paste(data);  
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CurrentDiagram.SelectedNodes.Count <= 0)
+                return;
+
+            var node_idents = (from n in CurrentDiagram.SelectedNodes
+                               select n.Ident).ToList();
+
+            var clipboard_data = CurrentCollection.Cut(node_idents);
+            Clipboard.SetData("cbox-serialized-nodeslist", clipboard_data);
+        }
     }
 }

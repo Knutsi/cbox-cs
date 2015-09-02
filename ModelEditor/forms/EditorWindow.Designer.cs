@@ -47,8 +47,8 @@
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,10 +78,10 @@
             this.propertiesPanel = new System.Windows.Forms.TabPage();
             this.editorFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.pathsPanel = new System.Windows.Forms.TabPage();
-            this.pathsView1 = new ModelEditor.forms.PathsView();
             this.outputPanel = new System.Windows.Forms.TabPage();
-            this.outputView1 = new ModelEditor.forms.OutputView();
             this.issuesPanel = new System.Windows.Forms.TabPage();
+            this.pathsView1 = new ModelEditor.forms.PathsView();
+            this.outputView1 = new ModelEditor.forms.OutputView();
             this.issuesView1 = new ModelEditor.forms.IssuesView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -227,8 +227,8 @@
             this.redoToolStripMenuItem,
             this.toolStripSeparator1,
             this.cutToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem,
+            this.copyMenuItem,
+            this.pasteMenuItem,
             this.deleteMenuItem,
             this.toolStripSeparator2,
             this.selectAllMenuItem,
@@ -241,12 +241,14 @@
             // 
             // undoToolStripMenuItem
             // 
+            this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.undoToolStripMenuItem.Text = "Undo";
             // 
             // redoToolStripMenuItem
             // 
+            this.redoToolStripMenuItem.Enabled = false;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.redoToolStripMenuItem.Text = "Redo";
@@ -259,20 +261,26 @@
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.cutToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
-            // copyToolStripMenuItem
+            // copyMenuItem
             // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyMenuItem.Name = "copyMenuItem";
+            this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.copyMenuItem.Text = "Copy";
+            this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
             // 
-            // pasteToolStripMenuItem
+            // pasteMenuItem
             // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteMenuItem.Name = "pasteMenuItem";
+            this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.pasteMenuItem.Text = "Paste";
+            this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
             // 
             // deleteMenuItem
             // 
@@ -516,17 +524,6 @@
             this.pathsPanel.Text = "Pathts";
             this.pathsPanel.UseVisualStyleBackColor = true;
             // 
-            // pathsView1
-            // 
-            this.pathsView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pathsView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pathsView1.Location = new System.Drawing.Point(0, 0);
-            this.pathsView1.Margin = new System.Windows.Forms.Padding(8);
-            this.pathsView1.Model = null;
-            this.pathsView1.Name = "pathsView1";
-            this.pathsView1.Size = new System.Drawing.Size(415, 687);
-            this.pathsView1.TabIndex = 0;
-            // 
             // outputPanel
             // 
             this.outputPanel.Controls.Add(this.outputView1);
@@ -539,18 +536,6 @@
             this.outputPanel.Text = "Output";
             this.outputPanel.UseVisualStyleBackColor = true;
             // 
-            // outputView1
-            // 
-            this.outputView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.outputView1.LimitMode = ModelEditor.forms.OutputLimitMode.SET;
-            this.outputView1.Location = new System.Drawing.Point(4, 4);
-            this.outputView1.Margin = new System.Windows.Forms.Padding(8);
-            this.outputView1.Model = null;
-            this.outputView1.Name = "outputView1";
-            this.outputView1.Size = new System.Drawing.Size(407, 679);
-            this.outputView1.TabIndex = 0;
-            this.outputView1.ViewMode = ModelEditor.forms.OutputViewMode.TEXT;
-            // 
             // issuesPanel
             // 
             this.issuesPanel.Controls.Add(this.issuesView1);
@@ -562,6 +547,29 @@
             this.issuesPanel.TabIndex = 2;
             this.issuesPanel.Text = "Issues";
             this.issuesPanel.UseVisualStyleBackColor = true;
+            // 
+            // pathsView1
+            // 
+            this.pathsView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pathsView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pathsView1.Location = new System.Drawing.Point(0, 0);
+            this.pathsView1.Margin = new System.Windows.Forms.Padding(8);
+            this.pathsView1.Model = null;
+            this.pathsView1.Name = "pathsView1";
+            this.pathsView1.Size = new System.Drawing.Size(415, 687);
+            this.pathsView1.TabIndex = 0;
+            // 
+            // outputView1
+            // 
+            this.outputView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputView1.LimitMode = ModelEditor.forms.OutputLimitMode.SET;
+            this.outputView1.Location = new System.Drawing.Point(4, 4);
+            this.outputView1.Margin = new System.Windows.Forms.Padding(8);
+            this.outputView1.Model = null;
+            this.outputView1.Name = "outputView1";
+            this.outputView1.Size = new System.Drawing.Size(407, 679);
+            this.outputView1.TabIndex = 0;
+            this.outputView1.ViewMode = ModelEditor.forms.OutputViewMode.TEXT;
             // 
             // issuesView1
             // 
@@ -582,7 +590,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditorWindow";
             this.Text = "EditorWindow";
             this.Load += new System.EventHandler(this.EditorWindow_Load);
@@ -621,8 +629,8 @@
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem selectAllMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectProblemNodesToolStripMenuItem;
