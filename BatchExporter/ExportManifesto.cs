@@ -16,6 +16,9 @@ namespace BatchExporter
         [DataMember]
         public int CaseCount { get; set; }
 
+        [DataMember]
+        public List<ExportManifestoEntry> Cases = new List<ExportManifestoEntry>();
+
         public string toJSON()
         {
             using (var mstream = new MemoryStream())

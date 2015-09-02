@@ -174,6 +174,7 @@ namespace BatchExporter
         private void GenerateCases()
         {
             Log("Exporting cases");
+            var manifesto = new ExportManifesto();
 
             var count = 0;
             foreach (var modelref in CBoxSystem_.Models)
@@ -197,14 +198,18 @@ namespace BatchExporter
                     var path = Path.Combine(ServiceDirInfo.FullName, BatchExporter.CASE_DIR_NAME, count + ".json");
                     File.WriteAllText(path, case_.toJSON());
 
+                    // add to manifesto:
+                    manifesto.Cases.Add(new ExportManifestoEntry() { ID = count, ModelName = modelref.Title });
+
                     Log(string.Format("{0} ({1} of {2}) exported to: {3}", count, i, CaseCount, path));
 
                     count++;
                 }
             }
 
+            manifesto.CaseCount = count;
             Log("Saving manifesto");
-            var manifesto = new ExportManifesto() { CaseCount = count };
+            
             var manifesto_path = Path.Combine(ServiceDirInfo.FullName, BatchExporter.CASE_DIR_NAME, "manifesto.json");
             File.WriteAllText(manifesto_path, manifesto.toJSON());
         }

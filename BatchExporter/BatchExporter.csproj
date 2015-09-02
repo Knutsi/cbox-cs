@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BatchExporter.cs" />
     <Compile Include="ExportManifesto.cs" />
+    <Compile Include="ExportManifestoEntry.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
