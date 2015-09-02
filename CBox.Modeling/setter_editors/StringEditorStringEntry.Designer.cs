@@ -34,28 +34,34 @@
             // 
             // stringInput
             // 
-            this.stringInput.Location = new System.Drawing.Point(2, 2);
+            this.stringInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stringInput.Location = new System.Drawing.Point(3, 2);
+            this.stringInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.stringInput.Name = "stringInput";
-            this.stringInput.Size = new System.Drawing.Size(212, 20);
+            this.stringInput.Size = new System.Drawing.Size(415, 22);
             this.stringInput.TabIndex = 0;
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(218, 2);
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.Location = new System.Drawing.Point(425, 2);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(26, 20);
+            this.deleteButton.Size = new System.Drawing.Size(35, 25);
             this.deleteButton.TabIndex = 1;
             this.deleteButton.Text = "X";
             this.deleteButton.UseVisualStyleBackColor = true;
             // 
             // StringEditorStringEntry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.stringInput);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StringEditorStringEntry";
-            this.Size = new System.Drawing.Size(251, 24);
+            this.Size = new System.Drawing.Size(469, 31);
             this.ResumeLayout(false);
             this.PerformLayout();
 

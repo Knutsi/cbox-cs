@@ -130,7 +130,7 @@ namespace cbox.modelling.editors
             if (Node.BoundProblemSet != null)
                 classes = Node.BoundProblemSet.Classes;
 
-            if (!Ontology.TestsByClasses(classes).Contains(test.Key))
+            if (test != null && !Ontology.TestsByClasses(classes).Contains(test.Key))
                 item.ForeColor = Color.Orange;
 
 

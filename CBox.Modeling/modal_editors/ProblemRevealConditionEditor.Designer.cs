@@ -31,14 +31,14 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.individualKeySelect = new System.Windows.Forms.ComboBox();
+            this.addTriggerKeyButton = new System.Windows.Forms.Button();
             this.actionKeysSelect = new System.Windows.Forms.ComboBox();
             this.addButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.triggersList = new System.Windows.Forms.TextBox();
             this.keyCombobox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.individualKeySelect = new System.Windows.Forms.ComboBox();
-            this.addTriggerKeyButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,11 +84,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reveal condition";
             // 
+            // individualKeySelect
+            // 
+            this.individualKeySelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.individualKeySelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.individualKeySelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.individualKeySelect.FormattingEnabled = true;
+            this.individualKeySelect.Location = new System.Drawing.Point(187, 532);
+            this.individualKeySelect.Name = "individualKeySelect";
+            this.individualKeySelect.Size = new System.Drawing.Size(292, 24);
+            this.individualKeySelect.TabIndex = 7;
+            // 
+            // addTriggerKeyButton
+            // 
+            this.addTriggerKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addTriggerKeyButton.Location = new System.Drawing.Point(10, 531);
+            this.addTriggerKeyButton.Name = "addTriggerKeyButton";
+            this.addTriggerKeyButton.Size = new System.Drawing.Size(171, 23);
+            this.addTriggerKeyButton.TabIndex = 6;
+            this.addTriggerKeyButton.Text = "Add individual key";
+            this.addTriggerKeyButton.UseVisualStyleBackColor = true;
+            this.addTriggerKeyButton.Click += new System.EventHandler(this.addTriggerKeyButton_Click);
+            // 
             // actionKeysSelect
             // 
             this.actionKeysSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.actionKeysSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.actionKeysSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.actionKeysSelect.FormattingEnabled = true;
             this.actionKeysSelect.Location = new System.Drawing.Point(187, 503);
             this.actionKeysSelect.Name = "actionKeysSelect";
@@ -131,6 +155,7 @@
             this.keyCombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.keyCombobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.keyCombobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.keyCombobox.FormattingEnabled = true;
             this.keyCombobox.Location = new System.Drawing.Point(50, 25);
             this.keyCombobox.Name = "keyCombobox";
@@ -145,28 +170,6 @@
             this.label1.Size = new System.Drawing.Size(36, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Key:";
-            // 
-            // individualKeySelect
-            // 
-            this.individualKeySelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.individualKeySelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.individualKeySelect.FormattingEnabled = true;
-            this.individualKeySelect.Location = new System.Drawing.Point(187, 532);
-            this.individualKeySelect.Name = "individualKeySelect";
-            this.individualKeySelect.Size = new System.Drawing.Size(292, 24);
-            this.individualKeySelect.TabIndex = 7;
-            // 
-            // addTriggerKeyButton
-            // 
-            this.addTriggerKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addTriggerKeyButton.Location = new System.Drawing.Point(10, 531);
-            this.addTriggerKeyButton.Name = "addTriggerKeyButton";
-            this.addTriggerKeyButton.Size = new System.Drawing.Size(171, 23);
-            this.addTriggerKeyButton.TabIndex = 6;
-            this.addTriggerKeyButton.Text = "Add individual key";
-            this.addTriggerKeyButton.UseVisualStyleBackColor = true;
-            this.addTriggerKeyButton.Click += new System.EventHandler(this.addTriggerKeyButton_Click);
             // 
             // ProblemRevealConditionEditor
             // 
