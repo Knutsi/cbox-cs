@@ -64,6 +64,11 @@ namespace ModelEditor
             if (Properties.Settings.Default.debug_open_editortest)
                 (new EditorsTest()).Show();
 
+            // open a file?
+            if (Environment.GetCommandLineArgs().Length > 1) {
+                var modelpath = Environment.GetCommandLineArgs()[1];
+                Program.LoadModel(modelpath);
+            }
         }
 
         private static Model _CurrentModel;

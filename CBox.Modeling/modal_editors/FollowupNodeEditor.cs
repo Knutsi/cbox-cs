@@ -98,7 +98,7 @@ namespace cbox.modelling.editors
             var table = answerDataGrid.DataSource as DataTable;
             table.Clear();
             foreach (var answer in question.Answers)
-                table.Rows.Add(answer.Correct, answer.Text);
+                table.Rows.Add(answer.Correct, answer.Text);            
         }
 
 
