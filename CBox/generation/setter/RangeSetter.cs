@@ -25,6 +25,7 @@ namespace cbox.generation.setter
         {
             var data = RangeSetterData.FromXML(xml_data);
             var value = data.Min + (this.Random.NextDouble() * (data.Max - data.Min));
+            //var value = Tools.Random.NextDouble
 
             // round value:
             if (test != null)

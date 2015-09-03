@@ -35,6 +35,10 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.entryListContextMeny = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.actionCombobox = new System.Windows.Forms.ComboBox();
             this.addYieldButton = new System.Windows.Forms.Button();
@@ -42,10 +46,9 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.classLabel = new System.Windows.Forms.Label();
             this.useDefaultDataCheckbox = new System.Windows.Forms.CheckBox();
-            this.entryListContextMeny = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.policySelect = new System.Windows.Forms.ComboBox();
             this.testPicker = new cbox.modelling.TestPicker();
             this.panel1.SuspendLayout();
             this.entryListContextMeny.SuspendLayout();
@@ -106,6 +109,39 @@
             this.columnHeader3.Text = "Form";
             this.columnHeader3.Width = 99;
             // 
+            // entryListContextMeny
+            // 
+            this.entryListContextMeny.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.entryListContextMeny.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutMenuItem,
+            this.copyMenuItem,
+            this.pasteMenuItem});
+            this.entryListContextMeny.Name = "entryListContextMeny";
+            this.entryListContextMeny.Size = new System.Drawing.Size(170, 82);
+            // 
+            // cutMenuItem
+            // 
+            this.cutMenuItem.Name = "cutMenuItem";
+            this.cutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cutMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.cutMenuItem.Text = "Cut";
+            // 
+            // copyMenuItem
+            // 
+            this.copyMenuItem.Name = "copyMenuItem";
+            this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.copyMenuItem.Text = "Copy";
+            this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
+            // 
+            // pasteMenuItem
+            // 
+            this.pasteMenuItem.Name = "pasteMenuItem";
+            this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.pasteMenuItem.Text = "Paste";
+            this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -144,9 +180,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.setterEditorPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.setterEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.setterEditorPanel.Location = new System.Drawing.Point(574, 32);
+            this.setterEditorPanel.Location = new System.Drawing.Point(574, 59);
             this.setterEditorPanel.Name = "setterEditorPanel";
-            this.setterEditorPanel.Size = new System.Drawing.Size(528, 713);
+            this.setterEditorPanel.Size = new System.Drawing.Size(528, 686);
             this.setterEditorPanel.TabIndex = 8;
             // 
             // removeButton
@@ -181,38 +217,35 @@
             this.useDefaultDataCheckbox.Text = "Copy ontology setter data on add";
             this.useDefaultDataCheckbox.UseVisualStyleBackColor = true;
             // 
-            // entryListContextMeny
+            // keyLabel
             // 
-            this.entryListContextMeny.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.entryListContextMeny.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutMenuItem,
-            this.copyMenuItem,
-            this.pasteMenuItem});
-            this.entryListContextMeny.Name = "entryListContextMeny";
-            this.entryListContextMeny.Size = new System.Drawing.Size(182, 110);
+            this.keyLabel.AutoSize = true;
+            this.keyLabel.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.keyLabel.Location = new System.Drawing.Point(865, 32);
+            this.keyLabel.Name = "keyLabel";
+            this.keyLabel.Size = new System.Drawing.Size(46, 17);
+            this.keyLabel.TabIndex = 13;
+            this.keyLabel.Text = "label1";
             // 
-            // copyMenuItem
+            // label3
             // 
-            this.copyMenuItem.Name = "copyMenuItem";
-            this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.copyMenuItem.Text = "Copy";
-            this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(574, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Conflict policy:";
             // 
-            // pasteMenuItem
+            // policySelect
             // 
-            this.pasteMenuItem.Name = "pasteMenuItem";
-            this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.pasteMenuItem.Text = "Paste";
-            this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
-            // 
-            // cutMenuItem
-            // 
-            this.cutMenuItem.Name = "cutMenuItem";
-            this.cutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.cutMenuItem.Text = "Cut";
+            this.policySelect.FormattingEnabled = true;
+            this.policySelect.Items.AddRange(new object[] {
+            "DEFAULT",
+            "CLEAR"});
+            this.policySelect.Location = new System.Drawing.Point(678, 29);
+            this.policySelect.Name = "policySelect";
+            this.policySelect.Size = new System.Drawing.Size(181, 24);
+            this.policySelect.TabIndex = 15;
             // 
             // testPicker
             // 
@@ -230,6 +263,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 807);
+            this.Controls.Add(this.policySelect);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.keyLabel);
             this.Controls.Add(this.useDefaultDataCheckbox);
             this.Controls.Add(this.classLabel);
             this.Controls.Add(this.testPicker);
@@ -271,5 +307,8 @@
         private System.Windows.Forms.ToolStripMenuItem cutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
+        private System.Windows.Forms.Label keyLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox policySelect;
     }
 }

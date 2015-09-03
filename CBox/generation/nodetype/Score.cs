@@ -89,7 +89,7 @@ namespace cbox.generation.nodetype
         /// <param name="ctx"></param>
         public void Eval(ExecutionContext ctx)
         {
-            ctx.Case.ScoreTree.Merge(Data.LogicTree);
+            ctx.Case.ScoreTree.Merge(Data.LogicTree.Clone());
         }
 
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using cbox.model;
+using cbox.scoretree;
 
 namespace cbox.generation
 {
@@ -13,10 +14,12 @@ namespace cbox.generation
     /// </summary>
     public class PostProcessor
     {
-        public void Process(Case case_)
+        public void Process(Case case_, Ontology ontology)
         {
             // process all steps:
             MergeEqualProblems(case_);
+            MergeScoreTreeGroups(case_);
+            ClearNonAcumulativeValues(case_, ontology);
             AddPreviousDx(case_);
             PickFollowup(case_);
 
@@ -58,6 +61,71 @@ namespace cbox.generation
             // remove problems no longer needed:
             foreach (var removee in to_remove)
                 case_.Problems.Remove(removee);
+        }
+
+
+        /// <summary>
+        /// Walls the score tree consequence nodes, and merges the "higest of" and "sum" nodes with same group names.
+        /// </summary>
+        /// <param name="case_"></param>
+        private void MergeScoreTreeGroups(Case case_)
+        {
+            var to_remove = new List<ConsequenceNode>();
+
+            // grab "sum of" or "highest" nodes:
+            var sum_or_high_modes = from n in case_.ScoreTree
+                                    where n.Consequence == ConsequenceNode.TYPE_HIGEST_OF 
+                                    || n.Consequence == ConsequenceNode.TYPE_SUM_OF
+                                    && n.Group != null
+                                    && n.Group != string.Empty
+                                    select n;
+
+            foreach (var cqnode in sum_or_high_modes)
+            {
+                // skip if already processed:
+                if (to_remove.Contains(cqnode))
+                    continue;
+
+                // get nodes in tree with same group that is not us:
+                var in_same_group = from n in sum_or_high_modes
+                                    where n != cqnode && n.Group == cqnode.Group 
+                                    select n;
+
+                // mode children to cqnode, then assign to be removed:
+                foreach (var same_group_node in in_same_group)
+                {
+                    cqnode.Children.AddRange(same_group_node.Children);
+                    to_remove.Add(same_group_node);
+                }
+            }
+
+            // remove nodes to remove:
+            foreach (var node in to_remove)
+                case_.ScoreTree.Remove(node);
+
+        }
+
+
+        /// <summary>
+        /// Looks for multi-value results that are not acululative, and clears all but last value.
+        /// </summary>
+        /// <param name="case_"></param>
+        public void ClearNonAcumulativeValues(Case case_, Ontology ontology)
+        {
+            foreach (var problem in case_.Problems)
+            {
+                foreach (var result in problem.TestResults)
+                {
+                    var test = ontology.TestByKey(result.Key);
+                    if(result.Values.Count > 1 && !test.Accumulative)
+                    {
+                        // values are stored in the order they are added, so we can keep the last only:
+                        var value = result.Values.Last();
+                        result.Values = new List<string>();
+                        result.Values.Add(value);
+                    }
+                }
+            }
         }
 
 

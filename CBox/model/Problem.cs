@@ -9,6 +9,8 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
+using cbox.generation;
+
 namespace cbox.model
 {
     [DataContract]
@@ -42,18 +44,29 @@ namespace cbox.model
             Triggers = new BindingList<ProblemRevealCondition>();
         }
 
-        public void Add(TestResult tr) {
+        public void Add(TestResult tr, TestResultConflictPolicy policy=TestResultConflictPolicy.DEFAULT) {
 
             /*if (tr.Value == "(NULL)" || tr.Value == string.Empty)
                 return;*/
 
             // check if test result already existst - if it does, we accumulate values:
             foreach (var existing_result in this.TestResults)
-            {
+            {                
                 if (existing_result.Key == tr.Key)
                 {
-                    existing_result.Values.Add(tr.Value);
-                    return;
+                    // determine the conflic policy for this addition.  
+                    // Default keeps old value and lets postprocessor deal with it
+                    if (policy == TestResultConflictPolicy.DEFAULT)
+                    {
+                        existing_result.Values.Add(tr.Value);
+                        return;
+                    }
+                    else if(policy == TestResultConflictPolicy.CLEAR_OLD)
+                    {
+                        // clear old will reset the values of the existing result, and add the new one:
+                        existing_result.Values = new List<string>();
+                        existing_result.Values.Add(tr.Value);
+                    }
                 }
             }
 
@@ -61,7 +74,12 @@ namespace cbox.model
             TestResults.Add(tr);
         }
 
-        public void Add(string key, string value, string parent_key, bool abnormal=false)
+        public void Add(
+            string key, 
+            string value, 
+            string parent_key, 
+            bool abnormal=false, 
+            TestResultConflictPolicy policy = TestResultConflictPolicy.DEFAULT)
         {
             var result = new TestResult()
             {
@@ -71,10 +89,17 @@ namespace cbox.model
                 ParentKey = parent_key
             };
 
-            Add(result);
+            Add(result, policy);
         }
 
-        public void Add(string key, string value, string prefix, string unit, string parent_key, bool abnormal = false)
+        public void Add(
+            string key, 
+            string value, 
+            string prefix, 
+            string unit, 
+            string parent_key, 
+            bool abnormal = false, 
+            TestResultConflictPolicy policy = TestResultConflictPolicy.DEFAULT)
         {
             var result = new TestResult()
             {
@@ -86,7 +111,7 @@ namespace cbox.model
                 ParentKey = parent_key
             };
 
-            Add(result);
+            Add(result, policy);
         }
 
 

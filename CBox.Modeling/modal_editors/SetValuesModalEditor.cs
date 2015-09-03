@@ -234,6 +234,22 @@ namespace cbox.modelling.editors
             }
 
             CurrentSetterEditor = editor;
+
+            keyLabel.Text = entry.Key;
+            switch (entry.ConflictPolicy)
+            {
+                case TestResultConflictPolicy.CLEAR_OLD:
+                    policySelect.SelectedIndex = 1;
+                    break;
+
+                case TestResultConflictPolicy.DEFAULT:
+                    policySelect.SelectedIndex = 0;
+                    break;
+
+                default:
+                    policySelect.SelectedIndex = 0;
+                    break;
+            }
         }
 
         /// <summary>
@@ -246,8 +262,25 @@ namespace cbox.modelling.editors
             {
                 CurrentSetterEditor.SaveData();
                 CurrentEntry.SetterXmlData = CurrentSetterEditor.SetterXmlData;
+
+                // save policy:
+                switch (policySelect.SelectedIndex)
+                {
+                    case 0:
+                        CurrentEntry.ConflictPolicy = TestResultConflictPolicy.DEFAULT;
+                        break;
+
+                    case 1:
+                        CurrentEntry.ConflictPolicy = TestResultConflictPolicy.CLEAR_OLD;
+                        break;
+
+                    default:
+                        CurrentEntry.ConflictPolicy = TestResultConflictPolicy.DEFAULT;
+                        break;
+                }
             }
 
+            
         }
 
         public void NewEntry(string key, bool load_editor=true)

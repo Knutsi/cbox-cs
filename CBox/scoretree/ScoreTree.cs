@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace cbox.scoretree
 {
@@ -17,6 +19,21 @@ namespace cbox.scoretree
             {
                 this.Add(cnode);
             }
+        }
+
+        /// <summary>
+        /// Make a deep copy using serialization.
+        /// </summary>
+        /// <returns></returns>
+        public ScoreTree Clone()
+        {
+            var serializer = new XmlSerializer(typeof(ScoreTree));
+
+            var writer = new StringWriter();
+            serializer.Serialize(writer, this);
+            var reader = new StringReader(writer.ToString());
+
+            return serializer.Deserialize(reader) as ScoreTree;
         }
 
 

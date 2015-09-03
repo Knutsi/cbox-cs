@@ -88,6 +88,7 @@
     <Compile Include="generation\setter\StringSetter.cs" />
     <Compile Include="generation\setter\StringSetterData.cs" />
     <Compile Include="generation\setter\ThesaurusEntry.cs" />
+    <Compile Include="generation\TestResultConflictPolicy.cs" />
     <Compile Include="model\TreatmentCatalog.cs" />
     <Compile Include="model\TreatmentCatalogEntry.cs" />
     <Compile Include="scoretree\ConsequenceNode.cs" />

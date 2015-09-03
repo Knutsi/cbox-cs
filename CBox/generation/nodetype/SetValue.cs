@@ -53,10 +53,10 @@ namespace cbox.generation.nodetype
                     test);
 
                 // add value to current problem:
-                if(test != null)
-                    ctx.CurrentProblem.Add(entry.Key, value, test.Prefix, test.Unit, test.ParentKey, true);
+                if (test != null)
+                    ctx.CurrentProblem.Add(entry.Key, value, test.Prefix, test.Unit, test.ParentKey, true, entry.ConflictPolicy);
                 else
-                    ctx.CurrentProblem.Add(entry.Key, value, string.Empty, true);
+                    throw new Exception("SetValue node could not evaluate test as key is not in ontology: " + entry.Key);
 
             }
         }

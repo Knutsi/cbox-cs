@@ -235,7 +235,7 @@ namespace cbox.generation
 
                 // post-process the case:
                 var processor = new PostProcessor();
-                processor.Process(case_);
+                processor.Process(case_, system.Ontology);
 
                 return case_;
             }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using cbox.generation;
+
 namespace cbox.generation.nodetype
 {
     public class SetValuesDataEntry
@@ -11,6 +13,8 @@ namespace cbox.generation.nodetype
         public string Key { get; set; }
         public string SetterIdent { get; set; }
         public string SetterXmlData { get; set; }
+        public TestResultConflictPolicy ConflictPolicy = TestResultConflictPolicy.DEFAULT;
+
 
         public SetValuesDataEntry Clone()
         {
@@ -18,7 +22,8 @@ namespace cbox.generation.nodetype
             {
                 Key = Key,
                 SetterIdent = SetterIdent,
-                SetterXmlData = SetterXmlData
+                SetterXmlData = SetterXmlData,
+                ConflictPolicy = ConflictPolicy
             };
         }
     }
