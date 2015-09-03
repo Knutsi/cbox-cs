@@ -16,8 +16,48 @@ namespace cbox.generation
         public void Process(Case case_)
         {
             // process all steps:
+            MergeEqualProblems(case_);
             AddPreviousDx(case_);
             PickFollowup(case_);
+
+        }
+
+
+        /// <summary>
+        /// Merges problems with the same name.
+        /// </summary>
+        private void MergeEqualProblems(Case case_)
+        {
+            var to_remove = new List<Problem>();
+            foreach (var problem in case_.Problems)
+            {
+                // if we have already merged, skip:
+                if (to_remove.Contains(problem))
+                    continue;
+
+                // look for other problems with same name:
+                var equals = from p in case_.Problems
+                             where p != problem && p.Title == problem.Title && !to_remove.Contains(p)
+                             select p;
+
+                // for each equal problem found that is not already in remove list, add out values:
+                // also, add all classes:
+                foreach (var equal in equals)
+                {
+                    var new_classes = from c in equal.Classes where !problem.Classes.Contains(c) select c;
+                    problem.Classes.AddRange(new_classes);
+
+                    foreach (var result in equal.TestResults)
+                        problem.Add(result);
+
+                }
+
+                to_remove.AddRange(equals);
+            }
+
+            // remove problems no longer needed:
+            foreach (var removee in to_remove)
+                case_.Problems.Remove(removee);
         }
 
 
