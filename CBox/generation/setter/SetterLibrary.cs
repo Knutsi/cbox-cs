@@ -22,6 +22,9 @@ namespace cbox.generation.setter
             var mrange_setter = new MultiRangeSetter();
             this[MultiRangeSetter.Ident] = mrange_setter;
 
+            var mstring_setter = new MultiStringSetter();
+            this[MultiStringSetter.Ident] = mstring_setter;
+
             // string setter:
             var string_setter = new StringSetter();
             this[StringSetter.Ident] = string_setter;

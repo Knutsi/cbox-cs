@@ -25,5 +25,11 @@ namespace cbox
                        select list[i];
         }
 
+
+        public static T PickRandom<T>(List<T> list)
+        {
+            return list[Tools.Random.Next(list.Count)];
+        }
+
     }
 }

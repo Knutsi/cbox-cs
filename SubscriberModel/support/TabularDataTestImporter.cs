@@ -246,6 +246,10 @@ namespace OntologyEditor
                         test.SetterXMLData = this.MultiRangeDataFromShorthand(cmds);
                         break;
 
+                    case "MSTRING":
+                        test.SetterXMLData = this.MultiStringDataFromShorthand(cmds);
+                        break;
+
                     default:
                         break;
                 }
@@ -288,6 +292,32 @@ namespace OntologyEditor
                         AgeEnd = param.AgeEnd,
                         Min = param.ValueStart,
                         Max = param.ValueEnd,
+                        Gender = param.Gender
+                    };
+
+                    data.Ranges.Add(range);
+                }
+            }
+
+            return data.ToXML();
+        }
+
+        private string MultiStringDataFromShorthand(List<ShorthandCommand> cmds)
+        {
+            var data = new MultiStringSetterData();
+
+            // format of AMS-commands: AR:F00-13:<VALUE>
+            foreach (var cmd in cmds)
+            {
+                // each AR-command means a
+                if (cmd.Command == "AMS" && cmd.AMS_Params.Valid)
+                {
+                    var param = cmd.AMS_Params;
+                    var range = new MultiStringSetterDataEntry()
+                    {
+                        AgeStart = param.AgeStart,
+                        AgeEnd = param.AgeEnd,
+                        Value = param.Value,
                         Gender = param.Gender
                     };
 

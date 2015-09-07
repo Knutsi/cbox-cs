@@ -304,14 +304,17 @@ namespace cbox.modelling.editors
             };
 
             // copy default setter data if requested:
-            if (useDefaultDataCheckbox.Checked && entry.SetterIdent != "MRANGE")
+            if (useDefaultDataCheckbox.Checked && entry.SetterIdent != "MRANGE" && entry.SetterIdent != "MSTRING")
                 entry.SetterXmlData = test.SetterXMLData;
 
             Data.Entries.Add(entry);
 
             // change setter if MRANGE, which only works on import:
             if (entry.SetterIdent == "MRANGE")
-                entry.SetterIdent = "RANGE"; 
+                entry.SetterIdent = "RANGE";
+
+            if (entry.SetterIdent == "MSTRING")
+                entry.SetterIdent = "STRING";
 
             // save to node, update list and load into editor:
             SaveEntry();

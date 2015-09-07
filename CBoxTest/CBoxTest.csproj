@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="generation\MultiStringSetterTest.cs" />
     <Compile Include="generation\NodeCollectionTest.cs" />
     <Compile Include="generation\BranchNodeTest.cs" />
     <Compile Include="generation\SetValueTest.cs" />

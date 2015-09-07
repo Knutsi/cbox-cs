@@ -31,6 +31,11 @@ namespace OntologyEditor
             get { return new ARShorthandParams(this.Params); }
         }
 
+        public AMSShorthandParams AMS_Params
+        {
+            get { return new AMSShorthandParams(this.Params); }
+        }
+
         public RShorthandParams R_Params
         {
             get { return new RShorthandParams(this.Params); }
