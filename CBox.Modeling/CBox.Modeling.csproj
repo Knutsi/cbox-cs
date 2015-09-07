@@ -150,6 +150,12 @@
     <Compile Include="modal_editors\ScoreNodeEditor.Designer.cs">
       <DependentUpon>ScoreNodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelSettings.Designer.cs">
+      <DependentUpon>ModelSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="NodeEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="modal_editors\ScoreNodeEditor.resx">
       <DependentUpon>ScoreNodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelSettings.resx">
+      <DependentUpon>ModelSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NodeEditor.resx">
       <DependentUpon>NodeEditor.cs</DependentUpon>

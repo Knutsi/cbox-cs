@@ -24,6 +24,7 @@ namespace cbox.generation
         public event ModelInvalidatedEvent Invalidated;
 
         public string Ident { get; set; }
+        public string ResourceScoreGroup = "Default";
 
         public List<NodeCollection> Components { get; set; }
 

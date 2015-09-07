@@ -47,7 +47,13 @@ namespace cbox.model
         public ScoreTree ScoreTree = new ScoreTree();
 
         [DataMember]
+        public string ResourceScoreGroup = "Default";
+
+        [DataMember]
         public List<string> Tags = new List<string>();
+
+        [DataMember]
+        public List<string> Comments = new List<string>();
 
         public Case()
         {

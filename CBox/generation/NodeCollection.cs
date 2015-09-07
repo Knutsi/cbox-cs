@@ -628,11 +628,15 @@ namespace cbox.generation
                     if (generate_ranges)
                         node.Describe(ctx);
 
-                    // append node's tags:
+                    // append node's tags and comments:
                     var new_tags = from t in node.Tags where !ctx.Case.Tags.Contains(t) select t.Trim();
                     ctx.Case.Tags.AddRange(new_tags);
+                    ctx.Case.Comments.Add(node.Comment);
                 }
             }
+
+            // apply resource statistics group (what it compares with):
+            ctx.Case.ResourceScoreGroup = ParentModel.ResourceScoreGroup;
 
             return ctx;
         }

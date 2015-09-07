@@ -502,5 +502,12 @@ namespace ModelEditor
             var clipboard_data = CurrentCollection.Cut(node_idents);
             Clipboard.SetData("cbox-serialized-nodeslist", clipboard_data);
         }
+
+        private void modelSettingsMenuItem_Click(object sender, EventArgs e)
+        {
+            var settings = new ModelSettings() { Model = Model };
+            settings.ShowDialog();
+            settings.SaveData();
+        }
     }
 }

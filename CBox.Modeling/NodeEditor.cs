@@ -110,9 +110,11 @@ namespace cbox.modelling.editors
                 return;
 
             Node.Title = titleInput.Text;
+            Node.Comment = commentInput.Text;
             Node.Tags = (from t in tagInput.Text.Split(';')
                          where t.Trim() != String.Empty
                          select t.Trim()).ToList();
+
 
             // split and read tags:
             if (NodeSaved != null) 

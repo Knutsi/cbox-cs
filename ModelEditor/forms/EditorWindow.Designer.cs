@@ -78,11 +78,13 @@
             this.propertiesPanel = new System.Windows.Forms.TabPage();
             this.editorFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.pathsPanel = new System.Windows.Forms.TabPage();
-            this.outputPanel = new System.Windows.Forms.TabPage();
-            this.issuesPanel = new System.Windows.Forms.TabPage();
             this.pathsView1 = new ModelEditor.forms.PathsView();
+            this.outputPanel = new System.Windows.Forms.TabPage();
             this.outputView1 = new ModelEditor.forms.OutputView();
+            this.issuesPanel = new System.Windows.Forms.TabPage();
             this.issuesView1 = new ModelEditor.forms.IssuesView();
+            this.modelSettingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -122,6 +124,8 @@
             this.openMostRecentMenuItem,
             this.recentMenuItem,
             this.toolStripSeparator3,
+            this.modelSettingsMenuItem,
+            this.toolStripSeparator7,
             this.openOntologyItem,
             this.editOntologyItem,
             this.toolStripSeparator9,
@@ -524,6 +528,17 @@
             this.pathsPanel.Text = "Pathts";
             this.pathsPanel.UseVisualStyleBackColor = true;
             // 
+            // pathsView1
+            // 
+            this.pathsView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pathsView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pathsView1.Location = new System.Drawing.Point(0, 0);
+            this.pathsView1.Margin = new System.Windows.Forms.Padding(8);
+            this.pathsView1.Model = null;
+            this.pathsView1.Name = "pathsView1";
+            this.pathsView1.Size = new System.Drawing.Size(415, 687);
+            this.pathsView1.TabIndex = 0;
+            // 
             // outputPanel
             // 
             this.outputPanel.Controls.Add(this.outputView1);
@@ -535,29 +550,6 @@
             this.outputPanel.TabIndex = 1;
             this.outputPanel.Text = "Output";
             this.outputPanel.UseVisualStyleBackColor = true;
-            // 
-            // issuesPanel
-            // 
-            this.issuesPanel.Controls.Add(this.issuesView1);
-            this.issuesPanel.Location = new System.Drawing.Point(25, 4);
-            this.issuesPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.issuesPanel.Name = "issuesPanel";
-            this.issuesPanel.Padding = new System.Windows.Forms.Padding(4);
-            this.issuesPanel.Size = new System.Drawing.Size(415, 687);
-            this.issuesPanel.TabIndex = 2;
-            this.issuesPanel.Text = "Issues";
-            this.issuesPanel.UseVisualStyleBackColor = true;
-            // 
-            // pathsView1
-            // 
-            this.pathsView1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pathsView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pathsView1.Location = new System.Drawing.Point(0, 0);
-            this.pathsView1.Margin = new System.Windows.Forms.Padding(8);
-            this.pathsView1.Model = null;
-            this.pathsView1.Name = "pathsView1";
-            this.pathsView1.Size = new System.Drawing.Size(415, 687);
-            this.pathsView1.TabIndex = 0;
             // 
             // outputView1
             // 
@@ -571,6 +563,18 @@
             this.outputView1.TabIndex = 0;
             this.outputView1.ViewMode = ModelEditor.forms.OutputViewMode.TEXT;
             // 
+            // issuesPanel
+            // 
+            this.issuesPanel.Controls.Add(this.issuesView1);
+            this.issuesPanel.Location = new System.Drawing.Point(25, 4);
+            this.issuesPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.issuesPanel.Name = "issuesPanel";
+            this.issuesPanel.Padding = new System.Windows.Forms.Padding(4);
+            this.issuesPanel.Size = new System.Drawing.Size(415, 687);
+            this.issuesPanel.TabIndex = 2;
+            this.issuesPanel.Text = "Issues";
+            this.issuesPanel.UseVisualStyleBackColor = true;
+            // 
             // issuesView1
             // 
             this.issuesView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -580,6 +584,18 @@
             this.issuesView1.Name = "issuesView1";
             this.issuesView1.Size = new System.Drawing.Size(407, 679);
             this.issuesView1.TabIndex = 0;
+            // 
+            // modelSettingsMenuItem
+            // 
+            this.modelSettingsMenuItem.Name = "modelSettingsMenuItem";
+            this.modelSettingsMenuItem.Size = new System.Drawing.Size(329, 26);
+            this.modelSettingsMenuItem.Text = "Model settings..";
+            this.modelSettingsMenuItem.Click += new System.EventHandler(this.modelSettingsMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(326, 6);
             // 
             // EditorWindow
             // 
@@ -670,7 +686,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem exportToLibraryToolStripMenuItem;
-
-
+        private System.Windows.Forms.ToolStripMenuItem modelSettingsMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }
