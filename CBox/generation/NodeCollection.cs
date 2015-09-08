@@ -631,7 +631,8 @@ namespace cbox.generation
                     // append node's tags and comments:
                     var new_tags = from t in node.Tags where !ctx.Case.Tags.Contains(t) select t.Trim();
                     ctx.Case.Tags.AddRange(new_tags);
-                    ctx.Case.Comments.Add(node.Comment);
+                    if(node.Comment != null && node.Comment.Trim() != string.Empty)
+                        ctx.Case.Comments.Add(node.Comment);
                 }
             }
 

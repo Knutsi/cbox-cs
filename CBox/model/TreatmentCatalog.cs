@@ -25,6 +25,13 @@ namespace cbox.model
                 catalog.AddRange(entries);
             }
 
+            // ensure no empty modifiers:
+            foreach (var entry in catalog)
+            {
+                if (entry.Modifiers == null)
+                    entry.Modifiers = new List<string>();
+            }
+
             return catalog;
         }
 
