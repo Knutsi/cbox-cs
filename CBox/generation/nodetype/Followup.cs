@@ -89,7 +89,12 @@ namespace cbox.generation.nodetype
         /// <param name="ctx"></param>
         public void Eval(ExecutionContext ctx)
         {
-            ctx.Case.Followup.AddRange(Data.Questions);
+            var valid_questions = from q in Data.Questions
+                                  where q.Answers.Count > 0 &&
+                                  (from a in q.Answers where a.Correct == true select a).Count() > 0
+                                  select q;
+
+            ctx.Case.Followup.AddRange(valid_questions);
         }
 
 

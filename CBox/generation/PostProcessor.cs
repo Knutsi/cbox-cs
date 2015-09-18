@@ -18,7 +18,7 @@ namespace cbox.generation
         {
             // process all steps:
             MergeEqualProblems(case_);
-            MergeScoreTreeGroups(case_);
+            //MergeScoreTreeGroups(case_);
             ClearNonAcumulativeValues(case_, ontology);
             AddPreviousDx(case_);
             PickFollowup(case_);
